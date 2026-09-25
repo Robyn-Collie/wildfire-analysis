@@ -149,6 +149,20 @@ def per_year(df: pd.DataFrame, out_dir: str) -> None:
           note='Tests "higher lows": if a recent year is among the lowest, the lows are not rising.')
     claim('class_g.alaska_share_of_acres', float(g_ak.sum() / g_all.sum()),
           'Alaska share of all Class G acres 1992-2020', len(g), unit='share')
+    # The 11-state West on its own (the headline's region).
+    g_west = g[g['REGION'] == 'West'].groupby('FIRE_YEAR')['FIRE_SIZE'].sum().reindex(YEARS, fill_value=0.0)
+    n_west = int((g['REGION'] == 'West').sum())
+    claim('class_g.acres_by_year_west', g_west, 'same, REGION == West (AZ CA CO ID MT NV NM OR UT WA WY) only',
+          n_west, unit='acres')
+    claim('class_g.acres_trend_west', _trend(g_west), 'same trend statistics, West only', n_west, unit='acres/yr')
+    claim('class_g.half_period_means_west', {'1992_2005': float(g_west.loc[1992:2005].mean()),
+                                             '2006_2020': float(g_west.loc[2006:2020].mean())},
+          'mean annual Class G acres in the West in the first 14 and last 15 years', n_west, unit='acres')
+    claim('class_g.west_ratio_by_state', {str(k): float(v) for k, v in
+          (g[g['REGION'] == 'West'].assign(late=lambda d: d['FIRE_YEAR'] >= 2006)
+           .groupby(['STATE', 'late'], observed=True)['FIRE_SIZE'].sum().unstack('late')
+           .pipe(lambda t: (t[True] / 15) / (t[False] / 14)).sort_values(ascending=False).items())},
+          'ratio of mean annual Class G acres 2006-2020 to 1992-2005, per Western state', n_west, unit='ratio')
 
     fit = {'slope': t_all['theil_sen_slope'], 'intercept': t_all['theil_sen_intercept'],
            'tau': t_all['kendall_tau'], 'p': t_all['kendall_p'],
@@ -191,6 +205,15 @@ def causes(df: pd.DataFrame, out_dir: str) -> None:
     cls_share = cls_share.div(cls_share.sum(axis=1), axis=0)
     claim('cause.classification_acre_share_by_size_class', cls_share,
           'share of acres in each FIRE_SIZE_CLASS by NWCG_CAUSE_CLASSIFICATION', n, unit='share')
+    # Cause classification by region: shares of fires and of acres, undetermined shown.
+    rc = pd.crosstab(df['REGION'], df['NWCG_CAUSE_CLASSIFICATION'])
+    ra = pd.crosstab(df['REGION'], df['NWCG_CAUSE_CLASSIFICATION'], values=df['FIRE_SIZE'], aggfunc='sum').fillna(0)
+    by_region = {str(r): {'fires': int(rc.loc[r].sum()), 'acres': float(ra.loc[r].sum()),
+                          'share_fires': {str(c): float(v) for c, v in (rc.loc[r] / rc.loc[r].sum()).items()},
+                          'share_acres': {str(c): float(v) for c, v in (ra.loc[r] / ra.loc[r].sum()).items()}}
+                 for r in rc.index}
+    claim('cause.by_region_classification', by_region,
+          'fires, acres and their shares by region and NWCG_CAUSE_CLASSIFICATION (Missing shown, not excluded)', n)
     known = df[df['NWCG_CAUSE_CLASSIFICATION'] != CAUSE_MISSING]
     hs = (known['NWCG_CAUSE_CLASSIFICATION'] == 'Human').groupby(known['FIRE_SIZE_CLASS'], observed=True).mean()
     claim('cause.human_share_known_by_size_class', hs.reindex(SIZE_CLASSES),

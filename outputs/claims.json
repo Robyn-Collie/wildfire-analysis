@@ -1,6 +1,6 @@
 {
  "anom.ak_class_g_by_month": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "Class G fires and acres in AK by DISCOVERY_MONTH",
   "n": 765,
   "note": null,
@@ -58,7 +58,7 @@
   }
  },
  "anom.arkansas_all_fires_by_month": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "all Arkansas fires and acres by DISCOVERY_MONTH",
   "n": 37947,
   "note": null,
@@ -116,7 +116,7 @@
   }
  },
  "anom.arkansas_class_g": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "all Class G fires with STATE == AR",
   "n": 2,
   "note": null,
@@ -194,7 +194,7 @@
   }
  },
  "anom.az_class_g_by_month": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "Class G fires and acres in AZ by DISCOVERY_MONTH",
   "n": 257,
   "note": null,
@@ -252,7 +252,7 @@
   }
  },
  "anom.june_class_g_by_state_top10": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "Class G fires discovered in June, fires and acres by STATE, top 10 by acres",
   "n": 1030,
   "note": null,
@@ -302,7 +302,7 @@
   }
  },
  "anom.northeast_2010": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "the 2010 Northeast values against the other years",
   "n": 180427,
   "note": null,
@@ -322,7 +322,7 @@
   }
  },
  "anom.northeast_2010_by_state": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "Northeast 2010 fires and acres by STATE",
   "n": 9250,
   "note": null,
@@ -368,7 +368,7 @@
   }
  },
  "anom.northeast_by_year": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "Northeast (CT ME MA NH RI VT NY NJ PA) fires, acres and their z-scores (against the 29-year mean and sd) by FIRE_YEAR",
   "n": 180427,
   "note": null,
@@ -552,7 +552,7 @@
   }
  },
  "anom.northeast_fires_by_state_year": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "Northeast fires by STATE and FIRE_YEAR",
   "n": 180427,
   "note": null,
@@ -841,7 +841,7 @@
   }
  },
  "anom.northeast_largest_yoy_count_jumps": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "three largest year-over-year increases in Northeast fire counts",
   "n": 180427,
   "note": null,
@@ -854,7 +854,7 @@
   }
  },
  "anom.northeast_ny_share_of_fires": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "New York share of Northeast fires 1992-2020",
   "n": 180427,
   "note": null,
@@ -863,7 +863,7 @@
   "value": 0.5494853874420126
  },
  "anom.northeast_zero_report_years": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "years in which a Northeast state has zero records",
   "n": 180427,
   "note": "Zero-record years are reporting gaps, not fire-free years.",
@@ -901,7 +901,7 @@
   }
  },
  "anom.texas_by_month": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "Texas fires, acres, their descending ranks across the 12 months, and Class G counts by DISCOVERY_MONTH",
   "n": 180087,
   "note": null,
@@ -995,7 +995,7 @@
   }
  },
  "anom.texas_december_by_year": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "Texas December fires and acres by FIRE_YEAR",
   "n": 10742,
   "note": null,
@@ -1121,7 +1121,7 @@
   }
  },
  "anom.texas_december_top_year": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "largest Texas December by acres and its ratio to the second largest",
   "n": 10742,
   "note": null,
@@ -1134,7 +1134,7 @@
   }
  },
  "anom.texas_missing_cont_date_share_2010_plus": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "share of Texas records 2010+ with null CONT_DATE",
   "n": 101070,
   "note": null,
@@ -1143,7 +1143,7 @@
   "value": 0.8756505392302365
  },
  "anom.verdict_arkansas_june": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "verdict from the two claims above",
   "n": 4783,
   "note": null,
@@ -1152,7 +1152,7 @@
   "value": "Refuted: Arkansas has 2 Class G fires in 29 years and none in June. June is the peak Class G month for Arizona and Alaska; the README most likely mislabels AZ or AK as AR."
  },
  "anom.verdict_northeast_2010": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "verdict from the Northeast claims above",
   "n": 180427,
   "note": null,
@@ -1161,7 +1161,7 @@
   "value": "Not reproduced with this region definition: 2010 has z = 0.98 on fires and z = 0.48 on acres, ranking 7 of 29 years by fires. The series is dominated by reporting shifts (largest jumps in 2020, 2005, 2015) and by states with zero-record years."
  },
  "anom.verdict_texas_december": {
-  "computed_at": "2026-09-25T20:36:47+00:00",
+  "computed_at": "2026-09-25T20:55:37+00:00",
   "definition": "verdict from the Texas claims above",
   "n": 180087,
   "note": null,
@@ -1170,7 +1170,7 @@
   "value": "Not a general pattern: December ranks 10 of 12 Texas months by fires and 10 of 12 by acres. Texas's big-fire season is January to April. One December stands out: 2005 with 94,523 acres, 2.7x the next largest December."
  },
  "cause.by_classification": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "fires, acres and shares by NWCG_CAUSE_CLASSIFICATION",
   "n": 2303566,
   "note": null,
@@ -1198,7 +1198,7 @@
   }
  },
  "cause.by_general_cause": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "fires, acres, shares and mean size by NWCG_GENERAL_CAUSE",
   "n": 2303566,
   "note": null,
@@ -1298,8 +1298,102 @@
    }
   }
  },
+ "cause.by_region_classification": {
+  "computed_at": "2026-09-25T20:55:27+00:00",
+  "definition": "fires, acres and their shares by region and NWCG_CAUSE_CLASSIFICATION (Missing shown, not excluded)",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Alaska": {
+    "acres": 36654234.05218,
+    "fires": 15195,
+    "share_acres": {
+     "Human": 0.04932045387789194,
+     "Missing data/not specified/undetermined": 0.012023994263871072,
+     "Natural": 0.938655551858237
+    },
+    "share_fires": {
+     "Human": 0.6352089503126028,
+     "Missing data/not specified/undetermined": 0.02987824942415268,
+     "Natural": 0.3349128002632445
+    }
+   },
+   "Hawaii/PR": {
+    "acres": 472605.58,
+    "fires": 32172,
+    "share_acres": {
+     "Human": 0.2292264725270489,
+     "Missing data/not specified/undetermined": 0.7321652232713799,
+     "Natural": 0.038608304201571214
+    },
+    "share_fires": {
+     "Human": 0.015603630486137013,
+     "Missing data/not specified/undetermined": 0.9829665547681213,
+     "Natural": 0.0014298147457416388
+    }
+   },
+   "Northeast": {
+    "acres": 425569.18048249994,
+    "fires": 180427,
+    "share_acres": {
+     "Human": 0.9010616209184551,
+     "Missing data/not specified/undetermined": 0.05286783214539002,
+     "Natural": 0.04607054693615492
+    },
+    "share_fires": {
+     "Human": 0.9254657008097458,
+     "Missing data/not specified/undetermined": 0.025334345746479185,
+     "Natural": 0.04919995344377504
+    }
+   },
+   "Other": {
+    "acres": 7094682.915297,
+    "fires": 240714,
+    "share_acres": {
+     "Human": 0.6877286150670406,
+     "Missing data/not specified/undetermined": 0.09974127767912752,
+     "Natural": 0.21253010725383187
+    },
+    "share_fires": {
+     "Human": 0.9175120682635826,
+     "Missing data/not specified/undetermined": 0.02738935001703266,
+     "Natural": 0.05509858171938483
+    }
+   },
+   "South": {
+    "acres": 32932177.780982997,
+    "fires": 1082568,
+    "share_acres": {
+     "Human": 0.6894605745109414,
+     "Missing data/not specified/undetermined": 0.11603923931555836,
+     "Natural": 0.1945001861735002
+    },
+    "share_fires": {
+     "Human": 0.8787004603867841,
+     "Missing data/not specified/undetermined": 0.0672844569579001,
+     "Natural": 0.05401508265531588
+    }
+   },
+   "West": {
+    "acres": 102469466.50239,
+    "fires": 752490,
+    "share_acres": {
+     "Human": 0.32803964224685395,
+     "Missing data/not specified/undetermined": 0.05440814908673273,
+     "Natural": 0.6175522086664134
+    },
+    "share_fires": {
+     "Human": 0.5763026751186062,
+     "Missing data/not specified/undetermined": 0.10267113184228362,
+     "Natural": 0.3210261930391102
+    }
+   }
+  }
+ },
  "cause.classification_acre_share_by_size_class": {
-  "computed_at": "2026-09-25T20:36:38+00:00",
+  "computed_at": "2026-09-25T20:55:26+00:00",
   "definition": "share of acres in each FIRE_SIZE_CLASS by NWCG_CAUSE_CLASSIFICATION",
   "n": 2303566,
   "note": null,
@@ -1344,7 +1438,7 @@
   }
  },
  "cause.general_cause_share_by_size_class": {
-  "computed_at": "2026-09-25T20:36:38+00:00",
+  "computed_at": "2026-09-25T20:55:25+00:00",
   "definition": "share of fires in each FIRE_SIZE_CLASS by NWCG_GENERAL_CAUSE (rows sum to 1)",
   "n": 2303566,
   "note": null,
@@ -1459,7 +1553,7 @@
   }
  },
  "cause.human_share_known_by_size_class": {
-  "computed_at": "2026-09-25T20:36:40+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "share of fires with a known cause classification that are Human, by FIRE_SIZE_CLASS",
   "n": 2110225,
   "note": null,
@@ -1476,7 +1570,7 @@
   }
  },
  "cause.human_to_natural_fire_ratio": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "Human fires divided by Natural fires",
   "n": 2303566,
   "note": null,
@@ -1485,7 +1579,7 @@
   "value": 5.446998188311708
  },
  "cause.natural_acres": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "acres with NWCG_CAUSE_CLASSIFICATION == Natural",
   "n": 327319,
   "note": null,
@@ -1494,7 +1588,7 @@
   "value": 105636946.786934
  },
  "cause.top_general_cause_by_size_class": {
-  "computed_at": "2026-09-25T20:36:38+00:00",
+  "computed_at": "2026-09-25T20:55:25+00:00",
   "definition": "most common NWCG_GENERAL_CAUSE within each size class",
   "n": 2303566,
   "note": null,
@@ -1574,7 +1668,7 @@
   }
  },
  "ces.by_owner": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:36+00:00",
   "definition": "Control Efficiency Score = 1 / (acres per hour to containment) aggregated per OWNER_DESCR with the mean (original definition) and the median; acres per hour = FIRE_SIZE / DURATION_HOURS; records of all years with DURATION_HOURS > 0; owners with at least 1,000 such records",
   "n": 1142942,
   "note": "Rank 1 = highest score = fewest acres per hour.",
@@ -1710,7 +1804,7 @@
   }
  },
  "ces.median_aph_by_size_class": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:36+00:00",
   "definition": "median acres per hour by FIRE_SIZE_CLASS, same sample",
   "n": 1142942,
   "note": "Shows that acres per hour is mostly a function of final size, which the score does not control for.",
@@ -1727,7 +1821,7 @@
   }
  },
  "ces.rank_shift": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:36+00:00",
   "definition": "rank under the mean-based score minus rank under the median-based score, per owner",
   "n": 1142942,
   "note": "A large positive value means the owner looks much worse under the original mean-based score.",
@@ -1751,7 +1845,7 @@
   }
  },
  "ces.spearman_mean_vs_median": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:36+00:00",
   "definition": "Spearman correlation between the two owner rankings",
   "n": 14,
   "note": null,
@@ -1760,7 +1854,7 @@
   "value": 0.0945054945054945
  },
  "class_g.acres_by_year": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "sum of FIRE_SIZE for FIRE_SIZE_CLASS == G by FIRE_YEAR",
   "n": 4783,
   "note": null,
@@ -1799,7 +1893,7 @@
   }
  },
  "class_g.acres_by_year_alaska": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "same, STATE == AK only",
   "n": 765,
   "note": null,
@@ -1838,7 +1932,7 @@
   }
  },
  "class_g.acres_by_year_excl_alaska": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "same, excluding STATE == AK",
   "n": 4018,
   "note": null,
@@ -1876,8 +1970,47 @@
    "2020": 8909273.44
   }
  },
+ "class_g.acres_by_year_west": {
+  "computed_at": "2026-09-25T20:55:23+00:00",
+  "definition": "same, REGION == West (AZ CA CO ID MT NV NM OR UT WA WY) only",
+  "n": 3151,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "1992": 994654.8,
+   "1993": 532697.6,
+   "1994": 2013089.2,
+   "1995": 720364.7,
+   "1996": 3354219.1,
+   "1997": 397245.0,
+   "1998": 480270.49,
+   "1999": 2807794.5,
+   "2000": 4176070.599,
+   "2001": 1580126.9,
+   "2002": 3114922.44,
+   "2003": 2482641.7002,
+   "2004": 646687.9,
+   "2005": 3042745.5,
+   "2006": 5064845.8,
+   "2007": 5977839.66,
+   "2008": 2240951.46,
+   "2009": 1048172.2,
+   "2010": 1001337.7,
+   "2011": 3187683.1,
+   "2012": 6754588.16,
+   "2013": 2278259.8,
+   "2014": 2131633.7600000002,
+   "2015": 3458079.86,
+   "2016": 2174191.25,
+   "2017": 5800451.36,
+   "2018": 5421939.061,
+   "2019": 1095867.8,
+   "2020": 8694896.44
+  }
+ },
  "class_g.acres_trend": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "Kendall tau and Theil-Sen slope of Class G acres per year, 1992-2020 (29 annual points; years with no Class G fires count as 0)",
   "n": 4783,
   "note": "Class G is the size class least affected by the reporting caveat: fires of 5,000+ acres are recorded by every reporting system, so this series is the most comparable across years.",
@@ -1895,7 +2028,7 @@
   }
  },
  "class_g.acres_trend_alaska": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "same, Alaska only",
   "n": 765,
   "note": null,
@@ -1913,7 +2046,7 @@
   }
  },
  "class_g.acres_trend_excl_alaska": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "same, excluding Alaska",
   "n": 4018,
   "note": null,
@@ -1930,8 +2063,26 @@
    ]
   }
  },
+ "class_g.acres_trend_west": {
+  "computed_at": "2026-09-25T20:55:23+00:00",
+  "definition": "same trend statistics, West only",
+  "n": 3151,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres/yr",
+  "value": {
+   "kendall_p": 0.009294120204414674,
+   "kendall_tau": 0.3399014778325123,
+   "theil_sen_intercept": -202733784.98,
+   "theil_sen_slope": 102199.42411764705,
+   "theil_sen_slope_ci95": [
+    21660.39230769231,
+    212026.76399999997
+   ]
+  }
+ },
  "class_g.alaska_share_of_acres": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "Alaska share of all Class G acres 1992-2020",
   "n": 4783,
   "note": null,
@@ -1940,7 +2091,7 @@
   "value": 0.258590222425536
  },
  "class_g.fires_by_year": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "count of FIRE_SIZE_CLASS == G by FIRE_YEAR",
   "n": 4783,
   "note": null,
@@ -1979,7 +2130,7 @@
   }
  },
  "class_g.fires_trend": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "Kendall tau and Theil-Sen slope of Class G fire counts per year",
   "n": 4783,
   "note": null,
@@ -1997,7 +2148,7 @@
   }
  },
  "class_g.five_lowest_years": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "the five lowest Class G acre years",
   "n": 4783,
   "note": "Tests \"higher lows\": if a recent year is among the lowest, the lows are not rising.",
@@ -2012,7 +2163,7 @@
   }
  },
  "class_g.half_period_means": {
-  "computed_at": "2026-09-25T20:36:37+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "mean annual Class G acres in the first 14 and last 15 years",
   "n": 4783,
   "note": null,
@@ -2025,8 +2176,41 @@
    "2006_2020_excl_alaska": 4664999.950080001
   }
  },
+ "class_g.half_period_means_west": {
+  "computed_at": "2026-09-25T20:55:23+00:00",
+  "definition": "mean annual Class G acres in the West in the first 14 and last 15 years",
+  "n": 3151,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "1992_2005": 1881680.744942857,
+   "2006_2020": 3755382.494066666
+  }
+ },
+ "class_g.west_ratio_by_state": {
+  "computed_at": "2026-09-25T20:55:23+00:00",
+  "definition": "ratio of mean annual Class G acres 2006-2020 to 1992-2005, per Western state",
+  "n": 3151,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "ratio",
+  "value": {
+   "AZ": 1.4833860812844994,
+   "CA": 2.968805189090841,
+   "CO": 2.9681730390670853,
+   "ID": 1.7837474777045363,
+   "MT": 2.0125610392937,
+   "NM": 1.7077604169436618,
+   "NV": 1.0996593059758186,
+   "OR": 2.5097313882879835,
+   "UT": 1.3987143558867228,
+   "WA": 3.2093043005537156,
+   "WY": 2.219153049851552
+  }
+ },
  "cont.hours_by_owner_2010_plus": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "median and mean DURATION_HOURS by OWNER_DESCR, eight most frequent owners in that sample",
   "n": 577956,
   "note": null,
@@ -2076,7 +2260,7 @@
   }
  },
  "cont.hours_by_size_class_2010_plus": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "median and mean DURATION_HOURS by FIRE_SIZE_CLASS, that sample",
   "n": 577956,
   "note": null,
@@ -2121,7 +2305,7 @@
   }
  },
  "cont.hours_percentiles_2010_plus": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "percentiles of DURATION_HOURS for that sample",
   "n": 577956,
   "note": null,
@@ -2137,7 +2321,7 @@
   }
  },
  "cont.median_hours_by_size_class_and_owner_2010_plus": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "median DURATION_HOURS by FIRE_SIZE_CLASS and OWNER_DESCR, six most frequent owners, that sample",
   "n": 577956,
   "note": null,
@@ -2203,7 +2387,7 @@
   }
  },
  "cont.n_2010_plus_with_both_datetimes": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "records with FIRE_YEAR >= 2010 and non-null DURATION_HOURS (both DISCOVERY_DATETIME and CONT_DATETIME exist, i.e. date and a valid HHMM time on both ends)",
   "n": 577956,
   "note": "Includes 0-hour records; excludes nothing else.",
@@ -2212,7 +2396,7 @@
   "value": 577956
  },
  "cont.n_by_size_class_and_owner_2010_plus": {
-  "computed_at": "2026-09-25T20:36:46+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "cell counts behind the previous claim",
   "n": 577956,
   "note": null,
@@ -2278,7 +2462,7 @@
   }
  },
  "cont.share_with_cont_date": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "share of all records with a non-null CONT_DATE",
   "n": 2303566,
   "note": null,
@@ -2287,7 +2471,7 @@
   "value": 0.6115531311019524
  },
  "cont.share_with_cont_date_by_owner": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "share with CONT_DATE by OWNER_DESCR (upper-cased)",
   "n": 2303566,
   "note": null,
@@ -2313,7 +2497,7 @@
   }
  },
  "cont.share_with_cont_date_by_region": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "share with CONT_DATE by region",
   "n": 2303566,
   "note": null,
@@ -2329,7 +2513,7 @@
   }
  },
  "cont.share_with_cont_date_by_year": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "share with CONT_DATE by FIRE_YEAR",
   "n": 2303566,
   "note": null,
@@ -2368,7 +2552,7 @@
   }
  },
  "cont.share_zero_hours_2010_plus": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:35+00:00",
   "definition": "share of that sample with DURATION_HOURS == 0 (containment time equals discovery time)",
   "n": 577956,
   "note": null,
@@ -2377,7 +2561,7 @@
   "value": 0.04027815266214037
  },
  "geo.cells_1deg_file": {
-  "computed_at": "2026-09-25T20:36:43+00:00",
+  "computed_at": "2026-09-25T20:55:32+00:00",
   "definition": "1-degree cells: cell_lat/cell_lon = floor(LATITUDE)/floor(LONGITUDE) (south-west corner); n_fires; acres = sum FIRE_SIZE; n_human, n_natural, n_missing_cause from NWCG_CAUSE_CLASSIFICATION; human_share_known = n_human / (n_human + n_natural); human_share_all = n_human / n_fires",
   "n": 2303566,
   "note": null,
@@ -2386,7 +2570,7 @@
   "value": "outputs/cells_1deg.csv"
  },
  "geo.cells_1deg_summary": {
-  "computed_at": "2026-09-25T20:36:43+00:00",
+  "computed_at": "2026-09-25T20:55:32+00:00",
   "definition": "summary of the 1-degree cell table",
   "n": 2303566,
   "note": null,
@@ -2407,7 +2591,7 @@
   }
  },
  "geo.fires_and_acres_by_gacc": {
-  "computed_at": "2026-09-25T20:36:42+00:00",
+  "computed_at": "2026-09-25T20:55:32+00:00",
   "definition": "fires and acres by state-level GACC approximation (see overview.gacc_definition)",
   "n": 2303566,
   "note": null,
@@ -2457,7 +2641,7 @@
   }
  },
  "geo.fires_and_acres_by_state": {
-  "computed_at": "2026-09-25T20:36:42+00:00",
+  "computed_at": "2026-09-25T20:55:31+00:00",
   "definition": "fires and acres by STATE",
   "n": 2303566,
   "note": null,
@@ -2779,7 +2963,7 @@
   }
  },
  "geo.top5_states_acres": {
-  "computed_at": "2026-09-25T20:36:42+00:00",
+  "computed_at": "2026-09-25T20:55:31+00:00",
   "definition": "five states with the most acres",
   "n": 2303566,
   "note": null,
@@ -2794,7 +2978,7 @@
   }
  },
  "geo.top5_states_fires": {
-  "computed_at": "2026-09-25T20:36:42+00:00",
+  "computed_at": "2026-09-25T20:55:31+00:00",
   "definition": "five states with the most fires",
   "n": 2303566,
   "note": null,
@@ -2809,7 +2993,7 @@
   }
  },
  "overview.gacc_definition": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:22+00:00",
   "definition": "state-level GACC approximation",
   "n": null,
   "note": "Only Northwest (OR WA), Southwest (AZ NM), Great Basin members (ID NV UT WY) and the ten GACC names were verified from gacc.nifc.gov pages fetched 2026-09-25; the rest is unverified.",
@@ -2818,7 +3002,7 @@
   "value": "State-level approximation of the ten NWCG GACCs; whole states assigned to one area, California North/South merged, Idaho and Wyoming not split. Lists: Alaska = AK; Northwest = OR WA; California (North+South merged) = CA; Great Basin (approx) = ID NV UT; Northern Rockies (approx) = MT ND; Rocky Mountain (approx) = CO WY SD NE KS; Southwest = AZ NM; Southern Area (approx) = AL AR FL GA KY LA MS NC OK SC TN TX VA PR; Eastern Area (approx) = CT DE DC IA IL IN ME MD MA MI MN MO NH NJ NY OH PA RI VT WV WI; Hawaii (not a GACC) = HI"
  },
  "overview.largest_fire_acres": {
-  "computed_at": "2026-09-25T20:36:35+00:00",
+  "computed_at": "2026-09-25T20:55:21+00:00",
   "definition": "max FIRE_SIZE",
   "n": 2303566,
   "note": "OKS - STARBUCK (OK, 2017)",
@@ -2827,7 +3011,7 @@
   "value": 662700.0
  },
  "overview.missing_cont_date_share_2010_plus": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:22+00:00",
   "definition": "share of records with FIRE_YEAR >= 2010 whose CONT_DATE is null",
   "n": 854880,
   "note": null,
@@ -2836,7 +3020,7 @@
   "value": 0.26299246677896315
  },
  "overview.missing_counts": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:22+00:00",
   "definition": "count of records where the field is null, or (for cause and owner) equals the explicit \"Missing data/not specified/undetermined\" / \"MISSING/NOT SPECIFIED\" category",
   "n": 2303566,
   "note": null,
@@ -2854,7 +3038,7 @@
   }
  },
  "overview.missing_shares": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:22+00:00",
   "definition": "the same counts divided by all rows",
   "n": 2303566,
   "note": null,
@@ -2872,7 +3056,7 @@
   }
  },
  "overview.n_rows": {
-  "computed_at": "2026-09-25T20:36:35+00:00",
+  "computed_at": "2026-09-25T20:55:21+00:00",
   "definition": "row count of data/fires.parquet (table Fires of FPA_FOD_20221014.sqlite)",
   "n": 2303566,
   "note": null,
@@ -2881,7 +3065,7 @@
   "value": 2303566
  },
  "overview.region_definition": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:22+00:00",
   "definition": "project region scheme",
   "n": null,
   "note": null,
@@ -2890,7 +3074,7 @@
   "value": "West = AZ CA CO ID MT NV NM OR UT WA WY; South = AL AR FL GA KY LA MS NC OK SC TN TX VA WV; Northeast = CT ME MA NH RI VT NY NJ PA; Alaska = AK; Hawaii/PR = HI PR; Other = every other STATE value (Midwest, Plains, DC, DE, MD)."
  },
  "overview.size_class_definition": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:22+00:00",
   "definition": "FPA FOD coding",
   "n": null,
   "note": null,
@@ -2899,7 +3083,7 @@
   "value": "FIRE_SIZE_CLASS as coded in FPA FOD: A < 0.26 acres, B 0.26-9.9, C 10-99.9, D 100-299, E 300-999, F 1,000-4,999, G 5,000 and up."
  },
  "overview.smallest_fire_acres": {
-  "computed_at": "2026-09-25T20:36:35+00:00",
+  "computed_at": "2026-09-25T20:55:21+00:00",
   "definition": "min FIRE_SIZE",
   "n": 2303566,
   "note": null,
@@ -2908,7 +3092,7 @@
   "value": 1e-05
  },
  "overview.total_acres": {
-  "computed_at": "2026-09-25T20:36:35+00:00",
+  "computed_at": "2026-09-25T20:55:21+00:00",
   "definition": "sum of FIRE_SIZE over all records",
   "n": 2303566,
   "note": null,
@@ -2917,7 +3101,7 @@
   "value": 180048736.0113325
  },
  "overview.years": {
-  "computed_at": "2026-09-25T20:36:35+00:00",
+  "computed_at": "2026-09-25T20:55:21+00:00",
   "definition": "min and max FIRE_YEAR",
   "n": 2303566,
   "note": null,
@@ -2929,7 +3113,7 @@
   ]
  },
  "owner.fires_and_acres": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:34+00:00",
   "definition": "fires, acres and shares by OWNER_DESCR (upper-cased so \"Private\" merges into \"PRIVATE\"); human_share_known = share of fires with a known NWCG_CAUSE_CLASSIFICATION that are Human",
   "n": 2303566,
   "note": null,
@@ -3067,7 +3251,7 @@
   }
  },
  "owner.missing_share_acres": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:34+00:00",
   "definition": "share of acres whose OWNER_DESCR is MISSING/NOT SPECIFIED",
   "n": 2303566,
   "note": null,
@@ -3076,7 +3260,7 @@
   "value": 0.12709326172356308
  },
  "owner.missing_share_fires": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:34+00:00",
   "definition": "share of fires whose OWNER_DESCR is MISSING/NOT SPECIFIED",
   "n": 2303566,
   "note": null,
@@ -3085,7 +3269,7 @@
   "value": 0.46381306200907635
  },
  "owner.top4_acres": {
-  "computed_at": "2026-09-25T20:36:45+00:00",
+  "computed_at": "2026-09-25T20:55:34+00:00",
   "definition": "four owner categories with the most acres",
   "n": 2303566,
   "note": null,
@@ -3099,7 +3283,7 @@
   }
  },
  "season.acres_by_region": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "acres per region, all months",
   "n": 2303566,
   "note": null,
@@ -3115,7 +3299,7 @@
   }
  },
  "season.acres_by_region_month": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "acres by region and DISCOVERY_MONTH",
   "n": 2303566,
   "note": null,
@@ -3221,7 +3405,7 @@
   }
  },
  "season.class_g_acres_by_region_month": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "Class G acres by DISCOVERY_MONTH and region",
   "n": 4783,
   "note": null,
@@ -3327,7 +3511,7 @@
   }
  },
  "season.class_g_fires_by_region_month": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "Class G fire counts by DISCOVERY_MONTH and region",
   "n": 4783,
   "note": null,
@@ -3433,7 +3617,7 @@
   }
  },
  "season.class_g_leading_region_by_month": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "region with the most Class G fires in each month",
   "n": 4783,
   "note": null,
@@ -3455,7 +3639,7 @@
   }
  },
  "season.duration_days_by_region": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:30+00:00",
   "definition": "mean and median DURATION_DAYS (CONT_DATE minus DISCOVERY_DATE in whole days) by region, records with a containment date, all years",
   "n": 1408753,
   "note": null,
@@ -3495,7 +3679,7 @@
   }
  },
  "season.fires_and_acres_by_month": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "fires and acres by DISCOVERY_MONTH (month of DISCOVERY_DATE)",
   "n": 2303566,
   "note": null,
@@ -3553,7 +3737,7 @@
   }
  },
  "season.fires_by_gacc_month": {
-  "computed_at": "2026-09-25T20:36:42+00:00",
+  "computed_at": "2026-09-25T20:55:31+00:00",
   "definition": "fires by state-level GACC approximation and DISCOVERY_MONTH",
   "n": 2303566,
   "note": null,
@@ -3707,7 +3891,7 @@
   }
  },
  "season.fires_by_region": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "fires per region, all months",
   "n": 2303566,
   "note": null,
@@ -3723,7 +3907,7 @@
   }
  },
  "season.fires_by_region_month": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "fires by region (REGION_DEFINITION) and DISCOVERY_MONTH",
   "n": 2303566,
   "note": null,
@@ -3829,7 +4013,7 @@
   }
  },
  "season.peak_month_by_region": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "peak month of fires and of acres per region",
   "n": 2303566,
   "note": null,
@@ -3863,7 +4047,7 @@
   }
  },
  "season.peak_months": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:29+00:00",
   "definition": "month with the most fires and the month with the most acres",
   "n": 2303566,
   "note": null,
@@ -3875,7 +4059,7 @@
   }
  },
  "season.west_mean_duration_days_by_month": {
-  "computed_at": "2026-09-25T20:36:41+00:00",
+  "computed_at": "2026-09-25T20:55:30+00:00",
   "definition": "mean DURATION_DAYS of West fires with a containment date by DISCOVERY_MONTH",
   "n": 567664,
   "note": null,
@@ -3897,7 +4081,7 @@
   }
  },
  "year.acres_by_size_class": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "acres by FIRE_YEAR and FIRE_SIZE_CLASS",
   "n": 2303566,
   "note": null,
@@ -4168,7 +4352,7 @@
   }
  },
  "year.acres_share_by_size_class": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "share of all acres 1992-2020 by FIRE_SIZE_CLASS",
   "n": 2303566,
   "note": null,
@@ -4185,7 +4369,7 @@
   }
  },
  "year.acres_trend": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:22+00:00",
   "definition": "Kendall tau and Theil-Sen slope of acres per year, 1992-2020",
   "n": 2303566,
   "note": null,
@@ -4203,7 +4387,7 @@
   }
  },
  "year.fires_and_acres": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:22+00:00",
   "definition": "fires (row count) and acres (sum FIRE_SIZE) by FIRE_YEAR",
   "n": 2303566,
   "note": null,
@@ -4329,7 +4513,7 @@
   }
  },
  "year.fires_and_acres_peak": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:22+00:00",
   "definition": "year with the most fires and the year with the most acres",
   "n": 2303566,
   "note": null,
@@ -4343,7 +4527,7 @@
   }
  },
  "year.fires_by_size_class": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "fires by FIRE_YEAR and FIRE_SIZE_CLASS",
   "n": 2303566,
   "note": null,
@@ -4614,7 +4798,7 @@
   }
  },
  "year.fires_share_by_size_class": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:23+00:00",
   "definition": "share of all fires 1992-2020 by FIRE_SIZE_CLASS",
   "n": 2303566,
   "note": null,
@@ -4631,7 +4815,7 @@
   }
  },
  "year.fires_trend": {
-  "computed_at": "2026-09-25T20:36:36+00:00",
+  "computed_at": "2026-09-25T20:55:22+00:00",
   "definition": "Kendall tau and Theil-Sen slope of fires per year, 1992-2020",
   "n": 2303566,
   "note": "Fire counts depend on which agencies reported in each year (reporting caveat), so a count trend is not a wildfire trend.",
