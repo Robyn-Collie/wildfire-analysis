@@ -8,8 +8,9 @@ Usage:
     python scripts/reproduce.py --part descriptive
     python scripts/reproduce.py --skip-cv        # skip the 5-fold CV (saves a few minutes)
 
-Writes outputs/reproduction.json and figures to outputs/ (or --out).
+Writes outputs/reproduction_<part>.json and figures to outputs/ (or --out).
 Checks the database against data.sha256 first and warns on a mismatch.
+Parallelism comes from WILDFIRE_N_JOBS (default 1); results do not depend on it.
 """
 import argparse
 import hashlib
@@ -28,7 +29,7 @@ sys.path.insert(0, REPO_ROOT)
 
 from src.data_loader import DEFAULT_DB_PATH, load_data  # noqa: E402
 from src.features import preprocess_data  # noqa: E402
-from src.train_model import RANDOM_STATE, build_model, split_data  # noqa: E402
+from src.train_model import RANDOM_STATE, build_model, default_n_jobs, split_data  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
@@ -123,8 +124,9 @@ def run_model(out_dir: str, skip_cv: bool) -> dict:
     if not skip_cv:
         t0 = time.time()
         kf = KFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE)
+        # Folds run sequentially; any parallelism (WILDFIRE_N_JOBS) stays inside the forest.
         cv = cross_val_score(build_model(), X_train, y_train, cv=kf,
-                             scoring='neg_root_mean_squared_error', n_jobs=-1)
+                             scoring='neg_root_mean_squared_error', n_jobs=1)
         res['cv_rmse_mean'], res['cv_rmse_std'] = float(-cv.mean()), float(cv.std())
         res['cv_rmse_folds'] = [float(-s) for s in cv]
         logger.info(f'CV RMSE {-cv.mean():.4f} (+/- {cv.std():.4f}) in {time.time() - t0:.0f}s')
@@ -180,7 +182,8 @@ def run_model(out_dir: str, skip_cv: bool) -> dict:
     rng = np.random.RandomState(RANDOM_STATE)
     idx = rng.choice(len(X_test), size=min(50_000, len(X_test)), replace=False)
     pi = permutation_importance(rf, X_test.iloc[idx], y_test.iloc[idx], n_repeats=5,
-                                random_state=RANDOM_STATE, scoring='neg_mean_absolute_error', n_jobs=4)
+                                random_state=RANDOM_STATE, scoring='neg_mean_absolute_error',
+                                n_jobs=default_n_jobs())
     perm = pd.Series(pi.importances_mean, index=X.columns).sort_values(ascending=False)
     res['permutation_importance_mae_top10'] = {k: float(v) for k, v in perm.head(10).items()}
 
@@ -412,7 +415,8 @@ def main() -> int:
     import sklearn
     result = {'data_hash': check_hash(db_path),
               'env': {'python': sys.version.split()[0], 'pandas': pd.__version__,
-                      'numpy': np.__version__, 'scikit-learn': sklearn.__version__}}
+                      'numpy': np.__version__, 'scikit-learn': sklearn.__version__,
+                      'n_jobs': default_n_jobs()}}
     if args.part in ('model', 'all'):
         result['model'] = run_model(args.out, args.skip_cv)
     conn = sqlite3.connect(db_path)
