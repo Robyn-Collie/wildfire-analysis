@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geography · US wildfire record, 1992-2020</title>
+<meta name="description" content="1-degree cell map of fires, acres and human share, with a sortable state table.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Overview</a><a href="trends.html">Trends</a><a href="causes.html">Causes and seasons</a><a href="geography.html" aria-current="page">Geography</a><a href="ownership.html">Ownership</a><a href="conservation.html">Conservation</a><a href="model.html">Prediction</a><a href="methods.html">Methods and ledger</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>Geography</h1>
+<p class="lede">Ignition points aggregated to 1-degree cells. <button type="button" class="q" data-claim="geo.cells_1deg_summary">1,239</button> cells contain fires; <button type="button" class="q" data-claim="geo.cells_1deg_summary">1,051</button> have at least 20. The 50 busiest cells hold <button type="button" class="q" data-claim="geo.cells_1deg_summary">27.9%</button> of fires; the 50 largest by acreage hold <button type="button" class="q" data-claim="geo.cells_1deg_summary">30.3%</button> of acres, and they are different cells.</p></header>
+<div id="cell-map" class="chart" aria-live="polite"></div>
+<p class="small">Cell = floor(LATITUDE), floor(LONGITUDE), drawn at the cell centroid. No coordinates are null. The busiest cell is <button type="button" class="q" data-claim="geo.cells_1deg_summary">34N 80W</button> (South Carolina Piedmont) with <button type="button" class="q" data-claim="geo.cells_1deg_summary">20,710</button> fires, <button type="button" class="q" data-claim="geo.cells_1deg_summary">98%</button> human among known causes. Human share among known causes is above 90% across the South and East and drops to 20-50% in the interior West and Alaska.
+6 Puerto Rico cells fall outside the map frame and are in the table and CSV. No kernel-density smoothing is used anywhere on this site: every colored cell is a count you can audit.</p>
+
+<h2 id="states">States</h2>
+<p>Most acres: <button type="button" class="q" data-claim="geo.top5_states_acres">AK 36.65M</button>, <button type="button" class="q" data-claim="geo.top5_states_acres">CA 20.93M</button>, <button type="button" class="q" data-claim="geo.top5_states_acres">ID 15.95M</button>, <button type="button" class="q" data-claim="geo.top5_states_acres">TX 11.91M</button>, <button type="button" class="q" data-claim="geo.top5_states_acres">NV 11.84M</button>. Most fires: <button type="button" class="q" data-claim="geo.top5_states_fires">CA 251,881</button>, <button type="button" class="q" data-claim="geo.top5_states_fires">GA 185,040</button>, <button type="button" class="q" data-claim="geo.top5_states_fires">TX 180,087</button>, <button type="button" class="q" data-claim="geo.top5_states_fires">NC 130,165</button>, <button type="button" class="q" data-claim="geo.top5_states_fires">AZ 104,956</button>.
+Fire counts by state depend on which years that state's local reporting was included (see <a href="trends.html#counts">why counts are not a trend</a>). Share with a containment date and share with a known owner are not yet computed per state (the ledger has them by owner, region and year, on the <a href="ownership.html">Ownership</a> page). When a <code>geo.completeness_by_state</code> claim is added to the ledger, those columns appear here automatically.</p>
+<p><button type="button" class="btn" id="state-csv">Download CSV</button> <span class="small muted">n = <button type="button" class="q" data-claim="geo.fires_and_acres_by_state">2,303,566</button> · <button type="button" class="q" data-claim="geo.fires_and_acres_by_state">definition</button> · click a column header to sort</span></p>
+<div class="table-wrap" id="state-table"></div>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  var C = WF.data.claims, cells = WF.data.cells, MIN = 20;
+  var mode = 'n';
+  var rows = cells.map(function (c) { return { lat_centroid: c.lat, lon_centroid: c.lon, n_fires: c.n, acres: c.acres, n_human: c.human, n_natural: c.natural, n_missing_cause: c.missing, human_share_known: c.hk, drawn_in_color: c.n >= MIN ? 'yes' : 'no (fewer than ' + MIN + ' fires)' }; });
+  var mapChart = WF.chart({ el: 'cell-map', title: '1-degree cells: fires, acres and human share', claims: ['geo.cells_1deg_file', 'geo.cells_1deg_summary'], n: C['geo.cells_1deg_file'].n, mapClass: true,
+    sub: 'Each square is a 1 x 1 degree cell drawn at its centroid. Color is the selected measure; cells with fewer than ' + MIN + ' fires are drawn hollow and never colored. Hover for n.',
+    controls: WF.segControl([{ label: 'Fires', value: 'n' }, { label: 'Acres', value: 'acres' }, { label: 'Human share of known cause', value: 'hk' }], function (v) { mode = v; mapChart.render(); }),
+    legendNote: '<span class="swatch hollow"></span> fewer than ' + MIN + ' fires: outline only, no color · <span class="swatch" style="background:var(--seq-500)"></span> colored cells have at least ' + MIN + ' fires · one hue, darker = more · Puerto Rico cells are in the table, outside the map frame',
+    rows: rows, columns: [{ key: 'lat_centroid', label: 'lat (centroid)', num: true }, { key: 'lon_centroid', label: 'lon (centroid)', num: true }, { key: 'n_fires', label: 'fires', num: true, fmt: WF.fmt.int }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'n_human', label: 'human', num: true, fmt: WF.fmt.int }, { key: 'n_natural', label: 'natural', num: true, fmt: WF.fmt.int }, { key: 'n_missing_cause', label: 'undetermined', num: true, fmt: WF.fmt.int }, { key: 'human_share_known', label: 'human share of known', num: true, fmt: function (v) { return WF.fmt.pct(v); } }, { key: 'drawn_in_color', label: 'colored on map' }],
+    staticImg: 'figures/cells_1deg_map.png', csvName: 'cells_1deg', height: 520,
+    build: function (t) {
+      var big = cells.filter(function (c) { return c.n >= MIN; }), small = cells.filter(function (c) { return c.n < MIN; });
+      var val, title, tickvals, ticktext, hoverfmt;
+      if (mode === 'n') { val = function (c) { return Math.log10(c.n); }; title = 'fires (log scale)'; tickvals = [Math.log10(20), 2, 3, 4]; ticktext = ['20', '100', '1,000', '10,000']; }
+      else if (mode === 'acres') { val = function (c) { return Math.log10(Math.max(c.acres, 1)); }; title = 'acres (log scale)'; tickvals = [2, 3, 4, 5, 6]; ticktext = ['100', '1K', '10K', '100K', '1M']; }
+      else { val = function (c) { return c.hk === null ? null : 100 * c.hk; }; title = 'human share of known cause'; tickvals = [0, 25, 50, 75, 100]; ticktext = ['0%', '25%', '50%', '75%', '100%']; }
+      var hover = function (c) { return c.lat.toFixed(1) + ', ' + c.lon.toFixed(1) + '<br>n = ' + WF.fmt.int(c.n) + ' fires · ' + WF.fmt.int(c.acres) + ' acres<br>human share of known cause ' + (c.hk === null ? 'n/a' : WF.fmt.pct(c.hk, 0)) + ' (known n = ' + WF.fmt.int(c.human + c.natural) + ', undetermined ' + WF.fmt.int(c.missing) + ')'; };
+      var data = [
+        { type: 'scattergeo', name: 'fewer than ' + MIN + ' fires', lat: small.map(function (c) { return c.lat; }), lon: small.map(function (c) { return c.lon; }), mode: 'markers', marker: { symbol: 'square-open', size: 7, color: t.missing, line: { width: 1.2, color: t.missing } }, text: small.map(hover), hovertemplate: '%{text}<extra>below minimum count</extra>', showlegend: false },
+        { type: 'scattergeo', name: title, lat: big.map(function (c) { return c.lat; }), lon: big.map(function (c) { return c.lon; }), mode: 'markers', text: big.map(hover), hovertemplate: '%{text}<extra></extra>', showlegend: false,
+          marker: { symbol: 'square', size: 9, color: big.map(val), colorscale: WF.seqScale(t), cmin: tickvals[0], cmax: tickvals[tickvals.length - 1], line: { width: 0.5, color: t.surface },
+            colorbar: { title: { text: title, side: 'right' }, thickness: 10, len: 0.6, tickvals: tickvals, ticktext: ticktext, tickfont: { color: t.muted } } } }
+      ];
+      return { data: data, layout: { geo: { scope: 'usa', projection: { type: 'albers usa' }, bgcolor: 'rgba(0,0,0,0)', showland: true, landcolor: t.surface2 || t.page, showlakes: false, subunitcolor: t.grid, countrycolor: t.axis, showcountries: true, showframe: false, lakecolor: t.page }, margin: { l: 0, r: 0, t: 0, b: 0 }, dragmode: false } };
+    }
+  });
+
+  var st = C['geo.fires_and_acres_by_state'].value, comp = C['geo.completeness_by_state'] ? C['geo.completeness_by_state'].value : null;
+  var srows = Object.keys(st).sort().map(function (s) { var r = { state: s, fires: st[s].fires, share_of_fires: st[s].share_fires, acres: Math.round(st[s].acres), share_of_acres: st[s].share_acres }; if (comp && comp[s]) { r.share_with_cont_date = comp[s].share_cont_date; r.share_known_owner = comp[s].share_known_owner; r.share_known_cause = comp[s].share_known_cause; } return r; });
+  var cols = [{ key: 'state' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'share_of_fires', label: 'share of fires', num: true, fmt: function (v) { return WF.fmt.pct(v, 2); } }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'share_of_acres', label: 'share of acres', num: true, fmt: function (v) { return WF.fmt.pct(v, 2); } }];
+  if (comp) cols = cols.concat([{ key: 'share_with_cont_date', label: 'with containment date', num: true, fmt: function (v) { return WF.fmt.pct(v); } }, { key: 'share_known_owner', label: 'with known owner', num: true, fmt: function (v) { return WF.fmt.pct(v); } }, { key: 'share_known_cause', label: 'with known cause', num: true, fmt: function (v) { return WF.fmt.pct(v); } }]);
+  var host = document.getElementById('state-table');
+  host.appendChild(WF.buildTable(cols, srows, { sortable: true }));
+  var b = document.getElementById('state-csv'); b.onclick = function () { WF.downloadCSV('fires_and_acres_by_state', cols, srows, { title: 'Fires and acres by state', definition: C['geo.fires_and_acres_by_state'].definition, claims: ['geo.fires_and_acres_by_state'].concat(comp ? ['geo.completeness_by_state'] : []), n: C['geo.fires_and_acres_by_state'].n }); };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prediction · US wildfire record, 1992-2020</title>
+<meta name="description" content="A model that ranks new fires by how likely they are to become large, tested once on 2019-2020, with the calibration failure shown; and the retired duration model.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Overview</a><a href="trends.html">Trends</a><a href="causes.html">Causes and seasons</a><a href="geography.html">Geography</a><a href="ownership.html">Ownership</a><a href="conservation.html">Conservation</a><a href="model.html" aria-current="page">Prediction</a><a href="methods.html">Methods and ledger</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>Prediction: which new fires become large?</h1>
+<p class="lede">A model that ranks newly discovered fires by how likely they are to reach 300 acres, using only what is known on the discovery day. On fires from 2019 and 2020 that it never saw, the model's top tenth of scores held <button type="button" class="q" data-claim="model.capture_at_top">74%</button> of the fires that went on to reach 300 acres, against <button type="button" class="q" data-claim="model.capture_at_top">45%</button> for a lookup of each place's historical rate by month.
+Trained on 2010-2018, tested once on 2019-2020 (locked holdout). Where a fire starts (its fuels, terrain and land status) carries the ranking; weather on the discovery day adds nothing measurable.</p></header>
+<div class="note"><p><strong>These are ranks, not probabilities.</strong> For the tenth of 2019-2020 fires it scored highest, the model's mean score was <button type="button" class="q" data-claim="model.calibration_failure">16.5%</button>; the share that actually reached 300 acres was <button type="button" class="q" data-claim="model.calibration_failure">9.4%</button>.
+Read as probabilities, the scores do worse than a single constant rate (Brier skill <button type="button" class="q" data-claim="model.calibration_failure">-0.26</button>), mostly in 2019, a quiet year after two large seasons (<button type="button" class="q" data-claim="model.calibration_failure">-0.85</button> in 2019, <button type="button" class="q" data-claim="model.calibration_failure">0.12</button> in 2020). So this page shows how well the model <em>orders</em> fires and never a percent chance for a fire.</p></div>
+<div class="note"><p><strong>Coverage.</strong> Trained on 706,554 CONUS fires discovered 2010-2018 and tested on the 135,685 discovered 2019-2020. Alaska, Hawaii and Puerto Rico are excluded (12,641 fires) because the weather and fuels attributes cover CONUS only; Alaska holds 19% of 2010-2020 Class G acres, so nothing here applies to it. Where a state&#x27;s records come mostly from local reporters with no recorded cause (Texas, Kansas), the cause input is a reporter indicator rather than a cause.</p></div>
+<h2>How many large fires the top of the ranking finds</h2>
+<p>Share of the 2019-2020 fires that reached 300 acres found among each model's highest-scored fires. Flagging fires at random finds the same share as the share flagged.</p>
+<div class="table-wrap" id="model-capture"></div>
+<h2>Metrics with baselines</h2>
+<p>Every row uses the same test fires and the same interval method. Baselines are always shown with the model. The model wins on the ranking metrics (PR-AUC, ROC-AUC) and loses on Brier skill, which scores the numbers as probabilities.</p>
+<div class="table-wrap" id="model-metrics"></div>
+<h2>Where it does not work</h2>
+<ul class="tight">
+<li>It ranks Southern fires worse than the place-and-month lookup, except in Texas (<button type="button" class="q" data-claim="model.holdout_per_region">regional metrics</button>).</li>
+<li>Alaska, Hawaii and Puerto Rico are outside it.</li>
+<li>Owner, reporting agency and protection status carry much of the ranking: they record where fires are fought, reported and allowed to burn, not only how they behave. A place's score says nothing about the quality of its land management.</li>
+<li>It is not for any decision about an actual fire. The full list is in the <a href="https://github.com/Robyn-Collie/wildfire-analysis/blob/main/docs/MODEL_CARD.md">model card</a>.</li>
+</ul>
+<h2>Calibration</h2>
+<div id="model-reliability" class="chart" aria-live="polite"></div>
+<h2>Precision and recall</h2>
+<div id="model-pr" class="chart" aria-live="polite"></div>
+<h2>Base rates</h2>
+<p>The lookup a reader can use without the model: the share of 2010-2018 ignitions that reached 300 acres, by region, discovery month and cause classification. These are observed historical shares, not model output; groups with fewer than 100 fires are left blank.</p>
+<div class="table-wrap" id="model-base-rates"></div>
+
+<h2>The previous duration model was retired</h2>
+<p>The earlier version of this project fitted a Random Forest to predict how many days a fire would burn from its location, day of year and recorded cause. It reproduces exactly, and it is retired because it is not useful:</p>
+<ul class="tight">
+<li>On mean absolute error it loses to predicting zero days for every fire: <button type="button" class="q" data-def="test MAE of the Random Forest, in days" data-src="docs/review/REPRODUCTION.md and outputs/reproduction_model.json (scripts/reproduce.py, 126,011 test fires, random 80/20 split, seed 42)" data-n="126011">1.38</button> against <button type="button" class="q" data-def="test MAE of the constant prediction 0 days" data-src="docs/review/REPRODUCTION.md and outputs/reproduction_model.json (scripts/reproduce.py, 126,011 test fires, random 80/20 split, seed 42)" data-n="126011">1.09</button> days.</li>
+<li><button type="button" class="q" data-def="share of model-sample fires (2010+, with a containment date) whose duration is 0 whole days: 83.7%" data-src="docs/review/REPRODUCTION.md and outputs/reproduction_model.json (scripts/reproduce.py, 126,011 test fires, random 80/20 split, seed 42)" data-n="630053">84%</button> of fires are contained on the day they are found, so a constant is a strong baseline that any model has to beat before it says anything.</li>
+<li>Its sample dropped <button type="button" class="q" data-claim="overview.missing_cont_date_share_2010_plus">26.3%</button> of fires from 2010 on because they lack a containment date, and unevenly: <button type="button" class="q" data-claim="anom.texas_missing_cont_date_share_2010_plus">87.6%</button> of Texas records are missing it. The containment date is a reporting-system convention, not a measure of the fire (see <a href="ownership.html#containment">Ownership</a>).</li>
+</ul>
+<p>No duration prediction appears on this site.</p>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  var C = WF.data.claims, has = function (id) { return !!C[id]; };
+  if (!has('model.metrics')) return;
+  var card = has('model.card') ? C['model.card'].value : {};
+  var m = C['model.metrics'].value, names = m.metric_names || Object.keys((m.rows[0] || {}).metrics || {});
+  var cols = [{ key: 'model' }, { key: 'kind' }].concat(names.map(function (k) { return { key: k, label: k + ' [95% interval]' }; }));
+  var rows = m.rows.map(function (r) { var o = { model: r.model, kind: r.baseline ? 'baseline' : 'model' }; names.forEach(function (k) { var v = r.metrics[k]; o[k] = v ? (WF.fmt.num(v[0], 3) + ' [' + WF.fmt.num(v[1], 3) + ', ' + WF.fmt.num(v[2], 3) + ']') : ''; }); return o; });
+  var host = document.getElementById('model-metrics'); host.appendChild(WF.buildTable(cols, rows));
+  if (has('model.capture_at_top')) {
+    var cap = C['model.capture_at_top'].value.rows, capHost = document.getElementById('model-capture');
+    var pc = function (v) { return WF.fmt.pct(v, 0); };
+    capHost.appendChild(WF.buildTable([{ key: 'model' }, { key: 'top_1pct', label: 'top 1% of scores', num: true, fmt: pc }, { key: 'top_5pct', label: 'top 5%', num: true, fmt: pc }, { key: 'top_10pct', label: 'top 10%', num: true, fmt: pc }, { key: 'top_20pct', label: 'top 20%', num: true, fmt: pc }],
+      cap.map(function (r) { return { model: r.model + (r.baseline ? '' : ' (this model)'), top_1pct: r.top_1pct, top_5pct: r.top_5pct, top_10pct: r.top_10pct, top_20pct: r.top_20pct, _missing: /random/.test(r.model) }; })));
+    var cp = document.createElement('p'); cp.className = 'small muted'; cp.textContent = 'n = ' + WF.fmt.int(C['model.capture_at_top'].n) + ' holdout fires, of which the share that reached 300 acres is the base rate. ' + C['model.capture_at_top'].definition + '. ' + (C['model.capture_at_top'].note || ''); capHost.appendChild(cp);
+  }
+  var p = document.createElement('p'); p.className = 'small muted'; p.textContent = 'n = ' + WF.fmt.int(C['model.metrics'].n) + ' test fires · ' + C['model.metrics'].definition + (C['model.metrics'].note ? ' · ' + C['model.metrics'].note : ''); host.appendChild(p);
+  if (has('model.reliability')) {
+    var rel = C['model.reliability'].value.bins;
+    WF.chart({ el: 'model-reliability', title: 'Reliability: mean score against the share that reached 300 acres, per tenth of fires', claims: ['model.reliability'],
+      sub: 'If scores were probabilities, points would sit on the diagonal. The top bin sits far below it: that is why this site shows ranks, not probabilities. Marker size is the bin n.',
+      rows: rel.map(function (b) { return { pred_lo: b.pred_lo, pred_hi: b.pred_hi, mean_predicted: b.mean_pred, observed_rate: b.obs_rate, n: b.n }; }),
+      columns: [{ key: 'pred_lo', num: true }, { key: 'pred_hi', num: true }, { key: 'mean_predicted', num: true, fmt: function (v) { return WF.fmt.num(v, 3); } }, { key: 'observed_rate', num: true, fmt: function (v) { return WF.fmt.num(v, 3); } }, { key: 'n', num: true, fmt: WF.fmt.int }], height: 360,
+      build: function (t) { var mx = Math.max.apply(null, rel.map(function (b) { return b.n; })); return { data: [
+        { type: 'scatter', mode: 'lines', x: [0, 0.5], y: [0, 0.5], line: { color: t.gray, width: 1.5 }, hoverinfo: 'skip', showlegend: false },
+        { type: 'scatter', mode: 'lines+markers', name: 'bins', x: rel.map(function (b) { return b.mean_pred; }), y: rel.map(function (b) { return b.obs_rate; }), line: { color: t.series[0], width: 2 }, marker: { color: t.series[0], size: rel.map(function (b) { return 8 + 16 * Math.sqrt(b.n / mx); }), line: { color: t.surface, width: 2 } }, customdata: rel.map(function (b) { return b.n; }), hovertemplate: 'predicted %{x:.3f}<br>observed %{y:.3f}<br>n = %{customdata:,}<extra></extra>' }],
+        layout: { showlegend: false, xaxis: { title: { text: 'mean score in the bin' }, range: [0, 1.1 * Math.max.apply(null, rel.map(function (b) { return Math.max(b.mean_pred, b.obs_rate); }))] }, yaxis: { title: { text: 'share that reached 300 acres' }, range: [0, 1.1 * Math.max.apply(null, rel.map(function (b) { return Math.max(b.mean_pred, b.obs_rate); }))] } } }; }
+    });
+  }
+  if (has('model.pr_curve')) {
+    var pr = C['model.pr_curve'].value, pts = pr.points;
+    WF.chart({ el: 'model-pr', title: 'Precision and recall by threshold', claims: ['model.pr_curve'],
+      sub: 'The dashed line is the base rate (precision of flagging every fire). Hover shows the score cutoff and the number of fires flagged.',
+      rows: pts.map(function (q) { return { threshold: q.threshold, precision: q.precision, recall: q.recall, n_flagged: q.n_flagged, base_rate: pr.base_rate }; }),
+      columns: [{ key: 'threshold', num: true }, { key: 'precision', num: true, fmt: function (v) { return WF.fmt.num(v, 3); } }, { key: 'recall', num: true, fmt: function (v) { return WF.fmt.num(v, 3); } }, { key: 'n_flagged', num: true, fmt: WF.fmt.int }, { key: 'base_rate', num: true, fmt: function (v) { return WF.fmt.num(v, 4); } }], height: 360,
+      build: function (t) { return { data: [
+        { type: 'scatter', mode: 'lines', x: [0, 1], y: [pr.base_rate, pr.base_rate], line: { color: t.ink2, width: 1.5, dash: 'dash' }, name: 'base rate ' + WF.fmt.pct(pr.base_rate, 2), hoverinfo: 'skip' },
+        { type: 'scatter', mode: 'lines', name: 'model', x: pts.map(function (q) { return q.recall; }), y: pts.map(function (q) { return q.precision; }), line: { color: t.series[0], width: 2 }, customdata: pts.map(function (q) { return [q.threshold, q.n_flagged]; }), hovertemplate: 'recall %{x:.3f}, precision %{y:.3f}<br>score cutoff %{customdata[0]:.3f}<br>flagged n = %{customdata[1]:,}<extra></extra>' }],
+        layout: { xaxis: { title: { text: 'recall' }, range: [0, 1] }, yaxis: { title: { text: 'precision' }, range: [0, 1] }, legend: { y: -0.25 } } }; }
+    });
+  }
+  if (has('model.base_rates')) {
+    var br = C['model.base_rates'].value.rows, host2 = document.getElementById('model-base-rates');
+    var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var bcols = [{ key: 'region' }, { key: 'month' }, { key: 'cause' }, { key: 'n', label: 'fires 2010-2018', num: true, fmt: WF.fmt.int },
+      { key: 'rate', label: 'share reaching 300 acres', num: true, fmt: function (v) { return v == null ? 'fewer than 100 fires' : WF.fmt.pct(v, 1); } }];
+    var brows = br.map(function (r) { return { region: r.region, month: MON[r.month - 1] || r.month, cause: r.cause, n: r.n, rate: r.rate, _missing: r.cause === 'Missing' }; });
+    host2.style.maxHeight = '420px'; host2.style.overflowY = 'auto';
+    host2.appendChild(WF.buildTable(bcols, brows, { sortable: true }));
+  }
+})();
+</script>
+</body>
+</html>
