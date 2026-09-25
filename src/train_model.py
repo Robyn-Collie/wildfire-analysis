@@ -11,26 +11,39 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error
 # Get logger
 logger = logging.getLogger(__name__)
 
+RANDOM_STATE = 42
+
+
+def split_data(X: pd.DataFrame, y: pd.Series):
+    """The 80/20 random split used for the reported results."""
+    return train_test_split(X, y, test_size=0.2, random_state=RANDOM_STATE)
+
+
+def build_model(n_jobs: int = -1) -> RandomForestRegressor:
+    """The Random Forest configuration used for the reported results."""
+    # n_estimators=100: Number of trees. More is usually better but slower.
+    # max_depth=10: Prevents overfitting by limiting tree complexity.
+    # n_jobs=-1: Use all CPU cores.
+    return RandomForestRegressor(n_estimators=100, max_depth=10, random_state=RANDOM_STATE, n_jobs=n_jobs)
+
+
 def train_model(X: pd.DataFrame, y: pd.Series) -> RandomForestRegressor:
     """
     Trains a Random Forest Regressor, performs Cross-Validation, and evaluates performance.
-    
+
     Args:
         X (pd.DataFrame): Features matrix.
         y (pd.Series): Target vector.
-        
+
     Returns:
         RandomForestRegressor: The trained model.
     """
     logger.info("Splitting data into Train and Test sets (80/20)...")
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    
+    X_train, X_test, y_train, y_test = split_data(X, y)
+
     logger.info("Initializing Random Forest Regressor...")
-    # n_estimators=100: Number of trees. More is usually better but slower.
-    # max_depth=10: Prevents overfitting by limiting tree complexity.
-    # n_jobs=-1: Use all CPU cores.
-    rf = RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42, n_jobs=-1)
-    
+    rf = build_model()
+
     # --- CROSS VALIDATION ---
     # We validate on the Training set to ensure the model's stability before final evaluation.
     logger.info("Performing 5-Fold Cross-Validation (This validates model stability)...")
