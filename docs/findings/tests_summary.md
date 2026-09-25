@@ -1,16 +1,50 @@
 # Test suite and CI: summary
 
-Author: tests agent (wave 1). Files written: `tests/conftest.py`, `tests/test_data_loader.py`,
+Author: tests agent (wave 1), updated by the src-fix engineer on branch `fix/src-defects`.
+Files written by the tests agent: `tests/conftest.py`, `tests/test_data_loader.py`,
 `tests/test_features.py`, `tests/test_train_model.py`, `tests/test_build_cache.py`,
 `tests/test_reproduce_helpers.py`, `.github/workflows/ci.yml`, `pytest.ini`, this file.
-No file under `src/`, `scripts/`, `run_pipeline.py` or the requirements files was changed.
+Added on `fix/src-defects`: `tests/test_download.py`, and the `src/`, `scripts/`,
+`run_pipeline.py` and requirements changes described under "Status of the defects" below.
 
-Result: `.venv/bin/python -m pytest -q` gives 66 passed, 1 xfailed, 0 warnings in about 6.5 s
-(pandas 3.0.6, numpy 2.5.3, scikit-learn 1.9.1, pyarrow 25.0.1, Python 3.12.3). The same
-result was obtained from a clean `uv venv` holding exactly what CI installs
-(`requirements.txt` + pytest pyarrow ruff), and with `WILDFIRE_DB_PATH` deliberately pointed
-at a missing file from a foreign working directory, so nothing in the suite depends on
-`data/` or on the caller's environment.
+Result on `fix/src-defects`: `.venv/bin/python -m pytest -q` gives 108 passed, 0 xfailed,
+0 warnings in about 16 s (pandas 3.0.6, numpy 2.5.3, scikit-learn 1.9.1, pyarrow 25.0.1,
+Python 3.12.3). At the tests agent's commit (`f2fce3a`) it was 66 passed, 1 xfailed. Nothing
+in the suite depends on `data/`, on the network, or on the caller's environment: the loader
+tests use a synthetic SQLite file, the download tests use a local HTTP server.
+
+## Status of the defects (fix/src-defects)
+
+Every defect the original suite pinned with a `_DEFECT` / `_KNOWN_ISSUE` test, plus the
+observations and the panel-repro findings assigned to this branch, is fixed. The pinning
+tests were flipped to assert the fixed behaviour in the same commit as each fix.
+
+| # | Defect | Fixed in | Test that now asserts the fix |
+|---|---|---|---|
+| 1 | `load_data` called `sys.exit(1)` and swallowed the exception type | `data_loader: raise instead of sys.exit, select FOD_ID, ORDER BY FOD_ID` | `test_missing_db_raises_file_not_found`, `test_env_pointing_at_missing_db_raises_file_not_found`, `test_unreadable_db_raises_database_error`, `test_db_without_fires_table_raises`, `test_run_pipeline_exits_1_with_help_when_db_missing` |
+| 2 | Leap years: DOY divided by a fixed 365, Dec 31 of a leap year encoded as Jan 1 | `features: fixed cause schema, leap-aware DOY angle, ...` | `test_doy_366_does_not_collide_with_doy_1`, `test_doy_366_encodes_as_year_end` (was the xfail), `test_jan_1_is_angle_zero_in_leap_and_non_leap_years`, `test_same_calendar_date_in_leap_and_non_leap_year_is_within_one_day_step`, `test_discovery_doy_column_is_ignored` |
+| 3 | One-hot schema drift with the causes present in the batch | same commit | `test_schema_is_fixed_when_a_cause_is_absent`, `test_single_cause_input_still_yields_all_13_cause_columns`, `test_unknown_cause_raises_value_error`, `test_null_cause_raises_value_error`, `test_cause_levels_are_the_13_causes_in_alphabetical_order` |
+| 4 | Parallelism hard-coded (`n_jobs=-1` in two places) | `train_model: n_jobs from WILDFIRE_N_JOBS, out_dir, metrics dict and metrics.json` | `test_default_n_jobs_is_1_without_env`, `test_default_n_jobs_reads_env`, `test_default_n_jobs_rejects_bad_values`, `test_build_model_config`, `test_train_model_is_reproducible_and_independent_of_n_jobs` |
+| 5 | Plots written to the CWD; metrics only in log lines | same commit | `test_train_model_end_to_end` (out_dir containment, metrics dict, `metrics.json`), `test_train_model_skip_cv`, `test_train_model_default_out_dir_is_outputs_under_repo_root` |
+| obs. | Dates parsed by inference | features commit | `test_iso_or_day_first_dates_raise_instead_of_being_guessed` |
+| obs. | NaN duration dropped and logged as "negative" | features commit | `test_missing_containment_date_raises_not_dropped_as_negative`, `test_nan_and_negative_durations_are_counted_separately` |
+| C2 | `fillna(0)` would put a fire with no coordinates at 0 N 0 E | features commit | `test_missing_coordinate_raises_instead_of_becoming_zero` |
+| C12 | Features chosen by blacklist | features commit | `test_extra_input_columns_never_leak_into_x`, `test_missing_required_column_raises_key_error`, `test_x_has_exactly_the_17_reported_features` (asserts `FEATURE_COLUMNS`) |
+| D5 | Row order depended on SQLite physical order | data_loader commit (`ORDER BY FOD_ID`, `FOD_ID` selected) | `test_load_data_orders_by_fod_id_not_physical_row_order`, `test_load_data_selects_exactly_the_model_columns` |
+| D7 | `run_pipeline.py` imported `src/` modules under bare names | data_loader commit | covered by `test_run_pipeline_exits_1_with_help_when_db_missing` (runs the script) |
+| P1-P4 | Download script: no checksum, truncated zip reused, no resume/retry/timeout/UA, member by suffix, no disk check | `download_data: verified, resumable download with exact member and disk checks` | `tests/test_download.py` (15 tests) |
+| D1, D3 | `pyarrow`, `duckdb` unpinned; lock stale; Python version inconsistent | `requirements: pin pyarrow and duckdb, regenerate the lock from the venv` | none (a CI install from `requirements.txt` is the check) |
+
+Two consequences for the reported numbers, both logged in `docs/EXPERIMENTS.md` E-009: the
+leap-aware angle changes the model inputs for the 27% of rows in leap years, and
+`ORDER BY FOD_ID` changes the row order the position-based `train_test_split` shuffles, so
+the random split itself is different from E-001's. Neither the model, the split method nor
+the seed changed.
+
+Not fixed on this branch (out of its scope): schema and hash validation inside `load_data`
+(panel-repro C8), `int8` dummies (C13), `reproduce.py` calling `train_model` instead of
+re-implementing the split (C10, second half), the `analysis/` package layout (D7 in full),
+the `.gitignore` change for committed outputs (P6), and the notebook (N1-N4).
 
 ## How to run
 
@@ -67,22 +101,24 @@ weaken the tests.
 
 | File | Tests | Covers |
 |---|---|---|
-| `test_data_loader.py` | 9 | filter is exactly `FIRE_YEAR >= 2010 AND CONT_DATE IS NOT NULL`; the 8 selected columns; dates arrive as text; `WILDFIRE_DB_PATH` is honoured; an explicit path overrides the env var; missing file, env var to a missing file, and non-database file all end in `SystemExit(1)` (defect, see below) |
-| `test_features.py` | 17 (1 xfail) | DURATION_DAYS = CONT - DISCOVERY in whole days (hand-built rows and every synthetic row, including the 400-day tail); negative rows dropped with exactly one WARNING on logger `src.features`, no warning otherwise; SIN/COS in [-1, 1] and on the unit circle; day 1 vs day 365 one day apart, day 1 vs day 183 nearly opposite; DOY 366 collides with DOY 1 (known issue, pinned) plus an `xfail(strict=False)` for the intended behaviour; all 13 `CAUSE_*` columns, one-hot exactly one per row; X is exactly the 17 columns in `outputs/reproduction_model.json`; X excludes FIRE_YEAR, FIRE_SIZE_CLASS, both dates, DOY, the target and the raw cause; no NaNs; y shares X's index and keeps original labels; the input frame is not mutated; schema drift when a cause is absent (defect, pinned) |
-| `test_train_model.py` | 7 | `split_data` deterministic, 80/20, disjoint, equal to `train_test_split(..., random_state=42)`; `build_model` is 100 trees, depth 10, random_state 42, n_jobs default -1 and override to 1; `train_model` end to end with every sklearn call forced to `n_jobs=1` inside a `tmp_path` CWD, returning a fitted 100-tree forest with the right `feature_names_in_`, non-negative finite predictions, and both PNGs written to the CWD; two runs give identical predictions |
+| `test_data_loader.py` | 12 | filter is exactly `FIRE_YEAR >= 2010 AND CONT_DATE IS NOT NULL`; the 9 selected columns (FOD_ID first); rows come back ordered by FOD_ID even when inserted in reverse; dates arrive as text; `WILDFIRE_DB_PATH` is honoured; an explicit path overrides the env var; missing file and env var to a missing file raise `FileNotFoundError` carrying the help text; a non-database file raises a database error; a database without `Fires` raises; `run_pipeline.py` exits 1 with the help text and no traceback |
+| `test_features.py` | 33 | DURATION_DAYS = CONT - DISCOVERY in whole days (hand-built rows and every synthetic row, including the 400-day tail), int64; negative rows dropped with exactly one WARNING on logger `src.features`, no warning otherwise; NaN durations raise and are not counted as negative; SIN/COS in [-1, 1] and on the unit circle; day 1 vs day 365 one day apart, day 1 vs day 183 nearly opposite; Jan 1 is angle 0 in leap and non-leap years; Dec 31 of a leap year is one day step before Jan 1 and within 5e-5 rad of Dec 31 of a non-leap year; Mar 1 2019 vs Mar 1 2020 within one day step; `DISCOVERY_DOY` is ignored; `CAUSE_LEVELS` is the 13 causes alphabetically; all 13 `CAUSE_*` columns, one-hot exactly one per row; the schema is the same 17 columns when a cause is absent or only one cause is present; unknown and null causes raise; ISO and day-first dates raise; missing coordinates raise; X is exactly `FEATURE_COLUMNS`; extra input columns never reach X; a missing required column raises `KeyError`; X excludes FOD_ID, FIRE_YEAR, FIRE_SIZE_CLASS, both dates, DOY, the target and the raw cause; no NaNs; y shares X's index and keeps original labels; the input frame is not mutated |
+| `test_train_model.py` | 16 | `split_data` deterministic, 80/20, disjoint, equal to `train_test_split(..., random_state=42)`; `default_n_jobs()` is 1 without `WILDFIRE_N_JOBS`, reads it (1, 2, -1, padded), rejects 0 / non-integers; `build_model` is 100 trees, depth 10, random_state 42, n_jobs 1 by default and overridable; `train_model(X, y, out_dir=...)` end to end from a foreign CWD returns a fitted 100-tree forest with `feature_names_in_ == FEATURE_COLUMNS`, non-negative finite predictions, a metrics dict (n_rows/train/test, features, config, test RMSE/MAE recomputed, 5 CV folds with mean and std) equal to `metrics.json`, both PNGs in `out_dir` and nothing in the CWD; `skip_cv` omits the CV keys; default `out_dir` is `outputs/` under the repo root; two runs give identical predictions and `n_jobs=2` agrees to 1e-12 |
+| `test_download.py` | 15 | against a local Range-capable HTTP server: download, extract, verify, zip removed, no `.part` left; `User-Agent` and `timeout` sent; nothing to do when the DB exists; a `.part` is resumed with `Range: bytes=N-`; a complete `.part` is accepted via 416; a mid-body disconnect is retried and resumed rather than restarted; a server whose Content-Length exceeds what it sends never gets its `.part` renamed and exits 1 after 3 attempts; an unreachable server exits 1; a hash mismatch exits 2, moves the file to `.unverified`, keeps the zip and prints both hashes; the real `data.sha256` parses; the member is chosen by exact name (`Data/FPA_FOD_20221014.sqlite`), a decoy `.sqlite` earlier in the archive is ignored, a missing member exits 1; insufficient disk space aborts before the download and before the extraction |
 | `test_build_cache.py` | 11 | `build(db_path, cache_path)` writes all 300 rows with the derived columns; dtypes (datetime64, category with the 13 causes, Int8 month); exact DURATION_DAYS / DURATION_HOURS / DISCOVERY_DATETIME for the known rows; DURATION_DAYS matches ground truth for every row including NaN where CONT_DATE is NULL; NaT and NaN hours when a time is NULL or invalid (`2560`) while the day-level duration survives; the negative row is kept (the cache does not filter); `db_sha256` metadata equals the file hash; second call is a no-op ("is up to date", mtime and size unchanged); a stale hash triggers a rebuild; `parse_datetime` directly |
 | `test_reproduce_helpers.py` | 23 | `to_datetime` with and without times (valid, whitespace, NULL, empty, hour 24/25, minute 60, 3 and 5 digit strings, letters, missing date), index preserved; `metrics` rmse/mae on known errors, zero on perfect prediction, sign symmetric, "predict 0" MAE equals the target mean; `pct_better` sign convention including the README's 7.05 comparison; `region_of` for all four regions plus Other and NULL, index preserved; the region lists are disjoint, exclude AK, and have 11/14/9 members |
 
-Not covered, on purpose: `run_pipeline.py` (it only chains the three functions and would
-need the real database), `scripts/download_data.py` (network), and the Part 1/2 bodies of
-`scripts/reproduce.py` (`run_model`, `run_sample_checks`, `run_descriptive` need the real
+Not covered, on purpose: the success path of `run_pipeline.py` (it only chains the three
+functions and would need the real database; its failure path is tested), the real network
+in `scripts/download_data.py` (the local server stands in for it), and the Part 1/2 bodies
+of `scripts/reproduce.py` (`run_model`, `run_sample_checks`, `run_descriptive` need the real
 data and several minutes). The helpers those bodies rely on are covered.
 
-## Defects the tests document (they pass against current behaviour by design)
+## Defects the tests documented at `f2fce3a` (all fixed on `fix/src-defects`, see the status table above)
 
-Each of these is pinned by a test whose name ends in `_DEFECT` or `_KNOWN_ISSUE`, with a
-comment at the assertion. When the fix lands, flip the test to the new behaviour in the same
-commit.
+Kept as the record of what was found. Each was pinned by a test whose name ended in
+`_DEFECT` or `_KNOWN_ISSUE`; those tests were flipped to the fixed behaviour in the commit
+that fixed them, and the names in this section are the original ones.
 
 1. `load_data` calls `sys.exit(1)` instead of raising (`src/data_loader.py:39` for a
    missing file, `:72` for any other error, which also swallows the original exception
@@ -125,7 +161,11 @@ Observations that are not defects but worth knowing:
 
 ## Recommended changes to src/ (exact, file:line, before / after)
 
-These are proposals only; per the wave-1 rules I did not edit `src/`.
+These were proposals at `f2fce3a`; all of them are implemented on `fix/src-defects`, with
+two departures: the leap-year angle is `2*pi*(DOY-1)/days_in_year` from `DISCOVERY_DATE`
+(Jan 1 at angle 0, so the xfail test was rewritten for that convention rather than for
+"Dec 31 at sin 0, cos 1"), and the `n_jobs` default is 1 from `WILDFIRE_N_JOBS` rather than
+keeping -1. The text below is unchanged.
 
 ### src/data_loader.py
 
@@ -307,6 +347,10 @@ matplotlib import, because pytest.ini cannot set environment variables without a
   module by appending `src/` to `sys.path`, which creates a second copy of each module
   (`data_loader` vs `src.data_loader`) when both import styles are used in one process; the
   scripts already use `from src.data_loader import ...`, so the pipeline should too.
+  Done on `fix/src-defects`.
 - `README.md` / `docs/EXPERIMENTS.md`: when the leap-year fix lands, the model numbers must be
-  regenerated and the change logged as an experiment.
+  regenerated and the change logged as an experiment. Logged as E-009; the README is not
+  touched on this branch (its Part 2 is being rewritten per the panel report).
 - `.gitignore`: `/outputs/` and the root PNGs are already ignored; no change needed for the tests.
+  The two root PNG rules are now dead (nothing writes there) and can go with the next
+  `.gitignore` change.
