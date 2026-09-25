@@ -53,10 +53,10 @@ def preprocess_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
     
     # 6. Feature Selection
     # Why? We remove columns that are not predictive features available at discovery time:
-    # - Dates/IDs: Used for calculation but not raw features.
+    # - Dates/IDs (FOD_ID is the fire identifier the loader orders by): not raw features.
     # - FIRE_SIZE_CLASS: This is likely the final fire size, which is not known at discovery (Data Leakage).
     # - FIRE_YEAR: We want the model to learn seasonal patterns (via DOY), not just "2015 was bad".
-    drop_cols = ['FIRE_YEAR', 'DISCOVERY_DATE', 'CONT_DATE', 'DISCOVERY_DOY', 'FIRE_SIZE_CLASS']
+    drop_cols = ['FOD_ID', 'FIRE_YEAR', 'DISCOVERY_DATE', 'CONT_DATE', 'DISCOVERY_DOY', 'FIRE_SIZE_CLASS']
     
     # Check which columns exist before dropping (in case one-hot removed them or they weren't loaded)
     existing_drop_cols = [col for col in drop_cols if col in df.columns]
