@@ -214,6 +214,11 @@ def causes(df: pd.DataFrame, out_dir: str) -> None:
                  for r in rc.index}
     claim('cause.by_region_classification', by_region,
           'fires, acres and their shares by region and NWCG_CAUSE_CLASSIFICATION (Missing shown, not excluded)', n)
+    claim('cause.by_classification_by_region',
+          {str(r): {str(cl): {'fires': int(rc.loc[r, cl]), 'acres': float(ra.loc[r, cl])} for cl in rc.columns}
+           for r in rc.index},
+          'fires and acres by region (REGION_DEFINITION) and NWCG_CAUSE_CLASSIFICATION, Missing included; '
+          'the form the site\'s causes page reads', n)
     known = df[df['NWCG_CAUSE_CLASSIFICATION'] != CAUSE_MISSING]
     hs = (known['NWCG_CAUSE_CLASSIFICATION'] == 'Human').groupby(known['FIRE_SIZE_CLASS'], observed=True).mean()
     claim('cause.human_share_known_by_size_class', hs.reindex(SIZE_CLASSES),
