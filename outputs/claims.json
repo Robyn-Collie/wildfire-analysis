@@ -1,0 +1,4651 @@
+{
+ "anom.ak_class_g_by_month": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "Class G fires and acres in AK by DISCOVERY_MONTH",
+  "n": 765,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Apr": {
+    "acres": 87692.5,
+    "fires": 4
+   },
+   "Aug": {
+    "acres": 949323.002,
+    "fires": 29
+   },
+   "Dec": {
+    "acres": 12891.0,
+    "fires": 1
+   },
+   "Feb": {
+    "acres": 0.0,
+    "fires": 0
+   },
+   "Jan": {
+    "acres": 0.0,
+    "fires": 0
+   },
+   "Jul": {
+    "acres": 7992928.0002,
+    "fires": 215
+   },
+   "Jun": {
+    "acres": 22678948.49,
+    "fires": 443
+   },
+   "Mar": {
+    "acres": 0.0,
+    "fires": 0
+   },
+   "May": {
+    "acres": 3195210.2,
+    "fires": 71
+   },
+   "Nov": {
+    "acres": 16566.0,
+    "fires": 1
+   },
+   "Oct": {
+    "acres": 0.0,
+    "fires": 0
+   },
+   "Sep": {
+    "acres": 10222.0,
+    "fires": 1
+   }
+  }
+ },
+ "anom.arkansas_all_fires_by_month": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "all Arkansas fires and acres by DISCOVERY_MONTH",
+  "n": 37947,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Apr": {
+    "acres": 84279.38,
+    "fires": 3937
+   },
+   "Aug": {
+    "acres": 55229.96,
+    "fires": 4440
+   },
+   "Dec": {
+    "acres": 24041.07,
+    "fires": 1616
+   },
+   "Feb": {
+    "acres": 71334.27,
+    "fires": 3852
+   },
+   "Jan": {
+    "acres": 49261.56,
+    "fires": 2865
+   },
+   "Jul": {
+    "acres": 33208.3,
+    "fires": 2900
+   },
+   "Jun": {
+    "acres": 19401.52,
+    "fires": 1422
+   },
+   "Mar": {
+    "acres": 148817.23,
+    "fires": 6515
+   },
+   "May": {
+    "acres": 8267.06,
+    "fires": 924
+   },
+   "Nov": {
+    "acres": 50000.43,
+    "fires": 2656
+   },
+   "Oct": {
+    "acres": 30556.82,
+    "fires": 2781
+   },
+   "Sep": {
+    "acres": 51197.13,
+    "fires": 4039
+   }
+  }
+ },
+ "anom.arkansas_class_g": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "all Class G fires with STATE == AR",
+  "n": 2,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "by_month": {
+    "Apr": {
+     "acres": 5091.0,
+     "fires": 1
+    },
+    "Aug": {
+     "acres": 0.0,
+     "fires": 0
+    },
+    "Dec": {
+     "acres": 0.0,
+     "fires": 0
+    },
+    "Feb": {
+     "acres": 0.0,
+     "fires": 0
+    },
+    "Jan": {
+     "acres": 0.0,
+     "fires": 0
+    },
+    "Jul": {
+     "acres": 0.0,
+     "fires": 0
+    },
+    "Jun": {
+     "acres": 0.0,
+     "fires": 0
+    },
+    "Mar": {
+     "acres": 8294.0,
+     "fires": 1
+    },
+    "May": {
+     "acres": 0.0,
+     "fires": 0
+    },
+    "Nov": {
+     "acres": 0.0,
+     "fires": 0
+    },
+    "Oct": {
+     "acres": 0.0,
+     "fires": 0
+    },
+    "Sep": {
+     "acres": 0.0,
+     "fires": 0
+    }
+   },
+   "fires": [
+    {
+     "DISCOVERY_MONTH": 3,
+     "FIRE_NAME": "NO MANS LAND",
+     "FIRE_SIZE": 8294.0,
+     "FIRE_YEAR": 2006,
+     "OWNER": "USFS"
+    },
+    {
+     "DISCOVERY_MONTH": 4,
+     "FIRE_NAME": "FLATSIDE",
+     "FIRE_SIZE": 5091.0,
+     "FIRE_YEAR": 2006,
+     "OWNER": "USFS"
+    }
+   ],
+   "n_class_g_fires_all_months": 2,
+   "n_in_june": 0
+  }
+ },
+ "anom.az_class_g_by_month": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "Class G fires and acres in AZ by DISCOVERY_MONTH",
+  "n": 257,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Apr": {
+    "acres": 310363.0,
+    "fires": 13
+   },
+   "Aug": {
+    "acres": 291426.73,
+    "fires": 20
+   },
+   "Dec": {
+    "acres": 0.0,
+    "fires": 0
+   },
+   "Feb": {
+    "acres": 0.0,
+    "fires": 0
+   },
+   "Jan": {
+    "acres": 0.0,
+    "fires": 0
+   },
+   "Jul": {
+    "acres": 905933.0,
+    "fires": 68
+   },
+   "Jun": {
+    "acres": 2825400.66,
+    "fires": 100
+   },
+   "Mar": {
+    "acres": 44575.0,
+    "fires": 5
+   },
+   "May": {
+    "acres": 1326329.0,
+    "fires": 40
+   },
+   "Nov": {
+    "acres": 9005.1,
+    "fires": 1
+   },
+   "Oct": {
+    "acres": 44894.0,
+    "fires": 3
+   },
+   "Sep": {
+    "acres": 61521.0,
+    "fires": 7
+   }
+  }
+ },
+ "anom.june_class_g_by_state_top10": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "Class G fires discovered in June, fires and acres by STATE, top 10 by acres",
+  "n": 1030,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "AK": {
+    "acres": 22678948.49,
+    "fires": 443
+   },
+   "AZ": {
+    "acres": 2825400.66,
+    "fires": 100
+   },
+   "CA": {
+    "acres": 1554195.0,
+    "fires": 81
+   },
+   "CO": {
+    "acres": 1015699.0,
+    "fires": 32
+   },
+   "FL": {
+    "acres": 571426.6,
+    "fires": 34
+   },
+   "NM": {
+    "acres": 2087185.7,
+    "fires": 102
+   },
+   "NV": {
+    "acres": 1245076.0,
+    "fires": 44
+   },
+   "UT": {
+    "acres": 1109880.1,
+    "fires": 51
+   },
+   "WA": {
+    "acres": 555911.6,
+    "fires": 23
+   },
+   "WY": {
+    "acres": 457132.61,
+    "fires": 20
+   }
+  }
+ },
+ "anom.northeast_2010": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "the 2010 Northeast values against the other years",
+  "n": 180427,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "acres": 18878.80899,
+   "fires": 9250,
+   "max_z_acres": 2.217686857893916,
+   "max_z_acres_year": 1995,
+   "max_z_fires": 1.9221039409160805,
+   "max_z_fires_year": 2016,
+   "rank_acres_desc": 10,
+   "rank_fires_desc": 7,
+   "z_acres": 0.48083839631080405,
+   "z_fires": 0.9779047173432411
+  }
+ },
+ "anom.northeast_2010_by_state": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "Northeast 2010 fires and acres by STATE",
+  "n": 9250,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "CT": {
+    "acres": 456.03000000000003,
+    "fires": 418
+   },
+   "MA": {
+    "acres": 322.2,
+    "fires": 3
+   },
+   "ME": {
+    "acres": 296.79,
+    "fires": 505
+   },
+   "NH": {
+    "acres": 52.043,
+    "fires": 98
+   },
+   "NJ": {
+    "acres": 9951.3,
+    "fires": 1460
+   },
+   "NY": {
+    "acres": 4300.13,
+    "fires": 6181
+   },
+   "PA": {
+    "acres": 3499.96599,
+    "fires": 583
+   },
+   "RI": {
+    "acres": 0.0,
+    "fires": 0
+   },
+   "VT": {
+    "acres": 0.35,
+    "fires": 2
+   }
+  }
+ },
+ "anom.northeast_by_year": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "Northeast (CT ME MA NH RI VT NY NJ PA) fires, acres and their z-scores (against the 29-year mean and sd) by FIRE_YEAR",
+  "n": 180427,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "1992": {
+    "acres": 24303.171000000002,
+    "fires": 2634,
+    "z_acres": 1.1012559830833566,
+    "z_fires": -1.158491337088327
+   },
+   "1993": {
+    "acres": 4075.213,
+    "fires": 2087,
+    "z_acres": -1.2123397659762731,
+    "z_fires": -1.3351250495692923
+   },
+   "1994": {
+    "acres": 7160.424,
+    "fires": 2447,
+    "z_acres": -0.8594652417879192,
+    "z_fires": -1.2188761711540317
+   },
+   "1995": {
+    "acres": 34064.218,
+    "fires": 3611,
+    "z_acres": 2.217686857893916,
+    "z_fires": -0.8430047976113556
+   },
+   "1996": {
+    "acres": 1933.534,
+    "fires": 1316,
+    "z_acres": -1.4572967423675767,
+    "z_fires": -1.5840913975086424
+   },
+   "1997": {
+    "acres": 7910.99,
+    "fires": 2526,
+    "z_acres": -0.7736184001547355,
+    "z_fires": -1.1933660006129052
+   },
+   "1998": {
+    "acres": 5024.09,
+    "fires": 2424,
+    "z_acres": -1.1038108777127889,
+    "z_fires": -1.2263031828305624
+   },
+   "1999": {
+    "acres": 25359.48,
+    "fires": 3492,
+    "z_acres": 1.2220725287818113,
+    "z_fires": -0.8814315101986223
+   },
+   "2000": {
+    "acres": 4947.32,
+    "fires": 3304,
+    "z_acres": -1.112591533953785,
+    "z_fires": -0.9421392578154807
+   },
+   "2001": {
+    "acres": 19411.89,
+    "fires": 6181,
+    "z_acres": 0.5418101443557827,
+    "z_fires": -0.013116971146855939
+   },
+   "2002": {
+    "acres": 14615.433759,
+    "fires": 6567,
+    "z_acres": -0.006790004494048355,
+    "z_fires": 0.11152765959839576
+   },
+   "2003": {
+    "acres": 8418.54558,
+    "fires": 6917,
+    "z_acres": -0.7155661522560848,
+    "z_fires": 0.2245474025021214
+   },
+   "2004": {
+    "acres": 7292.99199,
+    "fires": 5828,
+    "z_acres": -0.844302626850446,
+    "z_fires": -0.12710545470404208
+   },
+   "2005": {
+    "acres": 12729.62701,
+    "fires": 10610,
+    "z_acres": -0.22248130057219714,
+    "z_fires": 1.4170671469120035
+   },
+   "2006": {
+    "acres": 20168.18258,
+    "fires": 10245,
+    "z_acres": 0.6283119701027682,
+    "z_fires": 1.2992037007409756
+   },
+   "2007": {
+    "acres": 27094.2165,
+    "fires": 8919,
+    "z_acres": 1.4204849929632466,
+    "z_fires": 0.871020331911432
+   },
+   "2008": {
+    "acres": 22793.1593,
+    "fires": 10142,
+    "z_acres": 0.9285466740097313,
+    "z_fires": 1.2659436049721648
+   },
+   "2009": {
+    "acres": 13394.29682,
+    "fires": 8033,
+    "z_acres": -0.14645893356192996,
+    "z_fires": 0.5849189255894295
+   },
+   "2010": {
+    "acres": 18878.80899,
+    "fires": 9250,
+    "z_acres": 0.48083839631080405,
+    "z_fires": 0.9779047173432411
+   },
+   "2011": {
+    "acres": 3206.16,
+    "fires": 5274,
+    "z_acres": -1.3117386932682675,
+    "z_fires": -0.3059995620430821
+   },
+   "2012": {
+    "acres": 11366.958,
+    "fires": 7139,
+    "z_acres": -0.3783381215578494,
+    "z_fires": 0.2962342108581988
+   },
+   "2013": {
+    "acres": 6701.468,
+    "fires": 5256,
+    "z_acres": -0.9119588573375169,
+    "z_fires": -0.3118120059638451
+   },
+   "2014": {
+    "acres": 18587.409816,
+    "fires": 6726,
+    "z_acres": 0.447509283691236,
+    "z_fires": 0.16287091423180255
+   },
+   "2015": {
+    "acres": 18362.989,
+    "fires": 11030,
+    "z_acres": 0.4218408970998614,
+    "z_fires": 1.5526908383964744
+   },
+   "2016": {
+    "acres": 31077.296,
+    "fires": 12174,
+    "z_acres": 1.876054250095704,
+    "z_fires": 1.9221039409160805
+   },
+   "2017": {
+    "acres": 16262.325,
+    "fires": 6819,
+    "z_acres": 0.18157505807633767,
+    "z_fires": 0.19290187448907822
+   },
+   "2018": {
+    "acres": 6177.3294375,
+    "fires": 5521,
+    "z_acres": -0.9719078027584155,
+    "z_fires": -0.22623991490816714
+   },
+   "2019": {
+    "acres": 14612.09,
+    "fires": 4274,
+    "z_acres": -0.007172450740391091,
+    "z_fires": -0.6289131131965839
+   },
+   "2020": {
+    "acres": 19639.5627,
+    "fires": 9681,
+    "z_acres": 0.5678504688856697,
+    "z_fires": 1.1170804578904003
+   }
+  }
+ },
+ "anom.northeast_fires_by_state_year": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "Northeast fires by STATE and FIRE_YEAR",
+  "n": 180427,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "CT": {
+    "1992": 202,
+    "1993": 103,
+    "1994": 290,
+    "1995": 110,
+    "1996": 27,
+    "1997": 83,
+    "1998": 30,
+    "1999": 297,
+    "2000": 126,
+    "2001": 207,
+    "2002": 107,
+    "2003": 95,
+    "2004": 87,
+    "2005": 293,
+    "2006": 372,
+    "2007": 331,
+    "2008": 366,
+    "2009": 257,
+    "2010": 418,
+    "2011": 227,
+    "2012": 576,
+    "2013": 0,
+    "2014": 0,
+    "2015": 372,
+    "2016": 632,
+    "2017": 331,
+    "2018": 67,
+    "2019": 105,
+    "2020": 603
+   },
+   "MA": {
+    "1992": 7,
+    "1993": 4,
+    "1994": 1,
+    "1995": 15,
+    "1996": 4,
+    "1997": 11,
+    "1998": 1,
+    "1999": 7,
+    "2000": 3,
+    "2001": 17,
+    "2002": 115,
+    "2003": 75,
+    "2004": 69,
+    "2005": 30,
+    "2006": 31,
+    "2007": 34,
+    "2008": 12,
+    "2009": 1,
+    "2010": 3,
+    "2011": 0,
+    "2012": 5,
+    "2013": 5,
+    "2014": 6,
+    "2015": 2170,
+    "2016": 2108,
+    "2017": 1158,
+    "2018": 886,
+    "2019": 272,
+    "2020": 1321
+   },
+   "ME": {
+    "1992": 611,
+    "1993": 672,
+    "1994": 541,
+    "1995": 963,
+    "1996": 315,
+    "1997": 585,
+    "1998": 580,
+    "1999": 681,
+    "2000": 346,
+    "2001": 963,
+    "2002": 664,
+    "2003": 624,
+    "2004": 467,
+    "2005": 472,
+    "2006": 623,
+    "2007": 481,
+    "2008": 466,
+    "2009": 483,
+    "2010": 505,
+    "2011": 365,
+    "2012": 560,
+    "2013": 444,
+    "2014": 333,
+    "2015": 406,
+    "2016": 695,
+    "2017": 521,
+    "2018": 558,
+    "2019": 355,
+    "2020": 1160
+   },
+   "NH": {
+    "1992": 107,
+    "1993": 142,
+    "1994": 133,
+    "1995": 195,
+    "1996": 83,
+    "1997": 85,
+    "1998": 171,
+    "1999": 5,
+    "2000": 87,
+    "2001": 124,
+    "2002": 116,
+    "2003": 56,
+    "2004": 70,
+    "2005": 88,
+    "2006": 111,
+    "2007": 95,
+    "2008": 102,
+    "2009": 68,
+    "2010": 98,
+    "2011": 4,
+    "2012": 100,
+    "2013": 147,
+    "2014": 125,
+    "2015": 182,
+    "2016": 228,
+    "2017": 68,
+    "2018": 145,
+    "2019": 17,
+    "2020": 129
+   },
+   "NJ": {
+    "1992": 1325,
+    "1993": 842,
+    "1994": 1326,
+    "1995": 1817,
+    "1996": 768,
+    "1997": 1383,
+    "1998": 1312,
+    "1999": 1758,
+    "2000": 972,
+    "2001": 1571,
+    "2002": 1419,
+    "2003": 718,
+    "2004": 864,
+    "2005": 1200,
+    "2006": 1576,
+    "2007": 1121,
+    "2008": 1249,
+    "2009": 780,
+    "2010": 1460,
+    "2011": 703,
+    "2012": 1084,
+    "2013": 988,
+    "2014": 928,
+    "2015": 1047,
+    "2016": 1050,
+    "2017": 713,
+    "2018": 579,
+    "2019": 677,
+    "2020": 1021
+   },
+   "NY": {
+    "1992": 364,
+    "1993": 304,
+    "1994": 129,
+    "1995": 487,
+    "1996": 107,
+    "1997": 365,
+    "1998": 310,
+    "1999": 711,
+    "2000": 1756,
+    "2001": 3262,
+    "2002": 3512,
+    "2003": 4933,
+    "2004": 4062,
+    "2005": 7700,
+    "2006": 6629,
+    "2007": 6317,
+    "2008": 7155,
+    "2009": 5764,
+    "2010": 6181,
+    "2011": 3740,
+    "2012": 3944,
+    "2013": 2888,
+    "2014": 4358,
+    "2015": 5874,
+    "2016": 6409,
+    "2017": 3405,
+    "2018": 2505,
+    "2019": 2240,
+    "2020": 3731
+   },
+   "PA": {
+    "1992": 17,
+    "1993": 19,
+    "1994": 20,
+    "1995": 22,
+    "1996": 12,
+    "1997": 12,
+    "1998": 18,
+    "1999": 30,
+    "2000": 14,
+    "2001": 37,
+    "2002": 628,
+    "2003": 407,
+    "2004": 193,
+    "2005": 783,
+    "2006": 874,
+    "2007": 514,
+    "2008": 652,
+    "2009": 632,
+    "2010": 583,
+    "2011": 201,
+    "2012": 724,
+    "2013": 639,
+    "2014": 875,
+    "2015": 807,
+    "2016": 854,
+    "2017": 541,
+    "2018": 695,
+    "2019": 545,
+    "2020": 1513
+   },
+   "RI": {
+    "1992": 0,
+    "1993": 0,
+    "1994": 1,
+    "1995": 0,
+    "1996": 0,
+    "1997": 0,
+    "1998": 0,
+    "1999": 0,
+    "2000": 0,
+    "2001": 0,
+    "2002": 0,
+    "2003": 0,
+    "2004": 0,
+    "2005": 18,
+    "2006": 25,
+    "2007": 21,
+    "2008": 135,
+    "2009": 47,
+    "2010": 0,
+    "2011": 34,
+    "2012": 49,
+    "2013": 19,
+    "2014": 46,
+    "2015": 85,
+    "2016": 82,
+    "2017": 35,
+    "2018": 34,
+    "2019": 44,
+    "2020": 112
+   },
+   "VT": {
+    "1992": 1,
+    "1993": 1,
+    "1994": 6,
+    "1995": 2,
+    "1996": 0,
+    "1997": 2,
+    "1998": 2,
+    "1999": 3,
+    "2000": 0,
+    "2001": 0,
+    "2002": 6,
+    "2003": 9,
+    "2004": 16,
+    "2005": 26,
+    "2006": 4,
+    "2007": 5,
+    "2008": 5,
+    "2009": 1,
+    "2010": 2,
+    "2011": 0,
+    "2012": 97,
+    "2013": 126,
+    "2014": 55,
+    "2015": 87,
+    "2016": 116,
+    "2017": 47,
+    "2018": 52,
+    "2019": 19,
+    "2020": 91
+   }
+  }
+ },
+ "anom.northeast_largest_yoy_count_jumps": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "three largest year-over-year increases in Northeast fire counts",
+  "n": 180427,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "2005": 4782,
+   "2015": 4304,
+   "2020": 5407
+  }
+ },
+ "anom.northeast_ny_share_of_fires": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "New York share of Northeast fires 1992-2020",
+  "n": 180427,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": 0.5494853874420126
+ },
+ "anom.northeast_zero_report_years": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "years in which a Northeast state has zero records",
+  "n": 180427,
+  "note": "Zero-record years are reporting gaps, not fire-free years.",
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "CT": [
+    2013,
+    2014
+   ],
+   "MA": [
+    2011
+   ],
+   "RI": [
+    1992,
+    1993,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2010
+   ],
+   "VT": [
+    1996,
+    2000,
+    2001,
+    2011
+   ]
+  }
+ },
+ "anom.texas_by_month": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "Texas fires, acres, their descending ranks across the 12 months, and Class G counts by DISCOVERY_MONTH",
+  "n": 180087,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Apr": {
+    "acres": 2643109.0,
+    "class_g_fires": 65,
+    "fires": 12456,
+    "rank_acres_desc": 1,
+    "rank_fires_desc": 8
+   },
+   "Aug": {
+    "acres": 819522.47,
+    "class_g_fires": 23,
+    "fires": 20038,
+    "rank_acres_desc": 6,
+    "rank_fires_desc": 3
+   },
+   "Dec": {
+    "acres": 325736.98999,
+    "class_g_fires": 9,
+    "fires": 10742,
+    "rank_acres_desc": 10,
+    "rank_fires_desc": 10
+   },
+   "Feb": {
+    "acres": 1269159.45,
+    "class_g_fires": 34,
+    "fires": 17844,
+    "rank_acres_desc": 3,
+    "rank_fires_desc": 5
+   },
+   "Jan": {
+    "acres": 775438.9,
+    "class_g_fires": 21,
+    "fires": 20788,
+    "rank_acres_desc": 7,
+    "rank_fires_desc": 1
+   },
+   "Jul": {
+    "acres": 681466.62,
+    "class_g_fires": 16,
+    "fires": 20585,
+    "rank_acres_desc": 8,
+    "rank_fires_desc": 2
+   },
+   "Jun": {
+    "acres": 920762.67,
+    "class_g_fires": 30,
+    "fires": 14463,
+    "rank_acres_desc": 5,
+    "rank_fires_desc": 6
+   },
+   "Mar": {
+    "acres": 2509006.95999,
+    "class_g_fires": 40,
+    "fires": 18303,
+    "rank_acres_desc": 2,
+    "rank_fires_desc": 4
+   },
+   "May": {
+    "acres": 962582.72,
+    "class_g_fires": 30,
+    "fires": 10571,
+    "rank_acres_desc": 4,
+    "rank_fires_desc": 11
+   },
+   "Nov": {
+    "acres": 242705.58,
+    "class_g_fires": 8,
+    "fires": 8375,
+    "rank_acres_desc": 12,
+    "rank_fires_desc": 12
+   },
+   "Oct": {
+    "acres": 250500.77,
+    "class_g_fires": 6,
+    "fires": 11647,
+    "rank_acres_desc": 11,
+    "rank_fires_desc": 9
+   },
+   "Sep": {
+    "acres": 510409.35,
+    "class_g_fires": 13,
+    "fires": 14275,
+    "rank_acres_desc": 9,
+    "rank_fires_desc": 7
+   }
+  }
+ },
+ "anom.texas_december_by_year": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "Texas December fires and acres by FIRE_YEAR",
+  "n": 10742,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "1992": {
+    "size": 34,
+    "sum": 1746.5
+   },
+   "1993": {
+    "size": 81,
+    "sum": 1487.7
+   },
+   "1994": {
+    "size": 17,
+    "sum": 14245.800000000001
+   },
+   "1995": {
+    "size": 176,
+    "sum": 2211.6
+   },
+   "1996": {
+    "size": 54,
+    "sum": 3876.2
+   },
+   "1997": {
+    "size": 13,
+    "sum": 129.5
+   },
+   "1998": {
+    "size": 9,
+    "sum": 2060.1
+   },
+   "1999": {
+    "size": 200,
+    "sum": 9571.5
+   },
+   "2000": {
+    "size": 27,
+    "sum": 1923.3
+   },
+   "2001": {
+    "size": 9,
+    "sum": 314.7
+   },
+   "2002": {
+    "size": 38,
+    "sum": 6400.0
+   },
+   "2003": {
+    "size": 150,
+    "sum": 3409.4
+   },
+   "2004": {
+    "size": 111,
+    "sum": 3475.9
+   },
+   "2005": {
+    "size": 2000,
+    "sum": 94522.7
+   },
+   "2006": {
+    "size": 235,
+    "sum": 2202.1
+   },
+   "2007": {
+    "size": 1313,
+    "sum": 35659.09
+   },
+   "2008": {
+    "size": 1105,
+    "sum": 22476.00999
+   },
+   "2009": {
+    "size": 295,
+    "sum": 2503.68
+   },
+   "2010": {
+    "size": 1078,
+    "sum": 28262.05
+   },
+   "2011": {
+    "size": 345,
+    "sum": 3041.1600000000003
+   },
+   "2012": {
+    "size": 410,
+    "sum": 3674.65
+   },
+   "2013": {
+    "size": 314,
+    "sum": 1810.47
+   },
+   "2014": {
+    "size": 280,
+    "sum": 1071.94
+   },
+   "2015": {
+    "size": 246,
+    "sum": 4427.26
+   },
+   "2016": {
+    "size": 552,
+    "sum": 35091.49
+   },
+   "2017": {
+    "size": 432,
+    "sum": 19400.34
+   },
+   "2018": {
+    "size": 188,
+    "sum": 2980.35
+   },
+   "2019": {
+    "size": 502,
+    "sum": 11288.61
+   },
+   "2020": {
+    "size": 528,
+    "sum": 6472.89
+   }
+  }
+ },
+ "anom.texas_december_top_year": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "largest Texas December by acres and its ratio to the second largest",
+  "n": 10742,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "acres": 94522.7,
+   "ratio_to_second": 2.650732253683423,
+   "year": 2005
+  }
+ },
+ "anom.texas_missing_cont_date_share_2010_plus": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "share of Texas records 2010+ with null CONT_DATE",
+  "n": 101070,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": 0.8756505392302365
+ },
+ "anom.verdict_arkansas_june": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "verdict from the two claims above",
+  "n": 4783,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": "Refuted: Arkansas has 2 Class G fires in 29 years and none in June. June is the peak Class G month for Arizona and Alaska; the README most likely mislabels AZ or AK as AR."
+ },
+ "anom.verdict_northeast_2010": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "verdict from the Northeast claims above",
+  "n": 180427,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": "Not reproduced with this region definition: 2010 has z = 0.98 on fires and z = 0.48 on acres, ranking 7 of 29 years by fires. The series is dominated by reporting shifts (largest jumps in 2020, 2005, 2015) and by states with zero-record years."
+ },
+ "anom.verdict_texas_december": {
+  "computed_at": "2026-09-25T20:36:47+00:00",
+  "definition": "verdict from the Texas claims above",
+  "n": 180087,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": "Not a general pattern: December ranks 10 of 12 Texas months by fires and 10 of 12 by acres. Texas's big-fire season is January to April. One December stands out: 2005 with 94,523 acres, 2.7x the next largest December."
+ },
+ "cause.by_classification": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "fires, acres and shares by NWCG_CAUSE_CLASSIFICATION",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Human": {
+    "acres": 63498303.0266985,
+    "fires": 1782906,
+    "share_acres": 0.352672861989444,
+    "share_fires": 0.7739765216190897
+   },
+   "Missing data/not specified/undetermined": {
+    "acres": 10913486.1977,
+    "fires": 193341,
+    "share_acres": 0.060614067276834924,
+    "share_fires": 0.08393117453548107
+   },
+   "Natural": {
+    "acres": 105636946.786934,
+    "fires": 327319,
+    "share_acres": 0.586713070733721,
+    "share_fires": 0.14209230384542923
+   }
+  }
+ },
+ "cause.by_general_cause": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "fires, acres, shares and mean size by NWCG_GENERAL_CAUSE",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Arson/incendiarism": {
+    "acres": 10782417.442375,
+    "fires": 320814,
+    "mean_acres": 33.609560188691894,
+    "share_acres": 0.05988610462500742,
+    "share_fires": 0.13926842122170582
+   },
+   "Debris and open burning": {
+    "acres": 7793318.3386805,
+    "fires": 535851,
+    "mean_acres": 14.543815983697893,
+    "share_acres": 0.043284493472867135,
+    "share_fires": 0.23261803655723343
+   },
+   "Equipment and vehicle use": {
+    "acres": 9935759.6844575,
+    "fires": 190319,
+    "mean_acres": 52.20582119734498,
+    "share_acres": 0.05518372361043473,
+    "share_fires": 0.08261929547492887
+   },
+   "Firearms and explosives use": {
+    "acres": 647987.73,
+    "fires": 2734,
+    "mean_acres": 237.01087417703,
+    "share_acres": 0.003598957395397737,
+    "share_fires": 0.0011868555101091091
+   },
+   "Fireworks": {
+    "acres": 547382.5735,
+    "fires": 18599,
+    "mean_acres": 29.430752916823486,
+    "share_acres": 0.00304019114838744,
+    "share_fires": 0.00807400352323311
+   },
+   "Missing data/not specified/undetermined": {
+    "acres": 33713695.764486,
+    "fires": 597933,
+    "mean_acres": 56.38373490756657,
+    "share_acres": 0.18724761145984392,
+    "share_fires": 0.25956842564962324
+   },
+   "Misuse of fire by a minor": {
+    "acres": 491157.31787,
+    "fires": 66280,
+    "mean_acres": 7.410339738533494,
+    "share_acres": 0.002727913168127356,
+    "share_fires": 0.028772780983917976
+   },
+   "Natural": {
+    "acres": 105636946.786934,
+    "fires": 327319,
+    "mean_acres": 322.7339286351663,
+    "share_acres": 0.586713070733721,
+    "share_fires": 0.14209230384542923
+   },
+   "Other causes": {
+    "acres": 447651.7269,
+    "fires": 10517,
+    "mean_acres": 42.564583712085195,
+    "share_acres": 0.00248628086382025,
+    "share_fires": 0.004565530138923738
+   },
+   "Power generation/transmission/distribution": {
+    "acres": 3510114.094415,
+    "fires": 32652,
+    "mean_acres": 107.50073791544163,
+    "share_acres": 0.019495355380856817,
+    "share_fires": 0.014174545031485965
+   },
+   "Railroad operations and maintenance": {
+    "acres": 944559.591917,
+    "fires": 37292,
+    "mean_acres": 25.328745895017697,
+    "share_acres": 0.005246132868478167,
+    "share_fires": 0.016188813344180285
+   },
+   "Recreation and ceremony": {
+    "acres": 4654571.4160474995,
+    "fires": 99473,
+    "mean_acres": 46.792309632236886,
+    "share_acres": 0.025851730587847805,
+    "share_fires": 0.043182179282034897
+   },
+   "Smoking": {
+    "acres": 943173.54375,
+    "fires": 63783,
+    "mean_acres": 14.787224554348336,
+    "share_acres": 0.005238434685210094,
+    "share_fires": 0.02768880943719433
+   }
+  }
+ },
+ "cause.classification_acre_share_by_size_class": {
+  "computed_at": "2026-09-25T20:36:38+00:00",
+  "definition": "share of acres in each FIRE_SIZE_CLASS by NWCG_CAUSE_CLASSIFICATION",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": {
+   "A": {
+    "Human": 0.7227286932580546,
+    "Missing data/not specified/undetermined": 0.0795351525483723,
+    "Natural": 0.19773615419357307
+   },
+   "B": {
+    "Human": 0.8306994366702961,
+    "Missing data/not specified/undetermined": 0.08262594597275665,
+    "Natural": 0.08667461735694715
+   },
+   "C": {
+    "Human": 0.7937854679792363,
+    "Missing data/not specified/undetermined": 0.07957271157094206,
+    "Natural": 0.12664182044982167
+   },
+   "D": {
+    "Human": 0.7118576781037156,
+    "Missing data/not specified/undetermined": 0.07220032331304499,
+    "Natural": 0.21594199858323943
+   },
+   "E": {
+    "Human": 0.606361783650961,
+    "Missing data/not specified/undetermined": 0.07506707460251688,
+    "Natural": 0.3185711417465221
+   },
+   "F": {
+    "Human": 0.45718278908419274,
+    "Missing data/not specified/undetermined": 0.07039860040358992,
+    "Natural": 0.4724186105122173
+   },
+   "G": {
+    "Human": 0.27274529686697313,
+    "Missing data/not specified/undetermined": 0.05626360169696,
+    "Natural": 0.670991101436067
+   }
+  }
+ },
+ "cause.general_cause_share_by_size_class": {
+  "computed_at": "2026-09-25T20:36:38+00:00",
+  "definition": "share of fires in each FIRE_SIZE_CLASS by NWCG_GENERAL_CAUSE (rows sum to 1)",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": {
+   "A": {
+    "Arson/incendiarism": 0.08714082123757287,
+    "Debris and open burning": 0.1493971422018715,
+    "Equipment and vehicle use": 0.08161029838808137,
+    "Firearms and explosives use": 0.0008306623962099887,
+    "Fireworks": 0.011736529405791132,
+    "Missing data/not specified/undetermined": 0.29554808314382897,
+    "Misuse of fire by a minor": 0.034259118744786966,
+    "Natural": 0.20280485481093874,
+    "Other causes": 0.006727452593480897,
+    "Power generation/transmission/distribution": 0.014724860196552066,
+    "Railroad operations and maintenance": 0.01234012886677339,
+    "Recreation and ceremony": 0.06835164860242193,
+    "Smoking": 0.034528399411690204
+   },
+   "B": {
+    "Arson/incendiarism": 0.154617901152404,
+    "Debris and open burning": 0.2997816888463917,
+    "Equipment and vehicle use": 0.08394702219421271,
+    "Firearms and explosives use": 0.0011128345407905018,
+    "Fireworks": 0.006193481089509384,
+    "Missing data/not specified/undetermined": 0.24176851049496237,
+    "Misuse of fire by a minor": 0.02994602435559274,
+    "Natural": 0.09136380634686934,
+    "Other causes": 0.003625540684560756,
+    "Power generation/transmission/distribution": 0.013517000833946797,
+    "Railroad operations and maintenance": 0.0187615392068179,
+    "Recreation and ceremony": 0.029210774846136364,
+    "Smoking": 0.026153875407805414
+   },
+   "C": {
+    "Arson/incendiarism": 0.24426284345147337,
+    "Debris and open burning": 0.25561657902106605,
+    "Equipment and vehicle use": 0.07928944829946791,
+    "Firearms and explosives use": 0.0019059028534088435,
+    "Fireworks": 0.003998506394498553,
+    "Missing data/not specified/undetermined": 0.21833089585213306,
+    "Misuse of fire by a minor": 0.010859756666770389,
+    "Natural": 0.11318340230886517,
+    "Other causes": 0.0019214612440489156,
+    "Power generation/transmission/distribution": 0.0131896256651212,
+    "Railroad operations and maintenance": 0.018580608021906215,
+    "Recreation and ceremony": 0.02338815072968852,
+    "Smoking": 0.015472819491551795
+   },
+   "D": {
+    "Arson/incendiarism": 0.21074453069865914,
+    "Debris and open burning": 0.15960950364620088,
+    "Equipment and vehicle use": 0.09094918842625264,
+    "Firearms and explosives use": 0.0035579863561514937,
+    "Fireworks": 0.0067043048694424845,
+    "Missing data/not specified/undetermined": 0.2420018819101388,
+    "Misuse of fire by a minor": 0.006733709715361092,
+    "Natural": 0.20809809456598446,
+    "Other causes": 0.0019995295224653022,
+    "Power generation/transmission/distribution": 0.01955422253587391,
+    "Railroad operations and maintenance": 0.017848741472594683,
+    "Recreation and ceremony": 0.0207010115266996,
+    "Smoking": 0.011497294754175488
+   },
+   "E": {
+    "Arson/incendiarism": 0.15601186667442266,
+    "Debris and open burning": 0.10953405851899249,
+    "Equipment and vehicle use": 0.0923157466115991,
+    "Firearms and explosives use": 0.004595427840148915,
+    "Fireworks": 0.008492816008376477,
+    "Missing data/not specified/undetermined": 0.25205049153626896,
+    "Misuse of fire by a minor": 0.006107847129311849,
+    "Natural": 0.30486882671165144,
+    "Other causes": 0.0015124192891629341,
+    "Power generation/transmission/distribution": 0.02227909952882322,
+    "Railroad operations and maintenance": 0.014949682973649002,
+    "Recreation and ceremony": 0.01739282182537374,
+    "Smoking": 0.009888895352219184
+   },
+   "F": {
+    "Arson/incendiarism": 0.0878043747420553,
+    "Debris and open burning": 0.06830375567478332,
+    "Equipment and vehicle use": 0.07635163021048287,
+    "Firearms and explosives use": 0.00680973999174577,
+    "Fireworks": 0.005777961205117622,
+    "Missing data/not specified/undetermined": 0.24257119273627734,
+    "Misuse of fire by a minor": 0.0047461824184894755,
+    "Natural": 0.4443871234007429,
+    "Other causes": 0.0016508460586050352,
+    "Power generation/transmission/distribution": 0.026413536937680563,
+    "Railroad operations and maintenance": 0.009595542715641767,
+    "Recreation and ceremony": 0.018365662401981016,
+    "Smoking": 0.007222451506397029
+   },
+   "G": {
+    "Arson/incendiarism": 0.03888772736776082,
+    "Debris and open burning": 0.031779218063976586,
+    "Equipment and vehicle use": 0.058540664854693704,
+    "Firearms and explosives use": 0.004390549864102028,
+    "Fireworks": 0.003136107045787163,
+    "Missing data/not specified/undetermined": 0.17980347062513066,
+    "Misuse of fire by a minor": 0.002299811833577253,
+    "Natural": 0.6176040142170186,
+    "Other causes": 0.002717959439682208,
+    "Power generation/transmission/distribution": 0.02592515157850721,
+    "Railroad operations and maintenance": 0.004808697470206983,
+    "Recreation and ceremony": 0.024043487351034915,
+    "Smoking": 0.006063140288521849
+   }
+  }
+ },
+ "cause.human_share_known_by_size_class": {
+  "computed_at": "2026-09-25T20:36:40+00:00",
+  "definition": "share of fires with a known cause classification that are Human, by FIRE_SIZE_CLASS",
+  "n": 2110225,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": {
+   "A": 0.778027827073012,
+   "B": 0.9003616175820008,
+   "C": 0.8766610010723656,
+   "D": 0.7752833963102912,
+   "E": 0.670377358490566,
+   "F": 0.5206455203116305,
+   "G": 0.3460261235333186
+  }
+ },
+ "cause.human_to_natural_fire_ratio": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "Human fires divided by Natural fires",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "ratio",
+  "value": 5.446998188311708
+ },
+ "cause.natural_acres": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "acres with NWCG_CAUSE_CLASSIFICATION == Natural",
+  "n": 327319,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": 105636946.786934
+ },
+ "cause.top_general_cause_by_size_class": {
+  "computed_at": "2026-09-25T20:36:38+00:00",
+  "definition": "most common NWCG_GENERAL_CAUSE within each size class",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "A": {
+    "is_majority": false,
+    "share": 0.29554808314382897,
+    "top3": {
+     "Debris and open burning": 0.1493971422018715,
+     "Missing data/not specified/undetermined": 0.29554808314382897,
+     "Natural": 0.20280485481093874
+    },
+    "top_cause": "Missing data/not specified/undetermined"
+   },
+   "B": {
+    "is_majority": false,
+    "share": 0.2997816888463917,
+    "top3": {
+     "Arson/incendiarism": 0.154617901152404,
+     "Debris and open burning": 0.2997816888463917,
+     "Missing data/not specified/undetermined": 0.24176851049496237
+    },
+    "top_cause": "Debris and open burning"
+   },
+   "C": {
+    "is_majority": false,
+    "share": 0.25561657902106605,
+    "top3": {
+     "Arson/incendiarism": 0.24426284345147337,
+     "Debris and open burning": 0.25561657902106605,
+     "Missing data/not specified/undetermined": 0.21833089585213306
+    },
+    "top_cause": "Debris and open burning"
+   },
+   "D": {
+    "is_majority": false,
+    "share": 0.2420018819101388,
+    "top3": {
+     "Arson/incendiarism": 0.21074453069865914,
+     "Missing data/not specified/undetermined": 0.2420018819101388,
+     "Natural": 0.20809809456598446
+    },
+    "top_cause": "Missing data/not specified/undetermined"
+   },
+   "E": {
+    "is_majority": false,
+    "share": 0.30486882671165144,
+    "top3": {
+     "Arson/incendiarism": 0.15601186667442266,
+     "Missing data/not specified/undetermined": 0.25205049153626896,
+     "Natural": 0.30486882671165144
+    },
+    "top_cause": "Natural"
+   },
+   "F": {
+    "is_majority": false,
+    "share": 0.4443871234007429,
+    "top3": {
+     "Arson/incendiarism": 0.0878043747420553,
+     "Missing data/not specified/undetermined": 0.24257119273627734,
+     "Natural": 0.4443871234007429
+    },
+    "top_cause": "Natural"
+   },
+   "G": {
+    "is_majority": true,
+    "share": 0.6176040142170186,
+    "top3": {
+     "Equipment and vehicle use": 0.058540664854693704,
+     "Missing data/not specified/undetermined": 0.17980347062513066,
+     "Natural": 0.6176040142170186
+    },
+    "top_cause": "Natural"
+   }
+  }
+ },
+ "ces.by_owner": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "Control Efficiency Score = 1 / (acres per hour to containment) aggregated per OWNER_DESCR with the mean (original definition) and the median; acres per hour = FIRE_SIZE / DURATION_HOURS; records of all years with DURATION_HOURS > 0; owners with at least 1,000 such records",
+  "n": 1142942,
+  "note": "Rank 1 = highest score = fewest acres per hour.",
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "BIA": {
+    "ces_mean_based": 0.19703127214159963,
+    "ces_median_based": 2.333333333333333,
+    "mean": 5.0753364637535014,
+    "median": 0.4285714285714286,
+    "rank_mean_based": 4,
+    "rank_median_based": 11,
+    "size": 119040
+   },
+   "BLM": {
+    "ces_mean_based": 0.17083828452673674,
+    "ces_median_based": 14.399999999999999,
+    "mean": 5.8534888872844935,
+    "median": 0.06944444444444445,
+    "rank_mean_based": 6,
+    "rank_median_based": 2,
+    "size": 70049
+   },
+   "COUNTY": {
+    "ces_mean_based": 0.07256477087291131,
+    "ces_median_based": 2.6470588235294117,
+    "mean": 13.780791808071477,
+    "median": 0.37777777777777777,
+    "rank_mean_based": 13,
+    "rank_median_based": 9,
+    "size": 2729
+   },
+   "FWS": {
+    "ces_mean_based": 0.09836651035407068,
+    "ces_median_based": 1.75,
+    "mean": 10.16606156303091,
+    "median": 0.5714285714285714,
+    "rank_mean_based": 12,
+    "rank_median_based": 12,
+    "size": 10507
+   },
+   "MISSING/NOT SPECIFIED": {
+    "ces_mean_based": 0.15478528019667281,
+    "ces_median_based": 1.1166666666666667,
+    "mean": 6.460562649945673,
+    "median": 0.8955223880597015,
+    "rank_mean_based": 8,
+    "rank_median_based": 14,
+    "size": 293511
+   },
+   "MUNICIPAL/LOCAL": {
+    "ces_mean_based": 0.44932279190308944,
+    "ces_median_based": 8.666666666666666,
+    "mean": 2.2255715000891416,
+    "median": 0.11538461538461539,
+    "rank_mean_based": 2,
+    "rank_median_based": 4,
+    "size": 12174
+   },
+   "NPS": {
+    "ces_mean_based": 0.5555044095618206,
+    "ces_median_based": 11.575313100392593,
+    "mean": 1.8001657282771086,
+    "median": 0.08639075170814028,
+    "rank_mean_based": 1,
+    "rank_median_based": 3,
+    "size": 16434
+   },
+   "OTHER FEDERAL": {
+    "ces_mean_based": 0.03824257066066232,
+    "ces_median_based": 3.333333333333333,
+    "mean": 26.14886977325078,
+    "median": 0.30000000000000004,
+    "rank_mean_based": 14,
+    "rank_median_based": 5,
+    "size": 5754
+   },
+   "PRIVATE": {
+    "ces_mean_based": 0.2031356778131797,
+    "ces_median_based": 1.2058823529411764,
+    "mean": 4.9228181418710815,
+    "median": 0.8292682926829269,
+    "rank_mean_based": 3,
+    "rank_median_based": 13,
+    "size": 331278
+   },
+   "STATE": {
+    "ces_mean_based": 0.15765324870528777,
+    "ces_median_based": 2.833333333333333,
+    "mean": 6.343034528069699,
+    "median": 0.35294117647058826,
+    "rank_mean_based": 7,
+    "rank_median_based": 7,
+    "size": 33056
+   },
+   "STATE OR PRIVATE": {
+    "ces_mean_based": 0.127440160227652,
+    "ces_median_based": 2.3333333333333335,
+    "mean": 7.846820015085164,
+    "median": 0.42857142857142855,
+    "rank_mean_based": 9,
+    "rank_median_based": 10,
+    "size": 31283
+   },
+   "TRIBAL": {
+    "ces_mean_based": 0.190571082563224,
+    "ces_median_based": 3.1,
+    "mean": 5.247385839182812,
+    "median": 0.3225806451612903,
+    "rank_mean_based": 5,
+    "rank_median_based": 6,
+    "size": 10514
+   },
+   "UNDEFINED FEDERAL": {
+    "ces_mean_based": 0.1240801340868969,
+    "ces_median_based": 2.6666666666666665,
+    "mean": 8.059307860673902,
+    "median": 0.375,
+    "rank_mean_based": 10,
+    "rank_median_based": 8,
+    "size": 4784
+   },
+   "USFS": {
+    "ces_mean_based": 0.11580108912316008,
+    "ces_median_based": 22.0,
+    "mean": 8.635497365110716,
+    "median": 0.045454545454545456,
+    "rank_mean_based": 11,
+    "rank_median_based": 1,
+    "size": 201382
+   }
+  }
+ },
+ "ces.median_aph_by_size_class": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "median acres per hour by FIRE_SIZE_CLASS, same sample",
+  "n": 1142942,
+  "note": "Shows that acres per hour is mostly a function of final size, which the score does not control for.",
+  "source": "analysis.descriptive",
+  "unit": "acres/hour",
+  "value": {
+   "A": 0.08108108108108109,
+   "B": 1.017391304347826,
+   "C": 6.678260869565218,
+   "D": 12.295081967213115,
+   "E": 14.653207424291763,
+   "F": 23.818975784041285,
+   "G": 49.51402489765893
+  }
+ },
+ "ces.rank_shift": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "rank under the mean-based score minus rank under the median-based score, per owner",
+  "n": 1142942,
+  "note": "A large positive value means the owner looks much worse under the original mean-based score.",
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "BIA": -7,
+   "BLM": 4,
+   "COUNTY": 4,
+   "FWS": 0,
+   "MISSING/NOT SPECIFIED": -6,
+   "MUNICIPAL/LOCAL": -2,
+   "NPS": -2,
+   "OTHER FEDERAL": 9,
+   "PRIVATE": -10,
+   "STATE": 0,
+   "STATE OR PRIVATE": -1,
+   "TRIBAL": -1,
+   "UNDEFINED FEDERAL": 2,
+   "USFS": 10
+  }
+ },
+ "ces.spearman_mean_vs_median": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "Spearman correlation between the two owner rankings",
+  "n": 14,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "rho",
+  "value": 0.0945054945054945
+ },
+ "class_g.acres_by_year": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "sum of FIRE_SIZE for FIRE_SIZE_CLASS == G by FIRE_YEAR",
+  "n": 4783,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "1992": 1180495.4,
+   "1993": 1225684.6,
+   "1994": 2395997.1,
+   "1995": 854412.7,
+   "1996": 4275478.0,
+   "1997": 2466885.0,
+   "1998": 951649.49,
+   "1999": 4357085.5,
+   "2000": 5572472.499,
+   "2001": 2222084.7,
+   "2002": 5572162.34,
+   "2003": 3193318.5002,
+   "2004": 7309203.6002,
+   "2005": 7845484.902,
+   "2006": 7159523.7,
+   "2007": 7433225.2602,
+   "2008": 3354947.76,
+   "2009": 4476850.1,
+   "2010": 2143165.7,
+   "2011": 7123367.2,
+   "2012": 7723459.66,
+   "2013": 3577611.1,
+   "2014": 2593836.56,
+   "2015": 8663074.15,
+   "2016": 3622537.34,
+   "2017": 8367303.61,
+   "2018": 6616912.661,
+   "2019": 3802687.9,
+   "2020": 9050956.34
+  }
+ },
+ "class_g.acres_by_year_alaska": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "same, STATE == AK only",
+  "n": 765,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "1992": 108777.0,
+   "1993": 600399.0,
+   "1994": 196173.9,
+   "1995": 22060.0,
+   "1996": 545119.9,
+   "1997": 1954680.0,
+   "1998": 112640.0,
+   "1999": 951449.0,
+   "2000": 723668.4,
+   "2001": 203080.2,
+   "2002": 2141595.6,
+   "2003": 579010.8,
+   "2004": 6528778.2002,
+   "2005": 4541889.402,
+   "2006": 238884.2,
+   "2007": 553595.9,
+   "2008": 68597.3,
+   "2009": 2893827.9,
+   "2010": 1051609.0,
+   "2011": 255238.1,
+   "2012": 249135.6,
+   "2013": 1221588.2,
+   "2014": 219992.2,
+   "2015": 4928288.39,
+   "2016": 414216.9,
+   "2017": 594693.4,
+   "2018": 375123.7,
+   "2019": 2527986.1,
+   "2020": 141682.9
+  }
+ },
+ "class_g.acres_by_year_excl_alaska": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "same, excluding STATE == AK",
+  "n": 4018,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "1992": 1071718.4,
+   "1993": 625285.6,
+   "1994": 2199823.2,
+   "1995": 832352.7,
+   "1996": 3730358.1,
+   "1997": 512205.0,
+   "1998": 839009.49,
+   "1999": 3405636.5,
+   "2000": 4848804.099,
+   "2001": 2019004.5,
+   "2002": 3430566.74,
+   "2003": 2614307.7002,
+   "2004": 780425.4,
+   "2005": 3303595.5,
+   "2006": 6920639.5,
+   "2007": 6879629.3602,
+   "2008": 3286350.46,
+   "2009": 1583022.2,
+   "2010": 1091556.7,
+   "2011": 6868129.1,
+   "2012": 7474324.0600000005,
+   "2013": 2356022.9,
+   "2014": 2373844.36,
+   "2015": 3734785.76,
+   "2016": 3208320.44,
+   "2017": 7772610.21,
+   "2018": 6241788.961,
+   "2019": 1274701.8,
+   "2020": 8909273.44
+  }
+ },
+ "class_g.acres_trend": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "Kendall tau and Theil-Sen slope of Class G acres per year, 1992-2020 (29 annual points; years with no Class G fires count as 0)",
+  "n": 4783,
+  "note": "Class G is the size class least affected by the reporting caveat: fires of 5,000+ acres are recorded by every reporting system, so this series is the most comparable across years.",
+  "source": "analysis.descriptive",
+  "unit": "acres/yr",
+  "value": {
+   "kendall_p": 0.0007459576503116791,
+   "kendall_tau": 0.4334975369458127,
+   "theil_sen_intercept": -351910295.02704173,
+   "theil_sen_slope": 177560.20589583338,
+   "theil_sen_slope_ci95": [
+    69420.38125,
+    288404.57
+   ]
+  }
+ },
+ "class_g.acres_trend_alaska": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "same, Alaska only",
+  "n": 765,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres/yr",
+  "value": {
+   "kendall_p": 0.36125600024923277,
+   "kendall_tau": 0.12315270935960589,
+   "theil_sen_intercept": -14107296.891666668,
+   "theil_sen_slope": 7308.520833333334,
+   "theil_sen_slope_ci95": [
+    -16989.485185185185,
+    41270.325000000004
+   ]
+  }
+ },
+ "class_g.acres_trend_excl_alaska": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "same, excluding Alaska",
+  "n": 4018,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres/yr",
+  "value": {
+   "kendall_p": 0.007349363504352429,
+   "kendall_tau": 0.3497536945812807,
+   "theil_sen_intercept": -281589611.90233076,
+   "theil_sen_slope": 141973.04703007516,
+   "theil_sen_slope_ci95": [
+    27427.71176470588,
+    268578.21454545454
+   ]
+  }
+ },
+ "class_g.alaska_share_of_acres": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "Alaska share of all Class G acres 1992-2020",
+  "n": 4783,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": 0.258590222425536
+ },
+ "class_g.fires_by_year": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "count of FIRE_SIZE_CLASS == G by FIRE_YEAR",
+  "n": 4783,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "1992": 58,
+   "1993": 65,
+   "1994": 146,
+   "1995": 69,
+   "1996": 201,
+   "1997": 61,
+   "1998": 76,
+   "1999": 156,
+   "2000": 252,
+   "2001": 117,
+   "2002": 170,
+   "2003": 128,
+   "2004": 118,
+   "2005": 224,
+   "2006": 271,
+   "2007": 234,
+   "2008": 160,
+   "2009": 138,
+   "2010": 105,
+   "2011": 276,
+   "2012": 244,
+   "2013": 132,
+   "2014": 103,
+   "2015": 292,
+   "2016": 171,
+   "2017": 283,
+   "2018": 204,
+   "2019": 136,
+   "2020": 193
+  }
+ },
+ "class_g.fires_trend": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "Kendall tau and Theil-Sen slope of Class G fire counts per year",
+  "n": 4783,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "fires/yr",
+  "value": {
+   "kendall_p": 0.006518643400864223,
+   "kendall_tau": 0.3546798029556649,
+   "theil_sen_intercept": -8269.2,
+   "theil_sen_slope": 4.2,
+   "theil_sen_slope_ci95": [
+    1.5555555555555556,
+    6.8
+   ]
+  }
+ },
+ "class_g.five_lowest_years": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "the five lowest Class G acre years",
+  "n": 4783,
+  "note": "Tests \"higher lows\": if a recent year is among the lowest, the lows are not rising.",
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "1992": 1180495.4,
+   "1993": 1225684.6,
+   "1995": 854412.7,
+   "1998": 951649.49,
+   "2010": 2143165.7
+  }
+ },
+ "class_g.half_period_means": {
+  "computed_at": "2026-09-25T20:36:37+00:00",
+  "definition": "mean annual Class G acres in the first 14 and last 15 years",
+  "n": 4783,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "1992_2005": 3530172.4522428573,
+   "1992_2005_excl_alaska": 2158078.066371429,
+   "2006_2020": 5713963.93608,
+   "2006_2020_excl_alaska": 4664999.950080001
+  }
+ },
+ "cont.hours_by_owner_2010_plus": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "median and mean DURATION_HOURS by OWNER_DESCR, eight most frequent owners in that sample",
+  "n": 577956,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "hours",
+  "value": {
+   "BIA": {
+    "mean": 30.877282139775673,
+    "median": 1.5,
+    "size": 34770
+   },
+   "BLM": {
+    "mean": 58.59355520569113,
+    "median": 5.958333333333334,
+    "size": 22866
+   },
+   "MISSING/NOT SPECIFIED": {
+    "mean": 4.092437080084216,
+    "median": 0.5666666666666667,
+    "size": 182229
+   },
+   "MUNICIPAL/LOCAL": {
+    "mean": 30.482202035107136,
+    "median": 0.5166666666666667,
+    "size": 10843
+   },
+   "PRIVATE": {
+    "mean": 20.810664055264144,
+    "median": 1.25,
+    "size": 221337
+   },
+   "STATE": {
+    "mean": 56.882218081435475,
+    "median": 1.35,
+    "size": 24150
+   },
+   "STATE OR PRIVATE": {
+    "mean": 12.879395661157025,
+    "median": 1.9166666666666667,
+    "size": 9680
+   },
+   "USFS": {
+    "mean": 70.86305841924398,
+    "median": 6.65,
+    "size": 50343
+   }
+  }
+ },
+ "cont.hours_by_size_class_2010_plus": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "median and mean DURATION_HOURS by FIRE_SIZE_CLASS, that sample",
+  "n": 577956,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "hours",
+  "value": {
+   "A": {
+    "mean": 19.813352308616974,
+    "median": 0.6333333333333333,
+    "size": 261217
+   },
+   "B": {
+    "mean": 16.743774172099176,
+    "median": 1.25,
+    "size": 243135
+   },
+   "C": {
+    "mean": 34.44794619492499,
+    "median": 3.05,
+    "size": 56302
+   },
+   "D": {
+    "mean": 94.90369882690926,
+    "median": 10.75,
+    "size": 8354
+   },
+   "E": {
+    "mean": 186.02801135944532,
+    "median": 30.5,
+    "size": 4519
+   },
+   "F": {
+    "mean": 364.2172601918465,
+    "median": 97.775,
+    "size": 2780
+   },
+   "G": {
+    "mean": 836.3099049929251,
+    "median": 387.9,
+    "size": 1649
+   }
+  }
+ },
+ "cont.hours_percentiles_2010_plus": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "percentiles of DURATION_HOURS for that sample",
+  "n": 577956,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "hours",
+  "value": {
+   "0.1": 0.2,
+   "0.25": 0.45,
+   "0.5": 1.15,
+   "0.75": 3.2,
+   "0.9": 26.0,
+   "0.99": 554.0483333333318
+  }
+ },
+ "cont.median_hours_by_size_class_and_owner_2010_plus": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "median DURATION_HOURS by FIRE_SIZE_CLASS and OWNER_DESCR, six most frequent owners, that sample",
+  "n": 577956,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "hours",
+  "value": {
+   "A": {
+    "BIA": 0.9166666666666666,
+    "BLM": 3.3583333333333334,
+    "MISSING/NOT SPECIFIED": 0.36666666666666664,
+    "PRIVATE": 0.7166666666666667,
+    "STATE": 0.75,
+    "USFS": 4.15
+   },
+   "B": {
+    "BIA": 1.6333333333333333,
+    "BLM": 5.483333333333333,
+    "MISSING/NOT SPECIFIED": 0.8666666666666667,
+    "PRIVATE": 1.25,
+    "STATE": 1.3833333333333333,
+    "USFS": 21.5
+   },
+   "C": {
+    "BIA": 5.383333333333334,
+    "BLM": 23.25,
+    "MISSING/NOT SPECIFIED": 2.45,
+    "PRIVATE": 2.783333333333333,
+    "STATE": 4.1,
+    "USFS": 30.0
+   },
+   "D": {
+    "BIA": 25.333333333333332,
+    "BLM": 42.391666666666666,
+    "MISSING/NOT SPECIFIED": 4.708333333333334,
+    "PRIVATE": 7.5,
+    "STATE": 21.416666666666664,
+    "USFS": 97.58333333333334
+   },
+   "E": {
+    "BIA": 73.66666666666666,
+    "BLM": 64.71666666666667,
+    "MISSING/NOT SPECIFIED": 8.75,
+    "PRIVATE": 24.083333333333332,
+    "STATE": 45.11666666666667,
+    "USFS": 185.0
+   },
+   "F": {
+    "BIA": 141.55,
+    "BLM": 100.3,
+    "MISSING/NOT SPECIFIED": 28.46666666666667,
+    "PRIVATE": 54.0,
+    "STATE": 117.6,
+    "USFS": 644.775
+   },
+   "G": {
+    "BIA": 374.05833333333334,
+    "BLM": 292.0083333333333,
+    "MISSING/NOT SPECIFIED": 93.43333333333334,
+    "PRIVATE": 193.34166666666667,
+    "STATE": 793.9416666666666,
+    "USFS": 1149.75
+   }
+  }
+ },
+ "cont.n_2010_plus_with_both_datetimes": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "records with FIRE_YEAR >= 2010 and non-null DURATION_HOURS (both DISCOVERY_DATETIME and CONT_DATETIME exist, i.e. date and a valid HHMM time on both ends)",
+  "n": 577956,
+  "note": "Includes 0-hour records; excludes nothing else.",
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": 577956
+ },
+ "cont.n_by_size_class_and_owner_2010_plus": {
+  "computed_at": "2026-09-25T20:36:46+00:00",
+  "definition": "cell counts behind the previous claim",
+  "n": 577956,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "A": {
+    "BIA": 14815,
+    "BLM": 12414,
+    "MISSING/NOT SPECIFIED": 97919,
+    "PRIVATE": 67820,
+    "STATE": 12031,
+    "USFS": 34677
+   },
+   "B": {
+    "BIA": 16069,
+    "BLM": 6358,
+    "MISSING/NOT SPECIFIED": 67835,
+    "PRIVATE": 119139,
+    "STATE": 8644,
+    "USFS": 10878
+   },
+   "C": {
+    "BIA": 2695,
+    "BLM": 1984,
+    "MISSING/NOT SPECIFIED": 13657,
+    "PRIVATE": 28833,
+    "STATE": 2268,
+    "USFS": 2885
+   },
+   "D": {
+    "BIA": 558,
+    "BLM": 678,
+    "MISSING/NOT SPECIFIED": 1750,
+    "PRIVATE": 3175,
+    "STATE": 514,
+    "USFS": 690
+   },
+   "E": {
+    "BIA": 338,
+    "BLM": 540,
+    "MISSING/NOT SPECIFIED": 719,
+    "PRIVATE": 1447,
+    "STATE": 332,
+    "USFS": 505
+   },
+   "F": {
+    "BIA": 209,
+    "BLM": 520,
+    "MISSING/NOT SPECIFIED": 264,
+    "PRIVATE": 657,
+    "STATE": 215,
+    "USFS": 396
+   },
+   "G": {
+    "BIA": 86,
+    "BLM": 372,
+    "MISSING/NOT SPECIFIED": 85,
+    "PRIVATE": 266,
+    "STATE": 146,
+    "USFS": 312
+   }
+  }
+ },
+ "cont.share_with_cont_date": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "share of all records with a non-null CONT_DATE",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": 0.6115531311019524
+ },
+ "cont.share_with_cont_date_by_owner": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "share with CONT_DATE by OWNER_DESCR (upper-cased)",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": {
+   "BIA": 0.9923770598157519,
+   "BLM": 0.9966232251590068,
+   "BOR": 0.9846449136276392,
+   "COUNTY": 0.6154816332965474,
+   "FOREIGN": 0.7619047619047619,
+   "FWS": 0.8130431659843425,
+   "MISSING/NOT SPECIFIED": 0.3991701796290611,
+   "MUNICIPAL/LOCAL": 0.7095704519946944,
+   "NPS": 0.8623733574079647,
+   "OTHER FEDERAL": 0.4263672772634758,
+   "PRIVATE": 0.7300194083790658,
+   "STATE": 0.7649016587887478,
+   "STATE OR PRIVATE": 0.4398960545434224,
+   "TRIBAL": 0.915667808219178,
+   "UNDEFINED FEDERAL": 0.5124194160030338,
+   "USFS": 0.9599423886343403
+  }
+ },
+ "cont.share_with_cont_date_by_region": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "share with CONT_DATE by region",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": {
+   "Alaska": 0.7080618624547549,
+   "Hawaii/PR": 0.01802809896804675,
+   "Northeast": 0.7682830175084661,
+   "Other": 0.6751372998662313,
+   "South": 0.4882981946630604,
+   "West": 0.7543807891134766
+  }
+ },
+ "cont.share_with_cont_date_by_year": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "share with CONT_DATE by FIRE_YEAR",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": {
+   "1992": 0.6234310854754933,
+   "1993": 0.638838241226301,
+   "1994": 0.6152215139861982,
+   "1995": 0.6137038073908174,
+   "1996": 0.6430963062955758,
+   "1997": 0.45685361804628755,
+   "1998": 0.39051436596641115,
+   "1999": 0.375053161723559,
+   "2000": 0.4872505083198473,
+   "2001": 0.5420742290318502,
+   "2002": 0.5951686633039092,
+   "2003": 0.6294397656536067,
+   "2004": 0.575868531065302,
+   "2005": 0.5893716167497122,
+   "2006": 0.4822838150632085,
+   "2007": 0.4866092657607981,
+   "2008": 0.4445224560052545,
+   "2009": 0.5884626711824473,
+   "2010": 0.6041435398871219,
+   "2011": 0.6439238445749876,
+   "2012": 0.7775862533329743,
+   "2013": 0.789008640154138,
+   "2014": 0.7522701475595914,
+   "2015": 0.8404529278550631,
+   "2016": 0.8026660812508385,
+   "2017": 0.7528409436186634,
+   "2018": 0.7680187979223349,
+   "2019": 0.7410041380178423,
+   "2020": 0.6768310993420873
+  }
+ },
+ "cont.share_zero_hours_2010_plus": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "share of that sample with DURATION_HOURS == 0 (containment time equals discovery time)",
+  "n": 577956,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": 0.04027815266214037
+ },
+ "geo.cells_1deg_file": {
+  "computed_at": "2026-09-25T20:36:43+00:00",
+  "definition": "1-degree cells: cell_lat/cell_lon = floor(LATITUDE)/floor(LONGITUDE) (south-west corner); n_fires; acres = sum FIRE_SIZE; n_human, n_natural, n_missing_cause from NWCG_CAUSE_CLASSIFICATION; human_share_known = n_human / (n_human + n_natural); human_share_all = n_human / n_fires",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": "outputs/cells_1deg.csv"
+ },
+ "geo.cells_1deg_summary": {
+  "computed_at": "2026-09-25T20:36:43+00:00",
+  "definition": "summary of the 1-degree cell table",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "n_cells": 1239,
+   "n_cells_ge_20_fires": 1051,
+   "share_of_acres_in_top_50_cells_by_acres": 0.3028256311872038,
+   "share_of_fires_in_top_50_cells": 0.27893275035314813,
+   "top_cell": {
+    "acres": 145281.37,
+    "cell_lat": 34.0,
+    "cell_lon": -80.0,
+    "human_share_known": 0.9839879491185003,
+    "n_fires": 20710.0
+   }
+  }
+ },
+ "geo.fires_and_acres_by_gacc": {
+  "computed_at": "2026-09-25T20:36:42+00:00",
+  "definition": "fires and acres by state-level GACC approximation (see overview.gacc_definition)",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Alaska": {
+    "acres": 36654234.05218,
+    "fires": 15195
+   },
+   "California (North+South merged)": {
+    "acres": 20926921.602,
+    "fires": 251881
+   },
+   "Eastern Area (approx)": {
+    "acres": 3374567.2316495,
+    "fires": 359477
+   },
+   "Great Basin (approx)": {
+    "acres": 33040147.64241,
+    "fires": 99252
+   },
+   "Hawaii (not a GACC)": {
+    "acres": 333033.26,
+    "fires": 9970
+   },
+   "Northern Rockies (approx)": {
+    "acres": 8691603.34008,
+    "fires": 71980
+   },
+   "Northwest": {
+    "acres": 18300650.4473,
+    "fires": 112225
+   },
+   "Rocky Mountain (approx)": {
+    "acres": 11041980.75133,
+    "fires": 155346
+   },
+   "Southern Area (approx)": {
+    "acres": 32449969.720983,
+    "fires": 1079706
+   },
+   "Southwest": {
+    "acres": 15235627.9634,
+    "fires": 148534
+   }
+  }
+ },
+ "geo.fires_and_acres_by_state": {
+  "computed_at": "2026-09-25T20:36:42+00:00",
+  "definition": "fires and acres by STATE",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "AK": {
+    "acres": 36654234.05218,
+    "fires": 15195,
+    "share_acres": 0.20357951332617483,
+    "share_fires": 0.006596294614523743
+   },
+   "AL": {
+    "acres": 1056487.395,
+    "fires": 74833,
+    "share_acres": 0.005867785680725375,
+    "share_fires": 0.032485719966347824
+   },
+   "AR": {
+    "acres": 625594.73,
+    "fires": 37947,
+    "share_acres": 0.0034745855142277932,
+    "share_fires": 0.016473155099528295
+   },
+   "AZ": {
+    "acres": 7832359.44899,
+    "fires": 104956,
+    "share_acres": 0.04350132982048272,
+    "share_fires": 0.04556240194550536
+   },
+   "CA": {
+    "acres": 20926921.602,
+    "fires": 251881,
+    "share_acres": 0.11622920585614571,
+    "share_fires": 0.10934394760124086
+   },
+   "CO": {
+    "acres": 3414826.726,
+    "fires": 68629,
+    "share_acres": 0.01896612440414503,
+    "share_fires": 0.029792504317219477
+   },
+   "CT": {
+    "acres": 13040.94,
+    "fires": 6714,
+    "share_acres": 7.243005582210355e-05,
+    "share_fires": 0.0029146115197046666
+   },
+   "DC": {
+    "acres": 39.3,
+    "fires": 83,
+    "share_acres": 2.1827423435800405e-07,
+    "share_fires": 3.603109266241992e-05
+   },
+   "DE": {
+    "acres": 4920.15,
+    "fires": 198,
+    "share_acres": 2.732676779075149e-05,
+    "share_fires": 8.595369092962824e-05
+   },
+   "FL": {
+    "acres": 5507937.06998,
+    "fires": 103409,
+    "share_acres": 0.03059136760412094,
+    "share_fires": 0.04489083447142387
+   },
+   "GA": {
+    "acres": 1764254.82006,
+    "fires": 185040,
+    "share_acres": 0.009798762596972386,
+    "share_fires": 0.08032763115968894
+   },
+   "HI": {
+    "acres": 333033.26,
+    "fires": 9970,
+    "share_acres": 0.0018496839654516565,
+    "share_fires": 0.004328072214991887
+   },
+   "IA": {
+    "acres": 96152.8836,
+    "fires": 5672,
+    "share_acres": 0.0005340380928525264,
+    "share_fires": 0.002462269368448744
+   },
+   "ID": {
+    "acres": 15952234.382,
+    "fires": 42060,
+    "share_acres": 0.08859953552240402,
+    "share_fires": 0.018258647679293756
+   },
+   "IL": {
+    "acres": 26708.346,
+    "fires": 3022,
+    "share_acres": 0.00014833953623711606,
+    "share_fires": 0.0013118790605522047
+   },
+   "IN": {
+    "acres": 19577.12,
+    "fires": 2277,
+    "share_acres": 0.00010873233788638088,
+    "share_fires": 0.0009884674456907248
+   },
+   "KS": {
+    "acres": 1396895.412,
+    "fires": 18576,
+    "share_acres": 0.0077584294283081084,
+    "share_fires": 0.008064019003579668
+   },
+   "KY": {
+    "acres": 1153967.984996,
+    "fires": 30874,
+    "share_acres": 0.006409197923629787,
+    "share_fires": 0.01340269825131991
+   },
+   "LA": {
+    "acres": 727787.382977,
+    "fires": 33129,
+    "share_acres": 0.004042168798847841,
+    "share_fires": 0.014381615286907342
+   },
+   "MA": {
+    "acres": 10007.672,
+    "fires": 8371,
+    "share_acres": 5.55831283334869e-05,
+    "share_fires": 0.0036339310443026162
+   },
+   "MD": {
+    "acres": 73743.28,
+    "fires": 4157,
+    "share_acres": 0.00040957399442870013,
+    "share_fires": 0.0018045933999720433
+   },
+   "ME": {
+    "acres": 27753.68,
+    "fires": 16439,
+    "share_acres": 0.00015414537538465777,
+    "share_fires": 0.007136326894909892
+   },
+   "MI": {
+    "acres": 160151.769,
+    "fires": 19127,
+    "share_acres": 0.0008894912152558506,
+    "share_fires": 0.008303213365712117
+   },
+   "MN": {
+    "acres": 1265851.46001,
+    "fires": 51074,
+    "share_acres": 0.007030604535487134,
+    "share_fires": 0.02217171116434259
+   },
+   "MO": {
+    "acres": 550235.6485,
+    "fires": 24510,
+    "share_acres": 0.0030560372746263956,
+    "share_fires": 0.010640025074167617
+   },
+   "MS": {
+    "acres": 1265883.353,
+    "fires": 84706,
+    "share_acres": 0.007030781670804529,
+    "share_fires": 0.0367716835549752
+   },
+   "MT": {
+    "acres": 8200551.24508,
+    "fires": 51960,
+    "share_acres": 0.045546286115354044,
+    "share_fires": 0.022556332225775168
+   },
+   "NC": {
+    "acres": 880726.27,
+    "fires": 130165,
+    "share_acres": 0.004891599294229791,
+    "share_fires": 0.056505869595227576
+   },
+   "ND": {
+    "acres": 491052.095,
+    "fires": 20020,
+    "share_acres": 0.002727328754860531,
+    "share_fires": 0.008690873193995745
+   },
+   "NE": {
+    "acres": 1095179.9661,
+    "fires": 11743,
+    "share_acres": 0.006082686223529322,
+    "share_fires": 0.005097748447407194
+   },
+   "NH": {
+    "acres": 5232.4333,
+    "fires": 3081,
+    "share_acres": 2.90612054042449e-05,
+    "share_fires": 0.0013374915240110332
+   },
+   "NJ": {
+    "acres": 171606.686,
+    "fires": 32251,
+    "share_acres": 0.0009531124172357358,
+    "share_fires": 0.014000467101875962
+   },
+   "NM": {
+    "acres": 7403268.51441,
+    "fires": 43578,
+    "share_acres": 0.0411181365580041,
+    "share_fires": 0.018917625976420906
+   },
+   "NV": {
+    "acres": 11838387.058,
+    "fires": 20210,
+    "share_acres": 0.06575101453228129,
+    "share_fires": 0.008773354008524175
+   },
+   "NY": {
+    "acres": 117181.9419535,
+    "fires": 99142,
+    "share_acres": 0.0006508345715135951,
+    "share_fires": 0.043038489020935364
+   },
+   "OH": {
+    "acres": 31120.795000000002,
+    "fires": 5675,
+    "share_acres": 0.00017284650639280921,
+    "share_fires": 0.0024635716970991934
+   },
+   "OK": {
+    "acres": 5812377.04,
+    "fires": 50189,
+    "share_acres": 0.032282242956896745,
+    "share_fires": 0.02178752421246016
+   },
+   "OR": {
+    "acres": 11338489.32,
+    "fires": 71449,
+    "share_acres": 0.0629745566183055,
+    "share_fires": 0.031016693248641453
+   },
+   "PA": {
+    "acres": 77886.275529,
+    "fires": 12861,
+    "share_acres": 0.00043258440605824493,
+    "share_fires": 0.005583082924474489
+   },
+   "PR": {
+    "acres": 139572.32,
+    "fires": 22202,
+    "share_acres": 0.0007751918902180749,
+    "share_fires": 0.009638100232422253
+   },
+   "RI": {
+    "acres": 779.52,
+    "fires": 787,
+    "share_acres": 4.329494431723953e-06,
+    "share_fires": 0.0003416442159677648
+   },
+   "SC": {
+    "acres": 604783.91498,
+    "fires": 88052,
+    "share_acres": 0.0033590011703383137,
+    "share_fires": 0.03822421410977589
+   },
+   "SD": {
+    "acres": 1784337.77103,
+    "fires": 36389,
+    "share_acres": 0.009910304346250402,
+    "share_fires": 0.01579681242039516
+   },
+   "TN": {
+    "acres": 598001.78001,
+    "fires": 34531,
+    "share_acres": 0.003321332841638838,
+    "share_fires": 0.014990236876217134
+   },
+   "TX": {
+    "acres": 11910401.47998,
+    "fires": 180087,
+    "share_acres": 0.06615098635977285,
+    "share_fires": 0.07817748655779778
+   },
+   "UT": {
+    "acres": 5249526.20241,
+    "fires": 36982,
+    "share_acres": 0.02915614026904131,
+    "share_fires": 0.016054239383633897
+   },
+   "VA": {
+    "acres": 402194.18,
+    "fires": 24542,
+    "share_acres": 0.0022338072952352486,
+    "share_fires": 0.010653916579772405
+   },
+   "VT": {
+    "acres": 2080.0317,
+    "fires": 781,
+    "share_acres": 1.1552603734297141e-05,
+    "share_fires": 0.0003390395586668669
+   },
+   "WA": {
+    "acres": 6962161.1273,
+    "fires": 40776,
+    "share_acres": 0.03866820329614417,
+    "share_fires": 0.01770125101690162
+   },
+   "WI": {
+    "acres": 98716.919057,
+    "fires": 38191,
+    "share_acres": 0.0005482788785075761,
+    "share_fires": 0.016579077829764807
+   },
+   "WV": {
+    "acres": 621780.38,
+    "fires": 25064,
+    "share_acres": 0.003453400416878596,
+    "share_fires": 0.010880521764950515
+   },
+   "WY": {
+    "acres": 3350740.8762,
+    "fires": 20009,
+    "share_acres": 0.018610188276962408,
+    "share_fires": 0.008686097988944099
+   }
+  }
+ },
+ "geo.top5_states_acres": {
+  "computed_at": "2026-09-25T20:36:42+00:00",
+  "definition": "five states with the most acres",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "AK": 36654234.05218,
+   "CA": 20926921.602,
+   "ID": 15952234.382,
+   "NV": 11838387.058,
+   "TX": 11910401.47998
+  }
+ },
+ "geo.top5_states_fires": {
+  "computed_at": "2026-09-25T20:36:42+00:00",
+  "definition": "five states with the most fires",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "AZ": 104956,
+   "CA": 251881,
+   "GA": 185040,
+   "NC": 130165,
+   "TX": 180087
+  }
+ },
+ "overview.gacc_definition": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "state-level GACC approximation",
+  "n": null,
+  "note": "Only Northwest (OR WA), Southwest (AZ NM), Great Basin members (ID NV UT WY) and the ten GACC names were verified from gacc.nifc.gov pages fetched 2026-09-25; the rest is unverified.",
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": "State-level approximation of the ten NWCG GACCs; whole states assigned to one area, California North/South merged, Idaho and Wyoming not split. Lists: Alaska = AK; Northwest = OR WA; California (North+South merged) = CA; Great Basin (approx) = ID NV UT; Northern Rockies (approx) = MT ND; Rocky Mountain (approx) = CO WY SD NE KS; Southwest = AZ NM; Southern Area (approx) = AL AR FL GA KY LA MS NC OK SC TN TX VA PR; Eastern Area (approx) = CT DE DC IA IL IN ME MD MA MI MN MO NH NJ NY OH PA RI VT WV WI; Hawaii (not a GACC) = HI"
+ },
+ "overview.largest_fire_acres": {
+  "computed_at": "2026-09-25T20:36:35+00:00",
+  "definition": "max FIRE_SIZE",
+  "n": 2303566,
+  "note": "OKS - STARBUCK (OK, 2017)",
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": 662700.0
+ },
+ "overview.missing_cont_date_share_2010_plus": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "share of records with FIRE_YEAR >= 2010 whose CONT_DATE is null",
+  "n": 854880,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": 0.26299246677896315
+ },
+ "overview.missing_counts": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "count of records where the field is null, or (for cause and owner) equals the explicit \"Missing data/not specified/undetermined\" / \"MISSING/NOT SPECIFIED\" category",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "records",
+  "value": {
+   "CONT_DATE": 894813,
+   "CONT_DATETIME_both_date_and_valid_time": 1004742,
+   "CONT_TIME": 989902,
+   "DISCOVERY_TIME": 789095,
+   "LATITUDE_or_LONGITUDE_null": 0,
+   "NWCG_CAUSE_CLASSIFICATION_missing_category": 193341,
+   "NWCG_GENERAL_CAUSE_missing_category": 597933,
+   "OWNER_DESCR_missing_category": 1068424
+  }
+ },
+ "overview.missing_shares": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "the same counts divided by all rows",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": {
+   "CONT_DATE": 0.38844686889804764,
+   "CONT_DATETIME_both_date_and_valid_time": 0.43616809763644715,
+   "CONT_TIME": 0.42972591191222653,
+   "DISCOVERY_TIME": 0.3425536754753283,
+   "LATITUDE_or_LONGITUDE_null": 0.0,
+   "NWCG_CAUSE_CLASSIFICATION_missing_category": 0.08393117453548107,
+   "NWCG_GENERAL_CAUSE_missing_category": 0.25956842564962324,
+   "OWNER_DESCR_missing_category": 0.46381306200907635
+  }
+ },
+ "overview.n_rows": {
+  "computed_at": "2026-09-25T20:36:35+00:00",
+  "definition": "row count of data/fires.parquet (table Fires of FPA_FOD_20221014.sqlite)",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": 2303566
+ },
+ "overview.region_definition": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "project region scheme",
+  "n": null,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": "West = AZ CA CO ID MT NV NM OR UT WA WY; South = AL AR FL GA KY LA MS NC OK SC TN TX VA WV; Northeast = CT ME MA NH RI VT NY NJ PA; Alaska = AK; Hawaii/PR = HI PR; Other = every other STATE value (Midwest, Plains, DC, DE, MD)."
+ },
+ "overview.size_class_definition": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "FPA FOD coding",
+  "n": null,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": "FIRE_SIZE_CLASS as coded in FPA FOD: A < 0.26 acres, B 0.26-9.9, C 10-99.9, D 100-299, E 300-999, F 1,000-4,999, G 5,000 and up."
+ },
+ "overview.smallest_fire_acres": {
+  "computed_at": "2026-09-25T20:36:35+00:00",
+  "definition": "min FIRE_SIZE",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": 1e-05
+ },
+ "overview.total_acres": {
+  "computed_at": "2026-09-25T20:36:35+00:00",
+  "definition": "sum of FIRE_SIZE over all records",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": 180048736.0113325
+ },
+ "overview.years": {
+  "computed_at": "2026-09-25T20:36:35+00:00",
+  "definition": "min and max FIRE_YEAR",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": [
+   1992,
+   2020
+  ]
+ },
+ "owner.fires_and_acres": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "fires, acres and shares by OWNER_DESCR (upper-cased so \"Private\" merges into \"PRIVATE\"); human_share_known = share of fires with a known NWCG_CAUSE_CLASSIFICATION that are Human",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "BIA": {
+    "acres": 7746114.114,
+    "fires": 123312,
+    "human_share_known": 0.8380165423684702,
+    "n_known_cause": 122957,
+    "share_acres": 0.04302231876547275,
+    "share_fires": 0.053530916848052106
+   },
+   "BLM": {
+    "acres": 37169252.608,
+    "fires": 73739,
+    "human_share_known": 0.32805855413804386,
+    "n_known_cause": 73368,
+    "share_acres": 0.20643995304504953,
+    "share_fires": 0.03201080411848412
+   },
+   "BOR": {
+    "acres": 73416.95,
+    "fires": 521,
+    "human_share_known": 0.8607350096711799,
+    "n_known_cause": 517,
+    "share_acres": 0.00040776154071628157,
+    "share_fires": 0.00022617107562796117
+   },
+   "COUNTY": {
+    "acres": 1250927.0507,
+    "fires": 6343,
+    "human_share_known": 0.940979769269353,
+    "n_known_cause": 5981,
+    "share_acres": 0.0069477135936198125,
+    "share_fires": 0.0027535568765991512
+   },
+   "FOREIGN": {
+    "acres": 270.05,
+    "fires": 21,
+    "human_share_known": 1.0,
+    "n_known_cause": 8,
+    "share_acres": 1.4998716790936133e-06,
+    "share_fires": 9.116300553142389e-06
+   },
+   "FWS": {
+    "acres": 14162852.66,
+    "fires": 13923,
+    "human_share_known": 0.6546632124352332,
+    "n_known_cause": 11580,
+    "share_acres": 0.07866121681136695,
+    "share_fires": 0.0060441072667334035
+   },
+   "MISSING/NOT SPECIFIED": {
+    "acres": 22882981.128885,
+    "fires": 1068424,
+    "human_share_known": 0.9515249932019888,
+    "n_known_cause": 915709,
+    "share_acres": 0.12709326172356308,
+    "share_fires": 0.46381306200907635
+   },
+   "MUNICIPAL/LOCAL": {
+    "acres": 202511.5563975,
+    "fires": 19602,
+    "human_share_known": 0.8738332796910203,
+    "n_known_cause": 15535,
+    "share_acres": 0.0011247596672089588,
+    "share_fires": 0.008509415402033196
+   },
+   "NPS": {
+    "acres": 4178851.45,
+    "fires": 19938,
+    "human_share_known": 0.5249207866016194,
+    "n_known_cause": 19883,
+    "share_acres": 0.023209557270854584,
+    "share_fires": 0.008655276210883474
+   },
+   "OTHER FEDERAL": {
+    "acres": 2503154.36998,
+    "fires": 15231,
+    "human_share_known": 0.9184158970053177,
+    "n_known_cause": 14292,
+    "share_acres": 0.013902648946241134,
+    "share_fires": 0.00661192255832913
+   },
+   "PRIVATE": {
+    "acres": 25642215.77459,
+    "fires": 597680,
+    "human_share_known": 0.9096548914421401,
+    "n_known_cause": 571907,
+    "share_acres": 0.14241819377713402,
+    "share_fires": 0.2594585959334354
+   },
+   "STATE": {
+    "acres": 15112112.01368,
+    "fires": 56487,
+    "human_share_known": 0.8139425959232613,
+    "n_known_cause": 53376,
+    "share_acres": 0.08393345239995921,
+    "share_fires": 0.024521546159302576
+   },
+   "STATE OR PRIVATE": {
+    "acres": 5784188.547,
+    "fires": 71576,
+    "human_share_known": 0.9027027801251845,
+    "n_known_cause": 69817,
+    "share_acres": 0.03212568260760206,
+    "share_fires": 0.03107182516151046
+   },
+   "TRIBAL": {
+    "acres": 4315018.89,
+    "fires": 11680,
+    "human_share_known": 0.8448008277289187,
+    "n_known_cause": 11598,
+    "share_acres": 0.023965838281299605,
+    "share_fires": 0.005070399545747767
+   },
+   "UNDEFINED FEDERAL": {
+    "acres": 662513.6801,
+    "fires": 10548,
+    "human_share_known": 0.7465140478668054,
+    "n_known_cause": 9610,
+    "share_acres": 0.003679635274186543,
+    "share_fires": 0.004578987534978377
+   },
+   "USFS": {
+    "acres": 38362355.168,
+    "fires": 214541,
+    "human_share_known": 0.4203804995165517,
+    "n_known_cause": 214087,
+    "share_acres": 0.21306650642404631,
+    "share_fires": 0.09313429699865339
+   }
+  }
+ },
+ "owner.missing_share_acres": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "share of acres whose OWNER_DESCR is MISSING/NOT SPECIFIED",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": 0.12709326172356308
+ },
+ "owner.missing_share_fires": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "share of fires whose OWNER_DESCR is MISSING/NOT SPECIFIED",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": 0.46381306200907635
+ },
+ "owner.top4_acres": {
+  "computed_at": "2026-09-25T20:36:45+00:00",
+  "definition": "four owner categories with the most acres",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "BLM": 37169252.608,
+   "MISSING/NOT SPECIFIED": 22882981.128885,
+   "PRIVATE": 25642215.77459,
+   "USFS": 38362355.168
+  }
+ },
+ "season.acres_by_region": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "acres per region, all months",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "Alaska": 36654234.052180015,
+   "Hawaii/PR": 472605.5800000001,
+   "Northeast": 425569.18048249994,
+   "Other": 7094682.915297,
+   "South": 32932177.780983,
+   "West": 102469466.50239001
+  }
+ },
+ "season.acres_by_region_month": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "acres by region and DISCOVERY_MONTH",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "1": {
+    "Alaska": 455.09999999999997,
+    "Hawaii/PR": 30615.93,
+    "Northeast": 1819.227375,
+    "Other": 149702.132,
+    "South": 1728607.11225,
+    "West": 266633.286
+   },
+   "10": {
+    "Alaska": 5265.25,
+    "Hawaii/PR": 22233.58,
+    "Northeast": 10352.248487500001,
+    "Other": 533092.85221,
+    "South": 1036929.093,
+    "West": 3409698.686
+   },
+   "11": {
+    "Alaska": 16665.7,
+    "Hawaii/PR": 7153.75,
+    "Northeast": 21570.923025,
+    "Other": 277588.608147,
+    "South": 2022803.246698,
+    "West": 642978.321
+   },
+   "12": {
+    "Alaska": 12897.7,
+    "Hawaii/PR": 5723.26,
+    "Northeast": 1788.86305,
+    "Other": 134035.51811,
+    "South": 842885.92878,
+    "West": 456440.009
+   },
+   "2": {
+    "Alaska": 25.799999999999997,
+    "Hawaii/PR": 67012.99,
+    "Northeast": 5249.4456125,
+    "Other": 401412.9019,
+    "South": 3377204.1174769998,
+    "West": 512632.04799
+   },
+   "3": {
+    "Alaska": 2056.0,
+    "Hawaii/PR": 55475.62,
+    "Northeast": 40543.1140025,
+    "Other": 1276171.3507,
+    "South": 7547801.681818,
+    "West": 1171693.938
+   },
+   "4": {
+    "Alaska": 97518.81999,
+    "Hawaii/PR": 20556.32,
+    "Northeast": 173593.692196,
+    "Other": 1542506.78011,
+    "South": 6641494.17938,
+    "West": 1846170.4863
+   },
+   "5": {
+    "Alaska": 3363024.44,
+    "Hawaii/PR": 25254.52,
+    "Northeast": 84278.997725,
+    "Other": 486448.914,
+    "South": 3030866.08181,
+    "West": 4140377.5528
+   },
+   "6": {
+    "Alaska": 23463417.95,
+    "Hawaii/PR": 33999.11,
+    "Northeast": 26942.697075,
+    "Other": 167727.7105,
+    "South": 2443779.28622,
+    "West": 14918015.6176
+   },
+   "7": {
+    "Alaska": 8640853.58019,
+    "Hawaii/PR": 68755.07,
+    "Northeast": 27258.77525,
+    "Other": 751895.25452,
+    "South": 1526207.4998,
+    "West": 32622724.2446
+   },
+   "8": {
+    "Alaska": 1028051.762,
+    "Hawaii/PR": 120768.09,
+    "Northeast": 23920.212434,
+    "Other": 849445.777,
+    "South": 1604007.94156,
+    "West": 34176740.77411
+   },
+   "9": {
+    "Alaska": 24001.95,
+    "Hawaii/PR": 15057.34,
+    "Northeast": 8250.98425,
+    "Other": 524655.1161,
+    "South": 1129591.61219,
+    "West": 8305361.53899
+   }
+  }
+ },
+ "season.class_g_acres_by_region_month": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "Class G acres by DISCOVERY_MONTH and region",
+  "n": 4783,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "1": {
+    "Alaska": 0.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.0,
+    "Other": 22954.0,
+    "South": 450621.9,
+    "West": 147807.01
+   },
+   "10": {
+    "Alaska": 0.0,
+    "Hawaii/PR": 5000.0,
+    "Northeast": 0.0,
+    "Other": 290765.4,
+    "South": 197103.8,
+    "West": 2660583.6
+   },
+   "11": {
+    "Alaska": 16566.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.0,
+    "Other": 55920.0,
+    "South": 368917.49,
+    "West": 433230.1
+   },
+   "12": {
+    "Alaska": 12891.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.0,
+    "Other": 70801.0,
+    "South": 132830.2,
+    "West": 357433.4
+   },
+   "2": {
+    "Alaska": 0.0,
+    "Hawaii/PR": 5800.0,
+    "Northeast": 0.0,
+    "Other": 144000.0,
+    "South": 1107320.8,
+    "West": 257687.199
+   },
+   "3": {
+    "Alaska": 0.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 11638.0,
+    "Other": 460674.9,
+    "South": 3812532.5,
+    "West": 738260.0
+   },
+   "4": {
+    "Alaska": 87692.5,
+    "Hawaii/PR": 6500.0,
+    "Northeast": 38939.2,
+    "Other": 416205.2,
+    "South": 4189782.3502,
+    "West": 1251333.0
+   },
+   "5": {
+    "Alaska": 3195210.2,
+    "Hawaii/PR": 0.0,
+    "Northeast": 17050.0,
+    "Other": 155900.4,
+    "South": 1910134.0,
+    "West": 3083453.7
+   },
+   "6": {
+    "Alaska": 22678948.49,
+    "Hawaii/PR": 6200.0,
+    "Northeast": 5284.0,
+    "Other": 52733.5,
+    "South": 1221605.6,
+    "West": 11820031.27
+   },
+   "7": {
+    "Alaska": 7992928.0002,
+    "Hawaii/PR": 25996.0,
+    "Northeast": 0.0,
+    "Other": 423727.1,
+    "South": 354880.7,
+    "West": 27057447.87
+   },
+   "8": {
+    "Alaska": 949323.002,
+    "Hawaii/PR": 80253.0,
+    "Northeast": 5050.0,
+    "Other": 527708.6,
+    "South": 377607.0,
+    "West": 28409078.8912
+   },
+   "9": {
+    "Alaska": 10222.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.0,
+    "Other": 293250.4,
+    "South": 268137.3,
+    "West": 6457921.8
+   }
+  }
+ },
+ "season.class_g_fires_by_region_month": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "Class G fire counts by DISCOVERY_MONTH and region",
+  "n": 4783,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "1": {
+    "Alaska": 0,
+    "Hawaii/PR": 0,
+    "Northeast": 0,
+    "Other": 3,
+    "South": 36,
+    "West": 13
+   },
+   "10": {
+    "Alaska": 0,
+    "Hawaii/PR": 1,
+    "Northeast": 0,
+    "Other": 19,
+    "South": 19,
+    "West": 96
+   },
+   "11": {
+    "Alaska": 1,
+    "Hawaii/PR": 0,
+    "Northeast": 0,
+    "Other": 8,
+    "South": 37,
+    "West": 16
+   },
+   "12": {
+    "Alaska": 1,
+    "Hawaii/PR": 0,
+    "Northeast": 0,
+    "Other": 4,
+    "South": 17,
+    "West": 7
+   },
+   "2": {
+    "Alaska": 0,
+    "Hawaii/PR": 1,
+    "Northeast": 0,
+    "Other": 12,
+    "South": 57,
+    "West": 19
+   },
+   "3": {
+    "Alaska": 0,
+    "Hawaii/PR": 0,
+    "Northeast": 1,
+    "Other": 31,
+    "South": 102,
+    "West": 46
+   },
+   "4": {
+    "Alaska": 4,
+    "Hawaii/PR": 1,
+    "Northeast": 3,
+    "Other": 42,
+    "South": 119,
+    "West": 63
+   },
+   "5": {
+    "Alaska": 71,
+    "Hawaii/PR": 0,
+    "Northeast": 1,
+    "Other": 9,
+    "South": 88,
+    "West": 137
+   },
+   "6": {
+    "Alaska": 443,
+    "Hawaii/PR": 1,
+    "Northeast": 1,
+    "Other": 5,
+    "South": 80,
+    "West": 500
+   },
+   "7": {
+    "Alaska": 215,
+    "Hawaii/PR": 3,
+    "Northeast": 0,
+    "Other": 25,
+    "South": 35,
+    "West": 949
+   },
+   "8": {
+    "Alaska": 29,
+    "Hawaii/PR": 6,
+    "Northeast": 1,
+    "Other": 20,
+    "South": 38,
+    "West": 1062
+   },
+   "9": {
+    "Alaska": 1,
+    "Hawaii/PR": 0,
+    "Northeast": 0,
+    "Other": 21,
+    "South": 20,
+    "West": 243
+   }
+  }
+ },
+ "season.class_g_leading_region_by_month": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "region with the most Class G fires in each month",
+  "n": 4783,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Apr": "South",
+   "Aug": "West",
+   "Dec": "South",
+   "Feb": "South",
+   "Jan": "South",
+   "Jul": "West",
+   "Jun": "West",
+   "Mar": "South",
+   "May": "West",
+   "Nov": "South",
+   "Oct": "West",
+   "Sep": "West"
+  }
+ },
+ "season.duration_days_by_region": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "mean and median DURATION_DAYS (CONT_DATE minus DISCOVERY_DATE in whole days) by region, records with a containment date, all years",
+  "n": 1408753,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "days",
+  "value": {
+   "Alaska": {
+    "mean": 13.110883911144159,
+    "median": 1.0,
+    "size": 10759
+   },
+   "Hawaii/PR": {
+    "mean": 4.505172413793104,
+    "median": 0.0,
+    "size": 580
+   },
+   "Northeast": {
+    "mean": 0.5038991768805142,
+    "median": 0.0,
+    "size": 138619
+   },
+   "Other": {
+    "mean": 0.27705134910623636,
+    "median": 0.0,
+    "size": 162515
+   },
+   "South": {
+    "mean": 0.21822078786869864,
+    "median": 0.0,
+    "size": 528616
+   },
+   "West": {
+    "mean": 1.634644789875701,
+    "median": 0.0,
+    "size": 567664
+   }
+  }
+ },
+ "season.fires_and_acres_by_month": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "fires and acres by DISCOVERY_MONTH (month of DISCOVERY_DATE)",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Apr": {
+    "acres": 10321840.277976,
+    "fires": 285065
+   },
+   "Aug": {
+    "acres": 37802934.557104,
+    "fires": 250990
+   },
+   "Dec": {
+    "acres": 1453771.27894,
+    "fires": 71511
+   },
+   "Feb": {
+    "acres": 4363537.3029795,
+    "fires": 175843
+   },
+   "Jan": {
+    "acres": 2177832.787625,
+    "fires": 114549
+   },
+   "Jul": {
+    "acres": 43637694.42436,
+    "fires": 297770
+   },
+   "Jun": {
+    "acres": 41053882.371395,
+    "fires": 207004
+   },
+   "Mar": {
+    "acres": 10093741.7045205,
+    "fires": 284158
+   },
+   "May": {
+    "acres": 11130250.506335,
+    "fires": 203979
+   },
+   "Nov": {
+    "acres": 2988760.54887,
+    "fires": 118506
+   },
+   "Oct": {
+    "acres": 5017571.7096975,
+    "fires": 130899
+   },
+   "Sep": {
+    "acres": 10006918.54153,
+    "fires": 163292
+   }
+  }
+ },
+ "season.fires_by_gacc_month": {
+  "computed_at": "2026-09-25T20:36:42+00:00",
+  "definition": "fires by state-level GACC approximation and DISCOVERY_MONTH",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "1": {
+    "Alaska": 9,
+    "California (North+South merged)": 4810,
+    "Eastern Area (approx)": 6113,
+    "Great Basin (approx)": 195,
+    "Hawaii (not a GACC)": 752,
+    "Northern Rockies (approx)": 293,
+    "Northwest": 180,
+    "Rocky Mountain (approx)": 5213,
+    "Southern Area (approx)": 92639,
+    "Southwest": 4345
+   },
+   "10": {
+    "Alaska": 131,
+    "California (North+South merged)": 20178,
+    "Eastern Area (approx)": 16778,
+    "Great Basin (approx)": 3728,
+    "Hawaii (not a GACC)": 677,
+    "Northern Rockies (approx)": 3147,
+    "Northwest": 6219,
+    "Rocky Mountain (approx)": 7898,
+    "Southern Area (approx)": 66789,
+    "Southwest": 5354
+   },
+   "11": {
+    "Alaska": 26,
+    "California (North+South merged)": 9711,
+    "Eastern Area (approx)": 23382,
+    "Great Basin (approx)": 782,
+    "Hawaii (not a GACC)": 431,
+    "Northern Rockies (approx)": 1412,
+    "Northwest": 1574,
+    "Rocky Mountain (approx)": 5082,
+    "Southern Area (approx)": 72101,
+    "Southwest": 4005
+   },
+   "12": {
+    "Alaska": 14,
+    "California (North+South merged)": 5000,
+    "Eastern Area (approx)": 6181,
+    "Great Basin (approx)": 158,
+    "Hawaii (not a GACC)": 617,
+    "Northern Rockies (approx)": 371,
+    "Northwest": 180,
+    "Rocky Mountain (approx)": 2484,
+    "Southern Area (approx)": 53526,
+    "Southwest": 2980
+   },
+   "2": {
+    "Alaska": 13,
+    "California (North+South merged)": 4417,
+    "Eastern Area (approx)": 12714,
+    "Great Basin (approx)": 296,
+    "Hawaii (not a GACC)": 496,
+    "Northern Rockies (approx)": 434,
+    "Northwest": 420,
+    "Rocky Mountain (approx)": 7017,
+    "Southern Area (approx)": 145107,
+    "Southwest": 4929
+   },
+   "3": {
+    "Alaska": 132,
+    "California (North+South merged)": 5762,
+    "Eastern Area (approx)": 47248,
+    "Great Basin (approx)": 1106,
+    "Hawaii (not a GACC)": 513,
+    "Northern Rockies (approx)": 2854,
+    "Northwest": 1420,
+    "Rocky Mountain (approx)": 17180,
+    "Southern Area (approx)": 199833,
+    "Southwest": 8110
+   },
+   "4": {
+    "Alaska": 1053,
+    "California (North+South merged)": 11212,
+    "Eastern Area (approx)": 107608,
+    "Great Basin (approx)": 1856,
+    "Hawaii (not a GACC)": 631,
+    "Northern Rockies (approx)": 9670,
+    "Northwest": 2678,
+    "Rocky Mountain (approx)": 14167,
+    "Southern Area (approx)": 124387,
+    "Southwest": 11803
+   },
+   "5": {
+    "Alaska": 4053,
+    "California (North+South merged)": 25027,
+    "Eastern Area (approx)": 56021,
+    "Great Basin (approx)": 4058,
+    "Hawaii (not a GACC)": 784,
+    "Northern Rockies (approx)": 6358,
+    "Northwest": 5857,
+    "Rocky Mountain (approx)": 9871,
+    "Southern Area (approx)": 72040,
+    "Southwest": 19910
+   },
+   "6": {
+    "Alaska": 4708,
+    "California (North+South merged)": 40159,
+    "Eastern Area (approx)": 21980,
+    "Great Basin (approx)": 12354,
+    "Hawaii (not a GACC)": 1013,
+    "Northern Rockies (approx)": 5956,
+    "Northwest": 11709,
+    "Rocky Mountain (approx)": 17880,
+    "Southern Area (approx)": 63664,
+    "Southwest": 27581
+   },
+   "7": {
+    "Alaska": 3389,
+    "California (North+South merged)": 53011,
+    "Eastern Area (approx)": 25658,
+    "Great Basin (approx)": 29963,
+    "Hawaii (not a GACC)": 2059,
+    "Northern Rockies (approx)": 17017,
+    "Northwest": 32616,
+    "Rocky Mountain (approx)": 33632,
+    "Southern Area (approx)": 66701,
+    "Southwest": 33724
+   },
+   "8": {
+    "Alaska": 1138,
+    "California (North+South merged)": 41887,
+    "Eastern Area (approx)": 19807,
+    "Great Basin (approx)": 32819,
+    "Hawaii (not a GACC)": 1137,
+    "Northern Rockies (approx)": 17986,
+    "Northwest": 33942,
+    "Rocky Mountain (approx)": 22220,
+    "Southern Area (approx)": 62017,
+    "Southwest": 18037
+   },
+   "9": {
+    "Alaska": 529,
+    "California (North+South merged)": 30707,
+    "Eastern Area (approx)": 15987,
+    "Great Basin (approx)": 11937,
+    "Hawaii (not a GACC)": 860,
+    "Northern Rockies (approx)": 6482,
+    "Northwest": 15430,
+    "Rocky Mountain (approx)": 12702,
+    "Southern Area (approx)": 60902,
+    "Southwest": 7756
+   }
+  }
+ },
+ "season.fires_by_region": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "fires per region, all months",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Alaska": 15195,
+   "Hawaii/PR": 32172,
+   "Northeast": 180427,
+   "Other": 240714,
+   "South": 1082568,
+   "West": 752490
+  }
+ },
+ "season.fires_by_region_month": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "fires by region (REGION_DEFINITION) and DISCOVERY_MONTH",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "1": {
+    "Alaska": 9,
+    "Hawaii/PR": 3594,
+    "Northeast": 2881,
+    "Other": 5807,
+    "South": 90403,
+    "West": 11855
+   },
+   "10": {
+    "Alaska": 131,
+    "Hawaii/PR": 918,
+    "Northeast": 7473,
+    "Other": 12703,
+    "South": 68448,
+    "West": 41226
+   },
+   "11": {
+    "Alaska": 26,
+    "Hawaii/PR": 674,
+    "Northeast": 11875,
+    "Other": 11346,
+    "South": 76067,
+    "West": 18518
+   },
+   "12": {
+    "Alaska": 14,
+    "Hawaii/PR": 1392,
+    "Northeast": 3379,
+    "Other": 3966,
+    "South": 53470,
+    "West": 9290
+   },
+   "2": {
+    "Alaska": 13,
+    "Hawaii/PR": 6456,
+    "Northeast": 4536,
+    "Other": 10355,
+    "South": 141615,
+    "West": 12868
+   },
+   "3": {
+    "Alaska": 132,
+    "Hawaii/PR": 7814,
+    "Northeast": 18933,
+    "Other": 34320,
+    "South": 198450,
+    "West": 24509
+   },
+   "4": {
+    "Alaska": 1053,
+    "Hawaii/PR": 2691,
+    "Northeast": 48418,
+    "Other": 66788,
+    "South": 128886,
+    "West": 37229
+   },
+   "5": {
+    "Alaska": 4053,
+    "Hawaii/PR": 1443,
+    "Northeast": 28460,
+    "Other": 33515,
+    "South": 72489,
+    "West": 64019
+   },
+   "6": {
+    "Alaska": 4708,
+    "Hawaii/PR": 1651,
+    "Northeast": 14273,
+    "Other": 14143,
+    "South": 63291,
+    "West": 108938
+   },
+   "7": {
+    "Alaska": 3389,
+    "Hawaii/PR": 2755,
+    "Northeast": 16492,
+    "Other": 22259,
+    "South": 66352,
+    "West": 186523
+   },
+   "8": {
+    "Alaska": 1138,
+    "Hawaii/PR": 1613,
+    "Northeast": 13292,
+    "Other": 14842,
+    "South": 61844,
+    "West": 158261
+   },
+   "9": {
+    "Alaska": 529,
+    "Hawaii/PR": 1171,
+    "Northeast": 10415,
+    "Other": 10670,
+    "South": 61253,
+    "West": 79254
+   }
+  }
+ },
+ "season.peak_month_by_region": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "peak month of fires and of acres per region",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "Alaska": {
+    "acres": "Jun",
+    "fires": "Jun"
+   },
+   "Hawaii/PR": {
+    "acres": "Aug",
+    "fires": "Mar"
+   },
+   "Northeast": {
+    "acres": "Apr",
+    "fires": "Apr"
+   },
+   "Other": {
+    "acres": "Apr",
+    "fires": "Apr"
+   },
+   "South": {
+    "acres": "Mar",
+    "fires": "Mar"
+   },
+   "West": {
+    "acres": "Aug",
+    "fires": "Jul"
+   }
+  }
+ },
+ "season.peak_months": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "month with the most fires and the month with the most acres",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "acres": "Jul",
+   "fires": "Jul"
+  }
+ },
+ "season.west_mean_duration_days_by_month": {
+  "computed_at": "2026-09-25T20:36:41+00:00",
+  "definition": "mean DURATION_DAYS of West fires with a containment date by DISCOVERY_MONTH",
+  "n": 567664,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "days",
+  "value": {
+   "Apr": 1.0304894255230284,
+   "Aug": 2.475129440049026,
+   "Dec": 0.3502354219485694,
+   "Feb": 0.7525855210819411,
+   "Jan": 0.8247741616136617,
+   "Jul": 1.8867828838819616,
+   "Jun": 1.271742742163752,
+   "Mar": 0.8452944194265519,
+   "May": 1.009094676233888,
+   "Nov": 0.604089219330855,
+   "Oct": 1.019931496866346,
+   "Sep": 1.536578028112517
+  }
+ },
+ "year.acres_by_size_class": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "acres by FIRE_YEAR and FIRE_SIZE_CLASS",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres",
+  "value": {
+   "1992": {
+    "A": 3020.86,
+    "B": 73031.761,
+    "C": 223551.55,
+    "D": 138751.15,
+    "E": 188603.11,
+    "F": 392468.7,
+    "G": 1180495.4
+   },
+   "1993": {
+    "A": 2478.31,
+    "B": 70809.593,
+    "C": 207438.39,
+    "D": 133822.51,
+    "E": 204211.0,
+    "F": 347142.6,
+    "G": 1225684.6
+   },
+   "1994": {
+    "A": 3313.705,
+    "B": 79470.594,
+    "C": 253556.61,
+    "D": 194532.83,
+    "E": 355467.61,
+    "F": 833243.9,
+    "G": 2395997.1
+   },
+   "1995": {
+    "A": 2905.155,
+    "B": 81907.053,
+    "C": 250854.52,
+    "D": 161950.63,
+    "E": 244812.9,
+    "F": 452710.2,
+    "G": 854412.7
+   },
+   "1996": {
+    "A": 2967.9,
+    "B": 85179.549,
+    "C": 289312.86,
+    "D": 199599.48,
+    "E": 349414.9,
+    "F": 802880.57,
+    "G": 4275478.0
+   },
+   "1997": {
+    "A": 2607.37,
+    "B": 67648.17,
+    "C": 190126.31,
+    "D": 113046.26,
+    "E": 144215.2,
+    "F": 247040.7,
+    "G": 2466885.0
+   },
+   "1998": {
+    "A": 2844.31,
+    "B": 77496.01,
+    "C": 221231.21,
+    "D": 146171.38001,
+    "E": 211023.5,
+    "F": 405526.4,
+    "G": 951649.49
+   },
+   "1999": {
+    "A": 3422.5853,
+    "B": 106799.86,
+    "C": 329266.07,
+    "D": 220696.75,
+    "E": 344757.09999,
+    "F": 774919.55,
+    "G": 4357085.5
+   },
+   "2000": {
+    "A": 3869.2250000000004,
+    "B": 107189.31,
+    "C": 353795.62,
+    "D": 262444.34,
+    "E": 434622.87,
+    "F": 1041294.8,
+    "G": 5572472.499
+   },
+   "2001": {
+    "A": 3777.7290000000003,
+    "B": 93021.525,
+    "C": 254379.13,
+    "D": 198773.37,
+    "E": 319937.21,
+    "F": 744425.4,
+    "G": 2222084.7
+   },
+   "2002": {
+    "A": 3332.873759,
+    "B": 81091.444,
+    "C": 240422.87,
+    "D": 153521.26,
+    "E": 217220.91,
+    "F": 556392.7,
+    "G": 5572162.34
+   },
+   "2003": {
+    "A": 3284.91658,
+    "B": 63170.819,
+    "C": 179388.49,
+    "D": 140854.69999,
+    "E": 249388.92999,
+    "F": 681782.95,
+    "G": 3193318.5002
+   },
+   "2004": {
+    "A": 3246.26899,
+    "B": 69276.665,
+    "C": 221163.53,
+    "D": 124592.17996,
+    "E": 169170.62999,
+    "F": 351918.3,
+    "G": 7309203.6002
+   },
+   "2005": {
+    "A": 3733.085,
+    "B": 102576.336,
+    "C": 324087.626,
+    "D": 236843.09001,
+    "E": 356350.44999,
+    "F": 841773.42,
+    "G": 7845484.902
+   },
+   "2006": {
+    "A": 4465.9266,
+    "B": 130072.234,
+    "C": 470831.271,
+    "D": 368330.24997,
+    "E": 590142.85999,
+    "F": 1359458.76,
+    "G": 7159523.7
+   },
+   "2007": {
+    "A": 4291.109,
+    "B": 100072.387,
+    "C": 311427.002,
+    "D": 237430.38996,
+    "E": 355959.96999,
+    "F": 839305.25,
+    "G": 7433225.2602
+   },
+   "2008": {
+    "A": 3631.04196,
+    "B": 89714.43056,
+    "C": 301799.7743,
+    "D": 266172.33,
+    "E": 420646.64997,
+    "F": 990515.1,
+    "G": 3354947.76
+   },
+   "2009": {
+    "A": 3466.25328,
+    "B": 81883.322544,
+    "C": 269946.6509,
+    "D": 216513.16999,
+    "E": 333220.39,
+    "F": 713099.8,
+    "G": 4476850.1
+   },
+   "2010": {
+    "A": 3835.7668900000003,
+    "B": 86466.6198,
+    "C": 271888.065,
+    "D": 202597.26,
+    "E": 297557.88,
+    "F": 520939.55,
+    "G": 2143165.7
+   },
+   "2011": {
+    "A": 3994.1225,
+    "B": 101277.65,
+    "C": 343599.03,
+    "D": 304135.06,
+    "E": 507030.65,
+    "F": 1290416.25,
+    "G": 7123367.2
+   },
+   "2012": {
+    "A": 3422.6,
+    "B": 71410.812,
+    "C": 236920.17,
+    "D": 192217.4,
+    "E": 337430.37,
+    "F": 883693.75,
+    "G": 7723459.66
+   },
+   "2013": {
+    "A": 3488.55701,
+    "B": 59180.3399,
+    "C": 171406.168,
+    "D": 109365.17,
+    "E": 152514.52,
+    "F": 420858.62,
+    "G": 3577611.1
+   },
+   "2014": {
+    "A": 3471.0537,
+    "B": 66637.949016,
+    "C": 209807.369996,
+    "D": 143457.72,
+    "E": 191101.98,
+    "F": 468684.85,
+    "G": 2593836.56
+   },
+   "2015": {
+    "A": 3707.7151000000003,
+    "B": 67814.1977,
+    "C": 225895.65,
+    "D": 180867.23,
+    "E": 295676.34,
+    "F": 789133.7,
+    "G": 8663074.15
+   },
+   "2016": {
+    "A": 3733.3751,
+    "B": 75514.7904,
+    "C": 239278.875,
+    "D": 200857.7,
+    "E": 385333.46,
+    "F": 835026.65,
+    "G": 3622537.34
+   },
+   "2017": {
+    "A": 3694.9876,
+    "B": 73452.27351,
+    "C": 252234.535,
+    "D": 204341.28,
+    "E": 377885.5,
+    "F": 966751.03,
+    "G": 8367303.61
+   },
+   "2018": {
+    "A": 3819.7982125000003,
+    "B": 62824.761325,
+    "C": 202976.794,
+    "D": 173839.269,
+    "E": 319081.844,
+    "F": 864147.106,
+    "G": 6616912.661
+   },
+   "2019": {
+    "A": 2814.6800000000003,
+    "B": 51188.073,
+    "C": 145928.71,
+    "D": 126261.69,
+    "E": 211697.63,
+    "F": 575089.15,
+    "G": 3802687.9
+   },
+   "2020": {
+    "A": 4025.2894,
+    "B": 61617.382,
+    "C": 174518.098,
+    "D": 164794.156,
+    "E": 296140.538,
+    "F": 743330.545,
+    "G": 9050956.34
+   }
+  }
+ },
+ "year.acres_share_by_size_class": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "share of all acres 1992-2020 by FIRE_SIZE_CLASS",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": {
+   "A": 0.0005591073406656068,
+   "B": 0.012984239509506225,
+   "C": 0.0409168823530775,
+   "D": 0.03064048172236415,
+   "E": 0.049212324941577484,
+   "F": 0.1151575443422995,
+   "G": 0.7505294197905096
+  }
+ },
+ "year.acres_trend": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "Kendall tau and Theil-Sen slope of acres per year, 1992-2020",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "acres/yr",
+  "value": {
+   "kendall_p": 0.002044164558588477,
+   "kendall_tau": 0.39901477832512305,
+   "theil_sen_intercept": -396541690.49302834,
+   "theil_sen_slope": 200671.24813161933,
+   "theil_sen_slope_ci95": [
+    78521.40227588236,
+    307547.97575555556
+   ]
+  }
+ },
+ "year.fires_and_acres": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "fires (row count) and acres (sum FIRE_SIZE) by FIRE_YEAR",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "1992": {
+    "acres": 2199922.531,
+    "fires": 67961
+   },
+   "1993": {
+    "acres": 2191587.003,
+    "fires": 61975
+   },
+   "1994": {
+    "acres": 4115582.349,
+    "fires": 75932
+   },
+   "1995": {
+    "acres": 2049553.158,
+    "fires": 71440
+   },
+   "1996": {
+    "acres": 6004833.259,
+    "fires": 75561
+   },
+   "1997": {
+    "acres": 3231569.01,
+    "fires": 61442
+   },
+   "1998": {
+    "acres": 2015942.30001,
+    "fires": 68356
+   },
+   "1999": {
+    "acres": 6136947.41529,
+    "fires": 89350
+   },
+   "2000": {
+    "acres": 7775688.664,
+    "fires": 96396
+   },
+   "2001": {
+    "acres": 3836399.064,
+    "fires": 87001
+   },
+   "2002": {
+    "acres": 6824144.397759,
+    "fires": 76128
+   },
+   "2003": {
+    "acres": 4511189.30576,
+    "fires": 68275
+   },
+   "2004": {
+    "acres": 8248571.17414,
+    "fires": 69370
+   },
+   "2005": {
+    "acres": 9710848.909,
+    "fires": 92921
+   },
+   "2006": {
+    "acres": 10082825.00156,
+    "fires": 117943
+   },
+   "2007": {
+    "acres": 9281711.36815,
+    "fires": 98837
+   },
+   "2008": {
+    "acres": 5427427.08679,
+    "fires": 88306
+   },
+   "2009": {
+    "acres": 6094979.686714,
+    "fires": 81492
+   },
+   "2010": {
+    "acres": 3526450.84169,
+    "fires": 85579
+   },
+   "2011": {
+    "acres": 9673819.9625,
+    "fires": 98903
+   },
+   "2012": {
+    "acres": 9448554.762,
+    "fires": 74258
+   },
+   "2013": {
+    "acres": 4494424.47491,
+    "fires": 66434
+   },
+   "2014": {
+    "acres": 3676997.482712,
+    "fires": 70480
+   },
+   "2015": {
+    "acres": 10226168.9828,
+    "fires": 77275
+   },
+   "2016": {
+    "acres": 5362282.1905,
+    "fires": 81993
+   },
+   "2017": {
+    "acres": 10245663.21611,
+    "fires": 82279
+   },
+   "2018": {
+    "acres": 8243602.2335375,
+    "fires": 80860
+   },
+   "2019": {
+    "acres": 4915667.833,
+    "fires": 63557
+   },
+   "2020": {
+    "acres": 10495382.3484,
+    "fires": 73262
+   }
+  }
+ },
+ "year.fires_and_acres_peak": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "year with the most fires and the year with the most acres",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "acres_peak": 10495382.3484,
+   "acres_peak_year": 2020,
+   "fires_peak": 117943,
+   "fires_peak_year": 2006
+  }
+ },
+ "year.fires_by_size_class": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "fires by FIRE_YEAR and FIRE_SIZE_CLASS",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": null,
+  "value": {
+   "1992": {
+    "A": 25531,
+    "B": 32977,
+    "C": 7954,
+    "D": 876,
+    "E": 368,
+    "F": 197,
+    "G": 58
+   },
+   "1993": {
+    "A": 20761,
+    "B": 32191,
+    "C": 7571,
+    "D": 831,
+    "E": 397,
+    "F": 159,
+    "G": 65
+   },
+   "1994": {
+    "A": 27890,
+    "B": 36815,
+    "C": 8829,
+    "D": 1182,
+    "E": 667,
+    "F": 403,
+    "G": 146
+   },
+   "1995": {
+    "A": 23896,
+    "B": 36850,
+    "C": 8922,
+    "D": 1005,
+    "E": 473,
+    "F": 225,
+    "G": 69
+   },
+   "1996": {
+    "A": 25114,
+    "B": 37840,
+    "C": 10118,
+    "D": 1220,
+    "E": 694,
+    "F": 374,
+    "G": 201
+   },
+   "1997": {
+    "A": 21739,
+    "B": 31599,
+    "C": 6937,
+    "D": 712,
+    "E": 279,
+    "F": 115,
+    "G": 61
+   },
+   "1998": {
+    "A": 23462,
+    "B": 35242,
+    "C": 8072,
+    "D": 906,
+    "E": 409,
+    "F": 189,
+    "G": 76
+   },
+   "1999": {
+    "A": 27720,
+    "B": 47200,
+    "C": 11855,
+    "D": 1373,
+    "E": 672,
+    "F": 374,
+    "G": 156
+   },
+   "2000": {
+    "A": 33253,
+    "B": 47495,
+    "C": 12429,
+    "D": 1625,
+    "E": 840,
+    "F": 502,
+    "G": 252
+   },
+   "2001": {
+    "A": 31485,
+    "B": 44030,
+    "C": 9187,
+    "D": 1215,
+    "E": 612,
+    "F": 355,
+    "G": 117
+   },
+   "2002": {
+    "A": 27875,
+    "B": 37951,
+    "C": 8480,
+    "D": 979,
+    "E": 420,
+    "F": 253,
+    "G": 170
+   },
+   "2003": {
+    "A": 28292,
+    "B": 31800,
+    "C": 6399,
+    "D": 862,
+    "E": 485,
+    "F": 309,
+    "G": 128
+   },
+   "2004": {
+    "A": 27423,
+    "B": 32825,
+    "C": 7736,
+    "D": 758,
+    "E": 341,
+    "F": 169,
+    "G": 118
+   },
+   "2005": {
+    "A": 30899,
+    "B": 47746,
+    "C": 11494,
+    "D": 1460,
+    "E": 703,
+    "F": 395,
+    "G": 224
+   },
+   "2006": {
+    "A": 36681,
+    "B": 60658,
+    "C": 16264,
+    "D": 2290,
+    "E": 1150,
+    "F": 629,
+    "G": 271
+   },
+   "2007": {
+    "A": 36126,
+    "B": 49168,
+    "C": 10764,
+    "D": 1456,
+    "E": 699,
+    "F": 390,
+    "G": 234
+   },
+   "2008": {
+    "A": 30035,
+    "B": 44754,
+    "C": 10348,
+    "D": 1693,
+    "E": 847,
+    "F": 469,
+    "G": 160
+   },
+   "2009": {
+    "A": 29555,
+    "B": 40272,
+    "C": 9205,
+    "D": 1322,
+    "E": 664,
+    "F": 336,
+    "G": 138
+   },
+   "2010": {
+    "A": 32623,
+    "B": 41280,
+    "C": 9511,
+    "D": 1229,
+    "E": 579,
+    "F": 252,
+    "G": 105
+   },
+   "2011": {
+    "A": 34884,
+    "B": 48471,
+    "C": 11771,
+    "D": 1887,
+    "E": 995,
+    "F": 619,
+    "G": 276
+   },
+   "2012": {
+    "A": 28803,
+    "B": 35009,
+    "C": 7961,
+    "D": 1182,
+    "E": 641,
+    "F": 418,
+    "G": 244
+   },
+   "2013": {
+    "A": 29517,
+    "B": 29746,
+    "C": 5872,
+    "D": 678,
+    "E": 301,
+    "F": 188,
+    "G": 132
+   },
+   "2014": {
+    "A": 29772,
+    "B": 31907,
+    "C": 7242,
+    "D": 868,
+    "E": 374,
+    "F": 214,
+    "G": 103
+   },
+   "2015": {
+    "A": 34772,
+    "B": 32429,
+    "C": 7761,
+    "D": 1114,
+    "E": 570,
+    "F": 337,
+    "G": 292
+   },
+   "2016": {
+    "A": 36105,
+    "B": 35246,
+    "C": 8156,
+    "D": 1210,
+    "E": 706,
+    "F": 399,
+    "G": 171
+   },
+   "2017": {
+    "A": 36167,
+    "B": 34875,
+    "C": 8544,
+    "D": 1243,
+    "E": 720,
+    "F": 447,
+    "G": 283
+   },
+   "2018": {
+    "A": 40314,
+    "B": 31394,
+    "C": 6865,
+    "D": 1085,
+    "E": 620,
+    "F": 378,
+    "G": 204
+   },
+   "2019": {
+    "A": 30830,
+    "B": 26161,
+    "C": 4999,
+    "D": 759,
+    "E": 409,
+    "F": 263,
+    "G": 136
+   },
+   "2020": {
+    "A": 34885,
+    "B": 30456,
+    "C": 5850,
+    "D": 988,
+    "E": 556,
+    "F": 334,
+    "G": 193
+   }
+  }
+ },
+ "year.fires_share_by_size_class": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "share of all fires 1992-2020 by FIRE_SIZE_CLASS",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.descriptive",
+  "unit": "share",
+  "value": {
+   "A": 0.3804575167370937,
+   "B": 0.4794249437611078,
+   "C": 0.11160782890527123,
+   "D": 0.014763197581488875,
+   "E": 0.00746277727662242,
+   "F": 0.004207389760050287,
+   "G": 0.0020763459783657164
+  }
+ },
+ "year.fires_trend": {
+  "computed_at": "2026-09-25T20:36:36+00:00",
+  "definition": "Kendall tau and Theil-Sen slope of fires per year, 1992-2020",
+  "n": 2303566,
+  "note": "Fire counts depend on which agencies reported in each year (reporting caveat), so a count trend is not a wildfire trend.",
+  "source": "analysis.descriptive",
+  "unit": "fires/yr",
+  "value": {
+   "kendall_p": 0.46786670864704466,
+   "kendall_tau": 0.09852216748768472,
+   "theil_sen_intercept": -300749.25,
+   "theil_sen_slope": 187.875,
+   "theil_sen_slope_ci95": [
+    -395.625,
+    755.4
+   ]
+  }
+ }
+}
