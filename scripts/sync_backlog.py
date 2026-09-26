@@ -31,7 +31,7 @@ TYPES = {
     'S-1.1': 'infra', 'S-1.2': 'infra', 'S-1.3': 'infra', 'S-1.4': 'bug', 'S-1.5': 'docs', 'S-1.6': 'infra',
     'S-1.7': 'infra', 'S-1.8': 'infra',
     'S-2.1': 'method', 'S-2.2': 'method', 'S-2.3': 'method', 'S-2.4': 'docs', 'S-2.5': 'docs', 'S-2.6': 'method',
-    'S-2.7': 'docs', 'S-2.8': 'method',
+    'S-2.7': 'docs', 'S-2.8': 'method', 'S-2.9': 'method', 'S-4.7': 'method', 'S-7.8': 'docs',
     'S-3.1': 'data', 'S-3.2': 'method', 'S-3.3': 'data', 'S-3.4': 'data', 'S-3.5': 'data',
     'S-4.1': 'method', 'S-4.2': 'method', 'S-4.3': 'docs', 'S-4.4': 'method', 'S-4.5': 'method', 'S-4.6': 'infra',
     'S-5.1': 'method', 'S-5.2': 'data', 'S-5.3': 'method', 'S-5.4': 'docs', 'S-5.5': 'method', 'S-5.6': 'data',
@@ -156,6 +156,9 @@ def main():
         if num and status.startswith('Done') and not status.startswith('Done (computation)'):
             if not args.dry_run:
                 gh('PATCH', f'/issues/{num}', {'state': 'closed', 'state_reason': 'completed'})
+        if num and status.startswith("Won't do"):
+            if not args.dry_run:
+                gh('PATCH', f'/issues/{num}', {'state': 'closed', 'state_reason': 'not_planned'})
         print(f'{title} [{status}] -> #{num}')
         issue_line = f'- Issue: #{num}' if num else '- Issue: (dry run)'
         if 'Issue' in s['field_lines']:
