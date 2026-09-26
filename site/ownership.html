@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ownership · US wildfire record, 1992-2020</title>
+<meta name="description" content="Acres and fires by land owner including the Missing row, human share by owner, containment declaration times, and why the Control Efficiency Score was retired.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Overview</a><a href="trends.html">Trends</a><a href="causes.html">Causes and seasons</a><a href="geography.html">Geography</a><a href="ownership.html" aria-current="page">Ownership</a><a href="conservation.html">Conservation</a><a href="model.html">Prediction</a><a href="methods.html">Methods and ledger</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>Ownership</h1>
+<p class="lede">The owner of the land at the ignition point is recorded for <button type="button" class="q" data-claim="owner.missing_share_fires">53.6%</button> of fires. The Missing row is the fourth-largest owner by acres and the largest by fires, and it stays on every chart.</p></header>
+
+<h2>Acres and fires by owner</h2>
+<p>Most acres: <button type="button" class="q" data-claim="owner.top4_acres">USFS 38.36M</button>, <button type="button" class="q" data-claim="owner.top4_acres">BLM 37.17M</button>, <button type="button" class="q" data-claim="owner.top4_acres">PRIVATE 25.64M</button>, <button type="button" class="q" data-claim="owner.top4_acres">Missing 22.88M</button>.
+Ownership is missing for <button type="button" class="q" data-claim="owner.missing_share_fires">46.4%</button> of fires and <button type="button" class="q" data-claim="owner.missing_share_acres">12.7%</button> of acres. Owner labels are upper-cased so that the two spellings of "Private" merge.</p>
+<div class="grid2"><div id="owner-acres" class="chart" aria-live="polite"></div><div id="owner-fires" class="chart" aria-live="polite"></div></div>
+
+<h2>Human share of known cause by owner</h2>
+<p>Federal land agencies burn the most acres from the fewest human ignitions; private and unrecorded land burn less area from mostly human ignitions. Human share of fires with a known cause: BLM <button type="button" class="q" data-claim="owner.fires_and_acres">33%</button>, USFS <button type="button" class="q" data-claim="owner.fires_and_acres">42%</button>, NPS <button type="button" class="q" data-claim="owner.fires_and_acres">52%</button>, FWS <button type="button" class="q" data-claim="owner.fires_and_acres">65%</button>, BIA <button type="button" class="q" data-claim="owner.fires_and_acres">84%</button>, State <button type="button" class="q" data-claim="owner.fires_and_acres">81%</button>, Private <button type="button" class="q" data-claim="owner.fires_and_acres">91%</button>, Missing <button type="button" class="q" data-claim="owner.fires_and_acres">95%</button>.</p>
+<div id="owner-human" class="chart" aria-live="polite"></div>
+
+<h2 id="containment">Time to a containment declaration</h2>
+<div class="note"><p><strong>Read this before the chart.</strong> The containment fields record when a reporting system declared the fire contained, under that system's own convention. They do not measure response speed, and they are missing for <button type="button" class="q" data-claim="overview.missing_shares">38.8%</button> of all records, unevenly by owner: <button type="button" class="q" data-claim="cont.share_with_cont_date_by_owner">99.7%</button> of BLM records have a containment date, <button type="button" class="q" data-claim="cont.share_with_cont_date_by_owner">39.9%</button> of records with no recorded owner.
+A Class A fire is under a quarter of an acre wherever it burns, yet the USFS median is <button type="button" class="q" data-claim="cont.median_hours_by_size_class_and_owner_2010_plus">4.2</button> hours and the unrecorded-owner median <button type="button" class="q" data-claim="cont.median_hours_by_size_class_and_owner_2010_plus">0.4</button> hours: that is a difference in what "contained" means to each system, not in the fire.</p></div>
+<p>For the <button type="button" class="q" data-claim="cont.n_2010_plus_with_both_datetimes">577,956</button> fires from 2010 on with both a discovery and a containment date-time, the median time to the containment declaration is <button type="button" class="q" data-claim="cont.hours_percentiles_2010_plus">1.15</button> hours (75th percentile <button type="button" class="q" data-claim="cont.hours_percentiles_2010_plus">3.2</button>, 90th <button type="button" class="q" data-claim="cont.hours_percentiles_2010_plus">26</button>, 99th <button type="button" class="q" data-claim="cont.hours_percentiles_2010_plus">554</button> hours); <button type="button" class="q" data-claim="cont.share_zero_hours_2010_plus">4.0%</button> are recorded as zero hours.</p>
+<div class="grid2"><div id="cont-share-owner" class="chart" aria-live="polite"></div><div id="cont-hours" class="chart" aria-live="polite"></div></div>
+
+<h2 id="ces">The Control Efficiency Score was retired</h2>
+<p>The earlier version of this project ranked owners with a Control Efficiency Score, defined as 1 divided by the mean acres burned per hour to containment. It was retired for two reasons that the data shows directly:</p>
+<ul class="tight">
+<li><strong>The ranking is an artefact of the aggregation.</strong> With the mean, USFS ranks <button type="button" class="q" data-claim="ces.by_owner">11</button> of 14 owners; with the median it ranks <button type="button" class="q" data-claim="ces.by_owner">1</button>. BLM moves from <button type="button" class="q" data-claim="ces.by_owner">6</button> to <button type="button" class="q" data-claim="ces.by_owner">2</button>, Private from <button type="button" class="q" data-claim="ces.by_owner">3</button> to <button type="button" class="q" data-claim="ces.by_owner">13</button>. The Spearman correlation between the two rankings is <button type="button" class="q" data-claim="ces.spearman_mean_vs_median">0.09</button>: they are unrelated.</li>
+<li><strong>The score mostly measures final fire size.</strong> Median acres per hour rise from <button type="button" class="q" data-claim="ces.median_aph_by_size_class">0.08</button> in Class A to <button type="button" class="q" data-claim="ces.median_aph_by_size_class">49.5</button> in Class G, so an owner's score follows the size mix of its fires and the containment convention of its reporting system, not its response.</li>
+</ul>
+<p>Neither version measures response quality, and no agency or owner ranking on speed or efficiency appears on this site. The chart below is kept as the record of why.</p>
+<div id="ces-ranks" class="chart" aria-live="polite"></div>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  var C = WF.data.claims, MISS = 'MISSING/NOT SPECIFIED';
+  var ow = C['owner.fires_and_acres'].value, owners = Object.keys(ow);
+  var label = function (o) { return o === MISS ? 'Missing / not specified' : o; };
+  function ownerBars(id, title, key, shareKey, unit, staticImg) {
+    var ord = owners.slice().sort(function (a, b) { return ow[a][key] - ow[b][key]; });
+    WF.chart({ el: id, title: title, claims: ['owner.fires_and_acres', key === 'acres' ? 'owner.missing_share_acres' : 'owner.missing_share_fires'],
+      sub: 'OWNER_DESCR (upper-cased). The Missing row is the owner recorded as MISSING/NOT SPECIFIED; it is drawn in gray and never removed.',
+      rows: ord.slice().reverse().map(function (o) { return { owner: label(o), fires: ow[o].fires, share_of_fires: ow[o].share_fires, acres: Math.round(ow[o].acres), share_of_acres: ow[o].share_acres, _missing: o === MISS }; }),
+      columns: [{ key: 'owner' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'share_of_fires', label: 'share of fires', num: true, fmt: function (v) { return WF.fmt.pct(v, 2); } }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'share_of_acres', label: 'share of acres', num: true, fmt: function (v) { return WF.fmt.pct(v, 2); } }],
+      staticImg: staticImg, height: 440,
+      build: function (t) { return { data: [{ type: 'bar', orientation: 'h', y: ord.map(label), x: ord.map(function (o) { return ow[o][key]; }), marker: { color: ord.map(function (o) { return o === MISS ? t.missing : t.series[0]; }) },
+        customdata: ord.map(function (o) { return 100 * ow[o][shareKey]; }), hovertemplate: '%{y}<br>%{x:,.0f} ' + unit + ' (%{customdata:.1f}% of all)<extra></extra>' }],
+        layout: { showlegend: false, bargap: 0.3, margin: { l: 10 }, yaxis: { automargin: true, tickfont: { size: 11 } }, xaxis: { tickformat: '.2s', title: { text: unit } } } }; }
+    });
+  }
+  ownerBars('owner-acres', 'Acres by land owner at the ignition point', 'acres', 'share_acres', 'acres', 'figures/ownership_acres.png');
+  ownerBars('owner-fires', 'Fires by land owner at the ignition point', 'fires', 'share_fires', 'fires', null);
+
+  var bc = C['cause.by_classification'].value, base = bc.Human.fires / (bc.Human.fires + bc.Natural.fires);
+  var hs = owners.filter(function (o) { return ow[o].n_known_cause >= 1000; }).sort(function (a, b) { return ow[a].human_share_known - ow[b].human_share_known; });
+  WF.chart({ el: 'owner-human', title: 'Human share of fires with a known cause, by owner', claims: ['owner.fires_and_acres', 'cause.by_classification'],
+    sub: 'Owners with at least 1,000 fires of known cause. The dashed line is the base rate: the human share among all fires with a known cause.',
+    rows: hs.slice().reverse().map(function (o) { return { owner: label(o), fires_with_known_cause: ow[o].n_known_cause, human_share_of_known: ow[o].human_share_known, base_rate_all_owners: base, _missing: o === MISS }; }),
+    columns: [{ key: 'owner' }, { key: 'fires_with_known_cause', label: 'fires with known cause (n)', num: true, fmt: WF.fmt.int }, { key: 'human_share_of_known', label: 'human share of known', num: true, fmt: function (v) { return WF.fmt.pct(v); } }, { key: 'base_rate_all_owners', label: 'base rate, all owners', num: true, fmt: function (v) { return WF.fmt.pct(v); } }],
+    height: 420,
+    caption: 'Base rate: ' + WF.fmt.pct(base) + ' of all fires with a known cause are human-caused (n = ' + WF.fmt.int(bc.Human.fires + bc.Natural.fires) + '). Undetermined causes are excluded from this denominator; they are ' + WF.fmt.pct(bc['Missing data/not specified/undetermined'].share_fires) + ' of all fires.',
+    build: function (t) { return { data: [{ type: 'bar', orientation: 'h', y: hs.map(label), x: hs.map(function (o) { return 100 * ow[o].human_share_known; }), marker: { color: hs.map(function (o) { return o === MISS ? t.missing : t.series[0]; }) },
+        customdata: hs.map(function (o) { return ow[o].n_known_cause; }), hovertemplate: '%{y}<br>%{x:.1f}% human of known cause<br>n = %{customdata:,} fires with known cause<extra></extra>' }],
+      layout: { showlegend: false, bargap: 0.3, margin: { l: 10 }, yaxis: { automargin: true, tickfont: { size: 11 } }, xaxis: { ticksuffix: '%', range: [0, 100] },
+        shapes: [{ type: 'line', x0: 100 * base, x1: 100 * base, y0: -0.5, y1: hs.length - 0.5, line: { color: t.ink2, width: 1.5, dash: 'dash' } }],
+        annotations: [{ x: 100 * base, y: hs.length - 0.5, text: 'base rate ' + WF.fmt.pct(base, 0), showarrow: false, xanchor: 'right', yanchor: 'bottom', font: { size: 11, color: t.ink2 } }] } }; }
+  });
+
+  var cs = C['cont.share_with_cont_date_by_owner'].value, co = Object.keys(cs).sort(function (a, b) { return cs[a] - cs[b]; });
+  WF.chart({ el: 'cont-share-owner', title: 'Share of records with a containment date, by owner', claims: ['cont.share_with_cont_date_by_owner', 'cont.share_with_cont_date'],
+    sub: 'Any containment-time analysis is limited to the records that have a date, which depends on the reporting system.',
+    rows: co.slice().reverse().map(function (o) { return { owner: label(o), fires: ow[o] ? ow[o].fires : null, share_with_containment_date: cs[o], _missing: o === MISS }; }),
+    columns: [{ key: 'owner' }, { key: 'fires', label: 'fires (n)', num: true, fmt: WF.fmt.int }, { key: 'share_with_containment_date', label: 'share with containment date', num: true, fmt: function (v) { return WF.fmt.pct(v); } }],
+    height: 440,
+    build: function (t) { return { data: [{ type: 'bar', orientation: 'h', y: co.map(label), x: co.map(function (o) { return 100 * cs[o]; }), marker: { color: co.map(function (o) { return o === MISS ? t.missing : t.series[0]; }) }, customdata: co.map(function (o) { return ow[o] ? ow[o].fires : 0; }), hovertemplate: '%{y}<br>%{x:.1f}% with a containment date<br>n = %{customdata:,} fires<extra></extra>' }],
+      layout: { showlegend: false, bargap: 0.3, margin: { l: 10 }, yaxis: { automargin: true, tickfont: { size: 11 } }, xaxis: { ticksuffix: '%', range: [0, 100] } } }; }
+  });
+
+  var mh = C['cont.median_hours_by_size_class_and_owner_2010_plus'].value, nn = C['cont.n_by_size_class_and_owner_2010_plus'].value;
+  var classes = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], cOwners = ['USFS', 'BLM', 'BIA', 'STATE', 'PRIVATE', MISS];
+  var hrows = []; classes.forEach(function (k) { cOwners.forEach(function (o) { hrows.push({ size_class: k, owner: label(o), median_hours_to_containment: mh[k][o], n: nn[k][o], _missing: o === MISS }); }); });
+  WF.chart({ el: 'cont-hours', title: 'Median hours from discovery to the containment declaration, by size class and owner', claims: ['cont.median_hours_by_size_class_and_owner_2010_plus', 'cont.n_by_size_class_and_owner_2010_plus', 'cont.n_2010_plus_with_both_datetimes'],
+    sub: 'Fires from 2010 on with both a discovery and a containment date-time. Log scale. Hover shows the n behind each point.',
+    rows: hrows, columns: [{ key: 'size_class', label: 'size class' }, { key: 'owner' }, { key: 'median_hours_to_containment', label: 'median hours', num: true, fmt: function (v) { return WF.fmt.num(v, 1); } }, { key: 'n', num: true, fmt: WF.fmt.int }],
+    staticImg: 'figures/containment_hours_by_class_owner.png', height: 380,
+    build: function (t) { return { data: cOwners.map(function (o, i) { var col = o === MISS ? t.missing : t.series[i]; return { type: 'scatter', mode: 'lines+markers', name: label(o), x: classes, y: classes.map(function (k) { return mh[k][o]; }), line: { color: col, width: 2 }, marker: { size: 8, color: col, line: { color: t.surface, width: 2 } }, customdata: classes.map(function (k) { return nn[k][o]; }), hovertemplate: 'Class %{x} · ' + label(o) + '<br>median %{y:.1f} h<br>n = %{customdata:,}<extra></extra>' }; }),
+      layout: { yaxis: { type: 'log', title: { text: 'median hours (log)' } }, xaxis: { title: { text: 'size class' } }, legend: { y: -0.25 }, hovermode: 'x unified' } }; }
+  });
+
+  var ces = C['ces.by_owner'].value, cOrd = Object.keys(ces).sort(function (a, b) { return ces[b].rank_mean_based - ces[a].rank_mean_based; });
+  WF.chart({ el: 'ces-ranks', title: 'Retired Control Efficiency Score: owner rank under the mean against the median', claims: ['ces.by_owner', 'ces.rank_shift', 'ces.spearman_mean_vs_median', 'ces.median_aph_by_size_class'],
+    sub: 'Rank 1 = fewest acres per hour to containment. The same data, aggregated two defensible ways, gives two unrelated rankings.',
+    rows: cOrd.slice().reverse().map(function (o) { return { owner: label(o), n: ces[o].size, mean_acres_per_hour: ces[o].mean, median_acres_per_hour: ces[o].median, rank_mean_based: ces[o].rank_mean_based, rank_median_based: ces[o].rank_median_based, _missing: o === MISS }; }),
+    columns: [{ key: 'owner' }, { key: 'n', num: true, fmt: WF.fmt.int }, { key: 'mean_acres_per_hour', label: 'mean acres/hour', num: true, fmt: function (v) { return WF.fmt.num(v, 2); } }, { key: 'median_acres_per_hour', label: 'median acres/hour', num: true, fmt: function (v) { return WF.fmt.num(v, 3); } }, { key: 'rank_mean_based', label: 'rank (mean)', num: true }, { key: 'rank_median_based', label: 'rank (median)', num: true }],
+    height: 440,
+    build: function (t) { var y = cOrd.map(label); return { data: [
+      { type: 'scatter', mode: 'lines', x: cOrd.reduce(function (a, o) { return a.concat([ces[o].rank_mean_based, ces[o].rank_median_based, null]); }, []), y: cOrd.reduce(function (a, o) { return a.concat([label(o), label(o), null]); }, []), line: { color: t.gray, width: 2 }, hoverinfo: 'skip', showlegend: false },
+      { type: 'scatter', mode: 'markers', name: 'Rank, mean-based (original score)', x: cOrd.map(function (o) { return ces[o].rank_mean_based; }), y: y, marker: { size: 10, color: t.seq[2], line: { color: t.surface, width: 2 } }, customdata: cOrd.map(function (o) { return ces[o].size; }), hovertemplate: '%{y}<br>rank %{x} (mean-based)<br>n = %{customdata:,}<extra></extra>' },
+      { type: 'scatter', mode: 'markers', name: 'Rank, median-based', x: cOrd.map(function (o) { return ces[o].rank_median_based; }), y: y, marker: { size: 10, color: t.seq[5], line: { color: t.surface, width: 2 } }, customdata: cOrd.map(function (o) { return ces[o].size; }), hovertemplate: '%{y}<br>rank %{x} (median-based)<br>n = %{customdata:,}<extra></extra>' }],
+      layout: { margin: { l: 10 }, yaxis: { automargin: true, tickfont: { size: 11 } }, xaxis: { title: { text: 'rank (1 = fewest acres per hour)' }, dtick: 1, range: [0.5, cOrd.length + 0.5] }, legend: { y: -0.15 } } }; }
+  });
+})();
+</script>
+</body>
+</html>

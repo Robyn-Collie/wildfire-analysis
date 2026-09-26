@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>US wildfire record, 1992-2020</title>
+<meta name="description" content="Descriptive analysis of 2.3 million US wildfire records, 1992-2020, with every number traced to a definition.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html" aria-current="page">Overview</a><a href="trends.html">Trends</a><a href="causes.html">Causes and seasons</a><a href="geography.html">Geography</a><a href="ownership.html">Ownership</a><a href="conservation.html">Conservation</a><a href="model.html">Prediction</a><a href="methods.html">Methods and ledger</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head">
+<h1>Large US wildfires burn more acres than in the 1990s, especially in the West. The number of recorded fires shows no trend, and the record's coverage varies by state and year.</h1>
+<p class="lede">The data is the FPA FOD, a compilation of federal, state and local wildfire reports for 1992-2020: ignition points with a date, a size and a cause.
+It has no fire perimeters, no prescribed fire, no burn severity and no losses, and not every state reports in every year.</p>
+</header>
+<div class="strip" aria-label="Data completeness"><div class="tile"><div class="label">Records</div><div class="value"><button type="button" class="q" data-claim="overview.n_rows">2,303,566</button></div><div class="sub">ignition points, 1992-2020</div></div><div class="tile"><div class="label">Known land owner</div><div class="value"><button type="button" class="q" data-claim="overview.missing_shares">53.6%</button></div><div class="sub">46.4% MISSING/NOT SPECIFIED</div><div class="meter" aria-hidden="true"><i style="width:53.6%"></i></div></div><div class="tile"><div class="label">Known cause class</div><div class="value"><button type="button" class="q" data-claim="overview.missing_shares">91.6%</button></div><div class="sub">human or natural; general cause known for 74.0%</div><div class="meter" aria-hidden="true"><i style="width:91.6%"></i></div></div><div class="tile"><div class="label">Containment date</div><div class="value"><button type="button" class="q" data-claim="cont.share_with_cont_date">61.2%</button></div><div class="sub">records with a CONT_DATE</div><div class="meter" aria-hidden="true"><i style="width:61.2%"></i></div></div></div>
+<p class="small muted">Completeness of the whole record. Percentages are shares of all <button type="button" class="q" data-claim="overview.n_rows">2,303,566</button> records; click any number for its definition. Missing and undetermined categories stay visible on every chart in this site.</p>
+
+<h2>Four facts that hold up</h2>
+<p>Each card carries the number of records behind it and a link to the definition. The full ledger of 206 computed claims is on the <a href="methods.html#ledger">Methods page</a>.</p>
+<div class="cards"><div class="card"><h3>Large fires burn more acres than in the 1990s</h3><div class="n">n = 4,783 records · <button type="button" class="q" data-claim="class_g.acres_trend">definition</button></div><details><summary>What the number means</summary><p class="small">Acres in fires of 5,000+ acres (Class G) rise by <button type="button" class="q" data-claim="class_g.acres_trend">177,560 acres a year</button> (Theil-Sen; Kendall tau <button type="button" class="q" data-claim="class_g.acres_trend">0.43</button>, p = <button type="button" class="q" data-claim="class_g.acres_trend">0.0007</button>). Without Alaska: tau <button type="button" class="q" data-claim="class_g.acres_trend_excl_alaska">0.35</button>, p = <button type="button" class="q" data-claim="class_g.acres_trend_excl_alaska">0.007</button>. Mean annual Class G acres: <button type="button" class="q" data-claim="class_g.half_period_means">3.53M</button> in 1992-2005, <button type="button" class="q" data-claim="class_g.half_period_means">5.71M</button> in 2006-2020.</p></details><a class="go" href="trends.html">Trends &rarr;</a></div><div class="card"><h3>The number of recorded fires shows no trend</h3><div class="n">n = 2,303,566 records · <button type="button" class="q" data-claim="year.fires_trend">definition</button></div><details><summary>What the number means</summary><p class="small">Kendall tau <button type="button" class="q" data-claim="year.fires_trend">0.10</button> (p = <button type="button" class="q" data-claim="year.fires_trend">0.47</button>) on fires per year. Counts follow which agencies reported: Texas goes from 1,040 records in 2004 to 15,019 in 2006, New York from 129 in 1994 to 7,700 in 2005. Area burned is more robust than counts because large fires are reported by every system.</p></details><a class="go" href="trends.html">Trends &rarr;</a></div><div class="card"><h3>Human ignitions dominate on private and unrecorded land; lightning dominates on BLM and USFS land</h3><div class="n">n = 2,303,566 records · <button type="button" class="q" data-claim="owner.fires_and_acres">definition</button></div><details><summary>What the number means</summary><p class="small">Human share of fires with a known cause: BLM <button type="button" class="q" data-claim="owner.fires_and_acres">33%</button>, USFS <button type="button" class="q" data-claim="owner.fires_and_acres">42%</button>, State <button type="button" class="q" data-claim="owner.fires_and_acres">81%</button>, Private <button type="button" class="q" data-claim="owner.fires_and_acres">91%</button>, owner not recorded <button type="button" class="q" data-claim="owner.fires_and_acres">95%</button>. Ownership is missing for <button type="button" class="q" data-claim="owner.missing_share_fires">46.4%</button> of fires.</p></details><a class="go" href="ownership.html">Ownership &rarr;</a></div><div class="card"><h3>Fire seasons differ by region</h3><div class="n">n = 2,303,566 records · <button type="button" class="q" data-claim="season.peak_month_by_region">definition</button></div><details><summary>What the number means</summary><p class="small">Peak month for fires: South <button type="button" class="q" data-claim="season.peak_month_by_region">Mar</button>, West <button type="button" class="q" data-claim="season.peak_month_by_region">Jul</button> (acres peak in <button type="button" class="q" data-claim="season.peak_month_by_region">Aug</button>), Alaska <button type="button" class="q" data-claim="season.peak_month_by_region">Jun</button>, Northeast <button type="button" class="q" data-claim="season.peak_month_by_region">Apr</button>. Class G fires: the South leads November to April, the West May to October.</p></details><a class="go" href="causes.html">Causes and seasons &rarr;</a></div></div>
+
+<h2>Where</h2>
+<p>The 50 busiest 1-degree cells hold <button type="button" class="q" data-claim="geo.cells_1deg_summary">27.9%</button> of fires; the 50 largest by acreage hold <button type="button" class="q" data-claim="geo.cells_1deg_summary">30.3%</button> of acres, and they are different cells. Human share among known causes is above 90% across the South and East and drops to 20-50% in the interior West and Alaska. <a href="geography.html">Map and state table &rarr;</a></p>
+
+<h2>What was retired</h2>
+<p>An earlier version of this project ranked land-management agencies with a "Control Efficiency Score" and shipped a fire-duration model. Both are retired: the score's ranking flips when the mean is swapped for the median
+(Spearman <button type="button" class="q" data-claim="ces.spearman_mean_vs_median">0.09</button> between the two rankings), and the model lost to "predict zero days" on mean absolute error.
+<a href="ownership.html#ces">Why the score was retired</a> · <a href="model.html">What replaces the model</a> · <a href="methods.html#errata">Errata</a>.</p>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+
+</body>
+</html>

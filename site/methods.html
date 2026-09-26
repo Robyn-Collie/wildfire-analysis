@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods and ledger · US wildfire record, 1992-2020</title>
+<meta name="description" content="Data version and hash, definitions glossary, the searchable claims ledger and the errata.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Overview</a><a href="trends.html">Trends</a><a href="causes.html">Causes and seasons</a><a href="geography.html">Geography</a><a href="ownership.html">Ownership</a><a href="conservation.html">Conservation</a><a href="model.html">Prediction</a><a href="methods.html" aria-current="page">Methods and ledger</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>Methods and ledger</h1>
+<p class="lede">Every number on this site is a claim in a JSON ledger produced by the analysis code, with its definition, the number of records behind it and the time it was computed. The site is generated from that ledger; nothing is typed in by hand except the prose.</p></header>
+
+<h2 id="data">Data version</h2>
+<div class="table-wrap"><table><tbody>
+<tr><th>Dataset</th><td>Short, Karen C. 2022. Spatial wildfire occurrence data for the United States, 1992-2020 [FPA_FOD_20221014]. 6th edition. Forest Service Research Data Archive. <a href="https://doi.org/10.2737/RDS-2013-0009.6">doi:10.2737/RDS-2013-0009.6</a></td></tr>
+<tr><th>File</th><td><code>data/FPA_FOD_20221014.sqlite</code>, table <code>Fires</code>; analysed through the typed cache <code>data/fires.parquet</code> with the same rows</td></tr>
+<tr><th>SHA-256</th><td><code>04f5ab8bff6880a8ee76b4a825a66b5f4db0b800dc5971a919cb743251a965a8</code></td></tr>
+<tr><th>Records</th><td><button type="button" class="q" data-claim="overview.n_rows">2,303,566</button> rows, FIRE_YEAR <button type="button" class="q" data-claim="overview.years">1992</button> to <button type="button" class="q" data-claim="overview.years">2020</button>; fire sizes from <button type="button" class="q" data-claim="overview.smallest_fire_acres">1e-05</button> to <button type="button" class="q" data-claim="overview.largest_fire_acres">662,700</button> acres; <button type="button" class="q" data-claim="overview.total_acres">180.05M</button> acres in total</td></tr>
+<tr><th>What it is</th><td>A compilation of federal, state and local wildfire reports: one row per reported fire with a discovery date, a final size and a point location at least as precise as a PLSS section. Nonfederal records were not available from every state for every year, so counts underrepresent activity in some places and periods.</td></tr>
+<tr><th>What it is not</th><td>No perimeters (points only), no prescribed fire, no burn severity, no structures or losses, no weather or fuels.</td></tr>
+<tr><th>Missing fields</th><td>Containment date null in <button type="button" class="q" data-claim="overview.missing_counts">894,813</button> records; discovery time in <button type="button" class="q" data-claim="overview.missing_counts">789,095</button>; containment time in <button type="button" class="q" data-claim="overview.missing_counts">989,902</button>; owner not specified in <button type="button" class="q" data-claim="overview.missing_counts">1,068,424</button>; general cause undetermined in <button type="button" class="q" data-claim="overview.missing_counts">597,933</button>; cause classification undetermined in <button type="button" class="q" data-claim="overview.missing_counts">193,341</button>; coordinates null in <button type="button" class="q" data-claim="overview.missing_counts">0</button>.</td></tr>
+<tr><th>Ledger files</th><td>claims.json, claims_conservation.json, claims_model.json (206 claims). Not present yet: claims_coverage.json.</td></tr>
+</tbody></table></div>
+
+<h2 id="glossary">Glossary</h2>
+<dl class="glossary">
+<dt>Regions</dt><dd>West = AZ CA CO ID MT NV NM OR UT WA WY; South = AL AR FL GA KY LA MS NC OK SC TN TX VA WV; Northeast = CT ME MA NH RI VT NY NJ PA; Alaska = AK; Hawaii/PR = HI PR; Other = every other STATE value (Midwest, Plains, DC, DE, MD). (<button type="button" class="q" data-claim="overview.region_definition">definition</button>)</dd>
+<dt>Size classes</dt><dd>FIRE_SIZE_CLASS as coded in FPA FOD: A &lt; 0.26 acres, B 0.26-9.9, C 10-99.9, D 100-299, E 300-999, F 1,000-4,999, G 5,000 and up.</dd>
+<dt>Large fire</dt><dd>On this site, "large" means at least 300 acres (Classes E, F and G), the size at which ICS-209 incident reporting becomes common. The trend claim uses Class G (5,000+ acres) because those fires are captured by every reporting system. MTBS maps burn severity only for fires of at least 1,000 acres in the West and 500 acres in the East, so severity data exists for a subset of "large" fires.</dd>
+<dt>Ownership classes</dt><dd>OWNER_DESCR as recorded at the ignition point, upper-cased so the two spellings of "Private" merge: BIA, BLM, BOR, COUNTY, FOREIGN, FWS, MISSING/NOT SPECIFIED, MUNICIPAL/LOCAL, NPS, OTHER FEDERAL, PRIVATE, STATE, STATE OR PRIVATE, TRIBAL, UNDEFINED FEDERAL, USFS. Ownership at the ignition point is not ownership of the area burned.</dd>
+<dt>Missing rules</dt><dd>The explicit categories "Missing data/not specified/undetermined" (cause) and "MISSING/NOT SPECIFIED" (owner) are counted as missing; those fields have no nulls. Missing categories are always shown. "Human share of known cause" always excludes the undetermined category from the denominator and says so. Zero-record state-years are reporting gaps, not fire-free years.</dd>
+<dt>Month</dt><dd>DISCOVERY_MONTH, the month of the discovery date: a fire counts in the month it was found, not the months it burned.</dd>
+<dt>Containment time</dt><dd>DURATION_HOURS = CONT_DATETIME minus DISCOVERY_DATETIME, defined only when both a date and a valid HHMM time exist; DURATION_DAYS = CONT_DATE minus DISCOVERY_DATE in whole days. Both measure a containment declaration under the reporting system's convention, not response speed.</dd>
+<dt>Trend tests</dt><dd>Kendall tau and the Theil-Sen slope on 29 annual points, plain p-values with no serial-correlation adjustment; the 95% interval is the Theil-Sen slope interval.</dd>
+<dt>1-degree cells</dt><dd>1-degree cells: cell_lat/cell_lon = floor(LATITUDE)/floor(LONGITUDE) (south-west corner); n_fires; acres = sum FIRE_SIZE; n_human, n_natural, n_missing_cause from NWCG_CAUSE_CLASSIFICATION; human_share_known = n_human / (n_human + n_natural); human_share_all = n_human / n_fires</dd>
+<dt>GACC approximation</dt><dd>State-level approximation of the ten NWCG GACCs; whole states assigned to one area, California North/South merged, Idaho and Wyoming not split. Lists: Alaska = AK; Northwest = OR WA; California (North+South merged) = CA; Great Basin (approx) = ID NV UT; Northern Rockies (approx) = MT ND; Rocky Mountain (approx) = CO WY SD NE KS; Southwest = AZ NM; Southern Area (approx) = AL AR FL GA KY LA MS NC OK SC TN TX VA PR; Eastern Area (approx) = CT DE DC IA IL IN ME MD MA MI MN MO NH NJ NY OH PA RI VT WV WI; Hawaii (not a GACC) = HI Only Northwest (OR WA), Southwest (AZ NM), Great Basin members (ID NV UT WY) and the ten GACC names were verified from gacc.nifc.gov pages fetched 2026-09-25; the rest is unverified.</dd>
+</dl>
+
+<h2 id="ledger">Claims ledger</h2>
+<p>Search by id, definition or source. Object values expand in place. <button type="button" class="btn" id="ledger-csv">Download CSV</button></p>
+<p><input class="search" id="ledger-search" type="search" placeholder="Search claims, e.g. class_g or containment" aria-label="Search claims"> <span class="small muted" id="ledger-count"></span></p>
+<div class="table-wrap"><table class="ledger"><thead><tr><th>id</th><th>value</th><th>unit</th><th class="num">n</th><th>definition</th><th>source</th></tr></thead><tbody id="ledger-body"></tbody></table></div>
+
+<h2 id="errata">Errata</h2>
+<p>Claims from the earlier version of this project that did not survive the check, kept next to what the check found.</p>
+<div class="cards"><div class="card"><h3>A June spike in Class G acreage in Arkansas</h3><p class="small"><strong>What was claimed:</strong> A June spike in Class G acreage in Arkansas, in the earlier README.</p><p class="small"><strong>What the check found:</strong> Refuted: Arkansas has 2 Class G fires in 29 years and none in June. June is the peak Class G month for Arizona and Alaska; the README most likely mislabels AZ or AK as AR.</p><p class="n">n = 4,783 · <button type="button" class="q" data-claim="anom.verdict_arkansas_june">definition</button> · evidence claims: <code>anom.arkansas_class_g anom.june_class_g_by_state_top10</code></p></div><div class="card"><h3>December fires in Texas as a recurring pattern</h3><p class="small"><strong>What was claimed:</strong> December fires in Texas as a recurring pattern, in the earlier README.</p><p class="small"><strong>What the check found:</strong> Not a general pattern: December ranks 10 of 12 Texas months by fires and 10 of 12 by acres. Texas&#x27;s big-fire season is January to April. One December stands out: 2005 with 94,523 acres, 2.7x the next largest December.</p><p class="n">n = 180,087 · <button type="button" class="q" data-claim="anom.verdict_texas_december">definition</button> · evidence claims: <code>anom.texas_by_month anom.texas_december_top_year</code></p></div><div class="card"><h3>A 2010 outlier in the Northeast</h3><p class="small"><strong>What was claimed:</strong> A 2010 outlier in the Northeast, in the earlier README.</p><p class="small"><strong>What the check found:</strong> Not reproduced with this region definition: 2010 has z = 0.98 on fires and z = 0.48 on acres, ranking 7 of 29 years by fires. The series is dominated by reporting shifts (largest jumps in 2020, 2005, 2015) and by states with zero-record years.</p><p class="n">n = 180,427 · <button type="button" class="q" data-claim="anom.verdict_northeast_2010">definition</button> · evidence claims: <code>anom.northeast_2010 anom.northeast_largest_yoy_count_jumps anom.northeast_zero_report_years</code></p></div>
+<div class="card"><h3>"Higher highs and higher lows" for Class G acres</h3><p class="small"><strong>What was claimed:</strong> the Class G acreage trend has higher highs and higher lows.</p>
+<p class="small"><strong>What the check found:</strong> the upward trend holds (Kendall tau <button type="button" class="q" data-claim="class_g.acres_trend">0.43</button>), but 2010 (<button type="button" class="q" data-claim="class_g.five_lowest_years">2.14M</button> acres) is the fifth-lowest of 29 years, so the lows are not rising.</p>
+<p class="n">n = 4,783 · <button type="button" class="q" data-claim="class_g.five_lowest_years">definition</button></p></div>
+<div class="card"><h3>Classes B and C are "most often" debris burning</h3><p class="small"><strong>What the check found:</strong> debris and open burning is the most common single general cause in B (<button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">30.0%</button>) and C (<button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">25.6%</button>), a plurality and not a majority; in Class C arson is within 1.2 points.</p>
+<p class="n">n = 2,303,566 · <button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">definition</button></p></div>
+<div class="card"><h3>The Control Efficiency Score ranks agencies on response</h3><p class="small"><strong>What the check found:</strong> the ranking flips between the mean-based and median-based versions (Spearman <button type="button" class="q" data-claim="ces.spearman_mean_vs_median">0.09</button>); the score follows final fire size and reporting convention. Retired; see <a href="ownership.html#ces">Ownership</a>.</p>
+<p class="n">n = 1,142,942 · <button type="button" class="q" data-claim="ces.by_owner">definition</button></p></div>
+<div class="card"><h3>The duration model "does well on short fires"</h3><p class="small"><strong>What the check found:</strong> the Random Forest reproduces exactly but loses to predicting zero days on mean absolute error (1.38 against 1.09 days); see <a href="model.html">Prediction</a>.</p>
+<p class="n">Source: docs/review/REPRODUCTION.md and outputs/reproduction_model.json</p></div></div>
+
+<h2 id="docs">Repository documents</h2>
+<ul class="tight">
+<li><a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/findings/descriptive.md">docs/findings/descriptive.md</a>: verdicts on every descriptive claim, with claim ids</li>
+<li><a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/review/REPRODUCTION.md">docs/review/REPRODUCTION.md</a>: the Phase 0 reproduction of every earlier README number</li>
+<li><a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/review">docs/review/</a>: the adversarial panel reviews (fire science, conservation, responsible AI, machine learning, reproducibility)</li>
+<li><a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a> and <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/EXPERIMENTS.md">docs/EXPERIMENTS.md</a></li>
+<li><a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">docs/SITE.md</a>: how this site is generated and the rules its pages follow</li>
+<li><a href="https://github.com/Robyn-Collie/wildfire-analysis/blob/main/analysis/descriptive.py">analysis/descriptive.py</a>: the code that writes the ledger; <a href="https://github.com/Robyn-Collie/wildfire-analysis/blob/main/scripts/build_site.py">scripts/build_site.py</a>: the code that writes this site</li>
+</ul>
+<h3>Static figures</h3>
+<p class="small muted">Rendered by analysis/figures.py from the same ledger; the interactive charts above are the primary view.</p>
+<div class="cards"><figure><a href="figures/cause_share_fires_vs_acres.png"><img src="figures/cause_share_fires_vs_acres.png" alt="cause share fires vs acres" loading="lazy"></a><figcaption>cause_share_fires_vs_acres.png</figcaption></figure><figure><a href="figures/cells_1deg_map.png"><img src="figures/cells_1deg_map.png" alt="cells 1deg map" loading="lazy"></a><figcaption>cells_1deg_map.png</figcaption></figure><figure><a href="figures/class_g_acres_trend.png"><img src="figures/class_g_acres_trend.png" alt="class g acres trend" loading="lazy"></a><figcaption>class_g_acres_trend.png</figcaption></figure><figure><a href="figures/containment_hours_by_class_owner.png"><img src="figures/containment_hours_by_class_owner.png" alt="containment hours by class owner" loading="lazy"></a><figcaption>containment_hours_by_class_owner.png</figcaption></figure><figure><a href="figures/coverage_state_year.png"><img src="figures/coverage_state_year.png" alt="coverage state year" loading="lazy"></a><figcaption>coverage_state_year.png</figcaption></figure><figure><a href="figures/fires_and_acres_by_year.png"><img src="figures/fires_and_acres_by_year.png" alt="fires and acres by year" loading="lazy"></a><figcaption>fires_and_acres_by_year.png</figcaption></figure><figure><a href="figures/ics_structures_by_year_cause.png"><img src="figures/ics_structures_by_year_cause.png" alt="ics structures by year cause" loading="lazy"></a><figcaption>ics_structures_by_year_cause.png</figcaption></figure><figure><a href="figures/june_class_g_states.png"><img src="figures/june_class_g_states.png" alt="june class g states" loading="lazy"></a><figcaption>june_class_g_states.png</figcaption></figure><figure><a href="figures/model_ablation.png"><img src="figures/model_ablation.png" alt="model ablation" loading="lazy"></a><figcaption>model_ablation.png</figcaption></figure><figure><a href="figures/model_importance.png"><img src="figures/model_importance.png" alt="model importance" loading="lazy"></a><figcaption>model_importance.png</figcaption></figure><figure><a href="figures/model_per_year.png"><img src="figures/model_per_year.png" alt="model per year" loading="lazy"></a><figcaption>model_per_year.png</figcaption></figure><figure><a href="figures/model_pr_curves.png"><img src="figures/model_pr_curves.png" alt="model pr curves" loading="lazy"></a><figcaption>model_pr_curves.png</figcaption></figure><figure><a href="figures/model_reliability.png"><img src="figures/model_reliability.png" alt="model reliability" loading="lazy"></a><figcaption>model_reliability.png</figcaption></figure><figure><a href="figures/monthly_class_g_by_region.png"><img src="figures/monthly_class_g_by_region.png" alt="monthly class g by region" loading="lazy"></a><figcaption>monthly_class_g_by_region.png</figcaption></figure><figure><a href="figures/ownership_acres.png"><img src="figures/ownership_acres.png" alt="ownership acres" loading="lazy"></a><figcaption>ownership_acres.png</figcaption></figure><figure><a href="figures/padus_gap_by_block.png"><img src="figures/padus_gap_by_block.png" alt="padus gap by block" loading="lazy"></a><figcaption>padus_gap_by_block.png</figcaption></figure><figure><a href="figures/padus_owner_agreement.png"><img src="figures/padus_owner_agreement.png" alt="padus owner agreement" loading="lazy"></a><figcaption>padus_owner_agreement.png</figcaption></figure><figure><a href="figures/padus_top_units.png"><img src="figures/padus_top_units.png" alt="padus top units" loading="lazy"></a><figcaption>padus_top_units.png</figcaption></figure><figure><a href="figures/seasonality_by_region.png"><img src="figures/seasonality_by_region.png" alt="seasonality by region" loading="lazy"></a><figcaption>seasonality_by_region.png</figcaption></figure></div>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  var C = WF.data.claims, ids = Object.keys(C).sort();
+  var host = document.getElementById('ledger-body'), input = document.getElementById('ledger-search'), count = document.getElementById('ledger-count');
+  function short(v) {
+    if (v === null || v === undefined) return '';
+    if (typeof v === 'number') return Number.isInteger(v) ? WF.fmt.int(v) : (Math.abs(v) < 1 ? v.toPrecision(4) : WF.fmt.num(v, 3));
+    if (typeof v === 'string') return v.length > 160 ? v.slice(0, 157) + '...' : v;
+    if (Array.isArray(v)) return 'list of ' + v.length;
+    return 'object with ' + Object.keys(v).length + ' keys';
+  }
+  function row(id) {
+    var c = C[id], tr = document.createElement('tr'), v = c.value;
+    var tdId = document.createElement('td'); tdId.className = 'id'; tdId.textContent = id; tr.appendChild(tdId);
+    var tdV = document.createElement('td');
+    if (v !== null && typeof v === 'object') {
+      var d = document.createElement('details'), s = document.createElement('summary'); s.textContent = short(v); d.appendChild(s);
+      var pre = document.createElement('pre'); pre.textContent = JSON.stringify(v, null, 1); d.appendChild(pre); tdV.appendChild(d);
+    } else tdV.textContent = short(v);
+    tr.appendChild(tdV);
+    [c.unit || '', typeof c.n === 'number' ? WF.fmt.int(c.n) : (c.n || ''), c.definition + (c.note ? ' Note: ' + c.note : ''), c.source + ' · ' + c._file + ' · ' + (c.computed_at || '').slice(0, 10)].forEach(function (x, i) { var td = document.createElement('td'); if (i === 1) td.className = 'num'; td.textContent = x; tr.appendChild(td); });
+    tr.setAttribute('data-text', (id + ' ' + c.definition + ' ' + (c.note || '') + ' ' + c.source + ' ' + c._file + ' ' + (typeof v === 'string' ? v : '')).toLowerCase());
+    return tr;
+  }
+  ids.forEach(function (id) { host.appendChild(row(id)); });
+  function filter() {
+    var qv = (input.value || '').toLowerCase().trim(), n = 0;
+    for (var i = 0; i < host.children.length; i++) { var tr = host.children[i]; var show = !qv || tr.getAttribute('data-text').indexOf(qv) >= 0; tr.hidden = !show; if (show) n++; }
+    count.textContent = n + ' of ' + ids.length + ' claims';
+  }
+  input.addEventListener('input', filter); filter();
+  document.getElementById('ledger-csv').onclick = function () {
+    var cols = [{ key: 'id' }, { key: 'value' }, { key: 'unit' }, { key: 'n' }, { key: 'definition' }, { key: 'note' }, { key: 'source' }, { key: 'file' }, { key: 'computed_at' }];
+    var rows = ids.map(function (id) { var c = C[id]; return { id: id, value: typeof c.value === 'object' ? JSON.stringify(c.value) : c.value, unit: c.unit, n: c.n, definition: c.definition, note: c.note, source: c.source, file: c._file, computed_at: c.computed_at }; });
+    WF.downloadCSV('claims_ledger', cols, rows, { title: 'Claims ledger', definition: 'every claim in outputs/claims*.json' });
+  };
+})();
+</script>
+</body>
+</html>
