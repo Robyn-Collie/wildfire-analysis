@@ -67,3 +67,21 @@ structures threatened", 38% filled), `WF_PEAK_PERSONNEL` ("Maximum value for TOT
 
 MTBS perimeters and severity, SILVIS WUI, LANDFIRE, NLCD and USFWS critical habitat: see
 `docs/review/panel-conservation.md` section (e) for verified landing pages, sizes and effort.
+
+## FPA FOD-Attributes (weather, fuels, terrain, protection, social context)
+
+Pourmohamad, Y., Abatzoglou, J. T., Belval, E. J., Fleishman, E., Short, K., Reeves, M. C., Nauslar, N., Higuera, P. E., Henderson, E., Ball, S., AghaKouchak, A., Prestemon, J. P., Olszewski, J., and Sadegh, M. (2024). Physical, social, and biological attributes for improved understanding and prediction of wildfires: FPA FOD-Attributes dataset. *Earth System Science Data* 16: 3045-3060, https://doi.org/10.5194/essd-16-3045-2024. Data: version 1.0, https://doi.org/10.5281/zenodo.8381129, **CC BY 4.0**. Fetched by `scripts/download_attributes.py` from `https://zenodo.org/api/records/8381129/files/<YYYY>_FPA_FOD_cons.csv/content` on 2026-09-25 into `data/external/fpa_fod_attributes/` and converted to `data/attributes_2010_2020.parquet` (about 80 of 308 columns; every `*_5D_*` column excluded). Join key `FOD_ID`: 100% of fires 2010-2018, 98.3% in 2019 (1,071 fires without an attribute row), 99.9% in 2020 (`outputs/model/attributes_join.csv`). Attributes cover the conterminous US only.
+
+| File | Bytes | SHA-256 |
+|---|---|---|
+| `2010_FPA_FOD_cons.csv` | 190,672,745 | `c7761457f15f065e4c89ac2bf19eee7bc5ee0cc8c769c9c70c4e7184f7020269` |
+| `2011_FPA_FOD_cons.csv` | 222,000,668 | `5d962375785b0addeb69d2a1d50890236b3d8c2f67dc5db1258bacfcf0e1afbd` |
+| `2012_FPA_FOD_cons.csv` | 166,891,051 | `7614f896129c8a8103162672a14812112b185d4b617c939d594d27991db6c27d` |
+| `2013_FPA_FOD_cons.csv` | 150,155,219 | `0dcf2cd88791aceb91d7fe249f57be55a29579f665228ab720cb8dc77af43fb6` |
+| `2014_FPA_FOD_cons.csv` | 160,447,054 | `69dcfdd455a8515475d92ca337ec16a96baccf146721766e9875de954426acf7` |
+| `2015_FPA_FOD_cons.csv` | 175,425,318 | `d813563b44ff4055a3e7de31070babd468708619515a43aae82dd89b93aa7b20` |
+| `2016_FPA_FOD_cons.csv` | 188,108,189 | `4145c8e8b2ba9a58a9c287ae6e0eb8ec652cc49a5d83a7b352b480a9ac223006` |
+| `2017_FPA_FOD_cons.csv` | 188,877,690 | `52f5025f958d9c0e7672d907aebfac2e5addb17256bb4a892bc77e3a0a17848e` |
+| `2018_FPA_FOD_cons.csv` | 186,160,898 | `f1267c0e8f3a4d081e36b6e8fced0c5534ad9b2fd6824d5a6fa1a5814c845270` |
+| `2019_FPA_FOD_cons.csv` | 143,602,358 | `217c9b808b7a90271090aa2912386969daff22daab0305d9ccfd1fe3e9797372` |
+| `2020_FPA_FOD_cons.csv` | 167,785,443 | `79e0cbc27dad54b4ca0af66884f794de21d15223ffe3e2b329bae92c457bdec1` |
