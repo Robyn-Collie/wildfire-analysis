@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Conservation · US wildfire record, 1992-2020</title>
+<title>Protected lands and losses · US wildfire record, 1992-2020</title>
 <meta name="description" content="Ignitions by protected-area status (PAD-US), where the missing-owner fires fall, and losses from ICS-209-PLUS incident reports.">
 <link rel="stylesheet" href="assets/site.css">
 <script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body>
 <div class="topbar"><div class="wrap">
-  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
-  <nav class="main" aria-label="Pages"><a href="index.html">Overview</a><a href="trends.html">Trends</a><a href="causes.html">Causes and seasons</a><a href="geography.html">Geography</a><a href="ownership.html">Ownership</a><a href="conservation.html" aria-current="page">Conservation</a><a href="model.html">Prediction</a><a href="methods.html">Methods and ledger</a></nav>
+  <a class="brand" href="index.html">US wildfires <span>1992-2020 · totals to 2025</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Story</a><a href="explore.html">Map</a><a href="trends.html">Trend</a><a href="causes.html">Seasons and causes</a><a href="places.html">Places</a><a href="conservation.html" aria-current="page">Protected lands and losses</a><a href="largest.html">Largest fires</a><a href="drivers.html">Drought</a><a href="model.html">Prediction</a><a href="methods.html">Data and methods</a></nav>
   <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
 </div></div>
 <main><div class="wrap">
@@ -53,14 +53,15 @@ Losses are concentrated: <button type="button" class="q" data-claim="ics.structu
 </div></main>
 <footer class="site"><div class="wrap">
   <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
-  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
-  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
   <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
 </div></footer>
 <script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
 <script src="vendor/geo_assets.js"></script>
 <script src="vendor/plotly.min.js" charset="utf-8"></script>
 <script src="assets/site.js"></script>
+
 <script>
 (function(){
   var C = WF.data.claims, MISS = 'Missing data/not specified/undetermined';

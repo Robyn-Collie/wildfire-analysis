@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Places · US wildfire record, 1992-2020</title>
+<meta name="description" content="Fire briefs for every US state: ignition calendar, large-fire rates, trends, protected land, losses and record completeness.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">US wildfires <span>1992-2020 · totals to 2025</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Story</a><a href="explore.html">Map</a><a href="trends.html">Trend</a><a href="causes.html">Seasons and causes</a><a href="places.html" aria-current="page">Places</a><a href="conservation.html">Protected lands and losses</a><a href="largest.html">Largest fires</a><a href="drivers.html">Drought</a><a href="model.html">Prediction</a><a href="methods.html">Data and methods</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>Places</h1>
+<p class="lede">A brief for every state: when fires start and from what, which ones grow, whether burned area is changing, how much burns on protected land, what destroyed buildings, and how complete the state's record is. Each brief prints on a few pages and links its tables as CSV.</p></header>
+<div class="state-grid"><a href="place-AL.html">Alabama</a><a href="place-AK.html">Alaska</a><a href="place-AZ.html">Arizona</a><a href="place-AR.html">Arkansas</a><a href="place-CA.html">California</a><a href="place-CO.html">Colorado</a><a href="place-CT.html">Connecticut</a><a href="place-DE.html">Delaware</a><a href="place-DC.html">District of Columbia</a><a href="place-FL.html">Florida</a><a href="place-GA.html">Georgia</a><a href="place-HI.html">Hawaii</a><a href="place-ID.html">Idaho</a><a href="place-IL.html">Illinois</a><a href="place-IN.html">Indiana</a><a href="place-IA.html">Iowa</a><a href="place-KS.html">Kansas</a><a href="place-KY.html">Kentucky</a><a href="place-LA.html">Louisiana</a><a href="place-ME.html">Maine</a><a href="place-MD.html">Maryland</a><a href="place-MA.html">Massachusetts</a><a href="place-MI.html">Michigan</a><a href="place-MN.html">Minnesota</a><a href="place-MS.html">Mississippi</a><a href="place-MO.html">Missouri</a><a href="place-MT.html">Montana</a><a href="place-NE.html">Nebraska</a><a href="place-NV.html">Nevada</a><a href="place-NH.html">New Hampshire</a><a href="place-NJ.html">New Jersey</a><a href="place-NM.html">New Mexico</a><a href="place-NY.html">New York</a><a href="place-NC.html">North Carolina</a><a href="place-ND.html">North Dakota</a><a href="place-OH.html">Ohio</a><a href="place-OK.html">Oklahoma</a><a href="place-OR.html">Oregon</a><a href="place-PA.html">Pennsylvania</a><a href="place-PR.html">Puerto Rico</a><a href="place-RI.html">Rhode Island</a><a href="place-SC.html">South Carolina</a><a href="place-SD.html">South Dakota</a><a href="place-TN.html">Tennessee</a><a href="place-TX.html">Texas</a><a href="place-UT.html">Utah</a><a href="place-VT.html">Vermont</a><a href="place-VA.html">Virginia</a><a href="place-WA.html">Washington</a><a href="place-WV.html">West Virginia</a><a href="place-WI.html">Wisconsin</a><a href="place-WY.html">Wyoming</a></div>
+<div id="places-map" class="chart" aria-live="polite"></div>
+<h2>All states</h2>
+<p>Sort by any column. Every count-based number uses the state's usable reporting window, so states are compared on years when their records are complete; the window is listed.
+Of the <button type="button" class="q" data-claim="places.acres_trend_summary">38</button> states with a window of 15 years or more, burned area trends upward in <button type="button" class="q" data-claim="places.acres_trend_summary">6</button> (CA, OR, AZ, WA, OK, IL) and downward in <button type="button" class="q" data-claim="places.acres_trend_summary">5</button> (MS, MN, TN, MD, ME) at p &lt; 0.05. About <button type="button" class="q" data-claim="places.acres_trend_summary">2</button> such results would appear by chance alone.</p>
+<div id="places-table" class="table-wrap"></div>
+<p class="small"><a href="downloads/places_summary.csv">places_summary.csv</a> · <a href="downloads/state_year.csv">state_year.csv</a> (fires, acres, large fires and the usable flag for every state and year)</p>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script><script src="data/places.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+
+<script>
+(function(){
+  var P = WF.data.places, C = WF.data.claims; if (!P) return;
+  var metrics = [
+    { key: 'fires_per_year', label: 'Fires a year (usable window)', fmt: function (v) { return WF.fmt.int(v); } },
+    { key: 'acres_per_year', label: 'Acres a year (usable window)', fmt: function (v) { return WF.fmt.compact(v); } },
+    { key: 'human_share', label: 'Human-caused share', fmt: function (v) { return WF.fmt.pct(v, 0); } },
+    { key: 'large_rate', label: 'Share reaching 300 acres', fmt: function (v) { return WF.fmt.pct(v, 1); } },
+    { key: 'structures', label: 'Structures destroyed 1999-2020 (ICS-209)', fmt: function (v) { return WF.fmt.int(v); } },
+    { key: 'gap12_acres', label: 'Acres on land managed for biodiversity', fmt: function (v) { return WF.fmt.pct(v, 0); } },
+    { key: 'cause_missing', label: 'Cause not recorded', fmt: function (v) { return WF.fmt.pct(v, 0); } },
+    { key: 'drought_rho', label: 'Drought-acres correlation (Spearman)', fmt: function (v) { return WF.fmt.num(v, 2); } }
+  ];
+  var m = metrics[0];
+  var ctrl = document.createElement('div'); var sel = document.createElement('select'); sel.setAttribute('aria-label', 'Metric');
+  metrics.forEach(function (x, i) { sel.appendChild(new Option(x.label, i)); }); ctrl.appendChild(sel);
+  var states = P.map(function (r) { return r.state; });
+  var entry = WF.chart({ el: 'places-map', title: 'States compared', claims: ['places.window_lengths', 'places.acres_trend_summary'], mapClass: true,
+    sub: 'Pick a measure. Grey states have no value (too few fires or not tested). Click a state in the table below for its brief.', controls: ctrl, csvName: 'places_summary',
+    rows: P, columns: [{ key: 'state' }, { key: 'name' }].concat(metrics.map(function (x) { return { key: x.key, label: x.label, num: true, fmt: x.fmt }; })),
+    height: 420,
+    build: function (t) {
+      var v = P.map(function (r) { return r[m.key]; });
+      var rev = m.key === 'drought_rho';
+      return { data: [{ type: 'choropleth', locationmode: 'USA-states', locations: states, z: v, text: P.map(function (r) { return r.name + ': ' + (r[m.key] === null || r[m.key] === undefined ? 'n/a' : m.fmt(r[m.key])); }),
+        hovertemplate: '%{text}<extra></extra>', colorscale: WF.seqScale(t), reversescale: rev, marker: { line: { color: t.surface, width: 1 } }, colorbar: { thickness: 10, tickfont: { color: t.muted } } }],
+        layout: { geo: { scope: 'usa', bgcolor: 'rgba(0,0,0,0)', lakecolor: 'rgba(0,0,0,0)', showlakes: false, subunitcolor: t.surface }, margin: { l: 0, r: 0, t: 0, b: 0 } } };
+    }
+  });
+  sel.onchange = function () { m = metrics[+sel.value]; entry.render(); };
+  var host = document.getElementById('places-table');
+  var cols = [{ key: 'name', label: 'State' }, { key: 'region' }, { key: 'window', label: 'usable years' }].concat(metrics.map(function (x) { return { key: x.key, label: x.label, num: true, fmt: x.fmt }; }));
+  var tbl = WF.buildTable(cols, P, { sortable: true });
+  host.appendChild(tbl);
+  var rowsEls = tbl.querySelectorAll('tbody tr');
+  function linkify() { var trs = tbl.querySelectorAll('tbody tr'); for (var i = 0; i < trs.length; i++) { var td = trs[i].firstChild; var nm = td.textContent; var r = P.filter(function (x) { return x.name === nm; })[0]; if (r && !td.querySelector('a')) { td.textContent = ''; var a = document.createElement('a'); a.href = 'place-' + r.state + '.html'; a.textContent = nm; td.appendChild(a); } } }
+  linkify(); tbl.addEventListener('click', function () { setTimeout(linkify, 0); });
+})();
+</script>
+</body>
+</html>

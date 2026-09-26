@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Largest fires · US wildfire record, 1992-2020</title>
+<meta name="description" content="The largest US wildfires 1992-2020, grouped so each incident appears once, with the component fires listed.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">US wildfires <span>1992-2020 · totals to 2025</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Story</a><a href="explore.html">Map</a><a href="trends.html">Trend</a><a href="causes.html">Seasons and causes</a><a href="places.html">Places</a><a href="conservation.html">Protected lands and losses</a><a href="largest.html" aria-current="page">Largest fires</a><a href="drivers.html">Drought</a><a href="model.html">Prediction</a><a href="methods.html">Data and methods</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>The largest fires, counted once each</h1>
+<p class="lede">A complex of fires managed as one incident appears in the FPA FOD as several records. Listing records, as the first version of this site did, counts the same incident more than once and understates it: the August Complex of 2020 is <button type="button" class="q" data-claim="incidents.largest">1,031,896 acres</button> as an incident, but its largest single record is 589,368.</p></header>
+<p>Among the 100 largest records there are <button type="button" class="q" data-claim="incidents.row_top100_duplicates">92</button> distinct incidents; <button type="button" class="q" data-claim="incidents.row_top100_duplicates">14</button> records share an incident with another record in the list:</p>
+<ul class="tight"><li><strong>East Amarillo Complex</strong> (TX, 2006): Hwy 152, I-40 at record ranks 10, 13</li><li><strong>Rodeo/Chediski Complex</strong> (AZ, 2002): Rodeo, Chediski at record ranks 49, 80</li><li><strong>Central Complex</strong> (AK, 2004): Preacher Creek, Wolf Creek, Bolgen Creek at record ranks 58, 77, 86</li><li><strong>Solstice Complex</strong> (AK, 2004): Pingo, Winter Traill at record ranks 17, 25</li><li><strong>Taylor Complex</strong> (AK, 2004): Billy Ck, Chicken 1, Porcupine at record ranks 11, 27, 40</li><li><strong>August Complex</strong> (CA, 2020): Doe, Hopkins at record ranks 3, 26</li></ul>
+<p class="small">Rule: Records share an incident when they share ICS_209_PLUS_COMPLEX_JOIN_ID, ICS_209_PLUS_INCIDENT_JOIN_ID, or FIRE_YEAR+STATE+COMPLEX_NAME (transitively). Incident acres = sum of component FIRE_SIZE; no record is dropped. <button type="button" class="q" data-claim="incidents.grouping">939</button> incidents group more than one record. MTBS perimeter ids are not used for grouping, because one perimeter can span fires managed as separate complexes. <a href="https://github.com/Robyn-Collie/wildfire-analysis/blob/main/analysis/incidents.py">analysis/incidents.py</a></p>
+<h2>The 100 largest incidents, 1992-2020</h2>
+<p>From <button type="button" class="q" data-claim="incidents.largest100_summary">191,444</button> to <button type="button" class="q" data-claim="incidents.largest100_summary">1,303,333 acres</button>. <button type="button" class="q" data-claim="incidents.largest100_summary">35</button> are in Alaska; <button type="button" class="q" data-claim="incidents.largest100_summary">50</button> started in 2010 or later.
+Lightning started <button type="button" class="q" data-claim="incidents.largest100_summary">72</button> of them and people <button type="button" class="q" data-claim="incidents.largest100_summary">22</button>; <button type="button" class="q" data-claim="incidents.largest100_summary">6</button> have no recorded cause.</p>
+<div class="toolbar"><input id="largest-search" class="search" type="search" placeholder="Search the 250 largest by name, state or year" aria-label="Search incidents"><a class="btn" href="downloads/largest_incidents.csv">Download the 250 largest (CSV)</a></div>
+<div id="largest-table" class="table-wrap"></div>
+<p class="small muted">Acres are the sum of the component records' FIRE_SIZE. When fires merged and each record reports the merged area, the sum overstates; compare it with the largest single fire. The cause and state are those of the largest component. Names are as recorded.</p>
+<div id="big-per-year" class="chart" aria-live="polite"></div>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script><script src="data/largest.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+
+<script>
+(function(){
+  var L = WF.data.largest, C = WF.data.claims; if (!L) return;
+  var host = document.getElementById('largest-table');
+  var input = document.getElementById('largest-search');
+  var cols = [{ key: 'rank', num: true }, { key: 'name', label: 'Incident' }, { key: 'states', label: 'State' }, { key: 'years', label: 'Year' },
+    { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'components', label: 'fires in it', num: true }, { key: 'largest_component_acres', label: 'largest single fire', num: true, fmt: WF.fmt.int },
+    { key: 'cause' }, { key: 'component_names', label: 'component fires' }];
+  function draw(filter) {
+    host.textContent = '';
+    var rows = L.filter(function (r) { if (!filter) return +r.rank <= 100; var s = (r.name + ' ' + r.states + ' ' + r.years + ' ' + r.component_names).toLowerCase(); return s.indexOf(filter) >= 0; });
+    host.appendChild(WF.buildTable(cols, rows, { sortable: true }));
+  }
+  draw('');
+  input.addEventListener('input', function () { draw(input.value.trim().toLowerCase()); });
+  var py = C['incidents.100k_per_year'];
+  if (py) {
+    var ys = WF.years(py.value);
+    WF.chart({ el: 'big-per-year', title: 'Incidents of 100,000 acres or more, per year', claims: ['incidents.100k_per_year', 'incidents.rule'],
+      sub: 'Grouped incidents, by the discovery year of the largest component fire.',
+      rows: ys.map(function (y) { return { year: y, incidents: py.value[y] }; }), columns: [{ key: 'year' }, { key: 'incidents', num: true }], height: 260,
+      build: function (t) { return { data: [{ type: 'bar', x: ys, y: ys.map(function (y) { return py.value[y]; }), marker: { color: t.series[1] }, hovertemplate: '%{x}: %{y} incidents<extra></extra>' }], layout: { showlegend: false, yaxis: { rangemode: 'tozero', title: { text: 'incidents' } } } }; }
+    });
+  }
+})();
+</script>
+</body>
+</html>

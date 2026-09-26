@@ -129,3 +129,51 @@ Every model run, including failed and unflattering ones. Data hash is the SHA-25
 - MTBS label: PR-AUC 0.076 [0.067, 0.089] against a lookup of 0.032 [0.026, 0.039].
 - **Correction (same day).** The first write-up of this run said 78% of large fires fall in the top decile. With tied isotonic scores the "top decile" flagged 12.0% of fires; the exact share at 10% is 74.1%. `score()` and `bootstrap()` now take exactly the top 10% by rank whenever ties move the share by more than half a point.
 - Conclusion: **usable as a ranking, not as a probability.** Where a fire starts carries the signal; weather on the discovery day adds nothing measurable. The prediction headline changes accordingly (see `docs/findings/large_fire_model.md`).
+
+## E-016 · 2026-09-26 · Replication and stricter tests of the first site's drought model
+- Question: does the first public site's state-year climate model (pooled OLS of log10(acres+1) on z-scored May-October PDSI, temperature and precipitation, state fixed effects, 38 states, 1992-2020, leave-one-year-out) replicate, and does its skill survive a forward-in-time test and the coverage mask?
+- Code: `python -m analysis.drivers --out outputs/` (17 s). Claims: `outputs/claims_drivers.json`. Write-up: `docs/findings/nifc_and_drivers.md`.
+- Replication: all 45 published numbers match (`drivers.v1_replication`). The skill is an MSE reduction on the log10 scale against each state's median from the training years. An exact match needs the z-scores refitted within each training fold.
+- Results (skill vs state median; out-of-sample R²):
+
+| Test | n | Skill | R² |
+|---|---|---|---|
+| LOYO, all years | 1,102 | 17.1% | 0.711 |
+| Forward in time, test years 2005-2020 | 608 | 14.7% | 0.690 |
+| LOYO, usable years only | 883 | 21.9% | 0.788 |
+| Forward, usable years only | 513 | 9.8% | 0.730 |
+
+- Forward test: 5 of 16 years have negative skill (2008, 2009, 2010, 2014, 2015). 55% of the 20 largest LOYO misses fall in unusable state-years, against 19.9% of rows.
+- Conclusion: seasonal climate explains a real, modest part of year-to-year burned area. The first site's 17.1% is the most favourable of the four tests.
+
+## E-017 · 2026-09-26 · Forward test on WFIGS 2021-2025 (reduced model), with a post hoc diagnostic
+- Question: does a large-fire ranking trained on FPA FOD 2010-2020 rank fires from years it never saw, in a different reporting system?
+- Pre-specified before scoring (by the analysis brief):
+  - Model: HistGradientBoosting with the E-012 settings.
+  - Inputs: latitude, longitude, leap-aware day-of-year sine and cosine, month, cause class (Human/Natural/Missing), owner class (Federal/State/Private/Tribal/Other/Missing).
+  - Baseline: the cell x month lookup.
+  - Test set: WFIGS 2021-2025 CONUS fires with a size (185,618; 4,486 reached 300 acres).
+  - Metrics: PR-AUC with 1,000-resample intervals, ROC-AUC, exact top-10% capture.
+- Code: `python -m analysis.wfigs --stage analyze --out outputs/` (6 min). Claims: `wfigs.forward_test`, `wfigs.forward_test_ablation`. Write-up: `docs/findings/wfigs_2021_2025.md`.
+- Result, pre-specified: **the model failed.** PR-AUC 0.041 [0.039, 0.044] against the lookup's 0.081 [0.075, 0.086]. Top-10% capture 21% against 34%. It lost in all five years.
+- Post hoc diagnostic, added after seeing the result (so explanatory, not a clean test):
+
+| Inputs | FPA FOD 2019-2020 | WFIGS 2021-2025 |
+|---|---|---|
+| Location + season | 0.086 | 0.111 [0.104, 0.119] |
+| + cause | 0.091 | 0.107 |
+| + cause + owner (pre-specified) | 0.091 | 0.041 |
+| Lookup | 0.075 | 0.081 |
+
+  - The owner feature does not transfer. In FPA FOD, 41% of training fires have no owner, and 0.6% of those became large. In WFIGS, owner is recorded for 99.95% of fires.
+  - Without owner, the ranking transfers and beats the lookup.
+- Conclusion: features that encode a reporting system's conventions carry apparent skill that does not travel. The full 96-input model (E-015) was not and cannot be scored on WFIGS, because its attributes stop in 2020.
+
+## E-018 · 2026-09-26 · Grouping FPA FOD records into incidents
+- Question: how many of the "largest fires" are the same incident counted twice?
+- Rule: records are linked when they share `ICS_209_PLUS_COMPLEX_JOIN_ID`, `ICS_209_PLUS_INCIDENT_JOIN_ID`, or year + state + normalized `COMPLEX_NAME`. Linking is transitive (connected components). Incident acres are the sum of `FIRE_SIZE`.
+- Rejected variants, both checked against known incidents:
+  - Adding `MTBS_ID` as a key chained four 2008 California complexes into one 107-record "incident".
+  - A duplicate-report filter (same MTBS perimeter, different source system, sizes within 15%) removed the I-40 fire of the East Amarillo Complex, a distinct 427,696-acre fire.
+- Result: 2,303,566 records form 2,299,257 incidents, 939 of them with more than one record. The 100 largest records are 92 incidents. Checks against published totals: East Amarillo Complex 907,245 acres (published 907,245); August Complex 1,031,896 (published: about 1.03 million); Taylor Complex 1,303,333 (published: about 1.3 million).
+- Code: `python -m analysis.incidents --out outputs/` (11 s). Claims: `outputs/claims_incidents.json`.

@@ -143,6 +143,13 @@ def load_coverage(claims: dict) -> dict | None:
 
 # --------------------------------------------------------------------------- helpers
 
+def V():
+    """The version 2 page module (scripts/site_v2.py), imported lazily because it imports this module."""
+    sys.modules.setdefault('build_site', sys.modules[__name__])
+    import site_v2
+    return site_v2
+
+
 def esc(s) -> str:
     return html.escape(str(s), quote=True)
 
@@ -688,10 +695,14 @@ SITE_JS = r"""
 
 # --------------------------------------------------------------------------- page shell
 
-def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', description: str = '') -> str:
+def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', description: str = '',
+           extra_scripts: list[str] | tuple = (), body_attrs: str = '', nav_page: str | None = None) -> str:
+    current = nav_page or page
     nav = ''.join(
-        f'<a href="{href}"{" aria-current=\"page\"" if href == page else ""}>{esc(label)}</a>' for href, label in NAV)
+        f'<a href="{href}"{" aria-current=\"page\"" if href == current else ""}>{esc(label)}</a>' for href, label in NAV)
     data_scripts = ''.join(f'<script src="data/{f}"></script>' for f in ctx['data_files'])
+    data_scripts += ''.join(f'<script src="{esc(f)}"></script>' for f in extra_scripts if not f.startswith('assets/'))
+    asset_scripts = ''.join(f'<script src="{esc(f)}"></script>' for f in extra_scripts if f.startswith('assets/'))
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -702,9 +713,9 @@ def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', descr
 <link rel="stylesheet" href="assets/site.css">
 <script>(function(){{try{{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 </head>
-<body>
+<body{(' ' + body_attrs) if body_attrs else ''}>
 <div class="topbar"><div class="wrap">
-  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
+  <a class="brand" href="index.html">US wildfires <span>1992-2020 · totals to 2025</span></a>
   <nav class="main" aria-label="Pages">{nav}</nav>
   <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
 </div></div>
@@ -714,13 +725,14 @@ def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', descr
 <footer class="site"><div class="wrap">
   <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>{esc(ctx['hash_prefix'])}</code> (full hash in <a href="{DOCS_URL}/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
   Site generated {esc(ctx['generated'])} by <code>scripts/build_site.py</code> from {esc(', '.join(ctx['claims_files']))}.</p>
-  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
   <a href="{DOCS_URL}">Repository docs</a> · <a href="{DOCS_URL}/SITE.md">How this site is built</a> · <a href="{REPO_URL}">{esc(REPO_URL.replace('https://', ''))}</a> · {esc(AUTHOR)}.</p>
 </div></footer>
 {data_scripts}
 {'<script src="vendor/geo_assets.js"></script>' if PLOTLY_SRC != PLOTLY_CDN else ''}
 <script src="{PLOTLY_SRC}" charset="utf-8"></script>
 <script src="assets/site.js"></script>
+{asset_scripts}
 {('<script>' + page_js + '</script>') if page_js else ''}
 </body>
 </html>
@@ -945,10 +957,11 @@ def page_trends(ctx: dict) -> str:
                                'Not rendered: neither a <code>coverage.fires_by_state_year</code> claim nor <code>outputs/coverage.json</code> exists yet. '
                                'When one appears (contract in <a href="' + DOCS_URL + '/SITE.md">docs/SITE.md</a>) this section becomes a state x year heatmap of record counts with reporting breaks marked.')
     body = f"""
-<header class="page-head"><h1>Trends</h1>
-<p class="lede">Acres burned by the largest fires rise over 1992-2020. The number of recorded fires does not, and it could not tell you if it did, because the record's coverage changes from year to year.</p></header>
+<header class="page-head"><h1>Trend</h1>
+<p class="lede">National burned area has risen since the 1980s, in the bad years and the quiet ones. In the FPA FOD, acres burned by the largest fires rise over 1992-2020. The number of recorded fires does not, and it could not tell you if it did, because the record's coverage changes from year to year.</p></header>
 
-<h2>Fires and acres per year</h2>
+{V().nifc_section(ctx)}
+<h2>Fires and acres per year in the FPA FOD, 1992-2020</h2>
 <p>The most fires in one year is {q(c, 'year.fires_and_acres_peak', fmt_int(cv(c, 'year.fires_and_acres_peak', 'fires_peak')))} in {q(c, 'year.fires_and_acres_peak', str(cv(c, 'year.fires_and_acres_peak', 'fires_peak_year')))}, a reporting peak rather than a fire peak.
 The most acres is {q(c, 'year.fires_and_acres_peak', fmt_m(cv(c, 'year.fires_and_acres_peak', 'acres_peak')))} in {q(c, 'year.fires_and_acres_peak', str(cv(c, 'year.fires_and_acres_peak', 'acres_peak_year')))}.
 Total acres trend upward (Kendall tau {q(c, 'year.acres_trend', fmt_num(cv(c, 'year.acres_trend', 'kendall_tau'), 2))}, p = {q(c, 'year.acres_trend', fmt_num(cv(c, 'year.acres_trend', 'kendall_p'), 3))}); fire counts do not (tau {q(c, 'year.fires_trend', fmt_num(ftr['kendall_tau'], 2))}, p = {q(c, 'year.fires_trend', fmt_num(ftr['kendall_p'], 2))}).</p>
@@ -977,7 +990,7 @@ The trend is carried by extreme years, which is what a fire regime driven by a f
 <h2 id="coverage">Coverage by state and year</h2>
 {cov_html}
 """
-    return layout(ctx, 'trends.html', 'Trends · ' + SITE_TITLE, body, TRENDS_JS,
+    return layout(ctx, 'trends.html', 'Trend · ' + SITE_TITLE, body, V().NIFC_JS + TRENDS_JS,
                   description='Fires and acres per year, the Class G acreage trend with and without Alaska, and why fire counts are not a trend.')
 
 
@@ -1124,10 +1137,11 @@ def page_causes(ctx: dict) -> str:
         for k in SIZE_CLASSES)
     lead_row = ''.join(f'<td>{esc(lead[m])}</td>' for m in MONTHS)
     body = f"""
-<header class="page-head"><h1>Causes and seasons</h1>
+<header class="page-head"><h1>Seasons and causes</h1>
 <p class="lede">Human ignitions are {q(c, 'cause.by_classification', fmt_pct(bc['Human']['share_fires']))} of recorded fires but {q(c, 'cause.by_classification', fmt_pct(bc['Human']['share_acres']))} of acres. Natural ignitions are {q(c, 'cause.by_classification', fmt_pct(bc['Natural']['share_fires']))} of fires and {q(c, 'cause.by_classification', fmt_pct(bc['Natural']['share_acres']))} of acres.
 The cause is undetermined for {q(c, 'cause.by_classification', fmt_pct(bc[miss]['share_fires']))} of fires, and that share is never dropped from a chart on this site.</p></header>
 
+{V().calendar_section(ctx)}
 <h2>Human, natural, undetermined</h2>
 <p>Human fires outnumber natural ones {q(c, 'cause.human_to_natural_fire_ratio', fmt_num(cv(c, 'cause.human_to_natural_fire_ratio'), 1) + ' to 1')}; natural fires burn {q(c, 'cause.natural_acres', fmt_m(cv(c, 'cause.natural_acres')))} acres, most of it in the West and Alaska. The general cause (13 categories) is undetermined for a larger share, {q(c, 'overview.missing_shares', fmt_pct(cv(c, 'overview.missing_shares', 'NWCG_GENERAL_CAUSE_missing_category')))} of records.</p>
 {chart_div('cause-national')}
@@ -1152,7 +1166,7 @@ The cause is undetermined for {q(c, 'cause.by_classification', fmt_pct(bc[miss][
 <p class="small muted">Region with the most Class G fires in each month; n = {q(c, 'season.class_g_leading_region_by_month', fmt_int(c['season.class_g_leading_region_by_month']['n']))} Class G fires.</p>
 {chart_div('classg-month')}
 """
-    return layout(ctx, 'causes.html', 'Causes and seasons · ' + SITE_TITLE, body, CAUSES_JS,
+    return layout(ctx, 'causes.html', 'Seasons and causes · ' + SITE_TITLE, body, CAUSES_JS + V().CAL_JS, extra_scripts=[ctx['calendar_data']] if ctx.get('calendar_data') else [],
                   description='Human, natural and undetermined causes by fires and acres, cause within size class, and seasonality by region.')
 
 
@@ -1440,6 +1454,9 @@ def page_methods(ctx: dict) -> str:
 <p><input class="search" id="ledger-search" type="search" placeholder="Search claims, e.g. class_g or containment" aria-label="Search claims"> <span class="small muted" id="ledger-count"></span></p>
 <div class="table-wrap"><table class="ledger"><thead><tr><th>id</th><th>value</th><th>unit</th><th class="num">n</th><th>definition</th><th>source</th></tr></thead><tbody id="ledger-body"></tbody></table></div>
 
+{V().downloads_section(ctx)}
+<h2 id="audit">Audit of the first public site</h2>
+<p>The first public version of this project was rebuilt from its sources and re-tested; <a href="audit.html">what held and what changed</a>.</p>
 <h2 id="errata">Errata</h2>
 <p>Claims from the earlier version of this project that did not survive the check, kept next to what the check found.</p>
 <div class="cards">{errata_html}{extra_errata}</div>
@@ -1457,7 +1474,7 @@ def page_methods(ctx: dict) -> str:
 <p class="small muted">Rendered by analysis/figures.py from the same ledger; the interactive charts above are the primary view.</p>
 <div class="cards">{''.join(f'<figure><a href="figures/{esc(f)}"><img src="figures/{esc(f)}" alt="{esc(f.replace("_", " ").replace(".png", ""))}" loading="lazy"></a><figcaption>{esc(f)}</figcaption></figure>' for f in ctx['figures'])}</div>
 """
-    return layout(ctx, 'methods.html', 'Methods and ledger · ' + SITE_TITLE, body, METHODS_JS,
+    return layout(ctx, 'methods.html', 'Data and methods · ' + SITE_TITLE, body, METHODS_JS,
                   description='Data version and hash, definitions glossary, the searchable claims ledger and the errata.')
 
 
@@ -1570,7 +1587,7 @@ def page_conservation(ctx: dict) -> str:
 <p class="lede">Not rendered: <code>outputs/claims_conservation.json</code> is not present. When it is, this page shows the PAD-US protected-area join (ignitions by GAP status, where the missing-owner fires fall), the ICS-209-PLUS outcomes join (structures, evacuations, personnel for fires of 300 acres and more) and the reporting-coverage mask.</p></header>
 {placeholder('Conservation joins', 'Run <code>python -m analysis.conservation --out outputs/</code> and rebuild the site. Contract in <a href="' + DOCS_URL + '/SITE.md">docs/SITE.md</a>.')}
 """
-        return layout(ctx, 'conservation.html', 'Conservation · ' + SITE_TITLE, body)
+        return layout(ctx, 'conservation.html', 'Protected lands and losses · ' + SITE_TITLE, body)
 
     def has(cid):
         return cid in c
@@ -1638,7 +1655,7 @@ Losses are concentrated: {q(c, 'ics.structures_destroyed_distribution', fmt_pct(
 <h2>What these joins do not do</h2>
 <p>They attach attributes to the ignition point. A fire that started on private land and burned into a wilderness area is counted as private-land ignition here; area actually burned inside protected units needs fire perimeters (MTBS), which are not yet joined. ICS-209 reports exist for a minority of fires and are filed by incident teams under time pressure, so the outcome fields are incomplete (fill rates are in the ledger, <code>ics.field_fill_rates_sample</code>).</p>
 """
-    return layout(ctx, 'conservation.html', 'Conservation · ' + SITE_TITLE, body, CONS_JS,
+    return layout(ctx, 'conservation.html', 'Protected lands and losses · ' + SITE_TITLE, body, CONS_JS,
                   description='Ignitions by protected-area status (PAD-US), where the missing-owner fires fall, and losses from ICS-209-PLUS incident reports.')
 
 
@@ -1769,6 +1786,7 @@ Trained on {esc(card.get('train_years', '?'))}, tested once on {esc(card.get('te
 <p>Data contract: <a href="{DOCS_URL}/SITE.md">docs/SITE.md</a>, section "claims_model.json". Wording on this page will use "expected", "typical" and "range", never "risk", "danger" or "safe", and no red/green scale.</p></div>
 {retired}
 """
+    body += V().wfigs_section(ctx)
     return layout(ctx, 'model.html', 'Prediction · ' + SITE_TITLE, body, MODEL_JS if has_model else '',
                   description='A model that ranks new fires by how likely they are to become large, tested once on 2019-2020, with the calibration failure shown; and the retired duration model.')
 
@@ -1782,6 +1800,9 @@ def write(path: str, text: str) -> None:
 
 
 def main() -> int:
+    global NAV
+    v2 = V()
+    NAV = v2.NAV
     claims, files, missing = load_claims()
     if not files:
         print('error: no outputs/claims*.json found; run `python -m analysis.descriptive --out outputs/` first', file=sys.stderr)
@@ -1794,9 +1815,8 @@ def main() -> int:
     # Start clean so removed pages do not linger, but keep nothing that is not generated.
     if os.path.isdir(SITE_DIR):
         shutil.rmtree(SITE_DIR)
-    os.makedirs(os.path.join(SITE_DIR, 'data'))
-    os.makedirs(os.path.join(SITE_DIR, 'assets'))
-    os.makedirs(os.path.join(SITE_DIR, 'figures'))
+    for d in ('data', 'assets', 'figures', 'downloads'):
+        os.makedirs(os.path.join(SITE_DIR, d))
     if PLOTLY_SRC != PLOTLY_CDN:
         os.makedirs(os.path.join(SITE_DIR, 'vendor'))
         shutil.copy2(PLOTLY_VENDORED, os.path.join(SITE_DIR, 'vendor', 'plotly.min.js'))
@@ -1814,29 +1834,89 @@ def main() -> int:
         shutil.copy2(src, os.path.join(SITE_DIR, 'figures', os.path.basename(src)))
         figures.append(os.path.basename(src))
 
+    # Map console: point files, outlines and the renderer.
+    here = os.path.dirname(os.path.abspath(__file__))
+    sys.path.insert(0, here)
+    import build_points
+    build_points.main(['--site', SITE_DIR])
+    with open(os.path.join(SITE_DIR, 'data', 'points_meta.json')) as fh:
+        points_meta = json.load(fh)
+    shutil.copy2(os.path.join(here, 'site_assets', 'console.js'), os.path.join(SITE_DIR, 'assets', 'console.js'))
+
+    # Per-state claims are large; each state page loads only its own, and the global ledger file carries the rest.
+    place_ids = sorted(k for k in claims if k.startswith('places.state.'))
+    shared = {k: v for k, v in claims.items() if not k.startswith('places.state.')}
     meta = {'generated': generated, 'hash_prefix': hash_prefix, 'hash': hash_full, 'repo': REPO_URL,
-            'claims_files': files, 'claims_missing': missing, 'n_claims': len(claims), 'author': AUTHOR}
+            'claims_files': files, 'claims_missing': missing, 'n_claims': len(claims), 'author': AUTHOR,
+            'n_place_claims_on_state_pages': len(place_ids)}
     write(os.path.join(SITE_DIR, 'data', 'meta.js'), 'window.WF_DATA = window.WF_DATA || {};\nwindow.WF_DATA.meta = ' + js(meta) + ';\n')
-    write(os.path.join(SITE_DIR, 'data', 'claims.js'), 'window.WF_DATA = window.WF_DATA || {};\nwindow.WF_DATA.claims = ' + js(claims) + ';\n')
+    write(os.path.join(SITE_DIR, 'data', 'claims.js'), 'window.WF_DATA = window.WF_DATA || {};\nwindow.WF_DATA.claims = ' + js(shared) + ';\n')
     write(os.path.join(SITE_DIR, 'data', 'cells.js'), 'window.WF_DATA = window.WF_DATA || {};\nwindow.WF_DATA.cells = ' + js(cells) + ';\n')
     data_files = ['meta.js', 'claims.js', 'cells.js']
     if coverage:
         write(os.path.join(SITE_DIR, 'data', 'coverage.js'), 'window.WF_DATA = window.WF_DATA || {};\nwindow.WF_DATA.coverage = ' + js(coverage) + ';\n')
         data_files.append('coverage.js')
+    for cid in place_ids:
+        st = cid.rsplit('.', 1)[1]
+        write(os.path.join(SITE_DIR, 'data', f'place_{st}.js'),
+              'window.WF_DATA = window.WF_DATA || {};\nwindow.WF_DATA.claims = window.WF_DATA.claims || {};\n'
+              f'window.WF_DATA.claims[{js(cid)}] = ' + js(claims[cid]) + ';\n')
 
-    write(os.path.join(SITE_DIR, 'assets', 'site.css'), CSS.strip() + '\n')
+    write(os.path.join(SITE_DIR, 'assets', 'site.css'), CSS.strip() + '\n' + v2.CSS.strip() + '\n')
     write(os.path.join(SITE_DIR, 'assets', 'site.js'), SITE_JS.strip() + '\n')
+
+    # Downloads: every table behind the site and every ledger.
+    downloads = []
+    tab = os.path.join(OUT_DIR, 'tables')
+    for name, desc in [('places_summary.csv', 'one row per state'), ('state_year.csv', 'fires, acres, large fires and the usable flag per state-year'),
+                       ('calendar_regions.csv', 'fires by region, month and general cause, usable state-years'),
+                       ('largest_incidents.csv', 'the 250 largest incidents, grouped, with component fires')]:
+        if os.path.exists(os.path.join(tab, name)):
+            shutil.copy2(os.path.join(tab, name), os.path.join(SITE_DIR, 'downloads', name))
+            downloads.append((name, desc))
+    if os.path.isdir(os.path.join(tab, 'calendar')):
+        shutil.copytree(os.path.join(tab, 'calendar'), os.path.join(SITE_DIR, 'downloads', 'calendar'))
+    shutil.copy2(os.path.join(OUT_DIR, 'coverage_state_year.csv'), os.path.join(SITE_DIR, 'downloads', 'coverage_state_year.csv'))
+    downloads.append(('coverage_state_year.csv', 'record counts, breaks and usable windows per state-year'))
+    for f in files:
+        shutil.copy2(os.path.join(OUT_DIR, f), os.path.join(SITE_DIR, 'downloads', f))
+        downloads.append((f, 'claims ledger'))
 
     ctx = {'claims': claims, 'cells': cells, 'coverage': coverage, 'hash_full': hash_full, 'hash_prefix': hash_prefix,
            'generated': generated, 'claims_files': files, 'claims_missing': missing, 'n_claims': len(claims),
-           'data_files': data_files, 'figures': figures}
+           'data_files': data_files, 'figures': figures, 'points_meta': points_meta, 'downloads': downloads}
+    cal = v2.calendar_data()
+    if cal:
+        ctx['calendar_data'] = v2.data_file(ctx, 'calendar.js', 'calendar', cal)
+    ctx['places_rows'] = v2.places_index_rows(claims)
+    ctx['places_data'] = v2.data_file(ctx, 'places.js', 'places', ctx['places_rows'])
+    largest = v2.read_csv('largest_incidents.csv')
+    for r in largest:
+        for k in ('acres', 'largest_component_acres'):
+            r[k] = round(float(r[k]), 1)
+        r['components'] = int(r['components'])
+        r['rank'] = int(r['rank'])
+        r['name'] = r['name'].title()
+        r['component_names'] = r['component_names'].title()
+        r['cause'] = 'Not recorded' if r['cause'] == v2.MISS else r['cause']
+        for k in ('mtbs_id', 'ics209_id', 'latitude', 'longitude', 'general_cause', 'first_discovery', 'lead_fire', ''):
+            r.pop(k, None)
+    ctx['largest_data'] = v2.data_file(ctx, 'largest.js', 'largest', largest)
+    ctx['wfigs_states'] = {r['state']: r for r in (claims.get('wfigs.per_state_2021_2025', {}).get('value') or [])}
+
     pages = {
-        'index.html': page_index, 'trends.html': page_trends, 'causes.html': page_causes, 'geography.html': page_geography,
-        'ownership.html': page_ownership, 'conservation.html': page_conservation, 'model.html': page_model,
-        'methods.html': page_methods,
+        'index.html': v2.page_home, 'explore.html': v2.page_explore, 'trends.html': page_trends, 'causes.html': page_causes,
+        'places.html': v2.page_places, 'conservation.html': page_conservation, 'largest.html': v2.page_largest,
+        'drivers.html': v2.page_drivers, 'model.html': page_model, 'methods.html': page_methods, 'audit.html': v2.page_audit,
+        'geography.html': page_geography, 'ownership.html': page_ownership,
     }
     for name, fn in pages.items():
-        write(os.path.join(SITE_DIR, name), fn(ctx))
+        html_text = fn(ctx)
+        if html_text:
+            write(os.path.join(SITE_DIR, name), html_text)
+    for cid in place_ids:
+        st = cid.rsplit('.', 1)[1]
+        write(os.path.join(SITE_DIR, f'place-{st}.html'), v2.page_place(ctx, st))
 
     write(os.path.join(SITE_DIR, 'robots.txt'), 'User-agent: *\nAllow: /\n')
 
@@ -1844,13 +1924,14 @@ def main() -> int:
     for root, _, fnames in os.walk(SITE_DIR):
         for f in fnames:
             total += os.path.getsize(os.path.join(root, f))
-    data_total = sum(os.path.getsize(os.path.join(SITE_DIR, 'data', f)) for f in data_files)
-    print(f'site written to {SITE_DIR}: {len(pages)} pages, {len(figures)} figures, data {data_total / 1e6:.2f} MB, total {total / 1e6:.2f} MB')
+    shared_total = sum(os.path.getsize(os.path.join(SITE_DIR, 'data', f)) for f in data_files)
+    print(f'site written to {SITE_DIR}: {len(pages) + len(place_ids)} pages ({len(place_ids)} state briefs), {len(figures)} figures, '
+          f'data loaded on every page {shared_total / 1e6:.2f} MB, total {total / 1e6:.2f} MB')
     print(f'claims files: {", ".join(files)}; not present: {", ".join(missing) or "none"}; coverage: {"yes" if coverage else "placeholder"}')
-    if data_total > 5e6:
-        print('warning: data/*.js exceeds 5 MB', file=sys.stderr)
-    if total > 10e6:
-        print('warning: site exceeds 10 MB', file=sys.stderr)
+    if shared_total > 3e6:
+        print('warning: data loaded on every page exceeds 3 MB', file=sys.stderr)
+    if total > 40e6:
+        print('warning: site exceeds 40 MB', file=sys.stderr)
     return 0
 
 

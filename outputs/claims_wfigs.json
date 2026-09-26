@@ -1,0 +1,1213 @@
+{
+ "wfigs.access_date": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "UTC date the service was queried.",
+  "n": null,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": "2026-09-26"
+ },
+ "wfigs.cleaning": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "Row counts dropped at each cleaning step: duplicate UniqueFireIdentifier, no location, no discovery date. See analysis/wfigs.py:_clean.",
+  "n": 195139,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": {
+   "cause_class_definition": "WFIGS FireCause mapped to Human / Natural / Missing: FireCause='Human' -> Human, 'Natural' -> Natural, 'Undetermined', 'Unknown' or null -> Missing. This mirrors the FPA FOD-side mapping in analysis.large_fire (NWCG_CAUSE_CLASSIFICATION -> Human / Natural / Missing) so the two datasets share one cause-class scheme.",
+   "dedup_key": "UniqueFireIdentifier (kept the row with the largest OBJECTID, i.e. the most recently synced)",
+   "n_after_cleaning": 195093,
+   "n_dropped_no_discovery_date": 0,
+   "n_dropped_no_location": 0,
+   "n_dropped_total": 0,
+   "n_duplicate_rows_dropped_on_unique_fire_identifier": 46,
+   "n_raw_rows_fetched": 195139,
+   "n_rows_with_location_recovered_from_geometry_xy": 33328,
+   "owner_class_definition": "WFIGS POOLandownerCategory mapped: Federal = USFS BLM NPS USFWS BOR BIA DOD DOE OthFed; State = State; Private = Private; Tribal = Tribal, ANCSA (Alaska Native corporation land, no FPA FOD equivalent); Other = City County OthLoc Foreign; Missing = null. Matches analysis.large_fire.OWNER_MAP's FPA FOD-side mapping class for class.",
+   "size_field_precedence": "IncidentSize, then FinalAcres, then DiscoveryAcres (see code comment)",
+   "size_source_counts": {
+    "DiscoveryAcres": 33253,
+    "FinalAcres": 2364,
+    "IncidentSize": 152300,
+    "none": 7176
+   }
+  }
+ },
+ "wfigs.comparability_verdict": {
+  "computed_at": "2026-09-26T15:44:01+00:00",
+  "definition": "Plain-language verdict on whether WFIGS 2021-2025 is comparable to FPA FOD as a continuing series.",
+  "n": null,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": "WFIGS 2021-2025 averages 39,019 wildfire (WF) records a year against FPA FOD 2016-2020's 76,390 a year, about 51% as many. This is not a data-quality problem in WFIGS; it is a scope difference. FPA FOD compiles reports from federal, state, and many local and volunteer fire departments, so it captures a large number of very small (Class A and B) fires that local agencies log but that never enter the interagency IRWIN system WFIGS is built on. WFIGS is close to complete for fires that get a federal or state incident record, and its fires-reaching-300-acres rate (2.6% of sized rows) is higher than FPA FOD 2016-2020's (1.5%), consistent with WFIGS undercounting small fires relative to FPA FOD rather than missing large ones. The missing-cause share also differs (49.7% in WFIGS vs 9.7% in FPA FOD 2016-2020), which the site should not read as WFIGS reporting cause worse; it reflects a different mix of reporting agencies and a different lag before a cause is finalized on an incident that may still be open at query time. Conclusion for the site: WFIGS 2021-2025 can be shown as its own recent-years panel (fires, acres, cause mix, regional pattern, the 300-acre share) but should never be spliced onto the FPA FOD 1992-2020 series as if it were the next five years of the same count; the denominators are not comparable."
+ },
+ "wfigs.comparison_fpa_fod_2016_2020": {
+  "computed_at": "2026-09-26T15:44:01+00:00",
+  "definition": "The same measures (rows per year, missing-cause share, cause-class share, fires/acres by year and region) computed on FPA FOD 2016-2020 (all states), for comparison against WFIGS 2021-2025. Two different reporting systems: WFIGS is not a continuation of the FPA FOD series, and no number here is merged into data/fires.parquet or the rest of this package.",
+  "n": 381951,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": {
+   "fpa_fod_2016_2020": {
+    "by_region": [
+     {
+      "acres": 4419201.51,
+      "fires": 2365,
+      "fires_ge300": 349,
+      "region": "Alaska",
+      "share_ge300": 0.14756871035940802
+     },
+     {
+      "acres": 78470.16,
+      "fires": 194,
+      "fires_ge300": 25,
+      "region": "Hawaii/PR",
+      "share_ge300": 0.12886597938144329
+     },
+     {
+      "acres": 87768.6031375,
+      "fires": 38469,
+      "fires_ge300": 28,
+      "region": "Northeast",
+      "share_ge300": 0.0007278587953936936
+     },
+     {
+      "acres": 1076791.51541,
+      "fires": 57466,
+      "fires_ge300": 456,
+      "region": "Other",
+      "share_ge300": 0.007935126857620158
+     },
+     {
+      "acres": 6579896.023,
+      "fires": 133939,
+      "fires_ge300": 1861,
+      "region": "South",
+      "share_ge300": 0.013894384757240237
+     },
+     {
+      "acres": 27020470.01,
+      "fires": 149518,
+      "fires_ge300": 3100,
+      "region": "West",
+      "share_ge300": 0.020733289637368077
+     }
+    ],
+    "by_year": [
+     {
+      "acres": 5362282.1905,
+      "fires": 81993,
+      "fires_ge300": 1276,
+      "share_ge300": 0.015562304099130413,
+      "year": 2016
+     },
+     {
+      "acres": 10245663.21611,
+      "fires": 82279,
+      "fires_ge300": 1450,
+      "share_ge300": 0.01762296576283134,
+      "year": 2017
+     },
+     {
+      "acres": 8243602.2335375,
+      "fires": 80860,
+      "fires_ge300": 1202,
+      "share_ge300": 0.0148651991095721,
+      "year": 2018
+     },
+     {
+      "acres": 4915667.833,
+      "fires": 63557,
+      "fires_ge300": 808,
+      "share_ge300": 0.012712997781518952,
+      "year": 2019
+     },
+     {
+      "acres": 10495382.3484,
+      "fires": 73262,
+      "fires_ge300": 1083,
+      "share_ge300": 0.01478256121863995,
+      "year": 2020
+     }
+    ],
+    "mean_rows_per_year": 76390.2,
+    "n": 381951,
+    "rows_per_year": {
+     "2016": 81993,
+     "2017": 82279,
+     "2018": 80860,
+     "2019": 63557,
+     "2020": 73262
+    },
+    "share_by_cause_class": {
+     "Human": 0.8010477783799492,
+     "Missing": 0.09654641563970247,
+     "Natural": 0.10240580598034826
+    },
+    "share_missing_cause": 0.09654641563970247
+   },
+   "ratio_wfigs_to_fpa_mean_rows_per_year": 0.510780178609298,
+   "wfigs_2021_2025": {
+    "mean_rows_per_year": 39018.6,
+    "n": 195093
+   }
+  }
+ },
+ "wfigs.fires_acres_by_region": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "Same measures as wfigs.fires_acres_by_year, by region (analysis.common.region_of on the POOState state code).",
+  "n": 187917,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": [
+   {
+    "acres": 567350.965,
+    "fires": 2119,
+    "fires_ge300": 85,
+    "region": "Alaska",
+    "share_ge300": 0.04011326097215668
+   },
+   {
+    "acres": 2003.74,
+    "fires": 255,
+    "fires_ge300": 1,
+    "region": "Hawaii/PR",
+    "share_ge300": 0.00392156862745098
+   },
+   {
+    "acres": 1073994.901,
+    "fires": 9028,
+    "fires_ge300": 185,
+    "region": "Northeast",
+    "share_ge300": 0.020491803278688523
+   },
+   {
+    "acres": 4673590.9504,
+    "fires": 21703,
+    "fires_ge300": 570,
+    "region": "Other",
+    "share_ge300": 0.026263650186610147
+   },
+   {
+    "acres": 3285843.1835,
+    "fires": 25334,
+    "fires_ge300": 744,
+    "region": "South",
+    "share_ge300": 0.02936764821978369
+   },
+   {
+    "acres": 21857818.5789,
+    "fires": 129435,
+    "fires_ge300": 3293,
+    "region": "West",
+    "share_ge300": 0.025441341213736625
+   }
+  ]
+ },
+ "wfigs.fires_acres_by_year": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "Fires, summed size_acres, fires >= 300 acres and their share, by discovery year, for the rows with a size.",
+  "n": 187917,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": [
+   {
+    "acres": 7461294.6842,
+    "fires": 35506,
+    "fires_ge300": 904,
+    "share_ge300": 0.025460485551737733,
+    "year": 2021
+   },
+   {
+    "acres": 7406340.3727,
+    "fires": 35608,
+    "fires_ge300": 1079,
+    "share_ge300": 0.03030217928555381,
+    "year": 2022
+   },
+   {
+    "acres": 2643289.2634,
+    "fires": 35708,
+    "fires_ge300": 800,
+    "share_ge300": 0.02240394309398454,
+    "year": 2023
+   },
+   {
+    "acres": 8944538.9575,
+    "fires": 40293,
+    "fires_ge300": 1110,
+    "share_ge300": 0.027548209366391185,
+    "year": 2024
+   },
+   {
+    "acres": 5006020.101,
+    "fires": 40802,
+    "fires_ge300": 987,
+    "share_ge300": 0.02418999068673104,
+    "year": 2025
+   }
+  ]
+ },
+ "wfigs.forward_test": {
+  "computed_at": "2026-09-26T15:45:49+00:00",
+  "definition": "Forward test of a reduced-feature HistGradientBoostingClassifier (trained on FPA FOD 2010-2020 CONUS) against the cell x month climatology lookup, both evaluated on WFIGS 2021-2025 CONUS fires with a size. PR-AUC, ROC-AUC, base rates, top-10%-by-rank capture, Brier skill vs the training base rate, per year, plus 1,000-resample bootstrap 95% intervals on PR-AUC for both scorers.",
+  "n": 185618,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": {
+   "bootstrap_pr_auc_95ci_1000_resamples": {
+    "lookup_cell_month_climatology": {
+     "high": 0.08646060899046318,
+     "low": 0.07543828726759348,
+     "n_boot": 1000
+    },
+    "model_hgb_reduced": {
+     "high": 0.043922274960245616,
+     "low": 0.03939241397188393,
+     "n_boot": 1000
+    }
+   },
+   "categorical_features": [
+    "CAUSE_CLASS",
+    "OWNER_CLASS"
+   ],
+   "cause_class_categories": [
+    "Human",
+    "Natural",
+    "Missing"
+   ],
+   "cause_class_definition_fpa_side": "NWCG_CAUSE_CLASSIFICATION -> Human / Natural / Missing (analysis.large_fire.CAUSE_MAP)",
+   "cause_class_definition_wfigs_side": "WFIGS FireCause mapped to Human / Natural / Missing: FireCause='Human' -> Human, 'Natural' -> Natural, 'Undetermined', 'Unknown' or null -> Missing. This mirrors the FPA FOD-side mapping in analysis.large_fire (NWCG_CAUSE_CLASSIFICATION -> Human / Natural / Missing) so the two datasets share one cause-class scheme.",
+   "features": [
+    "LATITUDE",
+    "LONGITUDE",
+    "SIN_DOY",
+    "COS_DOY",
+    "CAUSE_CLASS",
+    "OWNER_CLASS",
+    "MONTH"
+   ],
+   "hgb_params": {
+    "early_stopping": true,
+    "l2_regularization": 1.0,
+    "learning_rate": 0.05,
+    "max_iter": 500,
+    "max_leaf_nodes": 63,
+    "min_samples_leaf": 50,
+    "random_state": 42
+   },
+   "label_definition": "final size >= 300 acres",
+   "model_path": "outputs/model/reduced_g1_hgb.joblib",
+   "n_test": 185618,
+   "n_train": 842239,
+   "overall": {
+    "lookup_cell_month_climatology": {
+     "base_rate_test": 0.024167914749647124,
+     "base_rate_train": 0.0136742658556538,
+     "brier": 0.023101341669564974,
+     "brier_skill_vs_train_base_rate": 0.025010680409238484,
+     "n": 185618,
+     "n_positive": 4486,
+     "pr_auc": 0.08058858975749676,
+     "roc_auc": 0.7336043710013753,
+     "top_decile_capture": 0.34061524743646904
+    },
+    "model_hgb_reduced": {
+     "base_rate_test": 0.024167914749647124,
+     "base_rate_train": 0.0136742658556538,
+     "brier": 0.029784535158885992,
+     "brier_skill_vs_train_base_rate": -0.25705268915821455,
+     "n": 185618,
+     "n_positive": 4486,
+     "pr_auc": 0.04141982951730008,
+     "roc_auc": 0.6551415325656593,
+     "top_decile_capture": 0.21221578243423986
+    }
+   },
+   "owner_class_categories": [
+    "Federal",
+    "State",
+    "Private",
+    "Tribal",
+    "Other",
+    "Missing"
+   ],
+   "owner_class_definition_fpa_side": "OWNER_DESCR -> Federal/State/Private/Tribal/Other/Missing (analysis.large_fire.OWNER_MAP)",
+   "owner_class_definition_wfigs_side": "WFIGS POOLandownerCategory mapped: Federal = USFS BLM NPS USFWS BOR BIA DOD DOE OthFed; State = State; Private = Private; Tribal = Tribal, ANCSA (Alaska Native corporation land, no FPA FOD equivalent); Other = City County OthLoc Foreign; Missing = null. Matches analysis.large_fire.OWNER_MAP's FPA FOD-side mapping class for class.",
+   "per_year": {
+    "2021": {
+     "base_rate_test": 0.024976504428559223,
+     "lookup_cell_month_climatology": {
+      "pr_auc": 0.07292465038131313,
+      "roc_auc": 0.7343493609252991,
+      "top_decile_capture": 0.33409350057012543
+     },
+     "model_hgb_reduced": {
+      "pr_auc": 0.04267362978190626,
+      "roc_auc": 0.6587828291729965,
+      "top_decile_capture": 0.21664766248574688
+     },
+     "n": 35113,
+     "n_positive": 877
+    },
+    "2022": {
+     "base_rate_test": 0.02707029128433811,
+     "lookup_cell_month_climatology": {
+      "pr_auc": 0.09517501038861721,
+      "roc_auc": 0.7410072079714838,
+      "top_decile_capture": 0.3759239704329461
+     },
+     "model_hgb_reduced": {
+      "pr_auc": 0.04846334949740491,
+      "roc_auc": 0.6535352095669124,
+      "top_decile_capture": 0.2238648363252376
+     },
+     "n": 34983,
+     "n_positive": 947
+    },
+    "2023": {
+     "base_rate_test": 0.02147369613870081,
+     "lookup_cell_month_climatology": {
+      "pr_auc": 0.0746110256724359,
+      "roc_auc": 0.7452312035736812,
+      "top_decile_capture": 0.36015831134564646
+     },
+     "model_hgb_reduced": {
+      "pr_auc": 0.03588746938514373,
+      "roc_auc": 0.6410699334101748,
+      "top_decile_capture": 0.19788918205804748
+     },
+     "n": 35299,
+     "n_positive": 758
+    },
+    "2024": {
+     "base_rate_test": 0.02606581618586932,
+     "lookup_cell_month_climatology": {
+      "pr_auc": 0.0876828403452788,
+      "roc_auc": 0.7269975696155925,
+      "top_decile_capture": 0.3125
+     },
+     "model_hgb_reduced": {
+      "pr_auc": 0.04096329996176408,
+      "roc_auc": 0.6508505355654665,
+      "top_decile_capture": 0.17884615384615385
+     },
+     "n": 39899,
+     "n_positive": 1040
+    },
+    "2025": {
+     "base_rate_test": 0.021426445789108222,
+     "lookup_cell_month_climatology": {
+      "pr_auc": 0.07530784802877548,
+      "roc_auc": 0.72086344176475,
+      "top_decile_capture": 0.3506944444444444
+     },
+     "model_hgb_reduced": {
+      "pr_auc": 0.04206956080286167,
+      "roc_auc": 0.666206842137373,
+      "top_decile_capture": 0.24537037037037038
+     },
+     "n": 40324,
+     "n_positive": 864
+    }
+   },
+   "test_definition": "WFIGS 2021-2025, IncidentTypeCategory=WF, CONUS only, rows with a size",
+   "train_definition": "FPA FOD 2010-2020, CONUS only (AK, HI, PR excluded)"
+  }
+ },
+ "wfigs.forward_test_ablation": {
+  "computed_at": "2026-09-26T15:50:20+00:00",
+  "definition": "POST HOC diagnostic, run after the pre-specified forward test failed: the reduced model refitted with three feature sets (location+season; +cause; +cause+owner, the pre-specified set), each scored forward in time on FPA FOD (fit 2010-2018, score 2019-2020) and across systems (fit FPA FOD 2010-2020, score WFIGS 2021-2025 CONUS), with the cell x month lookup scored the same ways; plus owner-class shares and large-fire rates by owner and cause class in each system. PR-AUC intervals: 1,000 bootstrap resamples.",
+  "n": 185618,
+  "note": "Chosen after seeing the test result; evidence about why the pre-specified model failed, not a clean forward test of a new model.",
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": {
+   "large_rate_by_cause_class": {
+    "fpa_fod_2010_2020": {
+     "Human": 0.01,
+     "Missing": 0.0095,
+     "Natural": 0.0416
+    },
+    "wfigs_2021_2025": {
+     "Human": 0.0266,
+     "Missing": 0.0162,
+     "Natural": 0.0457
+    }
+   },
+   "large_rate_by_owner_class": {
+    "fpa_fod_2010_2020": {
+     "Federal": 0.0334,
+     "Missing": 0.0063,
+     "Other": 0.0185,
+     "Private": 0.0108,
+     "State": 0.025,
+     "Tribal": 0.0145
+    },
+    "wfigs_2021_2025": {
+     "Federal": 0.0325,
+     "Missing": 0.0543,
+     "Other": 0.0155,
+     "Private": 0.0192,
+     "State": 0.0512,
+     "Tribal": 0.0245
+    }
+   },
+   "location_season": {
+    "features": [
+     "LATITUDE",
+     "LONGITUDE",
+     "SIN_DOY",
+     "COS_DOY",
+     "MONTH"
+    ],
+    "fpa_fod_2019_2020": {
+     "n": 135685,
+     "n_positive": 1710,
+     "pr_auc": 0.08585906389224374,
+     "roc_auc": 0.8446366444817648,
+     "top_decile_capture": 0.5017543859649123
+    },
+    "wfigs_2021_2025": {
+     "n": 185618,
+     "n_positive": 4486,
+     "pr_auc": 0.11105754905994705,
+     "pr_auc_95ci": {
+      "high": 0.11899590864880988,
+      "low": 0.10350187280403192,
+      "n_boot": 1000
+     },
+     "roc_auc": 0.7710780987894144,
+     "top_decile_capture": 0.4050378956754347
+    }
+   },
+   "location_season_cause": {
+    "features": [
+     "LATITUDE",
+     "LONGITUDE",
+     "SIN_DOY",
+     "COS_DOY",
+     "MONTH",
+     "CAUSE_CLASS"
+    ],
+    "fpa_fod_2019_2020": {
+     "n": 135685,
+     "n_positive": 1710,
+     "pr_auc": 0.09115525347093169,
+     "roc_auc": 0.8530981450017405,
+     "top_decile_capture": 0.5374269005847954
+    },
+    "wfigs_2021_2025": {
+     "n": 185618,
+     "n_positive": 4486,
+     "pr_auc": 0.10735608054479973,
+     "pr_auc_95ci": {
+      "high": 0.11542166494559801,
+      "low": 0.10055315924203123,
+      "n_boot": 1000
+     },
+     "roc_auc": 0.7825028890978378,
+     "top_decile_capture": 0.4054837271511369
+    }
+   },
+   "location_season_cause_owner": {
+    "features": [
+     "LATITUDE",
+     "LONGITUDE",
+     "SIN_DOY",
+     "COS_DOY",
+     "CAUSE_CLASS",
+     "OWNER_CLASS",
+     "MONTH"
+    ],
+    "fpa_fod_2019_2020": {
+     "n": 135685,
+     "n_positive": 1710,
+     "pr_auc": 0.09096656661786057,
+     "roc_auc": 0.8614514425642386,
+     "top_decile_capture": 0.5245614035087719
+    },
+    "wfigs_2021_2025": {
+     "n": 185618,
+     "n_positive": 4486,
+     "pr_auc": 0.04141982951730008,
+     "pr_auc_95ci": {
+      "high": 0.043922274960245616,
+      "low": 0.03939241397188393,
+      "n_boot": 1000
+     },
+     "roc_auc": 0.6551415325656593,
+     "top_decile_capture": 0.21221578243423986
+    }
+   },
+   "lookup_cell_month": {
+    "fpa_fod_2019_2020": {
+     "n": 135685,
+     "n_positive": 1710,
+     "pr_auc": 0.07506013180372022,
+     "roc_auc": 0.8076420384792922,
+     "top_decile_capture": 0.4456140350877193
+    },
+    "wfigs_2021_2025": {
+     "n": 185618,
+     "n_positive": 4486,
+     "pr_auc": 0.08058858975749676,
+     "pr_auc_95ci": {
+      "high": 0.08646060899046318,
+      "low": 0.07543828726759348,
+      "n_boot": 1000
+     },
+     "roc_auc": 0.7336043710013753,
+     "top_decile_capture": 0.34061524743646904
+    }
+   },
+   "owner_class_share": {
+    "fpa_fod_2010_2020": {
+     "Federal": 0.1653,
+     "Missing": 0.4127,
+     "Other": 0.065,
+     "Private": 0.3183,
+     "State": 0.0323,
+     "Tribal": 0.0064
+    },
+    "wfigs_2021_2025": {
+     "Federal": 0.2971,
+     "Missing": 0.0005,
+     "Other": 0.0094,
+     "Private": 0.6524,
+     "State": 0.0294,
+     "Tribal": 0.0112
+    }
+   }
+  }
+ },
+ "wfigs.forward_test_note": {
+  "computed_at": "2026-09-26T15:45:49+00:00",
+  "definition": "Plain-language caveat for the forward-test numbers.",
+  "n": null,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": "This is a reduced-feature model: only location, day-of-year, a coarse cause class, a coarse owner class and month are available on both datasets, so it has none of the weather, fuels, terrain or protection-status features the full large-fire model (analysis/large_fire.py, outputs/claims_model.json) uses to reach its published accuracy. It is also being scored on WFIGS, a different reporting system from the FPA FOD data it was trained on (see wfigs.comparability_verdict), with its own size field, cause coding and coverage. Its PR-AUC here is therefore a lower bound on what the full model would do on new discoveries, not a test of the full model itself, and the two numbers should never be shown side by side as if they measured the same thing. On this forward test the pre-specified reduced model scores below the simple cell x month lookup (PR-AUC 0.041 against 0.081, in every one of the five years), the opposite of the full model's result against the same lookup on its own 2019-2020 holdout. A diagnostic run after seeing this result (wfigs.forward_test_ablation) locates the cause in the owner-class feature: 41% of FPA FOD 2010-2020 training fires have no owner recorded and those rarely become large, while WFIGS records an owner for almost every fire, so the model's owner rule does not transfer. Without the owner feature, the same model on location and season (with or without cause) beats the lookup on WFIGS. The diagnostic was chosen after seeing the test result, so it is evidence about why the pre-specified model failed, not a clean forward test of a new model. The general lesson stands: features that record how a reporting system codes a fire do not carry across to another system."
+ },
+ "wfigs.month_x_cause_calendar": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "Fire counts by discovery month x cause_class, 2021-2025: the WFIGS analog of a fire-prevention calendar.",
+  "n": 195093,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": {
+   "Apr": {
+    "Human": 9877,
+    "Missing": 7635,
+    "Natural": 226
+   },
+   "Aug": {
+    "Human": 7096,
+    "Missing": 12319,
+    "Natural": 9240
+   },
+   "Dec": {
+    "Human": 1768,
+    "Missing": 3338,
+    "Natural": 11
+   },
+   "Feb": {
+    "Human": 3023,
+    "Missing": 3638,
+    "Natural": 21
+   },
+   "Jan": {
+    "Human": 1777,
+    "Missing": 3505,
+    "Natural": 33
+   },
+   "Jul": {
+    "Human": 10331,
+    "Missing": 16921,
+    "Natural": 8870
+   },
+   "Jun": {
+    "Human": 6964,
+    "Missing": 11630,
+    "Natural": 3663
+   },
+   "Mar": {
+    "Human": 8069,
+    "Missing": 5842,
+    "Natural": 122
+   },
+   "May": {
+    "Human": 7686,
+    "Missing": 9824,
+    "Natural": 913
+   },
+   "Nov": {
+    "Human": 3767,
+    "Missing": 5800,
+    "Natural": 50
+   },
+   "Oct": {
+    "Human": 5202,
+    "Missing": 7796,
+    "Natural": 458
+   },
+   "Sep": {
+    "Human": 5493,
+    "Missing": 8736,
+    "Natural": 3449
+   }
+  }
+ },
+ "wfigs.parquet_sha256": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "SHA-256 of data/external/wfigs/wfigs_2021_2025.parquet as written.",
+  "n": null,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": "158ef4c817fe6b6716103856e32e75b1110b7201842d8b4fcdf02ff05d08d4d1"
+ },
+ "wfigs.per_state_2021_2025": {
+  "computed_at": "2026-09-26T15:44:01+00:00",
+  "definition": "Per-state fires, acres, fires >= 300 acres and human share of known cause (Human / (Human + Natural)), WFIGS 2021-2025, state = POOState.",
+  "n": 195093,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": [
+   {
+    "acres": 5337192.8889999995,
+    "fires": 2177.0,
+    "fires_ge300": 379.0,
+    "human_share_of_known_cause": 0.5303100416473855,
+    "state": "AK"
+   },
+   {
+    "acres": 68717.56,
+    "fires": 466.0,
+    "fires_ge300": 65.0,
+    "human_share_of_known_cause": 0.9428571428571428,
+    "state": "AL"
+   },
+   {
+    "acres": 25834.219999999998,
+    "fires": 588.0,
+    "fires_ge300": 25.0,
+    "human_share_of_known_cause": 0.864516129032258,
+    "state": "AR"
+   },
+   {
+    "acres": 1605881.7185,
+    "fires": 8884.0,
+    "fires_ge300": 293.0,
+    "human_share_of_known_cause": 0.6577754758513531,
+    "state": "AZ"
+   },
+   {
+    "acres": 4648313.023,
+    "fires": 67201.0,
+    "fires_ge300": 351.0,
+    "human_share_of_known_cause": 0.5513187162376867,
+    "state": "CA"
+   },
+   {
+    "acres": 0.5,
+    "fires": 3.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "CA-ON"
+   },
+   {
+    "acres": 457943.5400000001,
+    "fires": 4781.0,
+    "fires_ge300": 122.0,
+    "human_share_of_known_cause": 0.3745819397993311,
+    "state": "CO"
+   },
+   {
+    "acres": 494.0,
+    "fires": 4.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "CT"
+   },
+   {
+    "acres": 17.110000000000003,
+    "fires": 43.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "DC"
+   },
+   {
+    "acres": 0.2,
+    "fires": 2.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": null,
+    "state": "DE"
+   },
+   {
+    "acres": 654451.591,
+    "fires": 1320.0,
+    "fires_ge300": 213.0,
+    "human_share_of_known_cause": 0.6783068783068783,
+    "state": "FL"
+   },
+   {
+    "acres": 28176.84,
+    "fires": 419.0,
+    "fires_ge300": 21.0,
+    "human_share_of_known_cause": 0.9220183486238532,
+    "state": "GA"
+   },
+   {
+    "acres": 6.24,
+    "fires": 85.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "GU"
+   },
+   {
+    "acres": 75484.78000000001,
+    "fires": 70.0,
+    "fires_ge300": 14.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "HI"
+   },
+   {
+    "acres": 2584.6199999999994,
+    "fires": 87.0,
+    "fires_ge300": 3.0,
+    "human_share_of_known_cause": 0.9259259259259259,
+    "state": "IA"
+   },
+   {
+    "acres": 2212792.49,
+    "fires": 6312.0,
+    "fires_ge300": 326.0,
+    "human_share_of_known_cause": 0.528126119670369,
+    "state": "ID"
+   },
+   {
+    "acres": 2739.3199999999997,
+    "fires": 192.0,
+    "fires_ge300": 1.0,
+    "human_share_of_known_cause": 0.9734513274336283,
+    "state": "IL"
+   },
+   {
+    "acres": 2521.3299999999995,
+    "fires": 230.0,
+    "fires_ge300": 2.0,
+    "human_share_of_known_cause": 0.979381443298969,
+    "state": "IN"
+   },
+   {
+    "acres": 305799.35,
+    "fires": 261.0,
+    "fires_ge300": 105.0,
+    "human_share_of_known_cause": 0.9570815450643777,
+    "state": "KS"
+   },
+   {
+    "acres": 141338.94,
+    "fires": 3301.0,
+    "fires_ge300": 96.0,
+    "human_share_of_known_cause": 0.988256549232159,
+    "state": "KY"
+   },
+   {
+    "acres": 93436.9,
+    "fires": 482.0,
+    "fires_ge300": 38.0,
+    "human_share_of_known_cause": 0.8595505617977528,
+    "state": "LA"
+   },
+   {
+    "acres": 9612.102,
+    "fires": 4849.0,
+    "fires_ge300": 5.0,
+    "human_share_of_known_cause": 0.9951520493609519,
+    "state": "MA"
+   },
+   {
+    "acres": 11078.400000000001,
+    "fires": 89.0,
+    "fires_ge300": 9.0,
+    "human_share_of_known_cause": 0.9722222222222222,
+    "state": "MD"
+   },
+   {
+    "acres": 1736.25,
+    "fires": 3424.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": 0.9672482399755127,
+    "state": "ME"
+   },
+   {
+    "acres": 18115.184,
+    "fires": 1796.0,
+    "fires_ge300": 9.0,
+    "human_share_of_known_cause": 0.9655172413793104,
+    "state": "MI"
+   },
+   {
+    "acres": 142846.84,
+    "fires": 6228.0,
+    "fires_ge300": 45.0,
+    "human_share_of_known_cause": 0.9504980380319952,
+    "state": "MN"
+   },
+   {
+    "acres": 50088.325,
+    "fires": 788.0,
+    "fires_ge300": 43.0,
+    "human_share_of_known_cause": 0.9904076738609112,
+    "state": "MO"
+   },
+   {
+    "acres": 170343.22999999998,
+    "fires": 1481.0,
+    "fires_ge300": 130.0,
+    "human_share_of_known_cause": 0.9667300380228137,
+    "state": "MS"
+   },
+   {
+    "acres": 1359438.3552,
+    "fires": 11459.0,
+    "fires_ge300": 277.0,
+    "human_share_of_known_cause": 0.6496980155306299,
+    "state": "MT"
+   },
+   {
+    "acres": 0.2,
+    "fires": 4.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": null,
+    "state": "MX-BN"
+   },
+   {
+    "acres": 2.1,
+    "fires": 2.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": null,
+    "state": "MX-CA"
+   },
+   {
+    "acres": 4.5,
+    "fires": 4.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "MX-CH"
+   },
+   {
+    "acres": 0.02,
+    "fires": 2.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": null,
+    "state": "MX-SO"
+   },
+   {
+    "acres": 131308.045,
+    "fires": 577.0,
+    "fires_ge300": 65.0,
+    "human_share_of_known_cause": 0.937125748502994,
+    "state": "NC"
+   },
+   {
+    "acres": 503288.254,
+    "fires": 5916.0,
+    "fires_ge300": 139.0,
+    "human_share_of_known_cause": 0.9279210925644916,
+    "state": "ND"
+   },
+   {
+    "acres": 368645.65,
+    "fires": 419.0,
+    "fires_ge300": 46.0,
+    "human_share_of_known_cause": 0.45121951219512196,
+    "state": "NE"
+   },
+   {
+    "acres": 535.502,
+    "fires": 471.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": 0.9276018099547512,
+    "state": "NH"
+   },
+   {
+    "acres": 66481.42,
+    "fires": 108.0,
+    "fires_ge300": 23.0,
+    "human_share_of_known_cause": 0.9824561403508771,
+    "state": "NJ"
+   },
+   {
+    "acres": 1546842.4023999998,
+    "fires": 5303.0,
+    "fires_ge300": 157.0,
+    "human_share_of_known_cause": 0.5731591448931116,
+    "state": "NM"
+   },
+   {
+    "acres": 623159.986,
+    "fires": 2804.0,
+    "fires_ge300": 76.0,
+    "human_share_of_known_cause": 0.5716632443531827,
+    "state": "NV"
+   },
+   {
+    "acres": 2994.87,
+    "fires": 43.0,
+    "fires_ge300": 5.0,
+    "human_share_of_known_cause": 0.9523809523809523,
+    "state": "NY"
+   },
+   {
+    "acres": 2844.4599999999996,
+    "fires": 322.0,
+    "fires_ge300": 1.0,
+    "human_share_of_known_cause": 0.992,
+    "state": "OH"
+   },
+   {
+    "acres": 1162960.108,
+    "fires": 6758.0,
+    "fires_ge300": 495.0,
+    "human_share_of_known_cause": 0.9885462555066079,
+    "state": "OK"
+   },
+   {
+    "acres": 3786020.8995000003,
+    "fires": 9197.0,
+    "fires_ge300": 268.0,
+    "human_share_of_known_cause": 0.4568941308621174,
+    "state": "OR"
+   },
+   {
+    "acres": 13247.688999999998,
+    "fires": 251.0,
+    "fires_ge300": 9.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "PA"
+   },
+   {
+    "acres": 1003.96,
+    "fires": 193.0,
+    "fires_ge300": 1.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "PR"
+   },
+   {
+    "acres": 796.1,
+    "fires": 3.0,
+    "fires_ge300": 1.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "RI"
+   },
+   {
+    "acres": 29784.695,
+    "fires": 338.0,
+    "fires_ge300": 11.0,
+    "human_share_of_known_cause": 0.937888198757764,
+    "state": "SC"
+   },
+   {
+    "acres": 185224.61419999998,
+    "fires": 3322.0,
+    "fires_ge300": 70.0,
+    "human_share_of_known_cause": 0.7840297889946214,
+    "state": "SD"
+   },
+   {
+    "acres": 60797.0,
+    "fires": 3322.0,
+    "fires_ge300": 28.0,
+    "human_share_of_known_cause": 0.9814662273476112,
+    "state": "TN"
+   },
+   {
+    "acres": 2298099.2849999997,
+    "fires": 6274.0,
+    "fires_ge300": 391.0,
+    "human_share_of_known_cause": 0.8789149198520345,
+    "state": "TX"
+   },
+   {
+    "acres": 362700.653,
+    "fires": 5369.0,
+    "fires_ge300": 78.0,
+    "human_share_of_known_cause": 0.5613472333600642,
+    "state": "UT"
+   },
+   {
+    "acres": 70612.70999999999,
+    "fires": 396.0,
+    "fires_ge300": 43.0,
+    "human_share_of_known_cause": 0.8975903614457831,
+    "state": "VA"
+   },
+   {
+    "acres": 0.01,
+    "fires": 1.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "VI"
+   },
+   {
+    "acres": 284.39,
+    "fires": 214.0,
+    "fires_ge300": 0.0,
+    "human_share_of_known_cause": 0.9492753623188406,
+    "state": "VT"
+   },
+   {
+    "acres": 1586342.7340000002,
+    "fires": 9182.0,
+    "fires_ge300": 210.0,
+    "human_share_of_known_cause": 0.8003266033254157,
+    "state": "WA"
+   },
+   {
+    "acres": 7567.764000000001,
+    "fires": 2664.0,
+    "fires_ge300": 4.0,
+    "human_share_of_known_cause": 0.9786972552232691,
+    "state": "WI"
+   },
+   {
+    "acres": 71193.853,
+    "fires": 275.0,
+    "fires_ge300": 52.0,
+    "human_share_of_known_cause": 1.0,
+    "state": "WV"
+   },
+   {
+    "acres": 1151753.6570000001,
+    "fires": 4337.0,
+    "fires_ge300": 135.0,
+    "human_share_of_known_cause": 0.6474301172227231,
+    "state": "WY"
+   }
+  ]
+ },
+ "wfigs.query": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "The exact query used to page through the layer.",
+  "n": null,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": {
+   "n_pages": 98,
+   "out_fields": [
+    "OBJECTID",
+    "UniqueFireIdentifier",
+    "IrwinID",
+    "IncidentName",
+    "FireDiscoveryDateTime",
+    "IncidentSize",
+    "FinalAcres",
+    "DiscoveryAcres",
+    "FireCause",
+    "FireCauseGeneral",
+    "POOState",
+    "POOLandownerCategory",
+    "POOLandownerKind",
+    "POOProtectingAgency",
+    "InitialLatitude",
+    "InitialLongitude",
+    "IsFSAssisted",
+    "ContainmentDateTime",
+    "ControlDateTime",
+    "FireOutDateTime",
+    "IncidentTypeCategory",
+    "CreatedOnDateTime_dt",
+    "ModifiedOnDateTime_dt"
+   ],
+   "out_sr": 4326,
+   "page_size": 2000,
+   "where": "IncidentTypeCategory = 'WF' AND FireDiscoveryDateTime >= TIMESTAMP '2021-01-01 00:00:00' AND FireDiscoveryDateTime < TIMESTAMP '2026-01-01 00:00:00'"
+  }
+ },
+ "wfigs.rows_fetched_raw": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "Raw rows returned by the query before dedup/cleaning (IncidentTypeCategory=WF, discovery 2021-01-01 to 2025-12-31).",
+  "n": 195139,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": 195139
+ },
+ "wfigs.rows_per_year": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "Cleaned WFIGS wildfire rows (IncidentTypeCategory=WF) by discovery year, 2021-2025.",
+  "n": 195093,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": {
+   "2021": 36898,
+   "2022": 37807,
+   "2023": 37147,
+   "2024": 41507,
+   "2025": 41734
+  }
+ },
+ "wfigs.rows_with_size": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "Rows with a non-null size_acres (IncidentSize, else FinalAcres, else DiscoveryAcres).",
+  "n": 195093,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": {
+   "n": 187917,
+   "share": 0.9632175424028541
+  }
+ },
+ "wfigs.share_by_cause_class": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "Share of cleaned rows by cause_class (Human / Natural / Missing).",
+  "n": 195093,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": {
+   "Human": 0.3642006632734132,
+   "Missing": 0.49711675969922037,
+   "Natural": 0.13868257702736644
+  }
+ },
+ "wfigs.share_missing_cause": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "Share of cleaned rows with cause_class = Missing (FireCause null, Undetermined or Unknown).",
+  "n": 195093,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": 0.49711675969922037
+ },
+ "wfigs.source_service": {
+  "computed_at": "2026-09-26T15:44:00+00:00",
+  "definition": "The ArcGIS Online feature service and layer queried for WFIGS incident locations.",
+  "n": null,
+  "note": null,
+  "source": "analysis.wfigs",
+  "unit": null,
+  "value": {
+   "field_count_on_layer": 97,
+   "layer": "WFIGS_Incident_Locations / FeatureServer / 0 (\"Incidents\", full history, not Year-To-Date)",
+   "max_record_count": 2000,
+   "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/WFIGS_Incident_Locations/FeatureServer/0"
+  }
+ }
+}

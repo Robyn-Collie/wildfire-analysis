@@ -1,0 +1,490 @@
+{
+ "incidents.100k_per_year": {
+  "computed_at": "2026-09-26T15:28:17+00:00",
+  "definition": "Incidents of 100,000 acres or more per year (grouped, discovery year of the largest component). Very large fires are reported by federal systems throughout, so this count is less exposed to the reporting breaks that affect small-fire counts, but it is still a count from a compiled record.",
+  "n": 250,
+  "note": null,
+  "source": "analysis.incidents",
+  "unit": null,
+  "value": {
+   "1992": 2,
+   "1993": 1,
+   "1994": 4,
+   "1995": 0,
+   "1996": 6,
+   "1997": 4,
+   "1998": 0,
+   "1999": 8,
+   "2000": 9,
+   "2001": 1,
+   "2002": 12,
+   "2003": 6,
+   "2004": 14,
+   "2005": 20,
+   "2006": 15,
+   "2007": 13,
+   "2008": 6,
+   "2009": 9,
+   "2010": 3,
+   "2011": 13,
+   "2012": 13,
+   "2013": 8,
+   "2014": 4,
+   "2015": 19,
+   "2016": 6,
+   "2017": 12,
+   "2018": 10,
+   "2019": 8,
+   "2020": 24
+  }
+ },
+ "incidents.grouping": {
+  "computed_at": "2026-09-26T15:28:17+00:00",
+  "definition": "Records, incidents after grouping, and incidents made of more than one record (FPA FOD 1992-2020).",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.incidents",
+  "unit": null,
+  "value": {
+   "incidents": 2299256,
+   "max_components": 59,
+   "multi_record_incidents": 939,
+   "records": 2303566,
+   "records_in_multi_record_incidents": 5249
+  }
+ },
+ "incidents.largest": {
+  "computed_at": "2026-09-26T15:28:17+00:00",
+  "definition": "The 25 largest incidents in FPA FOD 1992-2020, one row per incident. Records share an incident when they share ICS_209_PLUS_COMPLEX_JOIN_ID, ICS_209_PLUS_INCIDENT_JOIN_ID, or FIRE_YEAR+STATE+COMPLEX_NAME (transitively). Incident acres = sum of component FIRE_SIZE; no record is dropped.",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.incidents",
+  "unit": null,
+  "value": [
+   {
+    "acres": 1303333.0,
+    "cause": "Natural",
+    "components": 6,
+    "largest_component_acres": 463994.0,
+    "lead_fire": "BILLY CK",
+    "name": "TAYLOR COMPLEX",
+    "rank": 1,
+    "state": "AK",
+    "year": "2004"
+   },
+   {
+    "acres": 1031896.1,
+    "cause": "Natural",
+    "components": 41,
+    "largest_component_acres": 589368.0,
+    "lead_fire": "DOE",
+    "name": "AUGUST COMPLEX",
+    "rank": 2,
+    "state": "CA",
+    "year": "2020"
+   },
+   {
+    "acres": 907245.0,
+    "cause": "Human",
+    "components": 2,
+    "largest_component_acres": 479549.0,
+    "lead_fire": "HWY 152",
+    "name": "EAST AMARILLO COMPLEX",
+    "rank": 3,
+    "state": "TX",
+    "year": "2006"
+   },
+   {
+    "acres": 832547.3,
+    "cause": "Natural",
+    "components": 17,
+    "largest_component_acres": 403993.0,
+    "lead_fire": "PINGO",
+    "name": "SOLSTICE COMPLEX",
+    "rank": 4,
+    "state": "AK",
+    "year": "2004"
+   },
+   {
+    "acres": 789577.7,
+    "cause": "Natural",
+    "components": 8,
+    "largest_component_acres": 243254.0,
+    "lead_fire": "PREACHER CREEK",
+    "name": "CENTRAL COMPLEX",
+    "rank": 5,
+    "state": "AK",
+    "year": "2004"
+   },
+   {
+    "acres": 779292.0,
+    "cause": "Missing data/not specified/undetermined",
+    "components": 4,
+    "largest_component_acres": 662700.0,
+    "lead_fire": "OKS - STARBUCK",
+    "name": "NW OKLAHOMA COMPLEX",
+    "rank": 6,
+    "state": "OK",
+    "year": "2017"
+   },
+   {
+    "acres": 736455.0,
+    "cause": "Natural",
+    "components": 17,
+    "largest_component_acres": 238058.0,
+    "lead_fire": "DUZAK",
+    "name": "SOUTHERN NEVADA COMPLEX",
+    "rank": 7,
+    "state": "NV",
+    "year": "2005"
+   },
+   {
+    "acres": 663306.2,
+    "cause": "Natural",
+    "components": 16,
+    "largest_component_acres": 243900.0,
+    "lead_fire": "EDWARDSCR",
+    "name": "EAGLE COMPLEX",
+    "rank": 8,
+    "state": "AK",
+    "year": "2004"
+   },
+   {
+    "acres": 655000.1,
+    "cause": "Natural",
+    "components": 5,
+    "largest_component_acres": 367785.0,
+    "lead_fire": "MURPHY COMPLEX",
+    "name": "MURPHY COMPLEX",
+    "rank": 9,
+    "state": "ID/NV",
+    "year": "2007"
+   },
+   {
+    "acres": 631194.0,
+    "cause": "Natural",
+    "components": 4,
+    "largest_component_acres": 517078.0,
+    "lead_fire": "MINTO FLATS SOUTH",
+    "name": "RAILBELT COMPLEX",
+    "rank": 10,
+    "state": "AK",
+    "year": "2009"
+   },
+   {
+    "acres": 606945.0,
+    "cause": "Natural",
+    "components": 1,
+    "largest_component_acres": 606945.0,
+    "lead_fire": "INOWAK",
+    "name": "INOWAK",
+    "rank": 11,
+    "state": "AK",
+    "year": "1997"
+   },
+   {
+    "acres": 558198.3,
+    "cause": "Natural",
+    "components": 1,
+    "largest_component_acres": 558198.3,
+    "lead_fire": "LONG DRAW",
+    "name": "LONG DRAW",
+    "rank": 12,
+    "state": "OR",
+    "year": "2012"
+   },
+   {
+    "acres": 553043.1,
+    "cause": "Natural",
+    "components": 6,
+    "largest_component_acres": 237494.0,
+    "lead_fire": "FROZEN CALF",
+    "name": "CHALKYITSIK COMPLEX",
+    "rank": 13,
+    "state": "AK",
+    "year": "2019"
+   },
+   {
+    "acres": 538049.0,
+    "cause": "Human",
+    "components": 1,
+    "largest_component_acres": 538049.0,
+    "lead_fire": "WALLOW",
+    "name": "WALLOW",
+    "rank": 14,
+    "state": "AZ",
+    "year": "2011"
+   },
+   {
+    "acres": 537627.0,
+    "cause": "Natural",
+    "components": 1,
+    "largest_component_acres": 537627.0,
+    "lead_fire": "BOUNDARY",
+    "name": "BOUNDARY",
+    "rank": 15,
+    "state": "AK",
+    "year": "2004"
+   },
+   {
+    "acres": 510136.8,
+    "cause": "Natural",
+    "components": 9,
+    "largest_component_acres": 112806.8,
+    "lead_fire": "15481 BERING CREEK",
+    "name": "TANANA AREA FIRES COMPLEX",
+    "rank": 16,
+    "state": "AK",
+    "year": "2015"
+   },
+   {
+    "acres": 506070.2,
+    "cause": "Natural",
+    "components": 12,
+    "largest_component_acres": 312918.3,
+    "lead_fire": "15533 BIG CREEK 2",
+    "name": "RUBY AREA FIRES COMPLEX",
+    "rank": 17,
+    "state": "AK",
+    "year": "2015"
+   },
+   {
+    "acres": 499945.0,
+    "cause": "Natural",
+    "components": 1,
+    "largest_component_acres": 499945.0,
+    "lead_fire": "BISCUIT",
+    "name": "BISCUIT COMPLEX",
+    "rank": 18,
+    "state": "OR",
+    "year": "2002"
+   },
+   {
+    "acres": 483280.0,
+    "cause": "Natural",
+    "components": 1,
+    "largest_component_acres": 483280.0,
+    "lead_fire": "DALL CITY",
+    "name": "DALL CITY",
+    "rank": 19,
+    "state": "AK",
+    "year": "2004"
+   },
+   {
+    "acres": 468863.0,
+    "cause": "Human",
+    "components": 2,
+    "largest_component_acres": 259158.9,
+    "lead_fire": "RODEO",
+    "name": "RODEO/CHEDISKI COMPLEX",
+    "rank": 20,
+    "state": "AZ",
+    "year": "2002"
+   },
+   {
+    "acres": 461047.0,
+    "cause": "Natural",
+    "components": 1,
+    "largest_component_acres": 461047.0,
+    "lead_fire": "HOLLOWAY",
+    "name": "HOLLOWAY",
+    "rank": 21,
+    "state": "OR",
+    "year": "2012"
+   },
+   {
+    "acres": 459123.0,
+    "cause": "Human",
+    "components": 2,
+    "largest_component_acres": 410203.0,
+    "lead_fire": "RANCH",
+    "name": "MENDOCINO COMPLEX",
+    "rank": 22,
+    "state": "CA",
+    "year": "2018"
+   },
+   {
+    "acres": 447149.7,
+    "cause": "Natural",
+    "components": 4,
+    "largest_component_acres": 349449.9,
+    "lead_fire": "LITTLE BLACK ONE",
+    "name": "CRAZY MOUNTAIN COMPLEX",
+    "rank": 23,
+    "state": "AK",
+    "year": "2009"
+   },
+   {
+    "acres": 419884.0,
+    "cause": "Natural",
+    "components": 1,
+    "largest_component_acres": 419884.0,
+    "lead_fire": "NORTH DAG",
+    "name": "NORTH DAG",
+    "rank": 24,
+    "state": "AK",
+    "year": "2004"
+   },
+   {
+    "acres": 416821.2,
+    "cause": "Human",
+    "components": 1,
+    "largest_component_acres": 416821.2,
+    "lead_fire": "MARTIN",
+    "name": "MARTIN",
+    "rank": 25,
+    "state": "NV",
+    "year": "2018"
+   }
+  ]
+ },
+ "incidents.largest100_summary": {
+  "computed_at": "2026-09-26T15:28:17+00:00",
+  "definition": "The 100 largest incidents (grouped): acreage range, how many are complexes of several records, and where, when and by what cause they started (cause and state of the largest component).",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.incidents",
+  "unit": null,
+  "value": {
+   "acres_max": 1303333.0,
+   "acres_min": 191444.4,
+   "alaska_share": 0.35,
+   "by_cause": {
+    "Human": 22,
+    "Missing data/not specified/undetermined": 6,
+    "Natural": 72
+   },
+   "by_decade": {
+    "1990s": 8,
+    "2000s": 42,
+    "2010s": 39,
+    "2020s": 11
+   },
+   "by_region": {
+    "Alaska": 35,
+    "South": 9,
+    "West": 56
+   },
+   "by_state": {
+    "AK": 35,
+    "AZ": 5,
+    "CA": 15,
+    "ID": 10,
+    "MT": 4,
+    "NV": 7,
+    "OK": 3,
+    "OR": 6,
+    "TX": 4,
+    "WA": 4
+   },
+   "multi_record": 36,
+   "since_2010": 50
+  }
+ },
+ "incidents.row_top100_duplicates": {
+  "computed_at": "2026-09-26T15:28:17+00:00",
+  "definition": "Among the 100 largest FPA FOD records by FIRE_SIZE, how many distinct incidents they are, and which incidents appear as more than one row (the first public site listed rows).",
+  "n": 100,
+  "note": null,
+  "source": "analysis.incidents",
+  "unit": null,
+  "value": {
+   "distinct_incidents": 92,
+   "incidents_with_several_rows": [
+    {
+     "name": "EAST AMARILLO COMPLEX",
+     "records": [
+      "HWY 152",
+      "I-40"
+     ],
+     "row_ranks": [
+      10,
+      13
+     ],
+     "state": "TX",
+     "year": 2006
+    },
+    {
+     "name": "RODEO/CHEDISKI COMPLEX",
+     "records": [
+      "RODEO",
+      "CHEDISKI"
+     ],
+     "row_ranks": [
+      49,
+      80
+     ],
+     "state": "AZ",
+     "year": 2002
+    },
+    {
+     "name": "CENTRAL COMPLEX",
+     "records": [
+      "PREACHER CREEK",
+      "WOLF CREEK",
+      "BOLGEN CREEK"
+     ],
+     "row_ranks": [
+      58,
+      77,
+      86
+     ],
+     "state": "AK",
+     "year": 2004
+    },
+    {
+     "name": "SOLSTICE COMPLEX",
+     "records": [
+      "PINGO",
+      "WINTER TRAILL"
+     ],
+     "row_ranks": [
+      17,
+      25
+     ],
+     "state": "AK",
+     "year": 2004
+    },
+    {
+     "name": "TAYLOR COMPLEX",
+     "records": [
+      "BILLY CK",
+      "CHICKEN 1",
+      "PORCUPINE"
+     ],
+     "row_ranks": [
+      11,
+      27,
+      40
+     ],
+     "state": "AK",
+     "year": 2004
+    },
+    {
+     "name": "AUGUST COMPLEX",
+     "records": [
+      "DOE",
+      "HOPKINS"
+     ],
+     "row_ranks": [
+      3,
+      26
+     ],
+     "state": "CA",
+     "year": 2020
+    }
+   ],
+   "rows": 100,
+   "rows_sharing_an_incident": 14
+  }
+ },
+ "incidents.rule": {
+  "computed_at": "2026-09-26T15:28:17+00:00",
+  "definition": "How FPA FOD records are grouped into incidents for the largest-fires table.",
+  "n": null,
+  "note": null,
+  "source": "analysis.incidents",
+  "unit": null,
+  "value": "Records share an incident when they share ICS_209_PLUS_COMPLEX_JOIN_ID, ICS_209_PLUS_INCIDENT_JOIN_ID, or FIRE_YEAR+STATE+COMPLEX_NAME (transitively). Incident acres = sum of component FIRE_SIZE; no record is dropped."
+ }
+}

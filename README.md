@@ -120,6 +120,20 @@ The question practitioners ask at initial attack is not "how long will this burn
 - **"The model does well on the many short fires."** It predicts about half a day for fires that lasted zero days and loses to a constant on them.
 - **"Test RMSE is about 6% better than always predicting the average."** Understated on the original split (9%) and overstated for any real use (3% forward in time).
 
+## Version 2 of the site: for people who act on it
+
+The site was rebuilt for prevention planners, land managers, and the public, reporters and officials. It adds:
+
+- a map of every fire, with filters and counts on click;
+- a printable brief for each state;
+- a prevention calendar by region, month and cause, including the 4 July spike;
+- the largest fires, counted once per incident;
+- the national NIFC series to 2025;
+- the first public site's drought analysis, replicated and tested forward in time;
+- a forward test of the large-fire ranking on 2021-2025 WFIGS fires.
+
+That forward test failed as specified. A diagnostic run afterwards traces the failure to one input whose coding differs between the two reporting systems. What held and what changed from the first public site: `docs/review/V1_SITE_AUDIT.md`. Write-ups: `docs/findings/places_and_calendar.md`, `docs/findings/nifc_and_drivers.md`, `docs/findings/wfigs_2021_2025.md`. Experiments: E-016 to E-018. Every number on every generated page is checked against the ledger by `tests/test_site_claims.py`.
+
 ## How to run
 
 ```bash
@@ -131,9 +145,16 @@ python scripts/build_cache.py        # data/fires.parquet (86 MB), the file ever
 python -m analysis.descriptive       # outputs/claims.json and outputs/figures/
 python -m analysis.coverage          # outputs/coverage.json
 python scripts/reproduce.py          # regenerates the first version's numbers and the baselines
-python scripts/build_site.py         # site/
-pytest -q                            # 66 tests on a synthetic database; no download needed
+python -m analysis.incidents         # outputs/claims_incidents.json, outputs/tables/largest_incidents.csv
+python -m analysis.places            # outputs/claims_places.json, outputs/tables/ (needs the coverage mask)
+python -m analysis.nifc              # national totals 1983-2025 (fetches NIFC)
+python -m analysis.drivers           # drought replication and tests (fetches NOAA nClimDiv)
+python -m analysis.wfigs             # 2021-2025 WFIGS incidents and the forward test (fetches WFIGS)
+python scripts/build_site.py         # site/, including the map's point files (not committed)
+pytest -q                            # tests on a synthetic database and on the committed ledgers and site; no download needed
 ```
+
+The v2 modules and the map need `pip install -r requirements-analysis.txt`.
 
 The conservation joins and the large-fire model need external data: `python scripts/download_external.py` (ICS-209-PLUS, PAD-US) and `python scripts/download_attributes.py` (FPA FOD-Attributes, 2.2 GB for 2010–2020). Hashes are recorded in `docs/DATA_JOINS.md`.
 

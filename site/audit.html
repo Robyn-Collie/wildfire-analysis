@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit · US wildfire record, 1992-2020</title>
+<meta name="description" content="What held and what changed when the first public wildfire site was rebuilt and re-tested.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">US wildfires <span>1992-2020 · totals to 2025</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Story</a><a href="explore.html">Map</a><a href="trends.html">Trend</a><a href="causes.html">Seasons and causes</a><a href="places.html">Places</a><a href="conservation.html">Protected lands and losses</a><a href="largest.html">Largest fires</a><a href="drivers.html">Drought</a><a href="model.html">Prediction</a><a href="methods.html" aria-current="page">Data and methods</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>Audit of the first public site</h1>
+<p class="lede">The first public version of this project (us-wildfires.netlify.app) set a high bar: national totals to 2025, a drought analysis, a map of every fire, and a habit of featuring its own corrections. This version rebuilt each of its analyses from the original sources, replicated the published numbers, and then tested them more strictly. This page lists what held and what changed.</p></header>
+<div class="table-wrap"><table><thead><tr><th>Claim on the first site</th><th>What the audit found</th><th>Verdict</th><th>Where it is now</th></tr></thead><tbody><tr><td>Map page: California has the &quot;fewest fires of any era&quot; in 2017-2020, and the national count &quot;falls to about 300,000&quot; in 2017-2020</td><td>The last era is four years (2017-2020); the others are five. Totals were compared across unequal eras, so the last era looks low by about a fifth for that reason alone.</td><td><span class="verdict wrong">Corrected</span></td><td>Counts are per year, inside each state's usable window. See any state brief.</td></tr><tr><td>&quot;Fewer fires, not smaller ones&quot;, and other count-based era comparisons</td><td>FPA FOD counts carry reporting breaks: 30 of the 48 states with 1,000+ records have at least one. A falling count can be a state leaving a reporting system.</td><td><span class="verdict wrong">Corrected</span></td><td>Count trends are made only inside usable windows; the national trend uses acres. <a href="trends.html#coverage">Coverage</a>.</td></tr><tr><td>Drought model: &quot;+17.1% vs climatology&quot;, leave-one-year-out</td><td>Reproduced exactly. Leave-one-year-out trains on later years; a forward-in-time test gives 14.7%. Three of its five worst misses fall in years with reporting breaks.</td><td><span class="verdict revised">Revised</span></td><td><a href="drivers.html">Drought</a> shows all four versions of the test.</td></tr><tr><td>Drought vs acres, per-state Spearman (Colorado -0.72, Arizona and Nevada near zero)</td><td>Reproduced exactly. On usable years only, the median moves from -0.45 to -0.48, Colorado to -0.62, Arizona and Nevada unchanged; two states change significance.</td><td><span class="verdict holds">Holds</span></td><td><a href="drivers.html">Drought</a>.</td></tr><tr><td>100 largest fires</td><td>Complexes were listed as several rows: August Complex (#3 and #26), East Amarillo (#10, #13), Rodeo-Chediski (#49, #80), Taylor, Central and Solstice complexes in Alaska. 100 rows were 92 incidents.</td><td><span class="verdict wrong">Corrected</span></td><td><a href="largest.html">Largest fires</a>, grouped by incident with components listed.</td></tr><tr><td>&quot;The highs are higher. So are the lows.&quot; (NIFC 1983-2025)</td><td>Reproduced exactly and holds on rolling tests. The floor shift is partly set by 1983-84, whose fire counts suggest incomplete reporting: 2.02x instead of 2.34x from 1986.</td><td><span class="verdict holds">Holds, with caveat</span></td><td><a href="trends.html#national">Trend</a>.</td></tr><tr><td>Home page density &quot;heat field&quot;</td><td>A smoothed heat surface hides how many fires sit under each colour.</td><td><span class="verdict new">Replaced</span></td><td>The <a href="explore.html">map</a> draws every fire and gives the count around any point.</td></tr><tr><td>&quot;Every number on this page is audited&quot;</td><td>The errors above got through. The claim was about process, not a check a reader could repeat.</td><td><span class="verdict new">Replaced</span></td><td>Every number links to its ledger entry (definition, n, source), and an automated test checks the page text against the ledger.</td></tr></tbody></table></div>
+<p>Replications: <button type="button" class="q" data-claim="nifc.v1_replication">national totals</button> and <button type="button" class="q" data-claim="drivers.v1_replication">drought analysis</button> (click for every number compared). Full write-up: <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/review/V1_SITE_AUDIT.md">docs/review/V1_SITE_AUDIT.md</a>.</p>
+<h2>What carries over, with credit</h2>
+<ul class="tight"><li>The NIFC national series and its era table.</li><li>The drought analysis and the fuel-limited reading of Arizona and Nevada.</li><li>A map of every fire, redrawn from the same record as every other number here.</li><li>The literature framing and the practice of stating corrections up front.</li></ul>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+
+
+</body>
+</html>
