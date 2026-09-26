@@ -56,6 +56,12 @@
     if (c.length === 4) c = '#' + c[1] + c[1] + c[2] + c[2] + c[3] + c[3];
     return [parseInt(c.substr(1, 2), 16) / 255, parseInt(c.substr(3, 2), 16) / 255, parseInt(c.substr(5, 2), 16) / 255];
   }
+  // One retry after a short pause: a dropped connection on a phone should not leave the map empty.
+  function get(url) {
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r; })
+      .catch(function () { return new Promise(function (res) { setTimeout(res, 800); }).then(function () { return fetch(url); })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r; }); });
+  }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
   function fmt(x) { return Math.round(x).toLocaleString('en-US'); }
   function pct(x) { return isFinite(x) ? (100 * x).toFixed(0) + '%' : 'n/a'; }
@@ -115,7 +121,7 @@
     this.initGL();
     if (!this.gl) return;
     this.bindPointer();
-    Promise.all([fetch(META_URL).then(function (r) { return r.json(); }), fetch(OUTLINE_URL).then(function (r) { return r.json(); })])
+    Promise.all([get(META_URL).then(function (r) { return r.json(); }), get(OUTLINE_URL).then(function (r) { return r.json(); })])
       .then(function (res) {
         self.meta = res[0]; self.outline = res[1];
         self.buildControls();
@@ -159,7 +165,7 @@
     if (this.loaded[i]) return Promise.resolve();
     this.loaded[i] = 'loading';
     this.status.textContent = 'Loading ' + FILES[i][1].toLowerCase() + '...';
-    return fetch(FILES[i][0]).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.arrayBuffer(); }).then(function (buf) {
+    return get(FILES[i][0]).then(function (r) { return r.arrayBuffer(); }).then(function (buf) {
       var gl = self.gl, b = gl.createBuffer();
       gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, buf, gl.STATIC_DRAW);
       var u16 = new Uint16Array(buf), n = buf.byteLength / 8;
