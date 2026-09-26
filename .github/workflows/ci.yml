@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      MPLBACKEND: Agg
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        # requirements.txt pins the versions used for docs/review/REPRODUCTION.md.
+        # pytest and pyarrow (used by scripts/build_cache.py) are test-only extras.
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pytest pyarrow ruff
+
+      - name: Lint (syntax errors and undefined names only)
+        # Style is not enforced. E9 = syntax/IO errors, F63 = invalid comparisons,
+        # F7 = misplaced break/continue/return/yield, F82 = undefined names.
+        run: ruff check --select E9,F63,F7,F82 --output-format=github src scripts tests run_pipeline.py
+
+      - name: Test
+        # The suite builds its own tiny SQLite database; the 1 GB FPA FOD file is never downloaded.
+        run: python -m pytest -q

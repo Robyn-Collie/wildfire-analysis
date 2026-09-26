@@ -1,0 +1,6049 @@
+{
+ "conservation.large_fire_definition": {
+  "computed_at": "2026-09-25T21:07:20+00:00",
+  "definition": "large fire",
+  "n": null,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": "FIRE_SIZE >= 300 acres (classes E, F, G)"
+ },
+ "conservation.owner_class_definition": {
+  "computed_at": "2026-09-25T21:07:20+00:00",
+  "definition": "owner classes used in this module",
+  "n": null,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": "Federal = USFS BLM NPS FWS BOR OTHER FEDERAL UNDEFINED FEDERAL; Tribal/BIA = BIA TRIBAL; State = STATE; Private = PRIVATE; State or private = STATE OR PRIVATE; County/local = COUNTY MUNICIPAL/LOCAL; Missing = MISSING/NOT SPECIFIED (OWNER_DESCR upper-cased)"
+ },
+ "coverage.break_years_by_state": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "flagged break years per STATE with the count ratio to the prior non-zero year",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "AL": {
+    "1994": 25.2,
+    "2017": 0.33
+   },
+   "AR": {
+    "1997": 4.64
+   },
+   "CO": {
+    "2012": 0.15,
+    "2013": 3.52
+   },
+   "CT": {
+    "1996": 0.25,
+    "1997": 3.07,
+    "1999": 9.9,
+    "2005": 3.37,
+    "2018": 0.2,
+    "2020": 5.74
+   },
+   "DE": {
+    "2002": 39.0
+   },
+   "HI": {
+    "1993": 0.18,
+    "2001": 43.54,
+    "2013": 0.08,
+    "2014": 0.03
+   },
+   "IA": {
+    "2002": 5.1,
+    "2006": 13.0,
+    "2007": 0.32,
+    "2009": 4.65,
+    "2010": 0.28,
+    "2016": 0.32
+   },
+   "ID": {
+    "1993": 0.32,
+    "1994": 4.78
+   },
+   "IL": {
+    "2011": 0.3
+   },
+   "KS": {
+    "1994": 3.36,
+    "2013": 0.19,
+    "2014": 4.21,
+    "2015": 99.75,
+    "2016": 0.3,
+    "2019": 0.03,
+    "2020": 7.97
+   },
+   "KY": {
+    "1997": 9.38
+   },
+   "LA": {
+    "1997": 8.67,
+    "2001": 0.23,
+    "2003": 0.06,
+    "2005": 43.38,
+    "2007": 0.02,
+    "2008": 22.83,
+    "2011": 0.09,
+    "2012": 4.04
+   },
+   "MA": {
+    "2002": 6.76,
+    "2015": 361.67,
+    "2019": 0.31,
+    "2020": 4.86
+   },
+   "MD": {
+    "2005": 19.86
+   },
+   "ME": {
+    "1996": 0.33,
+    "2020": 3.27
+   },
+   "MI": {
+    "1997": 0.31,
+    "2001": 3.68,
+    "2018": 11.37
+   },
+   "MO": {
+    "1996": 0.22,
+    "2008": 0.26,
+    "2011": 3.78,
+    "2012": 0.3,
+    "2014": 3.03
+   },
+   "MT": {
+    "1994": 4.01
+   },
+   "NE": {
+    "1994": 4.71,
+    "2007": 6.7
+   },
+   "NH": {
+    "1999": 0.03,
+    "2000": 17.4,
+    "2011": 0.04,
+    "2012": 25.0,
+    "2017": 0.3,
+    "2019": 0.12,
+    "2020": 7.59
+   },
+   "NY": {
+    "1995": 3.78,
+    "1996": 0.22,
+    "1997": 3.41
+   },
+   "OH": {
+    "1996": 0.19,
+    "2001": 3.11
+   },
+   "PA": {
+    "2002": 16.97,
+    "2005": 4.06,
+    "2012": 3.6
+   },
+   "PR": {
+    "2003": 3622.0,
+    "2008": 0.0,
+    "2009": 99.41,
+    "2012": 0.0,
+    "2013": 4.12
+   },
+   "RI": {
+    "2008": 6.43
+   },
+   "SC": {
+    "2003": 0.28
+   },
+   "SD": {
+    "2020": 3.81
+   },
+   "TN": {
+    "1997": 24.89,
+    "2003": 0.02,
+    "2005": 29.58
+   },
+   "TX": {
+    "1997": 0.27,
+    "2001": 0.29,
+    "2005": 6.64,
+    "2008": 3.3
+   },
+   "VA": {
+    "1995": 19.87,
+    "2003": 0.22
+   },
+   "VT": {
+    "2012": 48.5,
+    "2020": 4.79
+   },
+   "WI": {
+    "2018": 3.02
+   },
+   "WY": {
+    "1994": 3.42,
+    "1997": 0.19
+   }
+  }
+ },
+ "coverage.federal_agency_break_years_1992_2019": {
+  "computed_at": "2026-09-25T21:07:23+00:00",
+  "definition": "break years (same rule) in the national count series of each federal reporting agency, 1992-2019",
+  "n": 2303566,
+  "note": "2020 is excluded because of the IA-IRWIN switch.",
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "BIA": [],
+   "BLM": [],
+   "FS": [],
+   "FWS": [],
+   "NPS": []
+  }
+ },
+ "coverage.fires_by_reporting_agency_year": {
+  "computed_at": "2026-09-25T21:07:23+00:00",
+  "definition": "records by FIRE_YEAR and NWCG_REPORTING_AGENCY",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "1992": {
+    "BIA": 4358,
+    "BLM": 3234,
+    "BOR": 0,
+    "DOD": 0,
+    "DOE": 0,
+    "FS": 11459,
+    "FWS": 435,
+    "IA": 0,
+    "NPS": 1264,
+    "ST/C&L": 47200,
+    "TRIBE": 11,
+    "Tribe": 0
+   },
+   "1993": {
+    "BIA": 4186,
+    "BLM": 2472,
+    "BOR": 0,
+    "DOD": 0,
+    "DOE": 0,
+    "FS": 7720,
+    "FWS": 484,
+    "IA": 0,
+    "NPS": 972,
+    "ST/C&L": 46128,
+    "TRIBE": 13,
+    "Tribe": 0
+   },
+   "1994": {
+    "BIA": 5362,
+    "BLM": 3845,
+    "BOR": 0,
+    "DOD": 0,
+    "DOE": 0,
+    "FS": 14517,
+    "FWS": 508,
+    "IA": 0,
+    "NPS": 1432,
+    "ST/C&L": 50198,
+    "TRIBE": 70,
+    "Tribe": 0
+   },
+   "1995": {
+    "BIA": 5012,
+    "BLM": 2870,
+    "BOR": 0,
+    "DOD": 0,
+    "DOE": 0,
+    "FS": 9225,
+    "FWS": 503,
+    "IA": 0,
+    "NPS": 1040,
+    "ST/C&L": 52581,
+    "TRIBE": 209,
+    "Tribe": 0
+   },
+   "1996": {
+    "BIA": 4591,
+    "BLM": 4613,
+    "BOR": 0,
+    "DOD": 0,
+    "DOE": 0,
+    "FS": 11518,
+    "FWS": 545,
+    "IA": 0,
+    "NPS": 1155,
+    "ST/C&L": 53032,
+    "TRIBE": 107,
+    "Tribe": 0
+   },
+   "1997": {
+    "BIA": 3711,
+    "BLM": 2612,
+    "BOR": 0,
+    "DOD": 0,
+    "DOE": 0,
+    "FS": 7910,
+    "FWS": 573,
+    "IA": 0,
+    "NPS": 903,
+    "ST/C&L": 45687,
+    "TRIBE": 46,
+    "Tribe": 0
+   },
+   "1998": {
+    "BIA": 5120,
+    "BLM": 3545,
+    "BOR": 0,
+    "DOD": 0,
+    "DOE": 0,
+    "FS": 9424,
+    "FWS": 577,
+    "IA": 0,
+    "NPS": 877,
+    "ST/C&L": 48706,
+    "TRIBE": 107,
+    "Tribe": 0
+   },
+   "1999": {
+    "BIA": 4739,
+    "BLM": 5033,
+    "BOR": 0,
+    "DOD": 1,
+    "DOE": 0,
+    "FS": 10992,
+    "FWS": 1039,
+    "IA": 0,
+    "NPS": 1017,
+    "ST/C&L": 66394,
+    "TRIBE": 135,
+    "Tribe": 0
+   },
+   "2000": {
+    "BIA": 5837,
+    "BLM": 5249,
+    "BOR": 0,
+    "DOD": 3,
+    "DOE": 0,
+    "FS": 11879,
+    "FWS": 1090,
+    "IA": 6,
+    "NPS": 965,
+    "ST/C&L": 71250,
+    "TRIBE": 117,
+    "Tribe": 0
+   },
+   "2001": {
+    "BIA": 4887,
+    "BLM": 5429,
+    "BOR": 0,
+    "DOD": 2,
+    "DOE": 0,
+    "FS": 11011,
+    "FWS": 964,
+    "IA": 2,
+    "NPS": 1007,
+    "ST/C&L": 63588,
+    "TRIBE": 111,
+    "Tribe": 0
+   },
+   "2002": {
+    "BIA": 6181,
+    "BLM": 4204,
+    "BOR": 0,
+    "DOD": 5,
+    "DOE": 0,
+    "FS": 9547,
+    "FWS": 1116,
+    "IA": 10,
+    "NPS": 862,
+    "ST/C&L": 54117,
+    "TRIBE": 86,
+    "Tribe": 0
+   },
+   "2003": {
+    "BIA": 5696,
+    "BLM": 4854,
+    "BOR": 0,
+    "DOD": 1,
+    "DOE": 0,
+    "FS": 10723,
+    "FWS": 1024,
+    "IA": 3625,
+    "NPS": 935,
+    "ST/C&L": 41310,
+    "TRIBE": 107,
+    "Tribe": 0
+   },
+   "2004": {
+    "BIA": 5184,
+    "BLM": 4557,
+    "BOR": 0,
+    "DOD": 3,
+    "DOE": 0,
+    "FS": 8659,
+    "FWS": 1161,
+    "IA": 1885,
+    "NPS": 859,
+    "ST/C&L": 47033,
+    "TRIBE": 29,
+    "Tribe": 0
+   },
+   "2005": {
+    "BIA": 6464,
+    "BLM": 4723,
+    "BOR": 0,
+    "DOD": 0,
+    "DOE": 0,
+    "FS": 7658,
+    "FWS": 1464,
+    "IA": 4223,
+    "NPS": 662,
+    "ST/C&L": 67524,
+    "TRIBE": 203,
+    "Tribe": 0
+   },
+   "2006": {
+    "BIA": 7855,
+    "BLM": 5851,
+    "BOR": 0,
+    "DOD": 3,
+    "DOE": 1,
+    "FS": 10989,
+    "FWS": 1431,
+    "IA": 2524,
+    "NPS": 833,
+    "ST/C&L": 88133,
+    "TRIBE": 323,
+    "Tribe": 0
+   },
+   "2007": {
+    "BIA": 5047,
+    "BLM": 6112,
+    "BOR": 1,
+    "DOD": 9,
+    "DOE": 0,
+    "FS": 8953,
+    "FWS": 979,
+    "IA": 3657,
+    "NPS": 813,
+    "ST/C&L": 73058,
+    "TRIBE": 208,
+    "Tribe": 0
+   },
+   "2008": {
+    "BIA": 5219,
+    "BLM": 2633,
+    "BOR": 8,
+    "DOD": 7,
+    "DOE": 1,
+    "FS": 7396,
+    "FWS": 802,
+    "IA": 2,
+    "NPS": 625,
+    "ST/C&L": 71336,
+    "TRIBE": 277,
+    "Tribe": 0
+   },
+   "2009": {
+    "BIA": 4586,
+    "BLM": 3579,
+    "BOR": 1,
+    "DOD": 11,
+    "DOE": 0,
+    "FS": 7844,
+    "FWS": 727,
+    "IA": 1684,
+    "NPS": 684,
+    "ST/C&L": 62150,
+    "TRIBE": 226,
+    "Tribe": 0
+   },
+   "2010": {
+    "BIA": 4217,
+    "BLM": 3239,
+    "BOR": 0,
+    "DOD": 3,
+    "DOE": 0,
+    "FS": 6942,
+    "FWS": 654,
+    "IA": 1751,
+    "NPS": 652,
+    "ST/C&L": 67804,
+    "TRIBE": 317,
+    "Tribe": 0
+   },
+   "2011": {
+    "BIA": 4391,
+    "BLM": 3834,
+    "BOR": 1,
+    "DOD": 3,
+    "DOE": 1,
+    "FS": 7283,
+    "FWS": 912,
+    "IA": 2472,
+    "NPS": 739,
+    "ST/C&L": 78974,
+    "TRIBE": 293,
+    "Tribe": 0
+   },
+   "2012": {
+    "BIA": 5940,
+    "BLM": 4283,
+    "BOR": 0,
+    "DOD": 8,
+    "DOE": 0,
+    "FS": 7516,
+    "FWS": 781,
+    "IA": 1,
+    "NPS": 612,
+    "ST/C&L": 54780,
+    "TRIBE": 337,
+    "Tribe": 0
+   },
+   "2013": {
+    "BIA": 3451,
+    "BLM": 3886,
+    "BOR": 0,
+    "DOD": 3,
+    "DOE": 0,
+    "FS": 7441,
+    "FWS": 593,
+    "IA": 0,
+    "NPS": 617,
+    "ST/C&L": 50350,
+    "TRIBE": 93,
+    "Tribe": 0
+   },
+   "2014": {
+    "BIA": 3711,
+    "BLM": 3075,
+    "BOR": 2,
+    "DOD": 13,
+    "DOE": 0,
+    "FS": 6717,
+    "FWS": 442,
+    "IA": 0,
+    "NPS": 636,
+    "ST/C&L": 55728,
+    "TRIBE": 156,
+    "Tribe": 0
+   },
+   "2015": {
+    "BIA": 4191,
+    "BLM": 3260,
+    "BOR": 1,
+    "DOD": 10,
+    "DOE": 0,
+    "FS": 7139,
+    "FWS": 514,
+    "IA": 0,
+    "NPS": 704,
+    "ST/C&L": 61299,
+    "TRIBE": 157,
+    "Tribe": 0
+   },
+   "2016": {
+    "BIA": 4372,
+    "BLM": 3117,
+    "BOR": 0,
+    "DOD": 14,
+    "DOE": 0,
+    "FS": 5919,
+    "FWS": 460,
+    "IA": 0,
+    "NPS": 668,
+    "ST/C&L": 67274,
+    "TRIBE": 169,
+    "Tribe": 0
+   },
+   "2017": {
+    "BIA": 4049,
+    "BLM": 4198,
+    "BOR": 0,
+    "DOD": 12,
+    "DOE": 0,
+    "FS": 6773,
+    "FWS": 471,
+    "IA": 0,
+    "NPS": 566,
+    "ST/C&L": 65956,
+    "TRIBE": 254,
+    "Tribe": 0
+   },
+   "2018": {
+    "BIA": 3666,
+    "BLM": 3642,
+    "BOR": 1,
+    "DOD": 11,
+    "DOE": 2,
+    "FS": 5739,
+    "FWS": 306,
+    "IA": 0,
+    "NPS": 539,
+    "ST/C&L": 66763,
+    "TRIBE": 191,
+    "Tribe": 0
+   },
+   "2019": {
+    "BIA": 3052,
+    "BLM": 3254,
+    "BOR": 1,
+    "DOD": 10,
+    "DOE": 0,
+    "FS": 5425,
+    "FWS": 321,
+    "IA": 0,
+    "NPS": 476,
+    "ST/C&L": 50835,
+    "TRIBE": 183,
+    "Tribe": 0
+   },
+   "2020": {
+    "BIA": 3921,
+    "BLM": 2469,
+    "BOR": 21,
+    "DOD": 31,
+    "DOE": 8,
+    "FS": 6677,
+    "FWS": 455,
+    "IA": 11,
+    "NPS": 485,
+    "ST/C&L": 58980,
+    "TRIBE": 202,
+    "Tribe": 2
+   }
+  }
+ },
+ "coverage.fires_by_source_system_type_year": {
+  "computed_at": "2026-09-25T21:07:23+00:00",
+  "definition": "records by FIRE_YEAR and SOURCE_SYSTEM_TYPE",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "1992": {
+    "FED": 20760,
+    "INTERAGCY": 334,
+    "NONFED": 46867
+   },
+   "1993": {
+    "FED": 15847,
+    "INTERAGCY": 463,
+    "NONFED": 45665
+   },
+   "1994": {
+    "FED": 25734,
+    "INTERAGCY": 365,
+    "NONFED": 49833
+   },
+   "1995": {
+    "FED": 18859,
+    "INTERAGCY": 304,
+    "NONFED": 52277
+   },
+   "1996": {
+    "FED": 22528,
+    "INTERAGCY": 2,
+    "NONFED": 53031
+   },
+   "1997": {
+    "FED": 15753,
+    "INTERAGCY": 0,
+    "NONFED": 45689
+   },
+   "1998": {
+    "FED": 19648,
+    "INTERAGCY": 19,
+    "NONFED": 48689
+   },
+   "1999": {
+    "FED": 22946,
+    "INTERAGCY": 36,
+    "NONFED": 66368
+   },
+   "2000": {
+    "FED": 25116,
+    "INTERAGCY": 130,
+    "NONFED": 71150
+   },
+   "2001": {
+    "FED": 23396,
+    "INTERAGCY": 618,
+    "NONFED": 62987
+   },
+   "2002": {
+    "FED": 21971,
+    "INTERAGCY": 642,
+    "NONFED": 53515
+   },
+   "2003": {
+    "FED": 23325,
+    "INTERAGCY": 4661,
+    "NONFED": 40289
+   },
+   "2004": {
+    "FED": 20429,
+    "INTERAGCY": 2645,
+    "NONFED": 46296
+   },
+   "2005": {
+    "FED": 21134,
+    "INTERAGCY": 5566,
+    "NONFED": 66221
+   },
+   "2006": {
+    "FED": 27257,
+    "INTERAGCY": 3547,
+    "NONFED": 87139
+   },
+   "2007": {
+    "FED": 22096,
+    "INTERAGCY": 4765,
+    "NONFED": 71976
+   },
+   "2008": {
+    "FED": 16945,
+    "INTERAGCY": 1166,
+    "NONFED": 70195
+   },
+   "2009": {
+    "FED": 17639,
+    "INTERAGCY": 3010,
+    "NONFED": 60843
+   },
+   "2010": {
+    "FED": 16017,
+    "INTERAGCY": 3151,
+    "NONFED": 66411
+   },
+   "2011": {
+    "FED": 17408,
+    "INTERAGCY": 3479,
+    "NONFED": 78016
+   },
+   "2012": {
+    "FED": 19464,
+    "INTERAGCY": 1034,
+    "NONFED": 53760
+   },
+   "2013": {
+    "FED": 16068,
+    "INTERAGCY": 433,
+    "NONFED": 49933
+   },
+   "2014": {
+    "FED": 14705,
+    "INTERAGCY": 377,
+    "NONFED": 55398
+   },
+   "2015": {
+    "FED": 15925,
+    "INTERAGCY": 438,
+    "NONFED": 60912
+   },
+   "2016": {
+    "FED": 14658,
+    "INTERAGCY": 457,
+    "NONFED": 66878
+   },
+   "2017": {
+    "FED": 16264,
+    "INTERAGCY": 306,
+    "NONFED": 65709
+   },
+   "2018": {
+    "FED": 13972,
+    "INTERAGCY": 140,
+    "NONFED": 66748
+   },
+   "2019": {
+    "FED": 12630,
+    "INTERAGCY": 63,
+    "NONFED": 50864
+   },
+   "2020": {
+    "FED": 921,
+    "INTERAGCY": 19413,
+    "NONFED": 52928
+   }
+  }
+ },
+ "coverage.ia_irwin_switch_2020": {
+  "computed_at": "2026-09-25T21:07:23+00:00",
+  "definition": "records with NWCG_REPORTING_AGENCY == IA in 2020 versus earlier years, FS records in 2019 and 2020, and records by SOURCE_SYSTEM_TYPE in 2019 and 2020",
+  "n": 2303566,
+  "note": "In 2020 the federal source systems (FS-FIRESTAT, DOI-WFMI) were replaced by IA-IRWIN, so SOURCE_SYSTEM_TYPE jumps from FED to INTERAGCY. NWCG_REPORTING_AGENCY is preserved (FS still has thousands of 2020 records and IA only a handful), so agency-level series must use NWCG_REPORTING_AGENCY, and SOURCE_SYSTEM_TYPE series break at 2020.",
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "FS_records_2019": 5425,
+   "FS_records_2020": 6677,
+   "IA_records_1992_2019": 21842,
+   "IA_records_2020": 11,
+   "source_system_type_2019": {
+    "FED": 12630,
+    "INTERAGCY": 63,
+    "NONFED": 50864
+   },
+   "source_system_type_2020": {
+    "FED": 921,
+    "INTERAGCY": 19413,
+    "NONFED": 52928
+   }
+  }
+ },
+ "coverage.n_break_state_years": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "state-years flagged as breaks",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 96
+ },
+ "coverage.n_states": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "distinct STATE values (states, DC and territories)",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 52
+ },
+ "coverage.n_states_ge_1000_records": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "STATE values with at least 1,000 records",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 48
+ },
+ "coverage.n_states_ge_1000_with_break": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "same, among STATE values with at least 1,000 records",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 30
+ },
+ "coverage.n_states_with_break": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "STATE values with at least one flagged break year (rule in coverage.rule)",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 33
+ },
+ "coverage.national_fires_by_year_all_vs_masked": {
+  "computed_at": "2026-09-25T21:07:23+00:00",
+  "definition": "fires per FIRE_YEAR over all state-years and over usable state-years only, with the number of states contributing",
+  "n": 2303566,
+  "note": "The masked series is not a national series either: the set of contributing states changes by year.",
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "1992": {
+    "all_states": 67961,
+    "n_states_usable": 25,
+    "usable_state_years_only": 52822
+   },
+   "1993": {
+    "all_states": 61975,
+    "n_states_usable": 25,
+    "usable_state_years_only": 50433
+   },
+   "1994": {
+    "all_states": 75932,
+    "n_states_usable": 29,
+    "usable_state_years_only": 65516
+   },
+   "1995": {
+    "all_states": 71440,
+    "n_states_usable": 29,
+    "usable_state_years_only": 58928
+   },
+   "1996": {
+    "all_states": 75561,
+    "n_states_usable": 31,
+    "usable_state_years_only": 65241
+   },
+   "1997": {
+    "all_states": 61442,
+    "n_states_usable": 35,
+    "usable_state_years_only": 53303
+   },
+   "1998": {
+    "all_states": 68356,
+    "n_states_usable": 35,
+    "usable_state_years_only": 57037
+   },
+   "1999": {
+    "all_states": 89350,
+    "n_states_usable": 35,
+    "usable_state_years_only": 73741
+   },
+   "2000": {
+    "all_states": 96396,
+    "n_states_usable": 36,
+    "usable_state_years_only": 80461
+   },
+   "2001": {
+    "all_states": 87001,
+    "n_states_usable": 39,
+    "usable_state_years_only": 74099
+   },
+   "2002": {
+    "all_states": 76128,
+    "n_states_usable": 37,
+    "usable_state_years_only": 64540
+   },
+   "2003": {
+    "all_states": 68275,
+    "n_states_usable": 39,
+    "usable_state_years_only": 62568
+   },
+   "2004": {
+    "all_states": 69370,
+    "n_states_usable": 39,
+    "usable_state_years_only": 65682
+   },
+   "2005": {
+    "all_states": 92921,
+    "n_states_usable": 43,
+    "usable_state_years_only": 77306
+   },
+   "2006": {
+    "all_states": 117943,
+    "n_states_usable": 43,
+    "usable_state_years_only": 95770
+   },
+   "2007": {
+    "all_states": 98837,
+    "n_states_usable": 44,
+    "usable_state_years_only": 88890
+   },
+   "2008": {
+    "all_states": 88306,
+    "n_states_usable": 44,
+    "usable_state_years_only": 85765
+   },
+   "2009": {
+    "all_states": 81492,
+    "n_states_usable": 44,
+    "usable_state_years_only": 76639
+   },
+   "2010": {
+    "all_states": 85579,
+    "n_states_usable": 44,
+    "usable_state_years_only": 80431
+   },
+   "2011": {
+    "all_states": 98903,
+    "n_states_usable": 42,
+    "usable_state_years_only": 94676
+   },
+   "2012": {
+    "all_states": 74258,
+    "n_states_usable": 43,
+    "usable_state_years_only": 71373
+   },
+   "2013": {
+    "all_states": 66434,
+    "n_states_usable": 41,
+    "usable_state_years_only": 60724
+   },
+   "2014": {
+    "all_states": 70480,
+    "n_states_usable": 41,
+    "usable_state_years_only": 64135
+   },
+   "2015": {
+    "all_states": 77275,
+    "n_states_usable": 41,
+    "usable_state_years_only": 63301
+   },
+   "2016": {
+    "all_states": 81993,
+    "n_states_usable": 41,
+    "usable_state_years_only": 70514
+   },
+   "2017": {
+    "all_states": 82279,
+    "n_states_usable": 40,
+    "usable_state_years_only": 67449
+   },
+   "2018": {
+    "all_states": 80860,
+    "n_states_usable": 37,
+    "usable_state_years_only": 61050
+   },
+   "2019": {
+    "all_states": 63557,
+    "n_states_usable": 37,
+    "usable_state_years_only": 51931
+   },
+   "2020": {
+    "all_states": 73262,
+    "n_states_usable": 35,
+    "usable_state_years_only": 55814
+   }
+  }
+ },
+ "coverage.nonfed_share_by_year": {
+  "computed_at": "2026-09-25T21:07:23+00:00",
+  "definition": "share of records with SOURCE_SYSTEM_TYPE == NONFED by year",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": {
+   "1992": 0.6896161033533939,
+   "1993": 0.7368293666801129,
+   "1994": 0.6562845704050994,
+   "1995": 0.7317609182530795,
+   "1996": 0.7018303092865367,
+   "1997": 0.7436118615930472,
+   "1998": 0.7122856808473287,
+   "1999": 0.7427867935086737,
+   "2000": 0.7381011660234864,
+   "2001": 0.7239801841358146,
+   "2002": 0.7029608028583438,
+   "2003": 0.5900988648846577,
+   "2004": 0.667377829032723,
+   "2005": 0.7126591405602609,
+   "2006": 0.7388229907667263,
+   "2007": 0.7282293068385322,
+   "2008": 0.7949063483794986,
+   "2009": 0.7466131644824032,
+   "2010": 0.7760198179459914,
+   "2011": 0.7888132817002518,
+   "2012": 0.7239624013574295,
+   "2013": 0.7516181473341963,
+   "2014": 0.7860102156640182,
+   "2015": 0.7882497573600776,
+   "2016": 0.8156549949385923,
+   "2017": 0.7986120395240583,
+   "2018": 0.8254761315854563,
+   "2019": 0.8002895039098762,
+   "2020": 0.7224481996123502
+  }
+ },
+ "coverage.rule": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "the coverage_ok rule as implemented in analysis/coverage.py",
+  "n": null,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": "break on year y if count(y) / count(prior non-zero year) > 3 or < 1/3 and max(count(y), count(prior)) >= 30; zero-count years flagged and never usable; usable window = longest run of consecutive non-zero years containing no break year after its first year (ties to the most recent run); coverage_ok(state, year) = year inside the usable window"
+ },
+ "coverage.share_acres_in_usable_window": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "share of all acres whose state-year lies inside the state usable window",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": 0.9443013602157987
+ },
+ "coverage.share_records_in_usable_window": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "share of all records whose state-year lies inside the state usable window",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": 0.8639383460252495
+ },
+ "coverage.share_records_in_window_by_region_year": {
+  "computed_at": "2026-09-25T21:07:23+00:00",
+  "definition": "share of a region-year's records that lie inside their state usable window",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": {
+   "1992": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.5121488230827639,
+    "Other": 0.6257291502443638,
+    "South": 0.771522402064274,
+    "West": 0.839724302008257
+   },
+   "1993": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.4144705318639195,
+    "Other": 0.7173565058312371,
+    "South": 0.7768918263400436,
+    "West": 0.921041695525696
+   },
+   "1994": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.5504699632202698,
+    "Other": 0.6948609509163143,
+    "South": 0.8098992969789094,
+    "West": 0.9725278010283391
+   },
+   "1995": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.513431182497923,
+    "Other": 0.6131147540983607,
+    "South": 0.799560188955856,
+    "West": 0.9772052814932691
+   },
+   "1996": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.8351063829787234,
+    "Other": 0.9167844522968198,
+    "South": 0.7836741889985895,
+    "West": 0.9633418584825234
+   },
+   "1997": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.9326999208234362,
+    "Other": 0.9674371274894606,
+    "South": 0.7593059838644364,
+    "West": 1.0
+   },
+   "1998": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.9162541254125413,
+    "Other": 0.957122439256789,
+    "South": 0.7165946299934512,
+    "West": 1.0
+   },
+   "1999": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.9126575028636884,
+    "Other": 0.9582714382174207,
+    "South": 0.7187840120097579,
+    "West": 1.0
+   },
+   "2000": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.0,
+    "Northeast": 0.961864406779661,
+    "Other": 0.9669862847432941,
+    "South": 0.7345825710817419,
+    "West": 1.0
+   },
+   "2001": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 1.0,
+    "Northeast": 0.9665102734185407,
+    "Other": 0.9830764075067024,
+    "South": 0.7389141115741029,
+    "West": 1.0
+   },
+   "2002": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.9982668977469671,
+    "Northeast": 0.8705649459418303,
+    "Other": 0.9618946811325747,
+    "South": 0.7236883858684154,
+    "West": 1.0
+   },
+   "2003": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.2062239754547447,
+    "Northeast": 0.9165823333815237,
+    "Other": 0.9758680378780165,
+    "South": 0.9374446303770056,
+    "West": 1.0
+   },
+   "2004": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.26710730948678074,
+    "Northeast": 0.9401166781056967,
+    "Other": 0.9608446986361636,
+    "South": 0.9621950442703356,
+    "West": 1.0
+   },
+   "2005": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.22516316171138506,
+    "Northeast": 0.9216776625824694,
+    "Other": 0.9724399804017638,
+    "South": 0.7577663157398903,
+    "West": 1.0
+   },
+   "2006": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.23779385171790235,
+    "Northeast": 0.9092240117130308,
+    "Other": 0.9478839401219737,
+    "South": 0.706030028668146,
+    "West": 1.0
+   },
+   "2007": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.2070002147305132,
+    "Northeast": 0.9362036102702097,
+    "Other": 0.9839743589743589,
+    "South": 0.8823704269911035,
+    "West": 1.0
+   },
+   "2008": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.9783715012722646,
+    "Northeast": 0.9212186945375666,
+    "Other": 0.953999038307421,
+    "South": 0.9698949043252523,
+    "West": 1.0
+   },
+   "2009": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.3258875149581173,
+    "Northeast": 0.9153491846134695,
+    "Other": 0.8712898372315688,
+    "South": 0.9605151972959823,
+    "West": 1.0
+   },
+   "2010": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.360146252285192,
+    "Northeast": 0.9366486486486486,
+    "Other": 0.9465009456903539,
+    "South": 0.9438244047619048,
+    "West": 1.0
+   },
+   "2011": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.19469598965071153,
+    "Northeast": 0.9611300720515737,
+    "Other": 0.798683404776485,
+    "South": 0.9959806627275927,
+    "West": 1.0
+   },
+   "2012": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.9889349930843707,
+    "Northeast": 0.8702899565765513,
+    "Other": 0.921737519681393,
+    "South": 1.0,
+    "West": 0.9503768844221105
+   },
+   "2013": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.3548387096774194,
+    "Northeast": 0.8255327245053272,
+    "Other": 0.8497223714848647,
+    "South": 1.0,
+    "West": 0.8509701863829462
+   },
+   "2014": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.9545454545454546,
+    "Northeast": 0.8422539399345822,
+    "Other": 0.7022616661895219,
+    "South": 1.0,
+    "West": 0.8585813974030563
+   },
+   "2015": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.875,
+    "Northeast": 0.6719854941069809,
+    "Other": 0.4766193529793213,
+    "South": 1.0,
+    "West": 0.8723228313900604
+   },
+   "2016": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.6190476190476191,
+    "Northeast": 0.6765237391161492,
+    "Other": 0.6777172099232395,
+    "South": 1.0,
+    "West": 0.8086575433083888
+   },
+   "2017": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.5319148936170213,
+    "Northeast": 0.6854377474703036,
+    "Other": 0.5168340224453633,
+    "South": 0.9610556706207243,
+    "West": 0.8182282358948174
+   },
+   "2018": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.6585365853658537,
+    "Northeast": 0.6658214091650063,
+    "Other": 0.2725969330507418,
+    "South": 0.9608712496233481,
+    "West": 0.8493523243425111
+   },
+   "2019": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.7045454545454546,
+    "Northeast": 0.7758540009358914,
+    "Other": 0.35280970625798214,
+    "South": 0.9341199193819281,
+    "West": 0.881253457678021
+   },
+   "2020": {
+    "Alaska": 1.0,
+    "Hawaii/PR": 0.6,
+    "Northeast": 0.5024274351823159,
+    "Other": 0.33491240614944584,
+    "South": 0.9588442713541393,
+    "West": 0.8667595312358054
+   }
+  }
+ },
+ "coverage.states_with_interior_zero_years": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "STATE values with a zero-count year between their first and last year with records",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "CT": [
+    2013,
+    2014
+   ],
+   "DC": [
+    1996,
+    2000,
+    2003,
+    2004
+   ],
+   "DE": [
+    1996,
+    1998,
+    2006,
+    2008,
+    2009,
+    2011,
+    2018
+   ],
+   "MA": [
+    2011
+   ],
+   "PR": [
+    1995,
+    1999,
+    2000,
+    2001
+   ],
+   "RI": [
+    1992,
+    1993,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2010
+   ],
+   "VT": [
+    1996,
+    2000,
+    2001,
+    2011
+   ]
+  }
+ },
+ "coverage.usable_window_by_state": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "usable window [start, end] per STATE",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "AK": [
+    1992,
+    2020
+   ],
+   "AL": [
+    1994,
+    2016
+   ],
+   "AR": [
+    1997,
+    2020
+   ],
+   "AZ": [
+    1992,
+    2020
+   ],
+   "CA": [
+    1992,
+    2020
+   ],
+   "CO": [
+    1992,
+    2011
+   ],
+   "CT": [
+    2005,
+    2012
+   ],
+   "DC": [
+    2005,
+    2020
+   ],
+   "DE": [
+    2012,
+    2017
+   ],
+   "FL": [
+    1992,
+    2020
+   ],
+   "GA": [
+    1992,
+    2020
+   ],
+   "HI": [
+    2001,
+    2012
+   ],
+   "IA": [
+    1992,
+    2001
+   ],
+   "ID": [
+    1994,
+    2020
+   ],
+   "IL": [
+    1992,
+    2010
+   ],
+   "IN": [
+    1992,
+    2020
+   ],
+   "KS": [
+    1994,
+    2012
+   ],
+   "KY": [
+    1997,
+    2020
+   ],
+   "LA": [
+    2012,
+    2020
+   ],
+   "MA": [
+    1992,
+    2001
+   ],
+   "MD": [
+    2005,
+    2020
+   ],
+   "ME": [
+    1996,
+    2019
+   ],
+   "MI": [
+    2001,
+    2017
+   ],
+   "MN": [
+    1992,
+    2020
+   ],
+   "MO": [
+    1996,
+    2007
+   ],
+   "MS": [
+    1992,
+    2020
+   ],
+   "MT": [
+    1994,
+    2020
+   ],
+   "NC": [
+    1992,
+    2020
+   ],
+   "ND": [
+    1992,
+    2020
+   ],
+   "NE": [
+    2007,
+    2020
+   ],
+   "NH": [
+    2000,
+    2010
+   ],
+   "NJ": [
+    1992,
+    2020
+   ],
+   "NM": [
+    1992,
+    2020
+   ],
+   "NV": [
+    1992,
+    2020
+   ],
+   "NY": [
+    1997,
+    2020
+   ],
+   "OH": [
+    2001,
+    2020
+   ],
+   "OK": [
+    1992,
+    2020
+   ],
+   "OR": [
+    1992,
+    2020
+   ],
+   "PA": [
+    1992,
+    2001
+   ],
+   "PR": [
+    2013,
+    2020
+   ],
+   "RI": [
+    2011,
+    2020
+   ],
+   "SC": [
+    2003,
+    2020
+   ],
+   "SD": [
+    1992,
+    2019
+   ],
+   "TN": [
+    2005,
+    2020
+   ],
+   "TX": [
+    2008,
+    2020
+   ],
+   "UT": [
+    1992,
+    2020
+   ],
+   "VA": [
+    2003,
+    2020
+   ],
+   "VT": [
+    2002,
+    2010
+   ],
+   "WA": [
+    1992,
+    2020
+   ],
+   "WI": [
+    1992,
+    2017
+   ],
+   "WV": [
+    1992,
+    2020
+   ],
+   "WY": [
+    1997,
+    2020
+   ]
+  }
+ },
+ "coverage.window_length_years": {
+  "computed_at": "2026-09-25T21:07:22+00:00",
+  "definition": "length of the usable window in years across STATE values",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "years",
+  "value": {
+   "max": 29,
+   "median": 24.0,
+   "min": 6,
+   "n_states_full_29": 18,
+   "n_states_lt_10": 5
+  }
+ },
+ "ics.cause_agreement_all_matched": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "matched incidents by FPA FOD NWCG_CAUSE_CLASSIFICATION (largest joined fire) and ICS-209-PLUS CAUSE (H Human, L Lightning, U Unknown, O Other)",
+  "n": 29921,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "Human": {
+    "Human": 13060,
+    "Lightning": 161,
+    "Not recorded": 90,
+    "Other": 545,
+    "Unknown": 3825
+   },
+   "Missing data/not specified/undetermined": {
+    "Human": 447,
+    "Lightning": 66,
+    "Not recorded": 28,
+    "Other": 107,
+    "Unknown": 815
+   },
+   "Natural": {
+    "Human": 177,
+    "Lightning": 9746,
+    "Not recorded": 13,
+    "Other": 68,
+    "Unknown": 773
+   }
+  }
+ },
+ "ics.cause_agreement_share": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "share of incidents where both sources record a cause and agree (Human vs Natural/Lightning)",
+  "n": 23144,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": 0.9853957829243001
+ },
+ "ics.distinct_incidents_matched": {
+  "computed_at": "2026-09-25T21:07:24+00:00",
+  "definition": "distinct incident ids among matched rows (several FPA FOD fires can share one incident, e.g. complexes)",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 29921
+ },
+ "ics.evacuations_by_form_era": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "evacuation reporting split at the 2014 ICS-209 form change: 2010-2013 has a yes/no EVACUATION_REPORTED flag for every incident, 2014-2020 has PEAK_EVACUATIONS (a count, null when none reported) and the flag is derived from it",
+  "n": 9609,
+  "note": "The two eras are not comparable; the data dictionary says EVACUATION_REPORTED is \"2002+ only, 2014+ set to true if PEAK_EVACUATIONS > 0\".",
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "2010_2013_flag": {
+    "evacuation_reported": 436,
+    "incidents": 3422,
+    "share_reported": 0.12741087083576855,
+    "with_flag": 3422
+   },
+   "2014_2020_peak_count": {
+    "incidents": 6187,
+    "peak_evacuations_sum": 1662736.0,
+    "share_incidents_with_evacuations": 0.09067399385808954,
+    "with_peak_evacuations": 1336,
+    "with_peak_gt_0": 561
+   }
+  }
+ },
+ "ics.field_fill_rates_sample": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "share of sample incidents with a non-null value for each ICS-209-PLUS field",
+  "n": 9609,
+  "note": "STR_DESTROYED_TOTAL and FATALITIES include zeros by construction (data dictionary: \"zero values included\"), so a missing report and a true zero cannot be told apart. STR_THREATENED_MAX, WF_PEAK_PERSONNEL, PROJECTED_FINAL_IM_COST and PEAK_EVACUATIONS are null when never reported.",
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": {
+   "EVACUATION_REPORTED": 0.4145072328025809,
+   "FATALITIES": 1.0,
+   "PEAK_EVACUATIONS": 0.1390363201165574,
+   "PROJECTED_FINAL_IM_COST": 0.8847955042147986,
+   "STR_DESTROYED_TOTAL": 1.0,
+   "STR_THREATENED_MAX": 0.47080861692163595,
+   "WF_PEAK_PERSONNEL": 0.8677281715058799
+  }
+ },
+ "ics.final_acres_vs_fod_acres": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "ICS-209-PLUS FINAL_ACRES divided by the sum of FIRE_SIZE over the joined FPA FOD fires",
+  "n": 29921,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "ratio",
+  "value": {
+   "median_ratio": 1.0,
+   "share_ics_larger_than_2x": 0.027238394438688546,
+   "share_within_25pct": 0.886133484843421
+  }
+ },
+ "ics.fod_rows_matched": {
+  "computed_at": "2026-09-25T21:07:24+00:00",
+  "definition": "FPA FOD rows whose ICS_209_PLUS_INCIDENT_JOIN_ID equals an INCIDENT_ID in the ICS-209-PLUS incident table",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 33476
+ },
+ "ics.fod_rows_with_join_id": {
+  "computed_at": "2026-09-25T21:07:24+00:00",
+  "definition": "FPA FOD rows with a non-empty ICS_209_PLUS_INCIDENT_JOIN_ID",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 33494
+ },
+ "ics.incident_type_counts": {
+  "computed_at": "2026-09-25T21:07:24+00:00",
+  "definition": "INCTYP_ABBREVIATION counts (WF wildfire, WFU wildland fire use, RX prescribed, CX complex)",
+  "n": 34622,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "CX": 65,
+   "RX": 144,
+   "WF": 33641,
+   "WFU": 772
+  }
+ },
+ "ics.largest_fod_id_agreement": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "share of matched incidents where the largest joined FPA FOD fire (by FIRE_SIZE) is the one ICS-209-PLUS lists in LRGST_FOD_ID",
+  "n": 29921,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": 0.9997326292570435
+ },
+ "ics.match_rate_by_size_class_2010_2020": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "same by FIRE_SIZE_CLASS, FIRE_YEAR 2010-2020",
+  "n": 854880,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "A": {
+    "fires": 368672,
+    "matched": 855,
+    "share_matched": 0.002319134623730579
+   },
+   "B": {
+    "fires": 376974,
+    "matched": 1298,
+    "share_matched": 0.0034432082849215066
+   },
+   "C": {
+    "fires": 84532,
+    "matched": 1117,
+    "share_matched": 0.013213930819098094
+   },
+   "D": {
+    "fires": 12243,
+    "matched": 4129,
+    "share_matched": 0.3372539410275259
+   },
+   "E": {
+    "fires": 6471,
+    "matched": 4600,
+    "share_matched": 0.7108638541183743
+   },
+   "F": {
+    "fires": 3849,
+    "matched": 3255,
+    "share_matched": 0.8456742010911925
+   },
+   "G": {
+    "fires": 2139,
+    "matched": 2042,
+    "share_matched": 0.9546517064048621
+   }
+  }
+ },
+ "ics.match_rate_by_year": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "FPA FOD rows, rows with a join id, matched rows and match shares by FIRE_YEAR; the _ge_300 columns restrict to FIRE_SIZE >= 300 acres",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "1992": {
+    "fires": 67961,
+    "fires_ge_300": 623,
+    "matched": 0,
+    "share_matched": 0.0,
+    "share_matched_ge_300": 0.0,
+    "with_join_id": 0
+   },
+   "1993": {
+    "fires": 61975,
+    "fires_ge_300": 621,
+    "matched": 0,
+    "share_matched": 0.0,
+    "share_matched_ge_300": 0.0,
+    "with_join_id": 0
+   },
+   "1994": {
+    "fires": 75932,
+    "fires_ge_300": 1216,
+    "matched": 0,
+    "share_matched": 0.0,
+    "share_matched_ge_300": 0.0,
+    "with_join_id": 0
+   },
+   "1995": {
+    "fires": 71440,
+    "fires_ge_300": 767,
+    "matched": 0,
+    "share_matched": 0.0,
+    "share_matched_ge_300": 0.0,
+    "with_join_id": 0
+   },
+   "1996": {
+    "fires": 75561,
+    "fires_ge_300": 1269,
+    "matched": 0,
+    "share_matched": 0.0,
+    "share_matched_ge_300": 0.0,
+    "with_join_id": 0
+   },
+   "1997": {
+    "fires": 61442,
+    "fires_ge_300": 455,
+    "matched": 0,
+    "share_matched": 0.0,
+    "share_matched_ge_300": 0.0,
+    "with_join_id": 0
+   },
+   "1998": {
+    "fires": 68356,
+    "fires_ge_300": 674,
+    "matched": 0,
+    "share_matched": 0.0,
+    "share_matched_ge_300": 0.0,
+    "with_join_id": 0
+   },
+   "1999": {
+    "fires": 89350,
+    "fires_ge_300": 1202,
+    "matched": 856,
+    "share_matched": 0.009580302182428651,
+    "share_matched_ge_300": 0.42013311148086524,
+    "with_join_id": 857
+   },
+   "2000": {
+    "fires": 96396,
+    "fires_ge_300": 1594,
+    "matched": 1105,
+    "share_matched": 0.011463131250259348,
+    "share_matched_ge_300": 0.4918444165621079,
+    "with_join_id": 1105
+   },
+   "2001": {
+    "fires": 87001,
+    "fires_ge_300": 1084,
+    "matched": 909,
+    "share_matched": 0.010448155768324502,
+    "share_matched_ge_300": 0.5488929889298892,
+    "with_join_id": 909
+   },
+   "2002": {
+    "fires": 76128,
+    "fires_ge_300": 843,
+    "matched": 977,
+    "share_matched": 0.012833648591845314,
+    "share_matched_ge_300": 0.6097271648873073,
+    "with_join_id": 978
+   },
+   "2003": {
+    "fires": 68275,
+    "fires_ge_300": 922,
+    "matched": 1248,
+    "share_matched": 0.018279018674478214,
+    "share_matched_ge_300": 0.7245119305856833,
+    "with_join_id": 1249
+   },
+   "2004": {
+    "fires": 69370,
+    "fires_ge_300": 628,
+    "matched": 923,
+    "share_matched": 0.013305463456825718,
+    "share_matched_ge_300": 0.6767515923566879,
+    "with_join_id": 924
+   },
+   "2005": {
+    "fires": 92921,
+    "fires_ge_300": 1322,
+    "matched": 1549,
+    "share_matched": 0.016670074579481494,
+    "share_matched_ge_300": 0.6414523449319214,
+    "with_join_id": 1555
+   },
+   "2006": {
+    "fires": 117943,
+    "fires_ge_300": 2050,
+    "matched": 2718,
+    "share_matched": 0.023045030226465327,
+    "share_matched_ge_300": 0.6834146341463415,
+    "with_join_id": 2718
+   },
+   "2007": {
+    "fires": 98837,
+    "fires_ge_300": 1323,
+    "matched": 2051,
+    "share_matched": 0.020751338061657073,
+    "share_matched_ge_300": 0.7180650037792895,
+    "with_join_id": 2051
+   },
+   "2008": {
+    "fires": 88306,
+    "fires_ge_300": 1476,
+    "matched": 2056,
+    "share_matched": 0.02328267614884606,
+    "share_matched_ge_300": 0.6375338753387534,
+    "with_join_id": 2056
+   },
+   "2009": {
+    "fires": 81492,
+    "fires_ge_300": 1138,
+    "matched": 1788,
+    "share_matched": 0.021940804005301132,
+    "share_matched_ge_300": 0.7205623901581723,
+    "with_join_id": 1789
+   },
+   "2010": {
+    "fires": 85579,
+    "fires_ge_300": 936,
+    "matched": 1728,
+    "share_matched": 0.020191869500695264,
+    "share_matched_ge_300": 0.7051282051282052,
+    "with_join_id": 1728
+   },
+   "2011": {
+    "fires": 98903,
+    "fires_ge_300": 1890,
+    "matched": 2510,
+    "share_matched": 0.025378401059624075,
+    "share_matched_ge_300": 0.7227513227513227,
+    "with_join_id": 2511
+   },
+   "2012": {
+    "fires": 74258,
+    "fires_ge_300": 1303,
+    "matched": 1773,
+    "share_matched": 0.023876215357267905,
+    "share_matched_ge_300": 0.7958557175748273,
+    "with_join_id": 1774
+   },
+   "2013": {
+    "fires": 66434,
+    "fires_ge_300": 621,
+    "matched": 1170,
+    "share_matched": 0.017611464009392782,
+    "share_matched_ge_300": 0.8518518518518519,
+    "with_join_id": 1170
+   },
+   "2014": {
+    "fires": 70480,
+    "fires_ge_300": 691,
+    "matched": 1240,
+    "share_matched": 0.017593643586833144,
+    "share_matched_ge_300": 0.808972503617945,
+    "with_join_id": 1241
+   },
+   "2015": {
+    "fires": 77275,
+    "fires_ge_300": 1199,
+    "matched": 1602,
+    "share_matched": 0.02073115496603041,
+    "share_matched_ge_300": 0.8198498748957465,
+    "with_join_id": 1604
+   },
+   "2016": {
+    "fires": 81993,
+    "fires_ge_300": 1276,
+    "matched": 1501,
+    "share_matched": 0.018306440793726293,
+    "share_matched_ge_300": 0.7648902821316614,
+    "with_join_id": 1503
+   },
+   "2017": {
+    "fires": 82279,
+    "fires_ge_300": 1450,
+    "matched": 1810,
+    "share_matched": 0.021998322779810158,
+    "share_matched_ge_300": 0.829655172413793,
+    "with_join_id": 1810
+   },
+   "2018": {
+    "fires": 80860,
+    "fires_ge_300": 1202,
+    "matched": 1288,
+    "share_matched": 0.015928765767994065,
+    "share_matched_ge_300": 0.8161397670549085,
+    "with_join_id": 1288
+   },
+   "2019": {
+    "fires": 63557,
+    "fires_ge_300": 808,
+    "matched": 1212,
+    "share_matched": 0.019069496672278426,
+    "share_matched_ge_300": 0.8527227722772277,
+    "with_join_id": 1212
+   },
+   "2020": {
+    "fires": 73262,
+    "fires_ge_300": 1083,
+    "matched": 1462,
+    "share_matched": 0.01995577516311321,
+    "share_matched_ge_300": 0.8439519852262235,
+    "with_join_id": 1462
+   }
+  }
+ },
+ "ics.n_incidents": {
+  "computed_at": "2026-09-25T21:07:24+00:00",
+  "definition": "rows in ics209-plus-wf_incidents_1999to2020.csv (one per incident)",
+  "n": 34622,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 34622
+ },
+ "ics.outcomes_by_cause": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "outcomes by FPA FOD NWCG_CAUSE_CLASSIFICATION of the largest joined fire",
+  "n": 9609,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "Human": {
+    "evacuation_reported_incidents": 566,
+    "fatalities": 200.0,
+    "fod_acres": 23472601.279,
+    "ics_final_acres": 23568663.0,
+    "incidents": 4904,
+    "n_with_cost": 4258,
+    "n_with_evacuation_flag": 2119,
+    "n_with_peak_evacuations": 622,
+    "n_with_personnel": 4424,
+    "n_with_threatened": 2481,
+    "peak_evacuations_sum": 1126629.0,
+    "peak_personnel_median": 30.0,
+    "peak_personnel_sum": 507599.07148521976,
+    "projected_cost_usd_sum": 8457772073.01,
+    "residences_destroyed": 30999.333333333332,
+    "share_incidents_with_structures_destroyed": 0.17067699836867864,
+    "structures_destroyed": 45784.333333333336,
+    "structures_destroyed_per_1000_acres": 1.9505436482787595,
+    "structures_threatened_max_sum": 1142933.5
+   },
+   "Missing data/not specified/undetermined": {
+    "evacuation_reported_incidents": 101,
+    "fatalities": 28.0,
+    "fod_acres": 5849354.73,
+    "ics_final_acres": 6578920.0,
+    "incidents": 533,
+    "n_with_cost": 484,
+    "n_with_evacuation_flag": 186,
+    "n_with_peak_evacuations": 153,
+    "n_with_personnel": 465,
+    "n_with_threatened": 305,
+    "peak_evacuations_sum": 417909.0,
+    "peak_personnel_median": 76.0,
+    "peak_personnel_sum": 74830.29225219226,
+    "projected_cost_usd_sum": 1765487389.88,
+    "residences_destroyed": 5917.0,
+    "share_incidents_with_structures_destroyed": 0.27392120075046905,
+    "structures_destroyed": 10163.0,
+    "structures_destroyed_per_1000_acres": 1.7374566031833052,
+    "structures_threatened_max_sum": 610425.0
+   },
+   "Natural": {
+    "evacuation_reported_incidents": 330,
+    "fatalities": 55.0,
+    "fod_acres": 41449812.146,
+    "ics_final_acres": 41771921.055,
+    "incidents": 4172,
+    "n_with_cost": 3760,
+    "n_with_evacuation_flag": 1678,
+    "n_with_peak_evacuations": 561,
+    "n_with_personnel": 3449,
+    "n_with_threatened": 1738,
+    "peak_evacuations_sum": 118198.0,
+    "peak_personnel_median": 47.5,
+    "peak_personnel_sum": 410206.1553265384,
+    "projected_cost_usd_sum": 9237011923.72,
+    "residences_destroyed": 5527.0,
+    "share_incidents_with_structures_destroyed": 0.07694151486097794,
+    "structures_destroyed": 10459.0,
+    "structures_destroyed_per_1000_acres": 0.25232924972397774,
+    "structures_threatened_max_sum": 308251.0
+   }
+  }
+ },
+ "ics.outcomes_by_general_cause": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "outcomes by NWCG_GENERAL_CAUSE of the largest joined fire",
+  "n": 9609,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "Arson/incendiarism": {
+    "evacuation_reported_incidents": 52,
+    "fatalities": 5.0,
+    "fod_acres": 1846512.23,
+    "ics_final_acres": 1833648.7,
+    "incidents": 929,
+    "n_with_cost": 841,
+    "n_with_evacuation_flag": 428,
+    "n_with_peak_evacuations": 60,
+    "n_with_personnel": 802,
+    "n_with_threatened": 370,
+    "peak_evacuations_sum": 44415.0,
+    "peak_personnel_median": 13.0,
+    "peak_personnel_sum": 55261.256998557,
+    "projected_cost_usd_sum": 628321901.54,
+    "residences_destroyed": 1123.0,
+    "share_incidents_with_structures_destroyed": 0.09364908503767493,
+    "structures_destroyed": 1565.0,
+    "structures_destroyed_per_1000_acres": 0.8475438042454775,
+    "structures_threatened_max_sum": 63597.5
+   },
+   "Debris and open burning": {
+    "evacuation_reported_incidents": 38,
+    "fatalities": 4.0,
+    "fod_acres": 1185759.01,
+    "ics_final_acres": 1146252.18,
+    "incidents": 643,
+    "n_with_cost": 557,
+    "n_with_evacuation_flag": 252,
+    "n_with_peak_evacuations": 43,
+    "n_with_personnel": 583,
+    "n_with_threatened": 307,
+    "peak_evacuations_sum": 5883.0,
+    "peak_personnel_median": 18.0,
+    "peak_personnel_sum": 30528.640051615053,
+    "projected_cost_usd_sum": 261322136.15,
+    "residences_destroyed": 546.3333333333333,
+    "share_incidents_with_structures_destroyed": 0.1368584758942457,
+    "structures_destroyed": 1142.3333333333333,
+    "structures_destroyed_per_1000_acres": 0.9633773167225044,
+    "structures_threatened_max_sum": 35360.0
+   },
+   "Equipment and vehicle use": {
+    "evacuation_reported_incidents": 89,
+    "fatalities": 20.0,
+    "fod_acres": 4151997.32,
+    "ics_final_acres": 4177645.17,
+    "incidents": 707,
+    "n_with_cost": 612,
+    "n_with_evacuation_flag": 293,
+    "n_with_peak_evacuations": 115,
+    "n_with_personnel": 657,
+    "n_with_threatened": 417,
+    "peak_evacuations_sum": 80756.0,
+    "peak_personnel_median": 49.0,
+    "peak_personnel_sum": 88929.46414418914,
+    "projected_cost_usd_sum": 1343315450.75,
+    "residences_destroyed": 2210.0,
+    "share_incidents_with_structures_destroyed": 0.20084865629420084,
+    "structures_destroyed": 4394.0,
+    "structures_destroyed_per_1000_acres": 1.0582858468704408,
+    "structures_threatened_max_sum": 97817.0
+   },
+   "Firearms and explosives use": {
+    "evacuation_reported_incidents": 10,
+    "fatalities": 0.0,
+    "fod_acres": 364654.2,
+    "ics_final_acres": 364514.0,
+    "incidents": 88,
+    "n_with_cost": 86,
+    "n_with_evacuation_flag": 37,
+    "n_with_peak_evacuations": 9,
+    "n_with_personnel": 83,
+    "n_with_threatened": 43,
+    "peak_evacuations_sum": 3385.0,
+    "peak_personnel_median": 59.0,
+    "peak_personnel_sum": 10615.433730158731,
+    "projected_cost_usd_sum": 160316723.0,
+    "residences_destroyed": 69.0,
+    "share_incidents_with_structures_destroyed": 0.07954545454545454,
+    "structures_destroyed": 151.0,
+    "structures_destroyed_per_1000_acres": 0.4140909387578698,
+    "structures_threatened_max_sum": 10265.0
+   },
+   "Fireworks": {
+    "evacuation_reported_incidents": 8,
+    "fatalities": 1.0,
+    "fod_acres": 202713.97,
+    "ics_final_acres": 207750.9,
+    "incidents": 57,
+    "n_with_cost": 55,
+    "n_with_evacuation_flag": 31,
+    "n_with_peak_evacuations": 7,
+    "n_with_personnel": 31,
+    "n_with_threatened": 23,
+    "peak_evacuations_sum": 10200.0,
+    "peak_personnel_median": 96.0,
+    "peak_personnel_sum": 5947.293181818182,
+    "projected_cost_usd_sum": 95282532.64,
+    "residences_destroyed": 19.0,
+    "share_incidents_with_structures_destroyed": 0.12280701754385964,
+    "structures_destroyed": 52.0,
+    "structures_destroyed_per_1000_acres": 0.2565190746350634,
+    "structures_threatened_max_sum": 34994.0
+   },
+   "Missing data/not specified/undetermined": {
+    "evacuation_reported_incidents": 357,
+    "fatalities": 84.0,
+    "fod_acres": 17117274.606,
+    "ics_final_acres": 17918022.45,
+    "incidents": 2404,
+    "n_with_cost": 2076,
+    "n_with_evacuation_flag": 957,
+    "n_with_peak_evacuations": 427,
+    "n_with_personnel": 2186,
+    "n_with_threatened": 1263,
+    "peak_evacuations_sum": 1038950.0,
+    "peak_personnel_median": 47.5,
+    "peak_personnel_sum": 293663.4305819181,
+    "projected_cost_usd_sum": 5618524716.75,
+    "residences_destroyed": 12823.0,
+    "share_incidents_with_structures_destroyed": 0.2113144758735441,
+    "structures_destroyed": 21628.0,
+    "structures_destroyed_per_1000_acres": 1.2635189010999968,
+    "structures_threatened_max_sum": 1278691.0
+   },
+   "Misuse of fire by a minor": {
+    "evacuation_reported_incidents": 7,
+    "fatalities": 14.0,
+    "fod_acres": 40991.3,
+    "ics_final_acres": 42265.0,
+    "incidents": 20,
+    "n_with_cost": 17,
+    "n_with_evacuation_flag": 13,
+    "n_with_peak_evacuations": 8,
+    "n_with_personnel": 19,
+    "n_with_threatened": 15,
+    "peak_evacuations_sum": 40720.0,
+    "peak_personnel_median": 117.5,
+    "peak_personnel_sum": 2755.9309523809525,
+    "projected_cost_usd_sum": 21557754.0,
+    "residences_destroyed": 2249.0,
+    "share_incidents_with_structures_destroyed": 0.4,
+    "structures_destroyed": 2463.0,
+    "structures_destroyed_per_1000_acres": 60.08592067097164,
+    "structures_threatened_max_sum": 5080.0
+   },
+   "Natural": {
+    "evacuation_reported_incidents": 330,
+    "fatalities": 55.0,
+    "fod_acres": 41449812.146,
+    "ics_final_acres": 41771921.055,
+    "incidents": 4172,
+    "n_with_cost": 3760,
+    "n_with_evacuation_flag": 1678,
+    "n_with_peak_evacuations": 561,
+    "n_with_personnel": 3449,
+    "n_with_threatened": 1738,
+    "peak_evacuations_sum": 118198.0,
+    "peak_personnel_median": 47.5,
+    "peak_personnel_sum": 410206.1553265384,
+    "projected_cost_usd_sum": 9237011923.72,
+    "residences_destroyed": 5527.0,
+    "share_incidents_with_structures_destroyed": 0.07694151486097794,
+    "structures_destroyed": 10459.0,
+    "structures_destroyed_per_1000_acres": 0.25232924972397774,
+    "structures_threatened_max_sum": 308251.0
+   },
+   "Other causes": {
+    "evacuation_reported_incidents": 7,
+    "fatalities": 0.0,
+    "fod_acres": 230607.95,
+    "ics_final_acres": 232368.0,
+    "incidents": 23,
+    "n_with_cost": 21,
+    "n_with_evacuation_flag": 10,
+    "n_with_peak_evacuations": 5,
+    "n_with_personnel": 20,
+    "n_with_threatened": 18,
+    "peak_evacuations_sum": 3078.0,
+    "peak_personnel_median": 148.31944444444446,
+    "peak_personnel_sum": 7280.434877622378,
+    "projected_cost_usd_sum": 338379148.0,
+    "residences_destroyed": 85.0,
+    "share_incidents_with_structures_destroyed": 0.5217391304347826,
+    "structures_destroyed": 170.0,
+    "structures_destroyed_per_1000_acres": 0.7371818707897971,
+    "structures_threatened_max_sum": 10580.0
+   },
+   "Power generation/transmission/distribution": {
+    "evacuation_reported_incidents": 52,
+    "fatalities": 95.0,
+    "fod_acres": 1823634.74,
+    "ics_final_acres": 1863907.9,
+    "incidents": 309,
+    "n_with_cost": 242,
+    "n_with_evacuation_flag": 155,
+    "n_with_peak_evacuations": 41,
+    "n_with_personnel": 270,
+    "n_with_threatened": 188,
+    "peak_evacuations_sum": 277478.0,
+    "peak_personnel_median": 35.0,
+    "peak_personnel_sum": 44976.45251137751,
+    "projected_cost_usd_sum": 766760966.49,
+    "residences_destroyed": 16726.0,
+    "share_incidents_with_structures_destroyed": 0.255663430420712,
+    "structures_destroyed": 22781.0,
+    "structures_destroyed_per_1000_acres": 12.492084900729626,
+    "structures_threatened_max_sum": 165746.0
+   },
+   "Railroad operations and maintenance": {
+    "evacuation_reported_incidents": 4,
+    "fatalities": 0.0,
+    "fod_acres": 63060.223,
+    "ics_final_acres": 65674.2,
+    "incidents": 49,
+    "n_with_cost": 44,
+    "n_with_evacuation_flag": 18,
+    "n_with_peak_evacuations": 9,
+    "n_with_personnel": 41,
+    "n_with_threatened": 23,
+    "peak_evacuations_sum": 65.0,
+    "peak_personnel_median": 33.0,
+    "peak_personnel_sum": 2867.1833333333334,
+    "projected_cost_usd_sum": 11628125.0,
+    "residences_destroyed": 6.0,
+    "share_incidents_with_structures_destroyed": 0.061224489795918366,
+    "structures_destroyed": 16.0,
+    "structures_destroyed_per_1000_acres": 0.2537257123242333,
+    "structures_threatened_max_sum": 793.0
+   },
+   "Recreation and ceremony": {
+    "evacuation_reported_incidents": 39,
+    "fatalities": 5.0,
+    "fod_acres": 2124193.36,
+    "ics_final_acres": 2125251.4,
+    "incidents": 182,
+    "n_with_cost": 168,
+    "n_with_evacuation_flag": 96,
+    "n_with_peak_evacuations": 47,
+    "n_with_personnel": 172,
+    "n_with_threatened": 103,
+    "peak_evacuations_sum": 38095.0,
+    "peak_personnel_median": 81.375,
+    "peak_personnel_sum": 37303.66877126705,
+    "projected_cost_usd_sum": 921517175.57,
+    "residences_destroyed": 673.0,
+    "share_incidents_with_structures_destroyed": 0.19230769230769232,
+    "structures_destroyed": 1183.0,
+    "structures_destroyed_per_1000_acres": 0.5569172855337425,
+    "structures_threatened_max_sum": 47558.0
+   },
+   "Smoking": {
+    "evacuation_reported_incidents": 4,
+    "fatalities": 0.0,
+    "fod_acres": 170557.1,
+    "ics_final_acres": 170283.1,
+    "incidents": 26,
+    "n_with_cost": 23,
+    "n_with_evacuation_flag": 15,
+    "n_with_peak_evacuations": 4,
+    "n_with_personnel": 25,
+    "n_with_threatened": 16,
+    "peak_evacuations_sum": 1513.0,
+    "peak_personnel_median": 49.0,
+    "peak_personnel_sum": 2300.1746031746034,
+    "projected_cost_usd_sum": 56332833.0,
+    "residences_destroyed": 387.0,
+    "share_incidents_with_structures_destroyed": 0.2692307692307692,
+    "structures_destroyed": 402.0,
+    "structures_destroyed_per_1000_acres": 2.3569819139748502,
+    "structures_threatened_max_sum": 2877.0
+   }
+  }
+ },
+ "ics.outcomes_by_owner_class": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "outcomes by owner class of the largest joined fire (Federal = USFS BLM NPS FWS BOR OTHER FEDERAL UNDEFINED FEDERAL; Tribal/BIA = BIA TRIBAL; State = STATE; Private = PRIVATE; State or private = STATE OR PRIVATE; County/local = COUNTY MUNICIPAL/LOCAL; Missing = MISSING/NOT SPECIFIED (OWNER_DESCR upper-cased))",
+  "n": 9609,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "County/local": {
+    "evacuation_reported_incidents": 16,
+    "fatalities": 10.0,
+    "fod_acres": 842736.41,
+    "ics_final_acres": 848775.0,
+    "incidents": 160,
+    "n_with_cost": 124,
+    "n_with_evacuation_flag": 74,
+    "n_with_peak_evacuations": 22,
+    "n_with_personnel": 136,
+    "n_with_threatened": 56,
+    "peak_evacuations_sum": 153765.0,
+    "peak_personnel_median": 44.5,
+    "peak_personnel_sum": 16996.939682539683,
+    "projected_cost_usd_sum": 193202767.25,
+    "residences_destroyed": 752.0,
+    "share_incidents_with_structures_destroyed": 0.26875,
+    "structures_destroyed": 1055.0,
+    "structures_destroyed_per_1000_acres": 1.2518742366904498,
+    "structures_threatened_max_sum": 97178.0
+   },
+   "Federal": {
+    "evacuation_reported_incidents": 452,
+    "fatalities": 171.0,
+    "fod_acres": 39737162.45,
+    "ics_final_acres": 40117587.06,
+    "incidents": 3988,
+    "n_with_cost": 3809,
+    "n_with_evacuation_flag": 1721,
+    "n_with_peak_evacuations": 683,
+    "n_with_personnel": 3460,
+    "n_with_threatened": 1815,
+    "peak_evacuations_sum": 684407.0,
+    "peak_personnel_median": 61.0,
+    "peak_personnel_sum": 533767.6301157641,
+    "projected_cost_usd_sum": 12265019805.58,
+    "residences_destroyed": 25847.0,
+    "share_incidents_with_structures_destroyed": 0.09929789368104312,
+    "structures_destroyed": 38891.0,
+    "structures_destroyed_per_1000_acres": 0.9787060172938946,
+    "structures_threatened_max_sum": 920757.5
+   },
+   "Missing": {
+    "evacuation_reported_incidents": 102,
+    "fatalities": 45.0,
+    "fod_acres": 5110780.99,
+    "ics_final_acres": 5900280.95,
+    "incidents": 1325,
+    "n_with_cost": 1133,
+    "n_with_evacuation_flag": 364,
+    "n_with_peak_evacuations": 154,
+    "n_with_personnel": 1150,
+    "n_with_threatened": 558,
+    "peak_evacuations_sum": 59858.0,
+    "peak_personnel_median": 24.0,
+    "peak_personnel_sum": 110039.25449134198,
+    "projected_cost_usd_sum": 948341732.74,
+    "residences_destroyed": 1907.0,
+    "share_incidents_with_structures_destroyed": 0.13735849056603774,
+    "structures_destroyed": 3164.0,
+    "structures_destroyed_per_1000_acres": 0.6190834641889047,
+    "structures_threatened_max_sum": 90976.0
+   },
+   "Private": {
+    "evacuation_reported_incidents": 210,
+    "fatalities": 35.0,
+    "fod_acres": 10692135.841,
+    "ics_final_acres": 10863168.515,
+    "incidents": 2165,
+    "n_with_cost": 1948,
+    "n_with_evacuation_flag": 854,
+    "n_with_peak_evacuations": 294,
+    "n_with_personnel": 1919,
+    "n_with_threatened": 1113,
+    "peak_evacuations_sum": 626312.0,
+    "peak_personnel_median": 28.0,
+    "peak_personnel_sum": 169587.27946081696,
+    "projected_cost_usd_sum": 2980895912.64,
+    "residences_destroyed": 6830.0,
+    "share_incidents_with_structures_destroyed": 0.17829099307159355,
+    "structures_destroyed": 12435.0,
+    "structures_destroyed_per_1000_acres": 1.1630043038096114,
+    "structures_threatened_max_sum": 748556.0
+   },
+   "State": {
+    "evacuation_reported_incidents": 60,
+    "fatalities": 8.0,
+    "fod_acres": 5958226.984,
+    "ics_final_acres": 5872959.8,
+    "incidents": 813,
+    "n_with_cost": 656,
+    "n_with_evacuation_flag": 305,
+    "n_with_peak_evacuations": 74,
+    "n_with_personnel": 616,
+    "n_with_threatened": 304,
+    "peak_evacuations_sum": 98439.0,
+    "peak_personnel_median": 27.0,
+    "peak_personnel_sum": 57521.67072927073,
+    "projected_cost_usd_sum": 1056631002.3,
+    "residences_destroyed": 1596.3333333333333,
+    "share_incidents_with_structures_destroyed": 0.11562115621156212,
+    "structures_destroyed": 2954.3333333333335,
+    "structures_destroyed_per_1000_acres": 0.49584101801874786,
+    "structures_threatened_max_sum": 117433.0
+   },
+   "State or private": {
+    "evacuation_reported_incidents": 89,
+    "fatalities": 9.0,
+    "fod_acres": 3039482.38,
+    "ics_final_acres": 3014813.02,
+    "incidents": 455,
+    "n_with_cost": 156,
+    "n_with_evacuation_flag": 409,
+    "n_with_peak_evacuations": 18,
+    "n_with_personnel": 417,
+    "n_with_threatened": 270,
+    "peak_evacuations_sum": 23537.0,
+    "peak_personnel_median": 29.0,
+    "peak_personnel_sum": 44353.66785714286,
+    "projected_cost_usd_sum": 566738010.0,
+    "residences_destroyed": 4243.0,
+    "share_incidents_with_structures_destroyed": 0.22417582417582418,
+    "structures_destroyed": 5678.0,
+    "structures_destroyed_per_1000_acres": 1.8680812355951213,
+    "structures_threatened_max_sum": 44641.0
+   },
+   "Tribal/BIA": {
+    "evacuation_reported_incidents": 68,
+    "fatalities": 5.0,
+    "fod_acres": 5391243.1,
+    "ics_final_acres": 5301919.71,
+    "incidents": 703,
+    "n_with_cost": 676,
+    "n_with_evacuation_flag": 256,
+    "n_with_peak_evacuations": 91,
+    "n_with_personnel": 640,
+    "n_with_threatened": 408,
+    "peak_evacuations_sum": 16418.0,
+    "peak_personnel_median": 34.16666666666667,
+    "peak_personnel_sum": 60369.0767270741,
+    "projected_cost_usd_sum": 1449442156.1,
+    "residences_destroyed": 1268.0,
+    "share_incidents_with_structures_destroyed": 0.14366998577524892,
+    "structures_destroyed": 2229.0,
+    "structures_destroyed_per_1000_acres": 0.41344824535921965,
+    "structures_threatened_max_sum": 42068.0
+   }
+  }
+ },
+ "ics.outcomes_by_region": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "outcomes by project region of the largest joined fire",
+  "n": 9609,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "Alaska": {
+    "evacuation_reported_incidents": 10,
+    "fatalities": 0.0,
+    "fod_acres": 12528083.39,
+    "ics_final_acres": 11897391.21,
+    "incidents": 786,
+    "n_with_cost": 629,
+    "n_with_evacuation_flag": 237,
+    "n_with_peak_evacuations": 51,
+    "n_with_personnel": 272,
+    "n_with_threatened": 208,
+    "peak_evacuations_sum": 3258.0,
+    "peak_personnel_median": 26.0,
+    "peak_personnel_sum": 19932.288095238095,
+    "projected_cost_usd_sum": 642035955.13,
+    "residences_destroyed": 143.0,
+    "share_incidents_with_structures_destroyed": 0.039440203562340966,
+    "structures_destroyed": 284.0,
+    "structures_destroyed_per_1000_acres": 0.022669070053180734,
+    "structures_threatened_max_sum": 23650.0
+   },
+   "Hawaii/PR": {
+    "evacuation_reported_incidents": 4,
+    "fatalities": 0.0,
+    "fod_acres": 70881.0,
+    "ics_final_acres": 70572.0,
+    "incidents": 24,
+    "n_with_cost": 20,
+    "n_with_evacuation_flag": 11,
+    "n_with_peak_evacuations": 2,
+    "n_with_personnel": 23,
+    "n_with_threatened": 12,
+    "peak_evacuations_sum": 6001.0,
+    "peak_personnel_median": 50.0,
+    "peak_personnel_sum": 1200.3333333333333,
+    "projected_cost_usd_sum": 4284963.0,
+    "residences_destroyed": 3.0,
+    "share_incidents_with_structures_destroyed": 0.125,
+    "structures_destroyed": 19.0,
+    "structures_destroyed_per_1000_acres": 0.2680549089318717,
+    "structures_threatened_max_sum": 3569.0
+   },
+   "Northeast": {
+    "evacuation_reported_incidents": 3,
+    "fatalities": 0.0,
+    "fod_acres": 65333.9,
+    "ics_final_acres": 65572.0,
+    "incidents": 58,
+    "n_with_cost": 55,
+    "n_with_evacuation_flag": 20,
+    "n_with_peak_evacuations": 6,
+    "n_with_personnel": 45,
+    "n_with_threatened": 23,
+    "peak_evacuations_sum": 280.0,
+    "peak_personnel_median": 41.0,
+    "peak_personnel_sum": 2319.3333333333335,
+    "projected_cost_usd_sum": 5300430.0,
+    "residences_destroyed": 8.0,
+    "share_incidents_with_structures_destroyed": 0.05172413793103448,
+    "structures_destroyed": 20.0,
+    "structures_destroyed_per_1000_acres": 0.3061197938589308,
+    "structures_threatened_max_sum": 750.0
+   },
+   "Other": {
+    "evacuation_reported_incidents": 39,
+    "fatalities": 5.0,
+    "fod_acres": 1512639.8,
+    "ics_final_acres": 1612746.09,
+    "incidents": 589,
+    "n_with_cost": 546,
+    "n_with_evacuation_flag": 284,
+    "n_with_peak_evacuations": 42,
+    "n_with_personnel": 534,
+    "n_with_threatened": 236,
+    "peak_evacuations_sum": 1330.0,
+    "peak_personnel_median": 30.0,
+    "peak_personnel_sum": 28194.851587301586,
+    "projected_cost_usd_sum": 107313660.44,
+    "residences_destroyed": 201.0,
+    "share_incidents_with_structures_destroyed": 0.1731748726655348,
+    "structures_destroyed": 779.0,
+    "structures_destroyed_per_1000_acres": 0.514993721572049,
+    "structures_threatened_max_sum": 9601.0
+   },
+   "South": {
+    "evacuation_reported_incidents": 127,
+    "fatalities": 31.0,
+    "fod_acres": 10400589.77,
+    "ics_final_acres": 11029286.11,
+    "incidents": 3097,
+    "n_with_cost": 2348,
+    "n_with_evacuation_flag": 1261,
+    "n_with_peak_evacuations": 101,
+    "n_with_personnel": 2753,
+    "n_with_threatened": 1303,
+    "peak_evacuations_sum": 63264.0,
+    "peak_personnel_median": 14.0,
+    "peak_personnel_sum": 80659.52094017094,
+    "projected_cost_usd_sum": 554271915.05,
+    "residences_destroyed": 5917.333333333333,
+    "share_incidents_with_structures_destroyed": 0.09363900548918308,
+    "structures_destroyed": 7517.333333333334,
+    "structures_destroyed_per_1000_acres": 0.7227795249666246,
+    "structures_threatened_max_sum": 116928.0
+   },
+   "West": {
+    "evacuation_reported_incidents": 814,
+    "fatalities": 247.0,
+    "fod_acres": 46194240.295,
+    "ics_final_acres": 47243936.645,
+    "incidents": 5055,
+    "n_with_cost": 4904,
+    "n_with_evacuation_flag": 2170,
+    "n_with_peak_evacuations": 1134,
+    "n_with_personnel": 4711,
+    "n_with_threatened": 2742,
+    "peak_evacuations_sum": 1588603.0,
+    "peak_personnel_median": 80.75,
+    "peak_personnel_sum": 860329.1917745732,
+    "projected_cost_usd_sum": 18147064462.99,
+    "residences_destroyed": 36171.0,
+    "share_incidents_with_structures_destroyed": 0.17309594460929772,
+    "structures_destroyed": 57787.0,
+    "structures_destroyed_per_1000_acres": 1.250956821261,
+    "structures_threatened_max_sum": 1907111.5
+   }
+  }
+ },
+ "ics.outcomes_by_year": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "outcomes by FIRE_YEAR",
+  "n": 9609,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "2010": {
+    "evacuation_reported_incidents": 46,
+    "fatalities": 0.0,
+    "fod_acres": 2689644.67,
+    "ics_final_acres": 2668805.7,
+    "incidents": 644,
+    "n_with_cost": 467,
+    "n_with_evacuation_flag": 644,
+    "n_with_peak_evacuations": 0,
+    "n_with_personnel": 525,
+    "n_with_threatened": 252,
+    "peak_evacuations_sum": 0.0,
+    "peak_personnel_median": 30.0,
+    "peak_personnel_sum": 66449.0,
+    "projected_cost_usd_sum": 428202619.99,
+    "residences_destroyed": 256.0,
+    "share_incidents_with_structures_destroyed": 0.08540372670807453,
+    "structures_destroyed": 496.0,
+    "structures_destroyed_per_1000_acres": 0.18441097648783475,
+    "structures_threatened_max_sum": 22388.0
+   },
+   "2011": {
+    "evacuation_reported_incidents": 133,
+    "fatalities": 6.0,
+    "fod_acres": 8061504.44,
+    "ics_final_acres": 8178416.1,
+    "incidents": 1308,
+    "n_with_cost": 922,
+    "n_with_evacuation_flag": 1308,
+    "n_with_peak_evacuations": 0,
+    "n_with_personnel": 1165,
+    "n_with_threatened": 644,
+    "peak_evacuations_sum": 0.0,
+    "peak_personnel_median": 30.0,
+    "peak_personnel_sum": 117740.0,
+    "projected_cost_usd_sum": 900431333.33,
+    "residences_destroyed": 2841.3333333333335,
+    "share_incidents_with_structures_destroyed": 0.1559633027522936,
+    "structures_destroyed": 3973.3333333333335,
+    "structures_destroyed_per_1000_acres": 0.49287739812165055,
+    "structures_threatened_max_sum": 92606.0
+   },
+   "2012": {
+    "evacuation_reported_incidents": 164,
+    "fatalities": 17.0,
+    "fod_acres": 8312358.83,
+    "ics_final_acres": 8299684.2,
+    "incidents": 962,
+    "n_with_cost": 875,
+    "n_with_evacuation_flag": 962,
+    "n_with_peak_evacuations": 0,
+    "n_with_personnel": 850,
+    "n_with_threatened": 523,
+    "peak_evacuations_sum": 0.0,
+    "peak_personnel_median": 62.0,
+    "peak_personnel_sum": 168108.0,
+    "projected_cost_usd_sum": 1753999699.29,
+    "residences_destroyed": 2191.0,
+    "share_incidents_with_structures_destroyed": 0.18295218295218296,
+    "structures_destroyed": 3911.0,
+    "structures_destroyed_per_1000_acres": 0.4705042311076458,
+    "structures_threatened_max_sum": 83679.0
+   },
+   "2013": {
+    "evacuation_reported_incidents": 93,
+    "fatalities": 25.0,
+    "fod_acres": 3930814.84,
+    "ics_final_acres": 4007718.5,
+    "incidents": 508,
+    "n_with_cost": 468,
+    "n_with_evacuation_flag": 508,
+    "n_with_peak_evacuations": 0,
+    "n_with_personnel": 423,
+    "n_with_threatened": 260,
+    "peak_evacuations_sum": 0.0,
+    "peak_personnel_median": 91.0,
+    "peak_personnel_sum": 124117.0,
+    "projected_cost_usd_sum": 1348081689.6,
+    "residences_destroyed": 901.0,
+    "share_incidents_with_structures_destroyed": 0.13188976377952755,
+    "structures_destroyed": 1747.0,
+    "structures_destroyed_per_1000_acres": 0.44443711319661144,
+    "structures_threatened_max_sum": 59313.5
+   },
+   "2014": {
+    "evacuation_reported_incidents": 56,
+    "fatalities": 8.0,
+    "fod_acres": 3075612.79,
+    "ics_final_acres": 2888980.33,
+    "incidents": 549,
+    "n_with_cost": 508,
+    "n_with_evacuation_flag": 56,
+    "n_with_peak_evacuations": 116,
+    "n_with_personnel": 476,
+    "n_with_threatened": 265,
+    "peak_evacuations_sum": 34050.0,
+    "peak_personnel_median": 37.0,
+    "peak_personnel_sum": 57464.15498667999,
+    "projected_cost_usd_sum": 1088574739.69,
+    "residences_destroyed": 819.0,
+    "share_incidents_with_structures_destroyed": 0.1384335154826958,
+    "structures_destroyed": 1517.0,
+    "structures_destroyed_per_1000_acres": 0.4932350408127936,
+    "structures_threatened_max_sum": 53379.0
+   },
+   "2015": {
+    "evacuation_reported_incidents": 83,
+    "fatalities": 11.0,
+    "fod_acres": 9329489.65,
+    "ics_final_acres": 8973113.19,
+    "incidents": 925,
+    "n_with_cost": 789,
+    "n_with_evacuation_flag": 83,
+    "n_with_peak_evacuations": 177,
+    "n_with_personnel": 678,
+    "n_with_threatened": 369,
+    "peak_evacuations_sum": 42854.0,
+    "peak_personnel_median": 32.5,
+    "peak_personnel_sum": 63248.820633606156,
+    "projected_cost_usd_sum": 1873192257.24,
+    "residences_destroyed": 2577.0,
+    "share_incidents_with_structures_destroyed": 0.13405405405405404,
+    "structures_destroyed": 4279.0,
+    "structures_destroyed_per_1000_acres": 0.4586531697368891,
+    "structures_threatened_max_sum": 98248.0
+   },
+   "2016": {
+    "evacuation_reported_incidents": 93,
+    "fatalities": 34.0,
+    "fod_acres": 4422703.81,
+    "ics_final_acres": 4375483.14,
+    "incidents": 970,
+    "n_with_cost": 911,
+    "n_with_evacuation_flag": 93,
+    "n_with_peak_evacuations": 201,
+    "n_with_personnel": 858,
+    "n_with_threatened": 442,
+    "peak_evacuations_sum": 188472.0,
+    "peak_personnel_median": 33.0,
+    "peak_personnel_sum": 77355.13278503106,
+    "projected_cost_usd_sum": 1731751062.06,
+    "residences_destroyed": 3112.0,
+    "share_incidents_with_structures_destroyed": 0.11134020618556702,
+    "structures_destroyed": 4001.0,
+    "structures_destroyed_per_1000_acres": 0.904650225717919,
+    "structures_threatened_max_sum": 93298.0
+   },
+   "2017": {
+    "evacuation_reported_incidents": 109,
+    "fatalities": 24.0,
+    "fod_acres": 9116222.33,
+    "ics_final_acres": 9535264.0,
+    "incidents": 1178,
+    "n_with_cost": 1107,
+    "n_with_evacuation_flag": 109,
+    "n_with_peak_evacuations": 257,
+    "n_with_personnel": 1066,
+    "n_with_threatened": 555,
+    "peak_evacuations_sum": 315012.0,
+    "peak_personnel_median": 35.333333333333336,
+    "peak_personnel_sum": 98448.00723617851,
+    "projected_cost_usd_sum": 3060662924.0,
+    "residences_destroyed": 2511.0,
+    "share_incidents_with_structures_destroyed": 0.11799660441426146,
+    "structures_destroyed": 3955.0,
+    "structures_destroyed_per_1000_acres": 0.43384198594901974,
+    "structures_threatened_max_sum": 173973.0
+   },
+   "2018": {
+    "evacuation_reported_incidents": 75,
+    "fatalities": 102.0,
+    "fod_acres": 7593109.51,
+    "ics_final_acres": 7841937.0,
+    "incidents": 978,
+    "n_with_cost": 929,
+    "n_with_evacuation_flag": 75,
+    "n_with_peak_evacuations": 231,
+    "n_with_personnel": 908,
+    "n_with_threatened": 481,
+    "peak_evacuations_sum": 194670.0,
+    "peak_personnel_median": 38.625,
+    "peak_personnel_sum": 85471.7585895099,
+    "projected_cost_usd_sum": 2780955671.0,
+    "residences_destroyed": 17134.0,
+    "share_incidents_with_structures_destroyed": 0.14212678936605316,
+    "structures_destroyed": 24091.0,
+    "structures_destroyed_per_1000_acres": 3.172744969405821,
+    "structures_threatened_max_sum": 175026.0
+   },
+   "2019": {
+    "evacuation_reported_incidents": 35,
+    "fatalities": 3.0,
+    "fod_acres": 4466703.3,
+    "ics_final_acres": 4287951.39,
+    "incidents": 689,
+    "n_with_cost": 659,
+    "n_with_evacuation_flag": 35,
+    "n_with_peak_evacuations": 120,
+    "n_with_personnel": 577,
+    "n_with_threatened": 280,
+    "peak_evacuations_sum": 252240.0,
+    "peak_personnel_median": 38.0,
+    "peak_personnel_sum": 46734.87754745255,
+    "projected_cost_usd_sum": 830216238.0,
+    "residences_destroyed": 393.0,
+    "share_incidents_with_structures_destroyed": 0.08563134978229318,
+    "structures_destroyed": 804.0,
+    "structures_destroyed_per_1000_acres": 0.1799985237434508,
+    "structures_threatened_max_sum": 179611.0
+   },
+   "2020": {
+    "evacuation_reported_incidents": 110,
+    "fatalities": 53.0,
+    "fod_acres": 9773603.985,
+    "ics_final_acres": 10862150.505,
+    "incidents": 898,
+    "n_with_cost": 867,
+    "n_with_evacuation_flag": 110,
+    "n_with_peak_evacuations": 234,
+    "n_with_personnel": 812,
+    "n_with_threatened": 453,
+    "peak_evacuations_sum": 635438.0,
+    "peak_personnel_median": 46.16666666666667,
+    "peak_personnel_sum": 87498.76728549229,
+    "projected_cost_usd_sum": 3664203152.41,
+    "residences_destroyed": 9708.0,
+    "share_incidents_with_structures_destroyed": 0.17483296213808464,
+    "structures_destroyed": 17632.0,
+    "structures_destroyed_per_1000_acres": 1.8040428103144595,
+    "structures_threatened_max_sum": 1030088.0
+   }
+  }
+ },
+ "ics.outcomes_total": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "outcome totals over the sample",
+  "n": 9609,
+  "note": "structures_threatened_max_sum sums the per-incident maximum, so it is not a count of distinct structures. Fractional structure counts occur because ICS-209-PLUS splits complex-level totals evenly across member incidents.",
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "evacuation_reported_incidents": 997.0,
+   "fatalities": 283.0,
+   "fod_acres": 70771768.155,
+   "ics_final_acres": 71919504.055,
+   "incidents": 9609.0,
+   "n_with_cost": 8502.0,
+   "n_with_evacuation_flag": 3983.0,
+   "n_with_peak_evacuations": 1336.0,
+   "n_with_personnel": 8338.0,
+   "n_with_threatened": 4524.0,
+   "peak_evacuations_sum": 1662736.0,
+   "peak_personnel_median": 39.0,
+   "peak_personnel_sum": 992635.5190639505,
+   "projected_cost_usd_sum": 19460271386.61,
+   "residences_destroyed": 42443.333333333336,
+   "share_incidents_with_structures_destroyed": 0.13570610885628057,
+   "structures_destroyed": 66406.33333333333,
+   "structures_destroyed_per_1000_acres": 0.9383167195695074,
+   "structures_threatened_max_sum": 2061609.5
+  }
+ },
+ "ics.sample_definition": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "the sample used by every ics.outcomes_* claim",
+  "n": 9609,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": "ICS-209-PLUS incidents joined to FPA FOD via ICS_209_PLUS_INCIDENT_JOIN_ID, one row per incident, FPA FOD attributes from the largest joined fire, FIRE_YEAR 2010-2020, FIRE_SIZE >= 300 acres"
+ },
+ "ics.sample_n": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "ICS-209-PLUS incidents joined to FPA FOD via ICS_209_PLUS_INCIDENT_JOIN_ID, one row per incident, FPA FOD attributes from the largest joined fire, FIRE_YEAR 2010-2020, FIRE_SIZE >= 300 acres",
+  "n": 9609,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 9609
+ },
+ "ics.structures_destroyed_by_region_cause": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "structures destroyed by region and cause classification",
+  "n": 9609,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "Alaska": {
+    "Human": 238.0,
+    "Missing data/not specified/undetermined": 6.0,
+    "Natural": 40.0
+   },
+   "Hawaii/PR": {
+    "Human": 19.0,
+    "Missing data/not specified/undetermined": 0.0,
+    "Natural": 0.0
+   },
+   "Northeast": {
+    "Human": 20.0,
+    "Missing data/not specified/undetermined": 0.0,
+    "Natural": 0.0
+   },
+   "Other": {
+    "Human": 498.0,
+    "Missing data/not specified/undetermined": 74.0,
+    "Natural": 207.0
+   },
+   "South": {
+    "Human": 6568.333333333334,
+    "Missing data/not specified/undetermined": 511.0,
+    "Natural": 438.0
+   },
+   "West": {
+    "Human": 38441.0,
+    "Missing data/not specified/undetermined": 9572.0,
+    "Natural": 9774.0
+   }
+  }
+ },
+ "ics.structures_destroyed_distribution": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "distribution of STR_DESTROYED_TOTAL over the sample",
+  "n": 9609,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "max": 18804.0,
+   "percentiles": {
+    "0.5": 0.0,
+    "0.75": 0.0,
+    "0.9": 1.0,
+    "0.95": 6.0,
+    "0.99": 68.0,
+    "0.999": 1384.1519999999728
+   },
+   "share_ge_1": 0.13570610885628057,
+   "share_ge_10": 0.03808929128941617,
+   "share_ge_100": 0.008117389946924758,
+   "share_ge_1000": 0.001248829222603809,
+   "share_of_total_in_top_10_incidents": 0.5212605223397366,
+   "share_of_total_in_top_25_incidents": 0.6767276213614163,
+   "share_zero": 0.8642938911437195,
+   "total": 66406.33333333334
+  }
+ },
+ "ics.top25_composition": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "cause, owner class and state counts among the top 25",
+  "n": 25,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "NWCG_CAUSE_CLASSIFICATION": {
+    "Human": 14,
+    "Missing data/not specified/undetermined": 6,
+    "Natural": 5
+   },
+   "OWNER_CLASS": {
+    "County/local": 1,
+    "Federal": 14,
+    "Missing": 1,
+    "Private": 4,
+    "State": 1,
+    "State or private": 3,
+    "Tribal/BIA": 1
+   },
+   "STATE": {
+    "AK": 0,
+    "AL": 0,
+    "AR": 0,
+    "AZ": 0,
+    "CA": 15,
+    "CO": 3,
+    "CT": 0,
+    "DC": 0,
+    "DE": 0,
+    "FL": 0,
+    "GA": 0,
+    "HI": 0,
+    "IA": 0,
+    "ID": 0,
+    "IL": 0,
+    "IN": 0,
+    "KS": 0,
+    "KY": 0,
+    "LA": 0,
+    "MA": 0,
+    "MD": 0,
+    "ME": 0,
+    "MI": 0,
+    "MN": 0,
+    "MO": 0,
+    "MS": 0,
+    "MT": 0,
+    "NC": 0,
+    "ND": 0,
+    "NE": 0,
+    "NH": 0,
+    "NJ": 0,
+    "NM": 0,
+    "NV": 0,
+    "NY": 0,
+    "OH": 0,
+    "OK": 0,
+    "OR": 3,
+    "PA": 0,
+    "PR": 0,
+    "RI": 0,
+    "SC": 0,
+    "SD": 0,
+    "TN": 1,
+    "TX": 1,
+    "UT": 1,
+    "VA": 0,
+    "VT": 0,
+    "WA": 1,
+    "WI": 0,
+    "WV": 0,
+    "WY": 0
+   }
+  }
+ },
+ "ics.top25_structures_destroyed": {
+  "computed_at": "2026-09-25T21:07:25+00:00",
+  "definition": "the 25 sample incidents with the most structures destroyed",
+  "n": 9609,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "0": {
+    "FATALITIES": 85.0,
+    "FINAL_ACRES": 153336.0,
+    "FIRE_SIZE": 153336.0,
+    "FIRE_YEAR": 2018,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2018_9220077_CAMP",
+    "INCIDENT_NAME": "CAMP",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Power generation/transmission/distribution",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "USFS",
+    "PROJECTED_FINAL_IM_COST": 102843527.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 13983.0,
+    "STR_DESTROYED_TOTAL": 18804.0,
+    "STR_THREATENED_MAX": 17500.0,
+    "WF_PEAK_PERSONNEL": 2405.7651515151515,
+    "n_fod_fires": 1
+   },
+   "1": {
+    "FATALITIES": 16.0,
+    "FINAL_ACRES": 318935.0,
+    "FIRE_SIZE": 318776.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11865970_NORTH COMPLEX",
+    "INCIDENT_NAME": "North Complex",
+    "NWCG_CAUSE_CLASSIFICATION": "Natural",
+    "NWCG_GENERAL_CAUSE": "Natural",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "USFS",
+    "PROJECTED_FINAL_IM_COST": 112711950.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 1523.0,
+    "STR_DESTROYED_TOTAL": 2342.0,
+    "STR_THREATENED_MAX": 17500.0,
+    "WF_PEAK_PERSONNEL": 1055.8714285714284,
+    "n_fod_fires": 18
+   },
+   "10": {
+    "FATALITIES": 5.0,
+    "FINAL_ACRES": 193573.0,
+    "FIRE_SIZE": 193573.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11887587_BEACHIE CREEK",
+    "INCIDENT_NAME": "Beachie Creek",
+    "NWCG_CAUSE_CLASSIFICATION": "Missing data/not specified/undetermined",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "USFS",
+    "PROJECTED_FINAL_IM_COST": 29838526.0,
+    "STATE": "OR",
+    "STR_DESTROYED_RES_TOTAL": 486.0,
+    "STR_DESTROYED_TOTAL": 1323.0,
+    "STR_THREATENED_MAX": 37032.0,
+    "WF_PEAK_PERSONNEL": 334.75,
+    "n_fod_fires": 1
+   },
+   "11": {
+    "FATALITIES": 2.0,
+    "FINAL_ACRES": 281893.0,
+    "FIRE_SIZE": 281893.0,
+    "FIRE_YEAR": 2017,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2017_9258165_THOMAS",
+    "INCIDENT_NAME": "THOMAS",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "Private",
+    "OWNER_DESCR": "PRIVATE",
+    "PROJECTED_FINAL_IM_COST": 230000000.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 779.0,
+    "STR_DESTROYED_TOTAL": 1063.0,
+    "STR_THREATENED_MAX": 18000.0,
+    "WF_PEAK_PERSONNEL": 1595.3309523809526,
+    "n_fod_fires": 1
+   },
+   "12": {
+    "FATALITIES": 0.0,
+    "FINAL_ACRES": 391493.0,
+    "FIRE_SIZE": 328363.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Lightning",
+    "INCIDENT_ID": "2020_11923345_SHF ELKHORN",
+    "INCIDENT_NAME": "SHF ELKHORN",
+    "NWCG_CAUSE_CLASSIFICATION": "Natural",
+    "NWCG_GENERAL_CAUSE": "Natural",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "USFS",
+    "PROJECTED_FINAL_IM_COST": 900000.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 343.0,
+    "STR_DESTROYED_TOTAL": 871.0,
+    "STR_THREATENED_MAX": 200.0,
+    "WF_PEAK_PERSONNEL": 284.0,
+    "n_fod_fires": 4
+   },
+   "13": {
+    "FATALITIES": 0.0,
+    "FINAL_ACRES": 379895.0,
+    "FIRE_SIZE": 379895.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11908866_CREEK",
+    "INCIDENT_NAME": "CREEK",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "USFS",
+    "PROJECTED_FINAL_IM_COST": 193000000.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 570.0,
+    "STR_DESTROYED_TOTAL": 853.0,
+    "STR_THREATENED_MAX": 14074.0,
+    "WF_PEAK_PERSONNEL": 994.2083333333336,
+    "n_fod_fires": 1
+   },
+   "14": {
+    "FATALITIES": 2.0,
+    "FINAL_ACRES": 70868.0,
+    "FIRE_SIZE": 70868.0,
+    "FIRE_YEAR": 2015,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2015_2910134_BUTTE",
+    "INCIDENT_NAME": "BUTTE",
+    "NWCG_CAUSE_CLASSIFICATION": "Missing data/not specified/undetermined",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "State or private",
+    "OWNER_DESCR": "STATE OR PRIVATE",
+    "PROJECTED_FINAL_IM_COST": 74720784.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 475.0,
+    "STR_DESTROYED_TOTAL": 818.0,
+    "STR_THREATENED_MAX": 6400.0,
+    "WF_PEAK_PERSONNEL": 1609.5999999999997,
+    "n_fod_fires": 1
+   },
+   "15": {
+    "FATALITIES": 1.0,
+    "FINAL_ACRES": 173393.0,
+    "FIRE_SIZE": 173393.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11926606_HOLIDAY FARM",
+    "INCIDENT_NAME": "Holiday Farm",
+    "NWCG_CAUSE_CLASSIFICATION": "Missing data/not specified/undetermined",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "USFS",
+    "PROJECTED_FINAL_IM_COST": 29100932.31,
+    "STATE": "OR",
+    "STR_DESTROYED_RES_TOTAL": 431.0,
+    "STR_DESTROYED_TOTAL": 768.0,
+    "STR_THREATENED_MAX": 23556.0,
+    "WF_PEAK_PERSONNEL": 551.5357142857143,
+    "n_fod_fires": 1
+   },
+   "16": {
+    "FATALITIES": 4.0,
+    "FINAL_ACRES": 3200.0,
+    "FIRE_SIZE": 3200.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11947327_ALMEDA DRIVE",
+    "INCIDENT_NAME": "Almeda Drive",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Arson/incendiarism",
+    "OWNER_CLASS": "County/local",
+    "OWNER_DESCR": "MUNICIPAL/LOCAL",
+    "PROJECTED_FINAL_IM_COST": 720665.0,
+    "STATE": "OR",
+    "STR_DESTROYED_RES_TOTAL": 600.0,
+    "STR_DESTROYED_TOTAL": 700.0,
+    "STR_THREATENED_MAX": 16763.0,
+    "WF_PEAK_PERSONNEL": 221.75,
+    "n_fod_fires": 1
+   },
+   "17": {
+    "FATALITIES": 2.0,
+    "FINAL_ACRES": 193812.0,
+    "FIRE_SIZE": 193812.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11966782_EAST TROUBLESOME",
+    "INCIDENT_NAME": "EAST TROUBLESOME",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Recreation and ceremony",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "USFS",
+    "PROJECTED_FINAL_IM_COST": 15682681.0,
+    "STATE": "CO",
+    "STR_DESTROYED_RES_TOTAL": 366.0,
+    "STR_DESTROYED_TOTAL": 580.0,
+    "STR_THREATENED_MAX": 7085.0,
+    "WF_PEAK_PERSONNEL": 462.16666666666674,
+    "n_fod_fires": 1
+   },
+   "18": {
+    "FATALITIES": 11.0,
+    "FINAL_ACRES": 28000.0,
+    "FIRE_SIZE": 36807.0,
+    "FIRE_YEAR": 2017,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2017_7241051_TUBBS",
+    "INCIDENT_NAME": "TUBBS",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "Private",
+    "OWNER_DESCR": "PRIVATE",
+    "PROJECTED_FINAL_IM_COST": 4105000.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 550.0,
+    "STR_DESTROYED_TOTAL": 576.0,
+    "STR_THREATENED_MAX": 29192.0,
+    "WF_PEAK_PERSONNEL": 562.0,
+    "n_fod_fires": 1
+   },
+   "19": {
+    "FATALITIES": 2.0,
+    "FINAL_ACRES": 14280.0,
+    "FIRE_SIZE": 16580.0,
+    "FIRE_YEAR": 2013,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2013_CO-EPX-000330_BLACK FOREST",
+    "INCIDENT_NAME": "BLACK FOREST",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "Missing",
+    "OWNER_DESCR": "MISSING/NOT SPECIFIED",
+    "PROJECTED_FINAL_IM_COST": 9829056.0,
+    "STATE": "CO",
+    "STR_DESTROYED_RES_TOTAL": 509.0,
+    "STR_DESTROYED_TOTAL": 533.0,
+    "STR_THREATENED_MAX": 1850.0,
+    "WF_PEAK_PERSONNEL": 2116.0,
+    "n_fod_fires": 1
+   },
+   "2": {
+    "FATALITIES": 14.0,
+    "FINAL_ACRES": 17140.0,
+    "FIRE_SIZE": 17140.0,
+    "FIRE_YEAR": 2016,
+    "ICS_CAUSE": "Human",
+    "INCIDENT_ID": "2016_4452309_CHIMNEY TOPS 2",
+    "INCIDENT_NAME": "CHIMNEY TOPS 2",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Misuse of fire by a minor",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "NPS",
+    "PROJECTED_FINAL_IM_COST": 8300000.0,
+    "STATE": "TN",
+    "STR_DESTROYED_RES_TOTAL": 2013.0,
+    "STR_DESTROYED_TOTAL": 2066.0,
+    "STR_THREATENED_MAX": 2800.0,
+    "WF_PEAK_PERSONNEL": 185.4642857142857,
+    "n_fod_fires": 1
+   },
+   "20": {
+    "FATALITIES": 0.0,
+    "FINAL_ACRES": 256108.0,
+    "FIRE_SIZE": 255575.0,
+    "FIRE_YEAR": 2014,
+    "ICS_CAUSE": "Lightning",
+    "INCIDENT_ID": "2014_638842_CARLTON COMPLEX",
+    "INCIDENT_NAME": "CARLTON COMPLEX",
+    "NWCG_CAUSE_CLASSIFICATION": "Natural",
+    "NWCG_GENERAL_CAUSE": "Natural",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "BLM",
+    "PROJECTED_FINAL_IM_COST": 68800000.0,
+    "STATE": "WA",
+    "STR_DESTROYED_RES_TOTAL": 325.0,
+    "STR_DESTROYED_TOTAL": 471.0,
+    "STR_THREATENED_MAX": 1103.0,
+    "WF_PEAK_PERSONNEL": 724.8166666666667,
+    "n_fod_fires": 5
+   },
+   "21": {
+    "FATALITIES": 1.0,
+    "FINAL_ACRES": 1032648.0,
+    "FIRE_SIZE": 26196.7,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11843929_AUGUST COMPLEX",
+    "INCIDENT_NAME": "AUGUST COMPLEX",
+    "NWCG_CAUSE_CLASSIFICATION": "Natural",
+    "NWCG_GENERAL_CAUSE": "Natural",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "USFS",
+    "PROJECTED_FINAL_IM_COST": 115511217.89,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 199.0,
+    "STR_DESTROYED_TOTAL": 446.0,
+    "STR_THREATENED_MAX": 13926.0,
+    "WF_PEAK_PERSONNEL": 1089.788888888889,
+    "n_fod_fires": 35
+   },
+   "22": {
+    "FATALITIES": 0.0,
+    "FINAL_ACRES": 208913.0,
+    "FIRE_SIZE": 208913.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11856938_CAMERON PEAK",
+    "INCIDENT_NAME": "Cameron Peak",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "USFS",
+    "PROJECTED_FINAL_IM_COST": 133300000.0,
+    "STATE": "CO",
+    "STR_DESTROYED_RES_TOTAL": 224.0,
+    "STR_DESTROYED_TOTAL": 444.0,
+    "STR_THREATENED_MAX": 51220.0,
+    "WF_PEAK_PERSONNEL": 646.1634920634921,
+    "n_fod_fires": 1
+   },
+   "23": {
+    "FATALITIES": 2.0,
+    "FINAL_ACRES": 157270.0,
+    "FIRE_SIZE": 157270.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11930517_SLATER",
+    "INCIDENT_NAME": "SLATER",
+    "NWCG_CAUSE_CLASSIFICATION": "Missing data/not specified/undetermined",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "USFS",
+    "PROJECTED_FINAL_IM_COST": 55043900.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 202.0,
+    "STR_DESTROYED_TOTAL": 440.0,
+    "STR_THREATENED_MAX": 5120.0,
+    "WF_PEAK_PERSONNEL": 435.875,
+    "n_fod_fires": 1
+   },
+   "24": {
+    "FATALITIES": 0.0,
+    "FINAL_ACRES": 70003.0,
+    "FIRE_SIZE": 68547.0,
+    "FIRE_YEAR": 2018,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2018_9203911_DOLLAR RIDGE",
+    "INCIDENT_NAME": "Dollar Ridge",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "Tribal/BIA",
+    "OWNER_DESCR": "BIA",
+    "PROJECTED_FINAL_IM_COST": 22000000.0,
+    "STATE": "UT",
+    "STR_DESTROYED_RES_TOTAL": 75.0,
+    "STR_DESTROYED_TOTAL": 438.0,
+    "STR_THREATENED_MAX": 1000.0,
+    "WF_PEAK_PERSONNEL": 368.25,
+    "n_fod_fires": 1
+   },
+   "3": {
+    "FATALITIES": 4.0,
+    "FINAL_ACRES": 76067.0,
+    "FIRE_SIZE": 76067.0,
+    "FIRE_YEAR": 2015,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2015_2915082_VALLEY",
+    "INCIDENT_NAME": "VALLEY",
+    "NWCG_CAUSE_CLASSIFICATION": "Missing data/not specified/undetermined",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "State or private",
+    "OWNER_DESCR": "STATE OR PRIVATE",
+    "PROJECTED_FINAL_IM_COST": 56220000.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 1307.0,
+    "STR_DESTROYED_TOTAL": 1958.0,
+    "STR_THREATENED_MAX": 9150.0,
+    "WF_PEAK_PERSONNEL": 1022.3928571428572,
+    "n_fod_fires": 1
+   },
+   "4": {
+    "FATALITIES": 0.0,
+    "FINAL_ACRES": 34068.0,
+    "FIRE_SIZE": 34068.0,
+    "FIRE_YEAR": 2011,
+    "ICS_CAUSE": "Human",
+    "INCIDENT_ID": "2011_TX-TXS-011393_BASTROP COUNTY COMPLEX",
+    "INCIDENT_NAME": "BASTROP COUNTY COMPLEX",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Power generation/transmission/distribution",
+    "OWNER_CLASS": "State or private",
+    "OWNER_DESCR": "STATE OR PRIVATE",
+    "PROJECTED_FINAL_IM_COST": 8037385.0,
+    "STATE": "TX",
+    "STR_DESTROYED_RES_TOTAL": 1669.0,
+    "STR_DESTROYED_TOTAL": 1709.0,
+    "STR_THREATENED_MAX": 1159.0,
+    "WF_PEAK_PERSONNEL": 1351.0,
+    "n_fod_fires": 1
+   },
+   "5": {
+    "FATALITIES": 3.0,
+    "FINAL_ACRES": 96949.0,
+    "FIRE_SIZE": 96949.0,
+    "FIRE_YEAR": 2018,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2018_9222426_WOOLSEY",
+    "INCIDENT_NAME": "WOOLSEY",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "OTHER FEDERAL",
+    "PROJECTED_FINAL_IM_COST": 56943320.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 1195.0,
+    "STR_DESTROYED_TOTAL": 1643.0,
+    "STR_THREATENED_MAX": 57000.0,
+    "WF_PEAK_PERSONNEL": 1823.7142857142856,
+    "n_fod_fires": 1
+   },
+   "6": {
+    "FATALITIES": 7.0,
+    "FINAL_ACRES": 229651.0,
+    "FIRE_SIZE": 229651.0,
+    "FIRE_YEAR": 2018,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2018_9236519_CARR",
+    "INCIDENT_NAME": "CARR",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Equipment and vehicle use",
+    "OWNER_CLASS": "Federal",
+    "OWNER_DESCR": "NPS",
+    "PROJECTED_FINAL_IM_COST": 158744844.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 1079.0,
+    "STR_DESTROYED_TOTAL": 1604.0,
+    "STR_THREATENED_MAX": 5012.0,
+    "WF_PEAK_PERSONNEL": 1312.0787545787543,
+    "n_fod_fires": 1
+   },
+   "7": {
+    "FATALITIES": 0.0,
+    "FINAL_ACRES": 67484.0,
+    "FIRE_SIZE": 67484.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11963496_GLASS",
+    "INCIDENT_NAME": "GLASS",
+    "NWCG_CAUSE_CLASSIFICATION": "Human",
+    "NWCG_GENERAL_CAUSE": "Equipment and vehicle use",
+    "OWNER_CLASS": "Private",
+    "OWNER_DESCR": "PRIVATE",
+    "PROJECTED_FINAL_IM_COST": 59887000.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 653.0,
+    "STR_DESTROYED_TOTAL": 1520.0,
+    "STR_THREATENED_MAX": 28835.0,
+    "WF_PEAK_PERSONNEL": 1091.5555555555554,
+    "n_fod_fires": 1
+   },
+   "8": {
+    "FATALITIES": 1.0,
+    "FINAL_ACRES": 86509.0,
+    "FIRE_SIZE": 86509.0,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11878096_CZU AUG LIGHTNING",
+    "INCIDENT_NAME": "CZU AUG LIGHTNING",
+    "NWCG_CAUSE_CLASSIFICATION": "Missing data/not specified/undetermined",
+    "NWCG_GENERAL_CAUSE": "Missing data/not specified/undetermined",
+    "OWNER_CLASS": "State",
+    "OWNER_DESCR": "STATE",
+    "PROJECTED_FINAL_IM_COST": 55900466.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 931.0,
+    "STR_DESTROYED_TOTAL": 1490.0,
+    "STR_THREATENED_MAX": 25310.0,
+    "WF_PEAK_PERSONNEL": 1002.9722222222224,
+    "n_fod_fires": 1
+   },
+   "9": {
+    "FATALITIES": 5.0,
+    "FINAL_ACRES": 363220.0,
+    "FIRE_SIZE": 305651.2,
+    "FIRE_YEAR": 2020,
+    "ICS_CAUSE": "Unknown",
+    "INCIDENT_ID": "2020_11850821_LNU LIGHTNING COMPLEX",
+    "INCIDENT_NAME": "LNU LIGHTNING COMPLEX",
+    "NWCG_CAUSE_CLASSIFICATION": "Natural",
+    "NWCG_GENERAL_CAUSE": "Natural",
+    "OWNER_CLASS": "Private",
+    "OWNER_DESCR": "PRIVATE",
+    "PROJECTED_FINAL_IM_COST": 94646381.0,
+    "STATE": "CA",
+    "STR_DESTROYED_RES_TOTAL": 788.0,
+    "STR_DESTROYED_TOTAL": 1479.0,
+    "STR_THREATENED_MAX": 30500.0,
+    "WF_PEAK_PERSONNEL": 1006.2333333333332,
+    "n_fod_fires": 6
+   }
+  }
+ },
+ "padus.acres_by_block_gap": {
+  "computed_at": "2026-09-25T21:07:33+00:00",
+  "definition": "acres by 5-year block and gap",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "acres",
+  "value": {
+   "1992-1996": {
+    "1": 1657589.12,
+    "2": 1411275.97,
+    "3": 6351647.37,
+    "4": 1945268.205,
+    "none": 5193900.435,
+    "unmatched": 1797.2
+   },
+   "1997-2001": {
+    "1": 3377466.55001,
+    "2": 1638515.693,
+    "3": 8312792.64,
+    "4": 2658638.22599,
+    "none": 7009048.7443,
+    "unmatched": 84.6
+   },
+   "2002-2006": {
+    "1": 6964533.2,
+    "2": 2924511.71133,
+    "3": 12451082.71142,
+    "4": 5923724.74218,
+    "none": 11045963.413289,
+    "unmatched": 67763.01
+   },
+   "2007-2011": {
+    "1": 5297893.016,
+    "2": 2003975.0596,
+    "3": 9102234.3639,
+    "4": 4859827.24098,
+    "none": 12675601.805364,
+    "unmatched": 64857.46
+   },
+   "2012-2016": {
+    "1": 5058664.661,
+    "2": 1714273.79,
+    "3": 11966545.5171,
+    "4": 5112632.78211,
+    "none": 9351696.592712,
+    "unmatched": 4614.55
+   },
+   "2017-2020": {
+    "1": 5450116.245175,
+    "2": 3074556.40695,
+    "3": 9231498.887125,
+    "4": 4022789.67955,
+    "none": 12119626.1122475,
+    "unmatched": 1728.3
+   }
+  }
+ },
+ "padus.agency_exact_agreement": {
+  "computed_at": "2026-09-25T21:08:02+00:00",
+  "definition": "share of ignitions with OWNER_DESCR == agency whose PAD-US Mang_Name is the matching code (USFS, BLM, NPS, FWS as is; BOR = USBR; BIA = TRIB)",
+  "n": 445651,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": {
+   "BIA": 0.9369951665747559,
+   "BLM": 0.8382113600607606,
+   "BOR": 0.2774566473988439,
+   "FWS": 0.6813509544787077,
+   "NPS": 0.8829755216693419,
+   "USFS": 0.9063793489204609
+  }
+ },
+ "padus.agency_vs_mang_name_counts": {
+  "computed_at": "2026-09-25T21:08:02+00:00",
+  "definition": "ignitions whose OWNER_DESCR is a federal agency or BIA, by PAD-US Mang_Name at the point (columns with < 500 pooled into other)",
+  "n": 445651,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "BIA": {
+    "BLM": 378,
+    "FWS": 863,
+    "NPS": 139,
+    "Not in PAD-US": 3072,
+    "SDNR": 65,
+    "SDOL": 77,
+    "SFW": 122,
+    "SLB": 237,
+    "TRIB": 115539,
+    "USACE": 1229,
+    "USBR": 617,
+    "USFS": 451,
+    "other": 519
+   },
+   "BLM": {
+    "BLM": 61803,
+    "FWS": 107,
+    "NPS": 284,
+    "Not in PAD-US": 8143,
+    "SDNR": 92,
+    "SDOL": 332,
+    "SFW": 493,
+    "SLB": 551,
+    "TRIB": 384,
+    "USACE": 8,
+    "USBR": 122,
+    "USFS": 751,
+    "other": 662
+   },
+   "BOR": {
+    "BLM": 51,
+    "FWS": 1,
+    "NPS": 1,
+    "Not in PAD-US": 192,
+    "SDNR": 1,
+    "SDOL": 1,
+    "SFW": 22,
+    "SLB": 1,
+    "TRIB": 9,
+    "USACE": 10,
+    "USBR": 144,
+    "USFS": 12,
+    "other": 74
+   },
+   "FWS": {
+    "BLM": 79,
+    "FWS": 9280,
+    "NPS": 30,
+    "Not in PAD-US": 2790,
+    "SDNR": 65,
+    "SDOL": 19,
+    "SFW": 87,
+    "SLB": 35,
+    "TRIB": 173,
+    "USACE": 160,
+    "USBR": 5,
+    "USFS": 116,
+    "other": 781
+   },
+   "NPS": {
+    "BLM": 235,
+    "FWS": 8,
+    "NPS": 17603,
+    "Not in PAD-US": 1513,
+    "SDNR": 36,
+    "SDOL": 10,
+    "SFW": 59,
+    "SLB": 11,
+    "TRIB": 111,
+    "USACE": 3,
+    "USBR": 3,
+    "USFS": 87,
+    "other": 257
+   },
+   "USFS": {
+    "BLM": 2097,
+    "FWS": 76,
+    "NPS": 351,
+    "Not in PAD-US": 13606,
+    "SDNR": 461,
+    "SDOL": 216,
+    "SFW": 947,
+    "SLB": 127,
+    "TRIB": 524,
+    "USACE": 55,
+    "USBR": 192,
+    "USFS": 194451,
+    "other": 1433
+   }
+  }
+ },
+ "padus.by_gap_2010_2020": {
+  "computed_at": "2026-09-25T21:07:32+00:00",
+  "definition": "gap = GAP status at the ignition point (1 most protected ... 4, none = not in PAD-US, unmatched = outside the layer); fires = count, acres = sum FIRE_SIZE; human_share_known_cause = Human / (Human + Natural); fires_ge_300 = FIRE_SIZE >= 300 acres; FIRE_YEAR 2010-2020",
+  "n": 854880,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "1": {
+    "acres": 12416299.282175,
+    "acres_ge_300": 12310443.04,
+    "fires": 12070,
+    "fires_ge_300": 982,
+    "human_share_known_cause": 0.3539035347969823,
+    "n_known_cause": 11797,
+    "share_acres": 0.15460654555464215,
+    "share_fires": 0.01411894067003556,
+    "share_ge_300_within_gap": 0.08135874067937034,
+    "share_of_fires_ge_300": 0.07881852476121678
+   },
+   "2": {
+    "acres": 5396668.57155,
+    "acres_ge_300": 5181002.855,
+    "fires": 19965,
+    "fires_ge_300": 798,
+    "human_share_known_cause": 0.7347348404817241,
+    "n_known_cause": 18932,
+    "share_acres": 0.0671987897833994,
+    "share_fires": 0.02335415496911847,
+    "share_ge_300_within_gap": 0.03996994740796394,
+    "share_of_fires_ge_300": 0.06405008427642668
+   },
+   "3": {
+    "acres": 23837667.710225,
+    "acres_ge_300": 23237793.36,
+    "fires": 93673,
+    "fires_ge_300": 3032,
+    "human_share_known_cause": 0.5321866838591238,
+    "n_known_cause": 91513,
+    "share_acres": 0.29682430932123366,
+    "share_fires": 0.10957444319670596,
+    "share_ge_300_within_gap": 0.03236791818346802,
+    "share_of_fires_ge_300": 0.24335821494501966
+   },
+   "4": {
+    "acres": 10829123.74366,
+    "acres_ge_300": 10181807.249,
+    "fires": 77461,
+    "fires_ge_300": 2161,
+    "human_share_known_cause": 0.8717966175549443,
+    "n_known_cause": 73438,
+    "share_acres": 0.1348431908205214,
+    "share_fires": 0.09061037806475762,
+    "share_ge_300_within_gap": 0.027897909915957707,
+    "share_of_fires_ge_300": 0.17344891243277952
+   },
+   "none": {
+    "acres": 27792507.2505495,
+    "acres_ge_300": 24090421.63,
+    "fires": 647227,
+    "fires_ge_300": 5463,
+    "human_share_known_cause": 0.9353093913686006,
+    "n_known_cause": 579234,
+    "share_acres": 0.34606958487852285,
+    "share_fires": 0.7570969024892382,
+    "share_ge_300_within_gap": 0.008440624386807101,
+    "share_of_fires_ge_300": 0.4384782085239586
+   },
+   "unmatched": {
+    "acres": 36747.77,
+    "acres_ge_300": 12966.0,
+    "fires": 4484,
+    "fires_ge_300": 23,
+    "human_share_known_cause": 0.9955357142857143,
+    "n_known_cause": 224,
+    "share_acres": 0.0004575796416805826,
+    "share_fires": 0.0052451806101441135,
+    "share_ge_300_within_gap": 0.005129348795718109,
+    "share_of_fires_ge_300": 0.001846055060598764
+   }
+  }
+ },
+ "padus.by_gap_2010_2020_human_only": {
+  "computed_at": "2026-09-25T21:07:32+00:00",
+  "definition": "gap = GAP status at the ignition point (1 most protected ... 4, none = not in PAD-US, unmatched = outside the layer); fires = count, acres = sum FIRE_SIZE; human_share_known_cause = Human / (Human + Natural); fires_ge_300 = FIRE_SIZE >= 300 acres; FIRE_YEAR 2010-2020, Human cause only",
+  "n": 672796,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "1": {
+    "acres": 1632687.144625,
+    "acres_ge_300": 1605343.24,
+    "fires": 4175,
+    "fires_ge_300": 136,
+    "human_share_known_cause": 1.0,
+    "n_known_cause": 4175,
+    "share_acres": 0.05519619395168564,
+    "share_fires": 0.006205447119186202,
+    "share_ge_300_within_gap": 0.0325748502994012,
+    "share_of_fires_ge_300": 0.020115367549179114
+   },
+   "2": {
+    "acres": 1789918.52355,
+    "acres_ge_300": 1642788.055,
+    "fires": 13910,
+    "fires_ge_300": 385,
+    "human_share_known_cause": 1.0,
+    "n_known_cause": 13910,
+    "share_acres": 0.06051170936748724,
+    "share_fires": 0.020674914833025165,
+    "share_ge_300_within_gap": 0.027677929547088427,
+    "share_of_fires_ge_300": 0.05694423901789676
+   },
+   "3": {
+    "acres": 6478244.924075,
+    "acres_ge_300": 6153279.26,
+    "fires": 48702,
+    "fires_ge_300": 1068,
+    "human_share_known_cause": 1.0,
+    "n_known_cause": 48702,
+    "share_acres": 0.21900978670221316,
+    "share_fires": 0.07238746960445662,
+    "share_ge_300_within_gap": 0.021929284218307258,
+    "share_of_fires_ge_300": 0.15796479810678893
+   },
+   "4": {
+    "acres": 4690574.84991,
+    "acres_ge_300": 4144701.019,
+    "fires": 64023,
+    "fires_ge_300": 1439,
+    "human_share_known_cause": 1.0,
+    "n_known_cause": 64023,
+    "share_acres": 0.15857409057997846,
+    "share_fires": 0.09515960261357083,
+    "share_ge_300_within_gap": 0.022476297580556987,
+    "share_of_fires_ge_300": 0.21283833752403492
+   },
+   "none": {
+    "acres": 14982530.9964645,
+    "acres_ge_300": 11957242.906,
+    "fires": 541763,
+    "fires_ge_300": 3729,
+    "human_share_known_cause": 1.0,
+    "n_known_cause": 541763,
+    "share_acres": 0.5065138716198682,
+    "share_fires": 0.8052411132051914,
+    "share_ge_300_within_gap": 0.006883083562369523,
+    "share_of_fires_ge_300": 0.5515456293447715
+   },
+   "unmatched": {
+    "acres": 5748.75,
+    "acres_ge_300": 3711.0,
+    "fires": 223,
+    "fires_ge_300": 4,
+    "human_share_known_cause": 1.0,
+    "n_known_cause": 223,
+    "share_acres": 0.00019434777876727464,
+    "share_fires": 0.0003314526245697061,
+    "share_ge_300_within_gap": 0.017937219730941704,
+    "share_of_fires_ge_300": 0.0005916284573287975
+   }
+  }
+ },
+ "padus.by_gap_all_years": {
+  "computed_at": "2026-09-25T21:07:32+00:00",
+  "definition": "gap = GAP status at the ignition point (1 most protected ... 4, none = not in PAD-US, unmatched = outside the layer); fires = count, acres = sum FIRE_SIZE; human_share_known_cause = Human / (Human + Natural); fires_ge_300 = FIRE_SIZE >= 300 acres; all records 1992-2020",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "1": {
+    "acres": 27806262.792185,
+    "acres_ge_300": 27443047.4,
+    "fires": 43762,
+    "fires_ge_300": 2698,
+    "human_share_known_cause": 0.33847770254494514,
+    "n_known_cause": 42830,
+    "share_acres": 0.1544374229343928,
+    "share_fires": 0.01899750213364844,
+    "share_ge_300_within_gap": 0.06165166125862621,
+    "share_of_fires_ge_300": 0.08520179372197309
+   },
+   "2": {
+    "acres": 12767108.63088,
+    "acres_ge_300": 12090542.355010001,
+    "fires": 63304,
+    "fires_ge_300": 2330,
+    "human_share_known_cause": 0.7068173081744188,
+    "n_known_cause": 59833,
+    "share_acres": 0.07090918222317551,
+    "share_fires": 0.027480870962672658,
+    "share_ge_300_within_gap": 0.03680652091495008,
+    "share_of_fires_ge_300": 0.07358049643150383
+   },
+   "3": {
+    "acres": 57415801.489545,
+    "acres_ge_300": 55606481.40996,
+    "fires": 297578,
+    "fires_ge_300": 7945,
+    "human_share_known_cause": 0.48032445166363896,
+    "n_known_cause": 291199,
+    "share_acres": 0.31889033359240676,
+    "share_fires": 0.12918145171442885,
+    "share_ge_300_within_gap": 0.026698882309848175,
+    "share_of_fires_ge_300": 0.2509000189477673
+   },
+   "4": {
+    "acres": 24522880.87581,
+    "acres_ge_300": 22629782.31017,
+    "fires": 233405,
+    "fires_ge_300": 5093,
+    "human_share_known_cause": 0.8582330875695253,
+    "n_known_cause": 216468,
+    "share_acres": 0.13620134980712387,
+    "share_fires": 0.10132333955267615,
+    "share_ge_300_within_gap": 0.02182044086459159,
+    "share_of_fires_ge_300": 0.16083496494663047
+   },
+   "none": {
+    "acres": 57395837.1029125,
+    "acres_ge_300": 46923317.10037,
+    "fires": 1643290,
+    "fires_ge_300": 13543,
+    "human_share_known_cause": 0.9336977042100707,
+    "n_known_cause": 1499571,
+    "share_acres": 0.3187794503555967,
+    "share_fires": 0.7133678826653979,
+    "share_ge_300_within_gap": 0.008241393789288561,
+    "share_of_fires_ge_300": 0.42768268805659065
+   },
+   "unmatched": {
+    "acres": 140845.12,
+    "acres_ge_300": 33290.0,
+    "fires": 22227,
+    "fires_ge_300": 57,
+    "human_share_known_cause": 0.9938271604938271,
+    "n_known_cause": 324,
+    "share_acres": 0.0007822610873043564,
+    "share_fires": 0.009648952971175994,
+    "share_ge_300_within_gap": 0.0025644486435416384,
+    "share_of_fires_ge_300": 0.0018000378955346427
+   }
+  }
+ },
+ "padus.fires_by_block_gap": {
+  "computed_at": "2026-09-25T21:07:33+00:00",
+  "definition": "ignitions by 5-year block (last block 2017-2020) and gap",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "1992-1996": {
+    "1": 10048,
+    "2": 11861,
+    "3": 59648,
+    "4": 42790,
+    "none": 228508,
+    "unmatched": 14
+   },
+   "1997-2001": {
+    "1": 9258,
+    "2": 12882,
+    "3": 58618,
+    "4": 38706,
+    "none": 283073,
+    "unmatched": 8
+   },
+   "2002-2006": {
+    "1": 8464,
+    "2": 12439,
+    "3": 56239,
+    "4": 50222,
+    "none": 284955,
+    "unmatched": 12318
+   },
+   "2007-2011": {
+    "1": 6185,
+    "2": 10481,
+    "3": 47027,
+    "4": 40260,
+    "none": 339519,
+    "unmatched": 9645
+   },
+   "2012-2016": {
+    "1": 5939,
+    "2": 8927,
+    "3": 43442,
+    "4": 35089,
+    "none": 276900,
+    "unmatched": 143
+   },
+   "2017-2020": {
+    "1": 3868,
+    "2": 6714,
+    "3": 32604,
+    "4": 26338,
+    "none": 230335,
+    "unmatched": 99
+   }
+  }
+ },
+ "padus.general_cause_share_gap12_2010_2020": {
+  "computed_at": "2026-09-25T21:07:32+00:00",
+  "definition": "share of ignitions by NWCG_GENERAL_CAUSE on GAP 1-2 land, 2010-2020",
+  "n": 32035,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": {
+   "Arson/incendiarism": 0.09317933510223193,
+   "Debris and open burning": 0.0692367722803184,
+   "Equipment and vehicle use": 0.079818948025597,
+   "Firearms and explosives use": 0.02534727641641954,
+   "Fireworks": 0.007616669267988138,
+   "Missing data/not specified/undetermined": 0.1697206180739816,
+   "Misuse of fire by a minor": 0.006461682534727641,
+   "Natural": 0.3946933041985329,
+   "Other causes": 0.003901982206961136,
+   "Power generation/transmission/distribution": 0.015826439831434367,
+   "Railroad operations and maintenance": 0.004869673794287498,
+   "Recreation and ceremony": 0.11768378336194787,
+   "Smoking": 0.011643514905572031
+  }
+ },
+ "padus.general_cause_share_large_gap12_2010_2020": {
+  "computed_at": "2026-09-25T21:07:32+00:00",
+  "definition": "same, fires >= 300 acres",
+  "n": 1780,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": {
+   "Arson/incendiarism": 0.06123595505617978,
+   "Debris and open burning": 0.04325842696629213,
+   "Equipment and vehicle use": 0.03314606741573034,
+   "Firearms and explosives use": 0.007865168539325843,
+   "Fireworks": 0.003932584269662922,
+   "Missing data/not specified/undetermined": 0.15,
+   "Misuse of fire by a minor": 0.0016853932584269663,
+   "Natural": 0.6589887640449438,
+   "Other causes": 0.0011235955056179776,
+   "Power generation/transmission/distribution": 0.0056179775280898875,
+   "Railroad operations and maintenance": 0.0022471910112359553,
+   "Recreation and ceremony": 0.029213483146067417,
+   "Smoking": 0.0016853932584269663
+  }
+ },
+ "padus.human_ignitions_by_manager_2010_2020": {
+  "computed_at": "2026-09-25T21:07:58+00:00",
+  "definition": "Human ignitions 2010-2020 inside PAD-US units by Mang_Name",
+  "n": 130810,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "BLM": 11970,
+   "CITY": 2708,
+   "CNTY": 1782,
+   "FWS": 2848,
+   "NGO": 2026,
+   "NPS": 3170,
+   "SDNR": 4285,
+   "SDOL": 1459,
+   "SFW": 3525,
+   "SLB": 2211,
+   "SPR": 1563,
+   "TRIB": 51325,
+   "UNK": 2708,
+   "USACE": 1327,
+   "USFS": 31277
+  }
+ },
+ "padus.human_ignitions_share_in_tribal_units_2010_2020": {
+  "computed_at": "2026-09-25T21:07:58+00:00",
+  "definition": "share of human ignitions inside PAD-US units 2010-2020 that fall in Des_Tp TRIBL units",
+  "n": 130810,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": 0.3923247458145402
+ },
+ "padus.join_definition": {
+  "computed_at": "2026-09-25T21:07:28+00:00",
+  "definition": "join method",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": "ignition point (LATITUDE, LONGITUDE, EPSG:4326) projected to the layer CRS (USA Contiguous Albers Equal Area Conic USGS version, EPSG:5070 for CONUS; the AK and HI layers use their own Albers) and joined with geopandas.sjoin predicate within; where a point fell in more than one polygon the lowest GAP status was kept and the multiplicity recorded in n_overlaps. gap = GAP_Sts for PAD-US polygons, \"none\" for Non-PAD-US Area fill polygons, \"unmatched\" for points in no polygon (offshore, PR, bad coordinates)."
+ },
+ "padus.match_summary": {
+  "computed_at": "2026-09-25T21:07:29+00:00",
+  "definition": "how the points landed",
+  "n": 2303566,
+  "note": "n_overlaps is 1 for every matched point because the Vector Analysis file is already a flat partition; USGS resolved the overlaps by GAP priority before publication.",
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "in_padus_unit": 638049,
+   "matched_any_polygon": 2281339,
+   "n_overlaps_distribution": {
+    "0": 22227,
+    "1": 2281339
+   },
+   "non_padus_area": 1643290,
+   "unmatched": 22227,
+   "unmatched_by_state": {
+    "AK": 0,
+    "AL": 0,
+    "AR": 0,
+    "AZ": 19,
+    "CA": 1,
+    "CO": 0,
+    "ME": 1,
+    "NY": 1,
+    "PR": 22202,
+    "TX": 3
+   }
+  }
+ },
+ "padus.missing_owner_assignment_2010_2020": {
+  "computed_at": "2026-09-25T21:08:04+00:00",
+  "definition": "records with OWNER_DESCR = MISSING/NOT SPECIFIED, by PAD-US Mang_Type at the point (Not in PAD-US = Non-PAD-US Area, which is predominantly private land)",
+  "n": 350263,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "DIST": {
+    "acres": 11832.036,
+    "fires": 546,
+    "share_acres": 0.0015025850694701758,
+    "share_fires": 0.0015588286516132165
+   },
+   "FED": {
+    "acres": 426965.64035,
+    "fires": 4748,
+    "share_acres": 0.05422162308893269,
+    "share_fires": 0.013555528274468043
+   },
+   "JNT": {
+    "acres": 2511.783,
+    "fires": 116,
+    "share_acres": 0.00031897871452968925,
+    "share_fires": 0.0003311797135295478
+   },
+   "LOC": {
+    "acres": 34393.66355,
+    "fires": 2792,
+    "share_acres": 0.004367752543569897,
+    "share_fires": 0.007971153104952564
+   },
+   "NGO": {
+    "acres": 54468.16675,
+    "fires": 1251,
+    "share_acres": 0.00691707277766581,
+    "share_fires": 0.003571601910564347
+   },
+   "Not in PAD-US": {
+    "acres": 6521502.120506,
+    "fires": 330806,
+    "share_acres": 0.8281847449408036,
+    "share_fires": 0.9444503130504792
+   },
+   "PVT": {
+    "acres": 11221.332,
+    "fires": 210,
+    "share_acres": 0.001425029971407111,
+    "share_fires": 0.0005995494813896986
+   },
+   "STAT": {
+    "acres": 665338.23485,
+    "fires": 5615,
+    "share_acres": 0.08449326031743407,
+    "share_fires": 0.01603081113334837
+   },
+   "TRIB": {
+    "acres": 105336.53540000001,
+    "fires": 2716,
+    "share_acres": 0.013376996601578683,
+    "share_fires": 0.007754173292640102
+   },
+   "UNK": {
+    "acres": 40883.815,
+    "fires": 1463,
+    "share_acres": 0.005191955974608327,
+    "share_fires": 0.004176861387014901
+   }
+  }
+ },
+ "padus.missing_owner_assignment_all_years": {
+  "computed_at": "2026-09-25T21:08:04+00:00",
+  "definition": "records with OWNER_DESCR = MISSING/NOT SPECIFIED, by PAD-US Mang_Type at the point (Not in PAD-US = Non-PAD-US Area, which is predominantly private land)",
+  "n": 1046639,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "DIST": {
+    "acres": 240902.236,
+    "fires": 3149,
+    "share_acres": 0.010585607365553978,
+    "share_fires": 0.003008678254871068
+   },
+   "FED": {
+    "acres": 1769970.38196,
+    "fires": 18646,
+    "share_acres": 0.07777516648740514,
+    "share_fires": 0.01781512059076721
+   },
+   "JNT": {
+    "acres": 12791.193,
+    "fires": 486,
+    "share_acres": 0.0005620643007855788,
+    "share_fires": 0.0004643434842385961
+   },
+   "LOC": {
+    "acres": 188950.64455,
+    "fires": 9093,
+    "share_acres": 0.00830277612979338,
+    "share_fires": 0.008687809263748054
+   },
+   "NGO": {
+    "acres": 214992.87973,
+    "fires": 5167,
+    "share_acres": 0.00944711119747161,
+    "share_fires": 0.00493675469765602
+   },
+   "Not in PAD-US": {
+    "acres": 17225072.459335,
+    "fires": 952244,
+    "share_acres": 0.756895647484723,
+    "share_fires": 0.9098113102989664
+   },
+   "PVT": {
+    "acres": 56312.432,
+    "fires": 924,
+    "share_acres": 0.0024744531426908697,
+    "share_fires": 0.0008828258836141211
+   },
+   "STAT": {
+    "acres": 1935364.87892,
+    "fires": 27212,
+    "share_acres": 0.08504284998554366,
+    "share_fires": 0.02599941336028946
+   },
+   "TRIB": {
+    "acres": 972381.3854,
+    "fires": 24604,
+    "share_acres": 0.04272790376017026,
+    "share_fires": 0.023507627749395923
+   },
+   "UNK": {
+    "acres": 140787.61799,
+    "fires": 5114,
+    "share_acres": 0.006186420145862589,
+    "share_fires": 0.004886116416453047
+   }
+  }
+ },
+ "padus.missing_owner_by_gap_all_years": {
+  "computed_at": "2026-09-25T21:08:04+00:00",
+  "definition": "records with missing OWNER_DESCR by gap",
+  "n": 1046639,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "1": 3115,
+   "2": 14565,
+   "3": 28231,
+   "4": 48484,
+   "none": 952244,
+   "unmatched": 0
+  }
+ },
+ "padus.missing_owner_by_reporting_agency_and_mang_type": {
+  "computed_at": "2026-09-25T21:08:05+00:00",
+  "definition": "missing-owner records by NWCG_REPORTING_AGENCY and PAD-US Mang_Type",
+  "n": 1046639,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "BIA": {
+    "DIST": 0,
+    "FED": 0,
+    "JNT": 0,
+    "LOC": 1,
+    "NGO": 0,
+    "Not in PAD-US": 3,
+    "PVT": 0,
+    "STAT": 0,
+    "TRIB": 92,
+    "UNK": 0
+   },
+   "BLM": {
+    "DIST": 0,
+    "FED": 20,
+    "JNT": 0,
+    "LOC": 2,
+    "NGO": 1,
+    "Not in PAD-US": 44,
+    "PVT": 0,
+    "STAT": 5,
+    "TRIB": 10,
+    "UNK": 1
+   },
+   "BOR": {
+    "DIST": 0,
+    "FED": 1,
+    "JNT": 0,
+    "LOC": 0,
+    "NGO": 0,
+    "Not in PAD-US": 0,
+    "PVT": 0,
+    "STAT": 0,
+    "TRIB": 0,
+    "UNK": 0
+   },
+   "DOD": {
+    "DIST": 1,
+    "FED": 71,
+    "JNT": 0,
+    "LOC": 1,
+    "NGO": 0,
+    "Not in PAD-US": 1,
+    "PVT": 1,
+    "STAT": 2,
+    "TRIB": 1,
+    "UNK": 0
+   },
+   "DOE": {
+    "DIST": 0,
+    "FED": 1,
+    "JNT": 0,
+    "LOC": 0,
+    "NGO": 0,
+    "Not in PAD-US": 1,
+    "PVT": 0,
+    "STAT": 0,
+    "TRIB": 0,
+    "UNK": 0
+   },
+   "FS": {
+    "DIST": 108,
+    "FED": 1423,
+    "JNT": 7,
+    "LOC": 132,
+    "NGO": 51,
+    "Not in PAD-US": 5108,
+    "PVT": 3,
+    "STAT": 237,
+    "TRIB": 168,
+    "UNK": 42
+   },
+   "FWS": {
+    "DIST": 0,
+    "FED": 64,
+    "JNT": 0,
+    "LOC": 4,
+    "NGO": 2,
+    "Not in PAD-US": 113,
+    "PVT": 0,
+    "STAT": 6,
+    "TRIB": 5,
+    "UNK": 1
+   },
+   "IA": {
+    "DIST": 0,
+    "FED": 1,
+    "JNT": 0,
+    "LOC": 1,
+    "NGO": 0,
+    "Not in PAD-US": 11,
+    "PVT": 0,
+    "STAT": 0,
+    "TRIB": 0,
+    "UNK": 0
+   },
+   "NPS": {
+    "DIST": 1,
+    "FED": 13,
+    "JNT": 0,
+    "LOC": 0,
+    "NGO": 0,
+    "Not in PAD-US": 9,
+    "PVT": 0,
+    "STAT": 1,
+    "TRIB": 0,
+    "UNK": 0
+   },
+   "ST/C&L": {
+    "DIST": 3039,
+    "FED": 17049,
+    "JNT": 479,
+    "LOC": 8952,
+    "NGO": 5113,
+    "Not in PAD-US": 946946,
+    "PVT": 920,
+    "STAT": 26961,
+    "TRIB": 24327,
+    "UNK": 5070
+   },
+   "TRIBE": {
+    "DIST": 0,
+    "FED": 3,
+    "JNT": 0,
+    "LOC": 0,
+    "NGO": 0,
+    "Not in PAD-US": 8,
+    "PVT": 0,
+    "STAT": 0,
+    "TRIB": 1,
+    "UNK": 0
+   }
+  }
+ },
+ "padus.missing_owner_top_managers_all_years": {
+  "computed_at": "2026-09-25T21:08:04+00:00",
+  "definition": "PAD-US Mang_Name for missing-owner records that fall inside a PAD-US unit",
+  "n": 94395,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "BLM": 3826,
+   "CITY": 4479,
+   "CNTY": 4048,
+   "DOD": 2114,
+   "NGO": 5167,
+   "OTHS": 3443,
+   "SDC": 2319,
+   "SDNR": 4679,
+   "SDOL": 4642,
+   "SFW": 5400,
+   "SLB": 3957,
+   "SPR": 2778,
+   "TRIB": 24604,
+   "UNK": 5114,
+   "USFS": 7879
+  }
+ },
+ "padus.n_points": {
+  "computed_at": "2026-09-25T21:07:28+00:00",
+  "definition": "ignition points submitted to the join",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 2303566
+ },
+ "padus.n_units_with_human_ignitions_2010_2020": {
+  "computed_at": "2026-09-25T21:07:58+00:00",
+  "definition": "distinct Unit_Nm with at least one human ignition 2010-2020",
+  "n": 130810,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": 12268
+ },
+ "padus.owner_agreement_by_class": {
+  "computed_at": "2026-09-25T21:08:01+00:00",
+  "definition": "share of each owner class whose PAD-US manager type is consistent: Federal = ['FED']; Tribal/BIA = ['TRIB']; State = ['STAT']; County/local = ['DIST', 'LOC']; Private = ['NGO', 'Not in PAD-US', 'PVT']; State or private = ['NGO', 'Not in PAD-US', 'PVT', 'STAT']",
+  "n": 1234700,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": {
+   "County/local": 0.11481981113894778,
+   "Federal": 0.8511605193611398,
+   "Private": 0.9037329803771299,
+   "State": 0.3336403734079677,
+   "State or private": 0.8805588543485854,
+   "Tribal/BIA": 0.9309790499896287
+  }
+ },
+ "padus.owner_agreement_overall": {
+  "computed_at": "2026-09-25T21:08:01+00:00",
+  "definition": "the same, all classes pooled",
+  "n": 1234700,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": 0.8479023244512837
+ },
+ "padus.owner_vs_mang_type_counts": {
+  "computed_at": "2026-09-25T21:08:01+00:00",
+  "definition": "ignitions with a recorded OWNER_DESCR by owner class (rows, Federal = USFS BLM NPS FWS BOR OTHER FEDERAL UNDEFINED FEDERAL; Tribal/BIA = BIA TRIBAL; State = STATE; Private = PRIVATE; State or private = STATE OR PRIVATE; County/local = COUNTY MUNICIPAL/LOCAL; Missing = MISSING/NOT SPECIFIED (OWNER_DESCR upper-cased)) and PAD-US Mang_Type at the point (columns; Not in PAD-US = Non-PAD-US Area)",
+  "n": 1234700,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "County/local": {
+    "DIST": 114,
+    "FED": 1016,
+    "JNT": 8,
+    "LOC": 2865,
+    "NGO": 77,
+    "Not in PAD-US": 19610,
+    "PVT": 11,
+    "STAT": 932,
+    "TRIB": 1124,
+    "UNK": 188
+   },
+   "Federal": {
+    "DIST": 176,
+    "FED": 296306,
+    "JNT": 281,
+    "LOC": 629,
+    "NGO": 562,
+    "Not in PAD-US": 40714,
+    "PVT": 102,
+    "STAT": 5292,
+    "TRIB": 3455,
+    "UNK": 603
+   },
+   "Private": {
+    "DIST": 885,
+    "FED": 14534,
+    "JNT": 408,
+    "LOC": 2556,
+    "NGO": 3574,
+    "Not in PAD-US": 535891,
+    "PVT": 623,
+    "STAT": 11046,
+    "TRIB": 26862,
+    "UNK": 1240
+   },
+   "State": {
+    "DIST": 776,
+    "FED": 3041,
+    "JNT": 37,
+    "LOC": 694,
+    "NGO": 278,
+    "Not in PAD-US": 29436,
+    "PVT": 102,
+    "STAT": 18835,
+    "TRIB": 1941,
+    "UNK": 1313
+   },
+   "State or private": {
+    "DIST": 103,
+    "FED": 7291,
+    "JNT": 27,
+    "LOC": 293,
+    "NGO": 289,
+    "Not in PAD-US": 61118,
+    "PVT": 25,
+    "STAT": 1594,
+    "TRIB": 664,
+    "UNK": 171
+   },
+   "Tribal/BIA": {
+    "DIST": 6,
+    "FED": 3976,
+    "JNT": 0,
+    "LOC": 236,
+    "NGO": 47,
+    "Not in PAD-US": 4277,
+    "PVT": 3,
+    "STAT": 606,
+    "TRIB": 125671,
+    "UNK": 166
+   }
+  }
+ },
+ "padus.owner_vs_mang_type_row_shares": {
+  "computed_at": "2026-09-25T21:08:01+00:00",
+  "definition": "row shares of the previous table",
+  "n": 1234700,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": {
+   "County/local": {
+    "DIST": 0.004393910194642513,
+    "FED": 0.03915976103295433,
+    "JNT": 0.0003083445750626325,
+    "LOC": 0.11042590094430527,
+    "NGO": 0.002967816534977838,
+    "Not in PAD-US": 0.7558296396222779,
+    "PVT": 0.0004239737907111197,
+    "STAT": 0.03592214299479669,
+    "TRIB": 0.043322412796299864,
+    "UNK": 0.007246097513971863
+   },
+   "Federal": {
+    "DIST": 0.0005055727909916121,
+    "FED": 0.8511605193611398,
+    "JNT": 0.0008071929219809262,
+    "LOC": 0.0018068482132597955,
+    "NGO": 0.0016143858439618523,
+    "Not in PAD-US": 0.11695392393427553,
+    "PVT": 0.0002930024129610479,
+    "STAT": 0.015201654601861427,
+    "TRIB": 0.009924738595886476,
+    "UNK": 0.0017321613236814892
+   },
+   "Private": {
+    "DIST": 0.0014808766120220408,
+    "FED": 0.02431984257528626,
+    "JNT": 0.0006827092177457544,
+    "LOC": 0.004276972452348402,
+    "NGO": 0.00598039888290031,
+    "Not in PAD-US": 0.8967101112916424,
+    "PVT": 0.001042470202587267,
+    "STAT": 0.018483348086322557,
+    "TRIB": 0.044948370115407976,
+    "UNK": 0.0020749005637370967
+   },
+   "State": {
+    "DIST": 0.01374594795670735,
+    "FED": 0.05386781924786991,
+    "JNT": 0.0006554124670079535,
+    "LOC": 0.012293412219014047,
+    "NGO": 0.004924450427789488,
+    "Not in PAD-US": 0.5214249021309763,
+    "PVT": 0.0018068127468867908,
+    "STAT": 0.3336403734079677,
+    "TRIB": 0.03438258374222805,
+    "UNK": 0.023258285653552514
+   },
+   "State or private": {
+    "DIST": 0.0014390499476074048,
+    "FED": 0.10186517638840377,
+    "JNT": 0.00037722668529514494,
+    "LOC": 0.0040936081033880545,
+    "NGO": 0.004037722668529514,
+    "Not in PAD-US": 0.8539015019210618,
+    "PVT": 0.00034928396786587494,
+    "STAT": 0.022270345791128188,
+    "TRIB": 0.00927698218651764,
+    "UNK": 0.0023891023402025846
+   },
+   "Tribal/BIA": {
+    "DIST": 4.444839541292559e-05,
+    "FED": 0.02945447002696536,
+    "JNT": 0.0,
+    "LOC": 0.0017483035529084067,
+    "NGO": 0.0003481790974012505,
+    "Not in PAD-US": 0.031684297863513795,
+    "PVT": 2.2224197706462796e-05,
+    "STAT": 0.004489287936705485,
+    "TRIB": 0.9309790499896287,
+    "UNK": 0.001229738939757608
+   }
+  }
+ },
+ "padus.share_acres_by_block_gap": {
+  "computed_at": "2026-09-25T21:07:33+00:00",
+  "definition": "row shares of the acres table",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": {
+   "1992-1996": {
+    "1": 0.10008702665147953,
+    "2": 0.08521437183539346,
+    "3": 0.3835193486320602,
+    "4": 0.11745740143257621,
+    "none": 0.313613334565671,
+    "unmatched": 0.00010851688281957294
+   },
+   "1997-2001": {
+    "1": 0.1468684246510125,
+    "2": 0.0712505113029645,
+    "3": 0.361480044705022,
+    "4": 0.11561032572386476,
+    "none": 0.3047870148038773,
+    "unmatched": 3.6788132588430424e-06
+   },
+   "2002-2006": {
+    "1": 0.17686545019582697,
+    "2": 0.0742684492375381,
+    "3": 0.3161972649051018,
+    "4": 0.15043395060013853,
+    "none": 0.2805140324319213,
+    "unmatched": 0.0017208526294733328
+   },
+   "2007-2011": {
+    "1": 0.15580027108963843,
+    "2": 0.0589328354875474,
+    "3": 0.26767822172591843,
+    "4": 0.14291764656379646,
+    "none": 0.3727636989904859,
+    "unmatched": 0.00190732614261333
+   },
+   "2012-2016": {
+    "1": 0.15233074800503268,
+    "2": 0.05162164844200222,
+    "3": 0.3603466431980821,
+    "4": 0.1539558812779481,
+    "none": 0.28160612188164463,
+    "unmatched": 0.00013895719529028169
+   },
+   "2017-2020": {
+    "1": 0.16076889385016604,
+    "2": 0.09069403484061302,
+    "3": 0.27231306597836985,
+    "4": 0.1186652573778912,
+    "none": 0.3575077661267489,
+    "unmatched": 5.098182621099674e-05
+   }
+  }
+ },
+ "padus.share_fires_by_block_gap": {
+  "computed_at": "2026-09-25T21:07:33+00:00",
+  "definition": "row shares of the previous",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": {
+   "1992-1996": {
+    "1": 0.028475156502838165,
+    "2": 0.033613040533455756,
+    "3": 0.1690372347811794,
+    "4": 0.12126313164375448,
+    "none": 0.647571761758613,
+    "unmatched": 3.967478015920923e-05
+   },
+   "1997-2001": {
+    "1": 0.022998670956042182,
+    "2": 0.03200139114881566,
+    "3": 0.14561850227924827,
+    "4": 0.09615322510526773,
+    "none": 0.7032083369561167,
+    "unmatched": 1.987355450943373e-05
+   },
+   "2002-2006": {
+    "1": 0.019932318662763727,
+    "2": 0.029293255180306944,
+    "3": 0.13244017831700958,
+    "4": 0.11827042862491964,
+    "none": 0.6710555132972398,
+    "unmatched": 0.029008305917760345
+   },
+   "2007-2011": {
+    "1": 0.013649896163683993,
+    "2": 0.023130891138491823,
+    "3": 0.10378555648982492,
+    "4": 0.08885122385609015,
+    "none": 0.7492965393044181,
+    "unmatched": 0.021285893047491046
+   },
+   "2012-2016": {
+    "1": 0.016032285930245114,
+    "2": 0.024098369506532772,
+    "3": 0.1172713529856387,
+    "4": 0.09472249217147176,
+    "none": 0.7474894719792678,
+    "unmatched": 0.00038602742684375337
+   },
+   "2017-2020": {
+    "1": 0.012895138652744718,
+    "2": 0.022383133638709418,
+    "3": 0.10869521733042627,
+    "4": 0.08780562612099027,
+    "none": 0.7678908380506604,
+    "unmatched": 0.00033004620646890563
+   }
+  }
+ },
+ "padus.source": {
+  "computed_at": "2026-09-25T21:07:28+00:00",
+  "definition": "data source",
+  "n": null,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": "PAD-US 4.1 Vector Analysis file (PADUS4_1VectorAnalysis_CONUS/AK/HI.gdb, inside the Raster Analysis zips on ScienceBase item 6759b67ed34edfeb8710a3db): the Combined Fee/Designation/Easement feature class with Military Lands and Tribal Areas from the Proclamation feature class, overlapping designations resolved by GAP status priority (GAP 1 over 2 over 3 over 4), clipped to Census state boundaries, with Non-PAD-US Area fill polygons. Puerto Rico and the territories are not covered."
+ },
+ "padus.top25_gap12_units_human_ignitions_2010_2020": {
+  "computed_at": "2026-09-25T21:07:58+00:00",
+  "definition": "same table restricted to units whose modal GAP status is 1 or 2",
+  "n": 130810,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "Benson County Waterfowl Production Area": {
+    "Des_Tp": "CONE",
+    "GAP_Sts": "2",
+    "Mang_Name": "FWS",
+    "Mang_Type": "FED",
+    "all_ignitions": 163,
+    "human_acres": 1550.5,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 162,
+    "human_share_all": 0.9938650306748467,
+    "peak_month": "May",
+    "peak_month_share": 0.25925925925925924,
+    "states": "ND",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Gateway National Recreation Area": {
+    "Des_Tp": "NRA",
+    "GAP_Sts": "2",
+    "Mang_Name": "NPS",
+    "Mang_Type": "FED",
+    "all_ignitions": 206,
+    "human_acres": 495.6,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 205,
+    "human_share_all": 0.9951456310679612,
+    "peak_month": "Apr",
+    "peak_month_share": 0.17073170731707318,
+    "states": "NJ NY",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Golden Gate National Recreation Area": {
+    "Des_Tp": "NRA",
+    "GAP_Sts": "2",
+    "Mang_Name": "NPS",
+    "Mang_Type": "FED",
+    "all_ignitions": 74,
+    "human_acres": 91.11,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 71,
+    "human_share_all": 0.9594594594594594,
+    "peak_month": "Oct",
+    "peak_month_share": 0.18309859154929578,
+    "states": "CA",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Honobia Creek Wildlife Management Area": {
+    "Des_Tp": "SCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "SFW",
+    "Mang_Type": "STAT",
+    "all_ignitions": 176,
+    "human_acres": 2610.6,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 161,
+    "human_share_all": 0.9147727272727273,
+    "peak_month": "Aug",
+    "peak_month_share": 0.17391304347826086,
+    "states": "OK",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Indiana Dunes National Park": {
+    "Des_Tp": "NP",
+    "GAP_Sts": "2",
+    "Mang_Name": "NPS",
+    "Mang_Type": "FED",
+    "all_ignitions": 67,
+    "human_acres": 931.5,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 64,
+    "human_share_all": 0.9552238805970149,
+    "peak_month": "Apr",
+    "peak_month_share": 0.25,
+    "states": "IN",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Klamath, California Wild and Scenic River": {
+    "Des_Tp": "WSR",
+    "GAP_Sts": "2",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 84,
+    "human_acres": 2909.23,
+    "human_fires_ge_300": 2,
+    "human_ignitions": 66,
+    "human_share_all": 0.7857142857142857,
+    "peak_month": "Jul",
+    "peak_month_share": 0.24242424242424243,
+    "states": "CA",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Lake Mead National Recreation Area": {
+    "Des_Tp": "NRA",
+    "GAP_Sts": "2",
+    "Mang_Name": "NPS",
+    "Mang_Type": "FED",
+    "all_ignitions": 156,
+    "human_acres": 84.65,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 120,
+    "human_share_all": 0.7692307692307693,
+    "peak_month": "Jun",
+    "peak_month_share": 0.24166666666666667,
+    "states": "AZ NV",
+    "top_general_cause": "Equipment and vehicle use"
+   },
+   "Lower Rio Grande Valley National Wildlife Refuge": {
+    "Des_Tp": "NWR",
+    "GAP_Sts": "2",
+    "Mang_Name": "FWS",
+    "Mang_Type": "FED",
+    "all_ignitions": 93,
+    "human_acres": 2961.5,
+    "human_fires_ge_300": 3,
+    "human_ignitions": 64,
+    "human_share_all": 0.6881720430107527,
+    "peak_month": "Feb",
+    "peak_month_share": 0.265625,
+    "states": "TX",
+    "top_general_cause": "Debris and open burning"
+   },
+   "Millville Wildlife Management Area": {
+    "Des_Tp": "SCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "SFW",
+    "Mang_Type": "STAT",
+    "all_ignitions": 62,
+    "human_acres": 1638.0,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 62,
+    "human_share_all": 1.0,
+    "peak_month": "Apr",
+    "peak_month_share": 0.27419354838709675,
+    "states": "NJ",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Morley Nelson Snake River Birds Of Prey National Conservation Area": {
+    "Des_Tp": "NCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "BLM",
+    "Mang_Type": "FED",
+    "all_ignitions": 1807,
+    "human_acres": 69508.8,
+    "human_fires_ge_300": 25,
+    "human_ignitions": 1769,
+    "human_share_all": 0.9789706696181516,
+    "peak_month": "Jul",
+    "peak_month_share": 0.3323911814584511,
+    "states": "ID",
+    "top_general_cause": "Equipment and vehicle use"
+   },
+   "North Cherokee National Forest & Wildlife Management Area": {
+    "Des_Tp": "SCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "SFW",
+    "Mang_Type": "STAT",
+    "all_ignitions": 107,
+    "human_acres": 2931.43,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 92,
+    "human_share_all": 0.8598130841121495,
+    "peak_month": "Apr",
+    "peak_month_share": 0.21739130434782608,
+    "states": "NC TN",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Ocala National Game Refuge": {
+    "Des_Tp": "NCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 78,
+    "human_acres": 4936.78,
+    "human_fires_ge_300": 4,
+    "human_ignitions": 64,
+    "human_share_all": 0.8205128205128205,
+    "peak_month": "Mar",
+    "peak_month_share": 0.1875,
+    "states": "FL",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Ozark Plateau National Wildlife Refuge": {
+    "Des_Tp": "NWR",
+    "GAP_Sts": "1",
+    "Mang_Name": "FWS",
+    "Mang_Type": "FED",
+    "all_ignitions": 75,
+    "human_acres": 4685.7,
+    "human_fires_ge_300": 5,
+    "human_ignitions": 73,
+    "human_share_all": 0.9733333333333334,
+    "peak_month": "Jan",
+    "peak_month_share": 0.2328767123287671,
+    "states": "OK",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Ozark Plateau Wildlife Management Area": {
+    "Des_Tp": "SCA",
+    "GAP_Sts": "1",
+    "Mang_Name": "SFW",
+    "Mang_Type": "STAT",
+    "all_ignitions": 72,
+    "human_acres": 1485.47,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 71,
+    "human_share_all": 0.9861111111111112,
+    "peak_month": "Dec",
+    "peak_month_share": 0.22535211267605634,
+    "states": "OK",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Red Rock Canyon National Conservation Area": {
+    "Des_Tp": "NCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "BLM",
+    "Mang_Type": "FED",
+    "all_ignitions": 97,
+    "human_acres": 149.74,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 76,
+    "human_share_all": 0.7835051546391752,
+    "peak_month": "Jun",
+    "peak_month_share": 0.19736842105263158,
+    "states": "NV",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Redwood National Park": {
+    "Des_Tp": "NP",
+    "GAP_Sts": "1",
+    "Mang_Name": "NPS",
+    "Mang_Type": "FED",
+    "all_ignitions": 91,
+    "human_acres": 22.3,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 87,
+    "human_share_all": 0.9560439560439561,
+    "peak_month": "Jul",
+    "peak_month_share": 0.40229885057471265,
+    "states": "CA",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "San Juan Islands National Monument": {
+    "Des_Tp": "NM",
+    "GAP_Sts": "2",
+    "Mang_Name": "BLM",
+    "Mang_Type": "FED",
+    "all_ignitions": 77,
+    "human_acres": 37.5,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 74,
+    "human_share_all": 0.961038961038961,
+    "peak_month": "Jul",
+    "peak_month_share": 0.36486486486486486,
+    "states": "WA",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Sandhills Game Land": {
+    "Des_Tp": "SCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "UNK",
+    "Mang_Type": "UNK",
+    "all_ignitions": 116,
+    "human_acres": 12317.710000000001,
+    "human_fires_ge_300": 13,
+    "human_ignitions": 106,
+    "human_share_all": 0.9137931034482759,
+    "peak_month": "Apr",
+    "peak_month_share": 0.22641509433962265,
+    "states": "NC",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Sespe Wilderness": {
+    "Des_Tp": "WA",
+    "GAP_Sts": "1",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 108,
+    "human_acres": 2534.13,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 71,
+    "human_share_all": 0.6574074074074074,
+    "peak_month": "May",
+    "peak_month_share": 0.14084507042253522,
+    "states": "CA",
+    "top_general_cause": "Equipment and vehicle use"
+   },
+   "Sullys Hill National Game Preserve": {
+    "Des_Tp": "NWR",
+    "GAP_Sts": "2",
+    "Mang_Name": "FWS",
+    "Mang_Type": "FED",
+    "all_ignitions": 68,
+    "human_acres": 563.1,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 67,
+    "human_share_all": 0.9852941176470589,
+    "peak_month": "May",
+    "peak_month_share": 0.31343283582089554,
+    "states": "ND",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Sylamore Wildlife Management Area": {
+    "Des_Tp": "SCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "SFW",
+    "Mang_Type": "STAT",
+    "all_ignitions": 71,
+    "human_acres": 1899.82,
+    "human_fires_ge_300": 2,
+    "human_ignitions": 62,
+    "human_share_all": 0.8732394366197183,
+    "peak_month": "Mar",
+    "peak_month_share": 0.25806451612903225,
+    "states": "AR",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Trinity, California Wild and Scenic River": {
+    "Des_Tp": "WSR",
+    "GAP_Sts": "2",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 100,
+    "human_acres": 158.45,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 95,
+    "human_share_all": 0.95,
+    "peak_month": "Jul",
+    "peak_month_share": 0.23157894736842105,
+    "states": "CA",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Winona Wildlife Management Area": {
+    "Des_Tp": "SCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "SFW",
+    "Mang_Type": "STAT",
+    "all_ignitions": 104,
+    "human_acres": 2180.81,
+    "human_fires_ge_300": 2,
+    "human_ignitions": 67,
+    "human_share_all": 0.6442307692307693,
+    "peak_month": "Oct",
+    "peak_month_share": 0.208955223880597,
+    "states": "AR",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Yosemite National Park": {
+    "Des_Tp": "NP",
+    "GAP_Sts": "1",
+    "Mang_Name": "NPS",
+    "Mang_Type": "FED",
+    "all_ignitions": 97,
+    "human_acres": 339.34999999999997,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 78,
+    "human_share_all": 0.8041237113402062,
+    "peak_month": "Aug",
+    "peak_month_share": 0.19230769230769232,
+    "states": "CA",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Yosemite Wilderness Area": {
+    "Des_Tp": "WA",
+    "GAP_Sts": "1",
+    "Mang_Name": "NPS",
+    "Mang_Type": "FED",
+    "all_ignitions": 307,
+    "human_acres": 33.1,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 94,
+    "human_share_all": 0.30618892508143325,
+    "peak_month": "Aug",
+    "peak_month_share": 0.2872340425531915,
+    "states": "CA",
+    "top_general_cause": "Recreation and ceremony"
+   }
+  }
+ },
+ "padus.top25_nontribal_units_human_ignitions_2010_2020": {
+  "computed_at": "2026-09-25T21:07:58+00:00",
+  "definition": "same table excluding units whose modal Des_Tp is TRIBL (tribal reservations and statistical areas)",
+  "n": 130810,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "Black Hills National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 815,
+    "human_acres": 23234.94,
+    "human_fires_ge_300": 5,
+    "human_ignitions": 337,
+    "human_share_all": 0.4134969325153374,
+    "peak_month": "Aug",
+    "peak_month_share": 0.142433234421365,
+    "states": "SD WY",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "CLO Lands": {
+    "Des_Tp": "SRMA",
+    "GAP_Sts": "4",
+    "Mang_Name": "SLB",
+    "Mang_Type": "STAT",
+    "all_ignitions": 460,
+    "human_acres": 22414.93,
+    "human_fires_ge_300": 16,
+    "human_ignitions": 438,
+    "human_share_all": 0.9521739130434783,
+    "peak_month": "Mar",
+    "peak_month_share": 0.2100456621004566,
+    "states": "OK",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Cleveland National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 430,
+    "human_acres": 25135.05,
+    "human_fires_ge_300": 2,
+    "human_ignitions": 382,
+    "human_share_all": 0.8883720930232558,
+    "peak_month": "Jul",
+    "peak_month_share": 0.17277486910994763,
+    "states": "CA",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Coconino National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 2242,
+    "human_acres": 22075.51,
+    "human_fires_ge_300": 7,
+    "human_ignitions": 961,
+    "human_share_all": 0.42863514719000895,
+    "peak_month": "Jun",
+    "peak_month_share": 0.20187304890738814,
+    "states": "AZ",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "De Soto National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 381,
+    "human_acres": 50427.973,
+    "human_fires_ge_300": 35,
+    "human_ignitions": 355,
+    "human_share_all": 0.931758530183727,
+    "peak_month": "Mar",
+    "peak_month_share": 0.29859154929577464,
+    "states": "MS",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Deschutes National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 1493,
+    "human_acres": 3868.27,
+    "human_fires_ge_300": 2,
+    "human_ignitions": 926,
+    "human_share_all": 0.6202277294038848,
+    "peak_month": "Jul",
+    "peak_month_share": 0.2473002159827214,
+    "states": "OR",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Eldorado National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 516,
+    "human_acres": 107135.90000000001,
+    "human_fires_ge_300": 3,
+    "human_ignitions": 349,
+    "human_share_all": 0.6763565891472868,
+    "peak_month": "Aug",
+    "peak_month_share": 0.25787965616045844,
+    "states": "CA",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Idaho Department of Lands": {
+    "Des_Tp": "SRMA",
+    "GAP_Sts": "3",
+    "Mang_Name": "SDOL",
+    "Mang_Type": "STAT",
+    "all_ignitions": 667,
+    "human_acres": 98073.33,
+    "human_fires_ge_300": 16,
+    "human_ignitions": 355,
+    "human_share_all": 0.5322338830584707,
+    "peak_month": "Aug",
+    "peak_month_share": 0.29014084507042254,
+    "states": "ID",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Kisatchie National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 537,
+    "human_acres": 19481.1,
+    "human_fires_ge_300": 14,
+    "human_ignitions": 491,
+    "human_share_all": 0.9143389199255121,
+    "peak_month": "Mar",
+    "peak_month_share": 0.15885947046843177,
+    "states": "LA",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Lolo National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 811,
+    "human_acres": 4200.150000000001,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 333,
+    "human_share_all": 0.41060419235511714,
+    "peak_month": "Jul",
+    "peak_month_share": 0.24624624624624625,
+    "states": "MT",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Mark Twain National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 817,
+    "human_acres": 45899.578,
+    "human_fires_ge_300": 29,
+    "human_ignitions": 801,
+    "human_share_all": 0.9804161566707467,
+    "peak_month": "Mar",
+    "peak_month_share": 0.28714107365792757,
+    "states": "MO",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Mississippi 16th Section Public School Trust Lands": {
+    "Des_Tp": "SRMA",
+    "GAP_Sts": "3",
+    "Mang_Name": "SLB",
+    "Mang_Type": "STAT",
+    "all_ignitions": 495,
+    "human_acres": 6308.51,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 343,
+    "human_share_all": 0.692929292929293,
+    "peak_month": "Mar",
+    "peak_month_share": 0.23323615160349853,
+    "states": "MS",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Morley Nelson Snake River Birds Of Prey National Conservation Area": {
+    "Des_Tp": "NCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "BLM",
+    "Mang_Type": "FED",
+    "all_ignitions": 1807,
+    "human_acres": 69508.8,
+    "human_fires_ge_300": 25,
+    "human_ignitions": 1769,
+    "human_share_all": 0.9789706696181516,
+    "peak_month": "Jul",
+    "peak_month_share": 0.3323911814584511,
+    "states": "ID",
+    "top_general_cause": "Equipment and vehicle use"
+   },
+   "Mt. Hood National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 568,
+    "human_acres": 472.07,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 432,
+    "human_share_all": 0.7605633802816901,
+    "peak_month": "Aug",
+    "peak_month_share": 0.43287037037037035,
+    "states": "OR",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Ouachita National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 498,
+    "human_acres": 8603.93,
+    "human_fires_ge_300": 3,
+    "human_ignitions": 360,
+    "human_share_all": 0.7228915662650602,
+    "peak_month": "Mar",
+    "peak_month_share": 0.17222222222222222,
+    "states": "AR OK",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Pike National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 672,
+    "human_acres": 2530.576,
+    "human_fires_ge_300": 2,
+    "human_ignitions": 418,
+    "human_share_all": 0.6220238095238095,
+    "peak_month": "Jun",
+    "peak_month_share": 0.18899521531100477,
+    "states": "CO",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "San Bernardino National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 779,
+    "human_acres": 116064.31,
+    "human_fires_ge_300": 7,
+    "human_ignitions": 616,
+    "human_share_all": 0.7907573812580231,
+    "peak_month": "Jul",
+    "peak_month_share": 0.1737012987012987,
+    "states": "CA",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "San Gabriel Mountains National Monument": {
+    "Des_Tp": "NM",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 509,
+    "human_acres": 23705.68,
+    "human_fires_ge_300": 4,
+    "human_ignitions": 432,
+    "human_share_all": 0.8487229862475442,
+    "peak_month": "Jul",
+    "peak_month_share": 0.16666666666666666,
+    "states": "CA",
+    "top_general_cause": "Equipment and vehicle use"
+   },
+   "San Juan National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 660,
+    "human_acres": 93.412,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 353,
+    "human_share_all": 0.5348484848484848,
+    "peak_month": "May",
+    "peak_month_share": 0.2747875354107649,
+    "states": "CO",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Sitgreaves National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 1303,
+    "human_acres": 9340.68,
+    "human_fires_ge_300": 4,
+    "human_ignitions": 705,
+    "human_share_all": 0.5410590943975442,
+    "peak_month": "May",
+    "peak_month_share": 0.3219858156028369,
+    "states": "AZ",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Snoqualmie National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 403,
+    "human_acres": 3603.93,
+    "human_fires_ge_300": 4,
+    "human_ignitions": 366,
+    "human_share_all": 0.9081885856079405,
+    "peak_month": "Aug",
+    "peak_month_share": 0.366120218579235,
+    "states": "WA",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "State Trust Land": {
+    "Des_Tp": "SRMA",
+    "GAP_Sts": "4",
+    "Mang_Name": "SDOL",
+    "Mang_Type": "STAT",
+    "all_ignitions": 2536,
+    "human_acres": 225001.028,
+    "human_fires_ge_300": 49,
+    "human_ignitions": 1381,
+    "human_share_all": 0.544558359621451,
+    "peak_month": "May",
+    "peak_month_share": 0.18464880521361332,
+    "states": "AZ NM",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Tahoe National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 722,
+    "human_acres": 28840.73,
+    "human_fires_ge_300": 2,
+    "human_ignitions": 465,
+    "human_share_all": 0.6440443213296398,
+    "peak_month": "Jul",
+    "peak_month_share": 0.23440860215053763,
+    "states": "CA",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Tonto National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 1645,
+    "human_acres": 361845.83999999997,
+    "human_fires_ge_300": 15,
+    "human_ignitions": 1005,
+    "human_share_all": 0.6109422492401215,
+    "peak_month": "May",
+    "peak_month_share": 0.2218905472636816,
+    "states": "AZ",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Washington State Department of Natural Resources (WADNR) State Resource Management Area": {
+    "Des_Tp": "SRMA",
+    "GAP_Sts": "3",
+    "Mang_Name": "SDNR",
+    "Mang_Type": "STAT",
+    "all_ignitions": 1143,
+    "human_acres": 6675.45,
+    "human_fires_ge_300": 4,
+    "human_ignitions": 835,
+    "human_share_all": 0.7305336832895888,
+    "peak_month": "Jul",
+    "peak_month_share": 0.2838323353293413,
+    "states": "WA",
+    "top_general_cause": "Recreation and ceremony"
+   }
+  }
+ },
+ "padus.top25_units_human_ignitions_2010_2020": {
+  "computed_at": "2026-09-25T21:07:58+00:00",
+  "definition": "PAD-US units (Unit_Nm) with the most Human-cause ignitions 2010-2020; Mang_Name, Mang_Type, GAP_Sts and Des_Tp are the modal values across the unit's ignitions; peak_month = DISCOVERY_MONTH with the most human ignitions; states = STATE values holding at least 2% of the unit's human ignitions",
+  "n": 130810,
+  "note": "A unit name can repeat across states (e.g. \"State Trust Land\"); rows are by name only. Oklahoma Tribal Statistical Areas (Des_Tp TRIBL) are Census-defined tribal jurisdictions that include private land, not conservation units.",
+  "source": "analysis.conservation",
+  "unit": null,
+  "value": {
+   "Blackfeet Indian Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1026,
+    "human_acres": 24458.4,
+    "human_fires_ge_300": 4,
+    "human_ignitions": 993,
+    "human_share_all": 0.9678362573099415,
+    "peak_month": "Jul",
+    "peak_month_share": 0.3464249748237664,
+    "states": "MT",
+    "top_general_cause": "Fireworks"
+   },
+   "Cherokee Oklahoma Tribal Statistical Area": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 3813,
+    "human_acres": 197340.25,
+    "human_fires_ge_300": 112,
+    "human_ignitions": 3751,
+    "human_share_all": 0.983739837398374,
+    "peak_month": "Mar",
+    "peak_month_share": 0.24446814182884563,
+    "states": "OK",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Cheyenne River Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1130,
+    "human_acres": 8298.22101,
+    "human_fires_ge_300": 7,
+    "human_ignitions": 928,
+    "human_share_all": 0.8212389380530973,
+    "peak_month": "Jul",
+    "peak_month_share": 0.2952586206896552,
+    "states": "SD",
+    "top_general_cause": "Equipment and vehicle use"
+   },
+   "Choctaw Oklahoma Tribal Statistical Area": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 5595,
+    "human_acres": 351605.01,
+    "human_fires_ge_300": 277,
+    "human_ignitions": 5375,
+    "human_share_all": 0.9606791778373548,
+    "peak_month": "Mar",
+    "peak_month_share": 0.2349767441860465,
+    "states": "OK",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Coconino National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 2242,
+    "human_acres": 22075.51,
+    "human_fires_ge_300": 7,
+    "human_ignitions": 961,
+    "human_share_all": 0.42863514719000895,
+    "peak_month": "Jun",
+    "peak_month_share": 0.20187304890738814,
+    "states": "AZ",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Creek Oklahoma Tribal Statistical Area": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 995,
+    "human_acres": 312936.24,
+    "human_fires_ge_300": 159,
+    "human_ignitions": 970,
+    "human_share_all": 0.9748743718592965,
+    "peak_month": "Mar",
+    "peak_month_share": 0.28556701030927834,
+    "states": "OK",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Crow Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1461,
+    "human_acres": 16107.41,
+    "human_fires_ge_300": 10,
+    "human_ignitions": 1091,
+    "human_share_all": 0.7467488021902806,
+    "peak_month": "Jul",
+    "peak_month_share": 0.2694775435380385,
+    "states": "MT",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Deschutes National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 1493,
+    "human_acres": 3868.27,
+    "human_fires_ge_300": 2,
+    "human_ignitions": 926,
+    "human_share_all": 0.6202277294038848,
+    "peak_month": "Jul",
+    "peak_month_share": 0.2473002159827214,
+    "states": "OR",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "Hoopa Valley Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1441,
+    "human_acres": 5472.3,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 1421,
+    "human_share_all": 0.9861207494795281,
+    "peak_month": "Jul",
+    "peak_month_share": 0.23293455313159747,
+    "states": "CA",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Morley Nelson Snake River Birds Of Prey National Conservation Area": {
+    "Des_Tp": "NCA",
+    "GAP_Sts": "2",
+    "Mang_Name": "BLM",
+    "Mang_Type": "FED",
+    "all_ignitions": 1807,
+    "human_acres": 69508.8,
+    "human_fires_ge_300": 25,
+    "human_ignitions": 1769,
+    "human_share_all": 0.9789706696181516,
+    "peak_month": "Jul",
+    "peak_month_share": 0.3323911814584511,
+    "states": "ID",
+    "top_general_cause": "Equipment and vehicle use"
+   },
+   "Navajo Nation Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1673,
+    "human_acres": 22677.04,
+    "human_fires_ge_300": 6,
+    "human_ignitions": 1233,
+    "human_share_all": 0.7369994022713688,
+    "peak_month": "Jun",
+    "peak_month_share": 0.22871046228710462,
+    "states": "AZ NM",
+    "top_general_cause": "Debris and open burning"
+   },
+   "Osage Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1166,
+    "human_acres": 384105.71,
+    "human_fires_ge_300": 181,
+    "human_ignitions": 1081,
+    "human_share_all": 0.9271012006861064,
+    "peak_month": "Mar",
+    "peak_month_share": 0.2849213691026827,
+    "states": "OK",
+    "top_general_cause": "Debris and open burning"
+   },
+   "Pine Ridge Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 2565,
+    "human_acres": 32134.4567,
+    "human_fires_ge_300": 17,
+    "human_ignitions": 2371,
+    "human_share_all": 0.9243664717348928,
+    "peak_month": "Jul",
+    "peak_month_share": 0.2619148038802193,
+    "states": "SD",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Red Lake Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 4146,
+    "human_acres": 24585.85,
+    "human_fires_ge_300": 15,
+    "human_ignitions": 4143,
+    "human_share_all": 0.9992764109985528,
+    "peak_month": "Apr",
+    "peak_month_share": 0.461742698527637,
+    "states": "MN",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Rosebud Indian Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1273,
+    "human_acres": 36294.9,
+    "human_fires_ge_300": 6,
+    "human_ignitions": 901,
+    "human_share_all": 0.7077769049489395,
+    "peak_month": "Jul",
+    "peak_month_share": 0.29966703662597116,
+    "states": "SD",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "San Carlos Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1783,
+    "human_acres": 27029.32,
+    "human_fires_ge_300": 8,
+    "human_ignitions": 1514,
+    "human_share_all": 0.8491306786315199,
+    "peak_month": "May",
+    "peak_month_share": 0.25957727873183617,
+    "states": "AZ",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Spirit Lake Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1960,
+    "human_acres": 7101.4,
+    "human_fires_ge_300": 1,
+    "human_ignitions": 1958,
+    "human_share_all": 0.9989795918367347,
+    "peak_month": "Apr",
+    "peak_month_share": 0.3105209397344229,
+    "states": "ND",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Standing Rock Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1157,
+    "human_acres": 16169.291,
+    "human_fires_ge_300": 8,
+    "human_ignitions": 1062,
+    "human_share_all": 0.9178910976663786,
+    "peak_month": "Jul",
+    "peak_month_share": 0.3069679849340866,
+    "states": "ND SD",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "State Trust Land": {
+    "Des_Tp": "SRMA",
+    "GAP_Sts": "4",
+    "Mang_Name": "SDOL",
+    "Mang_Type": "STAT",
+    "all_ignitions": 2536,
+    "human_acres": 225001.028,
+    "human_fires_ge_300": 49,
+    "human_ignitions": 1381,
+    "human_share_all": 0.544558359621451,
+    "peak_month": "May",
+    "peak_month_share": 0.18464880521361332,
+    "states": "AZ NM",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Tonto National Forest": {
+    "Des_Tp": "NF",
+    "GAP_Sts": "3",
+    "Mang_Name": "USFS",
+    "Mang_Type": "FED",
+    "all_ignitions": 1645,
+    "human_acres": 361845.83999999997,
+    "human_fires_ge_300": 15,
+    "human_ignitions": 1005,
+    "human_share_all": 0.6109422492401215,
+    "peak_month": "May",
+    "peak_month_share": 0.2218905472636816,
+    "states": "AZ",
+    "top_general_cause": "Missing data/not specified/undetermined"
+   },
+   "Turtle Mountain Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 879,
+    "human_acres": 3619.5,
+    "human_fires_ge_300": 0,
+    "human_ignitions": 879,
+    "human_share_all": 1.0,
+    "peak_month": "Apr",
+    "peak_month_share": 0.36063708759954494,
+    "states": "ND",
+    "top_general_cause": "Debris and open burning"
+   },
+   "Washington State Department of Natural Resources (WADNR) State Resource Management Area": {
+    "Des_Tp": "SRMA",
+    "GAP_Sts": "3",
+    "Mang_Name": "SDNR",
+    "Mang_Type": "STAT",
+    "all_ignitions": 1143,
+    "human_acres": 6675.45,
+    "human_fires_ge_300": 4,
+    "human_ignitions": 835,
+    "human_share_all": 0.7305336832895888,
+    "peak_month": "Jul",
+    "peak_month_share": 0.2838323353293413,
+    "states": "WA",
+    "top_general_cause": "Recreation and ceremony"
+   },
+   "White Earth Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1303,
+    "human_acres": 9513.97,
+    "human_fires_ge_300": 4,
+    "human_ignitions": 1298,
+    "human_share_all": 0.9961627014581734,
+    "peak_month": "Apr",
+    "peak_month_share": 0.5200308166409862,
+    "states": "MN",
+    "top_general_cause": "Arson/incendiarism"
+   },
+   "Wind River Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 983,
+    "human_acres": 4854.4800000000005,
+    "human_fires_ge_300": 3,
+    "human_ignitions": 844,
+    "human_share_all": 0.8585961342828077,
+    "peak_month": "Jul",
+    "peak_month_share": 0.3009478672985782,
+    "states": "WY",
+    "top_general_cause": "Debris and open burning"
+   },
+   "Yakama Nation Reservation": {
+    "Des_Tp": "TRIBL",
+    "GAP_Sts": "4",
+    "Mang_Name": "TRIB",
+    "Mang_Type": "TRIB",
+    "all_ignitions": 1197,
+    "human_acres": 61152.1,
+    "human_fires_ge_300": 19,
+    "human_ignitions": 1083,
+    "human_share_all": 0.9047619047619048,
+    "peak_month": "Jul",
+    "peak_month_share": 0.39242843951985223,
+    "states": "WA",
+    "top_general_cause": "Debris and open burning"
+   }
+  }
+ },
+ "padus.top25_units_share_of_human_ignitions": {
+  "computed_at": "2026-09-25T21:07:58+00:00",
+  "definition": "share of all human ignitions inside PAD-US units 2010-2020 that fall in the top 25 units",
+  "n": 130810,
+  "note": null,
+  "source": "analysis.conservation",
+  "unit": "share",
+  "value": 0.30405167800626864
+ }
+}

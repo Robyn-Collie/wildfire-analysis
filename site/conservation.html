@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conservation · US wildfire record, 1992-2020</title>
+<meta name="description" content="Ignitions by protected-area status (PAD-US), where the missing-owner fires fall, and losses from ICS-209-PLUS incident reports.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Overview</a><a href="trends.html">Trends</a><a href="causes.html">Causes and seasons</a><a href="geography.html">Geography</a><a href="ownership.html">Ownership</a><a href="conservation.html" aria-current="page">Conservation</a><a href="model.html">Prediction</a><a href="methods.html">Methods and ledger</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>Conservation</h1>
+<p class="lede">The ignition record on its own cannot say what burned or what was lost. Two joins add that: PAD-US 4.1 for the protection status of the land at the ignition point, and ICS-209-PLUS incident reports for structures, evacuations and personnel on the larger fires. Both are joins to points, not to burned areas, and both say so.</p></header>
+
+<h2 id="coverage">Reporting coverage mask</h2>
+<p>A state-year is usable when it lies inside the state's longest run of years without a reporting break (rule: <button type="button" class="q" data-claim="coverage.rule">count more than 3x or less than a third of the prior non-zero year</button>).
+<button type="button" class="q" data-claim="coverage.n_states_with_break">33</button> of <button type="button" class="q" data-claim="coverage.n_states">52</button> states have at least one break; <button type="button" class="q" data-claim="coverage.window_length_years">18</button> have a full 29-year window and <button type="button" class="q" data-claim="coverage.window_length_years">5</button> have fewer than 10 usable years.
+<button type="button" class="q" data-claim="coverage.share_records_in_usable_window">86.4%</button> of records and <button type="button" class="q" data-claim="coverage.share_acres_in_usable_window">94.4%</button> of acres fall inside a usable window. The state-by-year heatmap is on the <a href="trends.html#coverage">Trends page</a>.</p>
+<div id="cov-masked" class="chart" aria-live="polite"></div>
+
+<h2 id="padus">Protected land: the PAD-US join</h2>
+<p>Every ignition point was joined to the PAD-US 4.1 protected-areas layer (<button type="button" class="q" data-claim="padus.n_points">2,303,566</button> points): <button type="button" class="q" data-claim="padus.match_summary">638,049</button> fall inside a PAD-US unit, <button type="button" class="q" data-claim="padus.match_summary">1,643,290</button> in the non-PAD-US area (predominantly private land) and <button type="button" class="q" data-claim="padus.match_summary">22,227</button> in no polygon (22,202 of them in Puerto Rico, which the layer does not cover).
+GAP status runs from 1 (managed for biodiversity, disturbance events allowed to proceed) to 4 (no known mandate for protection). <button type="button" class="q" data-claim="padus.join_definition">Join method</button>; <button type="button" class="q" data-claim="padus.source">layer source</button>.</p>
+<div id="gap-shares" class="chart" aria-live="polite"></div>
+<div id="gap-rates" class="chart" aria-live="polite"></div>
+<div id="gap-blocks" class="chart" aria-live="polite"></div>
+<h3>Recovering the missing owner</h3>
+<p><button type="button" class="q" data-claim="padus.missing_owner_assignment_all_years">1,046,639</button> records have no recorded owner. The spatial join says where they are: <button type="button" class="q" data-claim="padus.missing_owner_assignment_all_years">91.0%</button> fall outside any PAD-US unit, which is mostly private land.
+Where an owner is recorded, it agrees with the PAD-US manager type for <button type="button" class="q" data-claim="padus.owner_agreement_overall">84.8%</button> of records (n = <button type="button" class="q" data-claim="padus.owner_agreement_overall">1,234,700</button>), with the agreement rule per class in the definition.</p>
+<div id="missing-owner" class="chart" aria-live="polite"></div>
+<div class="table-wrap"><table><thead><tr><th>Owner class (FPA FOD)</th><th class="num">Agreement with PAD-US manager type</th></tr></thead><tbody><tr><td>Tribal/BIA</td><td class="num"><button type="button" class="q" data-claim="padus.owner_agreement_by_class">93.1%</button></td></tr><tr><td>Private</td><td class="num"><button type="button" class="q" data-claim="padus.owner_agreement_by_class">90.4%</button></td></tr><tr><td>State or private</td><td class="num"><button type="button" class="q" data-claim="padus.owner_agreement_by_class">88.1%</button></td></tr><tr><td>Federal</td><td class="num"><button type="button" class="q" data-claim="padus.owner_agreement_by_class">85.1%</button></td></tr><tr><td>State</td><td class="num"><button type="button" class="q" data-claim="padus.owner_agreement_by_class">33.4%</button></td></tr><tr><td>County/local</td><td class="num"><button type="button" class="q" data-claim="padus.owner_agreement_by_class">11.5%</button></td></tr></tbody></table></div>
+<p class="small muted"><button type="button" class="q" data-claim="padus.owner_agreement_by_class">definition</button>; Federal = USFS BLM NPS FWS BOR OTHER FEDERAL UNDEFINED FEDERAL; Tribal/BIA = BIA TRIBAL; State = STATE; Private = PRIVATE; State or private = STATE OR PRIVATE; County/local = COUNTY MUNICIPAL/LOCAL; Missing = MISSING/NOT SPECIFIED (OWNER_DESCR upper-cased)</p>
+
+<h2 id="ics">Outcomes: the ICS-209-PLUS join</h2>
+<p>The FPA FOD has no losses. ICS-209-PLUS, the compiled incident-status reports, does: <button type="button" class="q" data-claim="ics.fod_rows_matched">33,476</button> FPA FOD records match one of <button type="button" class="q" data-claim="ics.n_incidents">34,622</button> incidents, and matching is common only for fires of 300 acres and more. The outcome sample is <button type="button" class="q" data-claim="ics.sample_n">9,609</button> incidents (<button type="button" class="q" data-claim="ics.sample_definition">definition</button>).
+Cause agrees between the two sources for <button type="button" class="q" data-claim="ics.cause_agreement_share">98.5%</button> of incidents where both record one.</p>
+<div id="ics-match" class="chart" aria-live="polite"></div>
+<h3>Outcomes by cause classification</h3>
+<div class="table-wrap"><table><thead><tr><th>Cause</th><th class="num">Incidents</th><th class="num">Structures destroyed</th><th class="num">Incidents with any structure destroyed</th><th class="num">Structures per 1,000 acres</th><th class="num">Incidents reporting evacuation</th><th class="num">Fatalities</th><th class="num">FPA FOD acres</th></tr></thead><tbody><tr><td>Human</td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">4,904</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">45,784</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">17.1%</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">1.95</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">566</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">200</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">23.47M</button></td></tr><tr><td>Natural</td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">4,172</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">10,459</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">7.7%</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">0.25</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">330</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">55</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">41.45M</button></td></tr><tr class="missing-row"><td>Undetermined / missing</td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">533</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">10,163</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">27.4%</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">1.74</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">101</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">28</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_by_cause">5.85M</button></td></tr><tr><td>All incidents (base rate)</td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_total">9,609</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_total">66,406</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_total">13.6%</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_total">0.94</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_total">997</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_total">283</button></td><td class="num"><button type="button" class="q" data-claim="ics.outcomes_total">70.77M</button></td></tr></tbody></table></div>
+<p class="small muted">n = <button type="button" class="q" data-claim="ics.outcomes_by_cause">9,609</button> incidents. structures_threatened_max_sum sums the per-incident maximum, so it is not a count of distinct structures. Fractional structure counts occur because ICS-209-PLUS splits complex-level totals evenly across member incidents.
+Losses are concentrated: <button type="button" class="q" data-claim="ics.structures_destroyed_distribution">86.4%</button> of incidents destroyed no structure and the ten largest incidents hold <button type="button" class="q" data-claim="ics.structures_destroyed_distribution">52.1%</button> of all structures destroyed.</p>
+<div id="ics-structures" class="chart" aria-live="polite"></div>
+<h2>What these joins do not do</h2>
+<p>They attach attributes to the ignition point. A fire that started on private land and burned into a wilderness area is counted as private-land ignition here; area actually burned inside protected units needs fire perimeters (MTBS), which are not yet joined. ICS-209 reports exist for a minority of fires and are filed by incident teams under time pressure, so the outcome fields are incomplete (fill rates are in the ledger, <code>ics.field_fill_rates_sample</code>).</p>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  var C = WF.data.claims, MISS = 'Missing data/not specified/undetermined';
+  var LAB = { 'Human': 'Human', 'Natural': 'Natural', 'Missing data/not specified/undetermined': 'Undetermined / missing' };
+  var GAPS = ['1', '2', '3', '4', 'none', 'unmatched'], GLAB = { '1': 'GAP 1', '2': 'GAP 2', '3': 'GAP 3', '4': 'GAP 4', 'none': 'not in PAD-US', 'unmatched': 'unmatched (PR, offshore)' };
+  function gapColor(t, g) { if (g === 'none') return t.missing; if (g === 'unmatched') return t.gray; return t.seq[[6, 5, 3, 1]['1234'.indexOf(g)]]; }
+
+  var nm = C['coverage.national_fires_by_year_all_vs_masked'];
+  if (nm) {
+    var v = nm.value, ys = WF.years(v);
+    WF.chart({ el: 'cov-masked', title: 'Fires per year: all state-years against usable state-years only', claims: ['coverage.national_fires_by_year_all_vs_masked', 'coverage.rule', 'coverage.share_records_in_usable_window'],
+      sub: 'Usable = inside the state\'s usable window (no reporting break). Hover shows how many states contribute; the masked series is not a national series either.',
+      rows: ys.map(function (y) { return { year: y, all_states: v[y].all_states, usable_state_years_only: v[y].usable_state_years_only, n_states_usable: v[y].n_states_usable }; }),
+      columns: [{ key: 'year' }, { key: 'all_states', label: 'all state-years', num: true, fmt: WF.fmt.int }, { key: 'usable_state_years_only', label: 'usable state-years only', num: true, fmt: WF.fmt.int }, { key: 'n_states_usable', label: 'states usable', num: true }], height: 300,
+      build: function (t) { return { data: [
+        { type: 'scatter', mode: 'lines+markers', name: 'All state-years', x: ys, y: ys.map(function (y) { return v[y].all_states; }), line: { color: t.gray, width: 2 }, marker: { size: 6, color: t.gray, line: { color: t.surface, width: 2 } }, hovertemplate: '%{x}: %{y:,} fires (all)<extra></extra>' },
+        { type: 'scatter', mode: 'lines+markers', name: 'Usable state-years only', x: ys, y: ys.map(function (y) { return v[y].usable_state_years_only; }), line: { color: t.series[0], width: 2 }, marker: { size: 6, color: t.series[0], line: { color: t.surface, width: 2 } }, customdata: ys.map(function (y) { return v[y].n_states_usable; }), hovertemplate: '%{x}: %{y:,} fires from %{customdata} usable states<extra></extra>' }],
+        layout: { yaxis: { rangemode: 'tozero', tickformat: ',' }, hovermode: 'x unified', legend: { y: -0.22 } } }; }
+    });
+  }
+
+  var bg = C['padus.by_gap_all_years'];
+  if (bg) {
+    var g = bg.value, gaps = GAPS.filter(function (k) { return g[k]; });
+    var totF = gaps.reduce(function (s, k) { return s + g[k].fires; }, 0), totF300 = gaps.reduce(function (s, k) { return s + g[k].fires_ge_300; }, 0);
+    var rows = gaps.map(function (k) { return { gap: GLAB[k], fires: g[k].fires, share_of_fires: g[k].share_fires, acres: Math.round(g[k].acres), share_of_acres: g[k].share_acres, fires_ge_300: g[k].fires_ge_300, share_ge_300_within_gap: g[k].share_ge_300_within_gap, n_known_cause: g[k].n_known_cause, human_share_known_cause: g[k].human_share_known_cause, _missing: k === 'none' || k === 'unmatched' }; });
+    var cols = [{ key: 'gap', label: 'GAP status at ignition point' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'share_of_fires', label: 'share of fires', num: true, fmt: function (x) { return WF.fmt.pct(x, 2); } }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'share_of_acres', label: 'share of acres', num: true, fmt: function (x) { return WF.fmt.pct(x, 2); } }, { key: 'fires_ge_300', label: 'fires >= 300 acres', num: true, fmt: WF.fmt.int }, { key: 'share_ge_300_within_gap', label: 'share >= 300 acres within group', num: true, fmt: function (x) { return WF.fmt.pct(x, 2); } }, { key: 'n_known_cause', label: 'fires with known cause', num: true, fmt: WF.fmt.int }, { key: 'human_share_known_cause', label: 'human share of known cause', num: true, fmt: function (x) { return WF.fmt.pct(x); } }];
+    WF.chart({ el: 'gap-shares', title: 'Ignitions and acres by GAP status of the land at the ignition point, 1992-2020', claims: ['padus.by_gap_all_years', 'padus.join_definition', 'padus.source'],
+      sub: 'GAP 1 is the most protected, GAP 4 the least; "not in PAD-US" is mostly private land. Gray rows are not protected-area categories.',
+      rows: rows, columns: cols, staticImg: 'figures/padus_gap_by_block.png', height: 300,
+      build: function (t) { return { data: [
+        { type: 'bar', name: 'Share of fires', x: gaps.map(function (k) { return GLAB[k]; }), y: gaps.map(function (k) { return 100 * g[k].share_fires; }), marker: { color: t.series[0] }, customdata: gaps.map(function (k) { return g[k].fires; }), hovertemplate: '%{x}<br>%{y:.1f}% of fires (n = %{customdata:,})<extra></extra>' },
+        { type: 'bar', name: 'Share of acres', x: gaps.map(function (k) { return GLAB[k]; }), y: gaps.map(function (k) { return 100 * g[k].share_acres; }), marker: { color: t.series[1] }, customdata: gaps.map(function (k) { return Math.round(g[k].acres); }), hovertemplate: '%{x}<br>%{y:.1f}% of acres (%{customdata:,} acres)<extra></extra>' }],
+        layout: { barmode: 'group', yaxis: { ticksuffix: '%' }, legend: { y: -0.3 } } }; }
+    });
+    var base300 = totF300 / totF, bc = C['cause.by_classification'] ? C['cause.by_classification'].value : null, baseH = bc ? bc.Human.fires / (bc.Human.fires + bc.Natural.fires) : null;
+    WF.chart({ el: 'gap-rates', title: 'Within each GAP group: share of ignitions reaching 300 acres, and human share of known cause', claims: ['padus.by_gap_all_years', 'conservation.large_fire_definition'],
+      sub: 'Dashed lines are the base rates over all ignitions. Hover shows the n behind each bar.',
+      rows: rows, columns: cols, height: 320,
+      caption: 'Base rates: ' + WF.fmt.pct(base300, 2) + ' of all ' + WF.fmt.int(totF) + ' ignitions reached 300 acres' + (baseH !== null ? '; ' + WF.fmt.pct(baseH) + ' of fires with a known cause are human-caused' : '') + '.',
+      build: function (t) { var x = gaps.map(function (k) { return GLAB[k]; }); return { data: [
+        { type: 'bar', name: 'Share reaching 300 acres', x: x, y: gaps.map(function (k) { return 100 * g[k].share_ge_300_within_gap; }), marker: { color: t.series[0] }, customdata: gaps.map(function (k) { return [g[k].fires_ge_300, g[k].fires]; }), hovertemplate: '%{x}<br>%{y:.2f}% reached 300 acres (%{customdata[0]:,} of %{customdata[1]:,})<extra></extra>', xaxis: 'x', yaxis: 'y' },
+        { type: 'bar', name: 'Human share of known cause', x: x, y: gaps.map(function (k) { return 100 * g[k].human_share_known_cause; }), marker: { color: t.series[1] }, customdata: gaps.map(function (k) { return g[k].n_known_cause; }), hovertemplate: '%{x}<br>%{y:.1f}% human (known-cause n = %{customdata:,})<extra></extra>', xaxis: 'x2', yaxis: 'y2' }],
+        layout: { grid: { rows: 1, columns: 2, pattern: 'independent' }, showlegend: false, yaxis: { title: { text: '% reaching 300 acres' }, ticksuffix: '%' }, yaxis2: { title: { text: '% human of known cause' }, ticksuffix: '%', range: [0, 100], gridcolor: t.grid }, xaxis: { tickfont: { size: 10 } }, xaxis2: { tickfont: { size: 10 } },
+          shapes: [{ type: 'line', xref: 'paper', x0: 0, x1: 0.45, y0: 100 * base300, y1: 100 * base300, yref: 'y', line: { color: t.ink2, width: 1.5, dash: 'dash' } }].concat(baseH !== null ? [{ type: 'line', xref: 'paper', x0: 0.55, x1: 1, y0: 100 * baseH, y1: 100 * baseH, yref: 'y2', line: { color: t.ink2, width: 1.5, dash: 'dash' } }] : []),
+          annotations: [{ xref: 'paper', x: 0.45, yref: 'y', y: 100 * base300, text: 'base rate ' + WF.fmt.pct(base300, 2), showarrow: false, xanchor: 'right', yanchor: 'bottom', font: { size: 10, color: t.ink2 } }].concat(baseH !== null ? [{ xref: 'paper', x: 1, yref: 'y2', y: 100 * baseH, text: 'base rate ' + WF.fmt.pct(baseH, 0), showarrow: false, xanchor: 'right', yanchor: 'bottom', font: { size: 10, color: t.ink2 } }] : []) } }; }
+    });
+  }
+  var fb = C['padus.share_fires_by_block_gap'];
+  if (fb) {
+    var sb = fb.value, nb = C['padus.fires_by_block_gap'].value, blocks = Object.keys(sb);
+    var brows = []; blocks.forEach(function (b) { GAPS.forEach(function (k) { if (sb[b][k] !== undefined) brows.push({ block: b, gap: GLAB[k], fires: nb[b][k], share_of_block: sb[b][k], _missing: k === 'none' || k === 'unmatched' }); }); });
+    WF.chart({ el: 'gap-blocks', title: 'Share of ignitions by GAP status, by 5-year block', claims: ['padus.share_fires_by_block_gap', 'padus.fires_by_block_gap'],
+      sub: 'Each bar sums to 100% of the block\'s ignitions. GAP 1-4 in one hue (darker = more protected); not in PAD-US and unmatched in gray.',
+      rows: brows, columns: [{ key: 'block' }, { key: 'gap' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'share_of_block', label: 'share of block', num: true, fmt: function (x) { return WF.fmt.pct(x, 2); } }], height: 320,
+      build: function (t) { return { data: GAPS.map(function (k) { return { type: 'bar', name: GLAB[k], x: blocks, y: blocks.map(function (b) { return 100 * (sb[b][k] || 0); }), marker: { color: gapColor(t, k), line: { color: t.surface, width: 2 } }, customdata: blocks.map(function (b) { return nb[b][k] || 0; }), hovertemplate: '%{x} · ' + GLAB[k] + ': %{y:.2f}% (n = %{customdata:,})<extra></extra>' }; }),
+        layout: { barmode: 'stack', yaxis: { ticksuffix: '%', range: [0, 100] }, legend: { y: -0.3 } } }; }
+    });
+  }
+  var mo = C['padus.missing_owner_assignment_all_years'];
+  if (mo) {
+    var m = mo.value, keys = Object.keys(m).sort(function (a, b) { return m[a].fires - m[b].fires; });
+    var MT = { FED: 'Federal', STAT: 'State', LOC: 'Local', DIST: 'District', NGO: 'NGO', PVT: 'Private (in PAD-US)', TRIB: 'Tribal', JNT: 'Joint', UNK: 'Unknown', 'Not in PAD-US': 'Not in PAD-US (mostly private)', unmatched: 'unmatched' };
+    WF.chart({ el: 'missing-owner', title: 'Where the fires with no recorded owner fall: PAD-US manager type at the ignition point', claims: ['padus.missing_owner_assignment_all_years'],
+      sub: 'Records with OWNER_DESCR = MISSING/NOT SPECIFIED, all years. The spatial join recovers a manager type for the share that falls inside a PAD-US unit.',
+      rows: keys.slice().reverse().map(function (k) { return { manager_type: MT[k] || k, fires: m[k].fires, share_of_missing_owner_fires: m[k].share_fires, acres: Math.round(m[k].acres), share_of_missing_owner_acres: m[k].share_acres }; }),
+      columns: [{ key: 'manager_type', label: 'PAD-US manager type' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'share_of_missing_owner_fires', label: 'share of missing-owner fires', num: true, fmt: function (x) { return WF.fmt.pct(x, 2); } }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'share_of_missing_owner_acres', label: 'share of missing-owner acres', num: true, fmt: function (x) { return WF.fmt.pct(x, 2); } }], height: 360,
+      build: function (t) { return { data: [{ type: 'bar', orientation: 'h', y: keys.map(function (k) { return MT[k] || k; }), x: keys.map(function (k) { return 100 * m[k].share_fires; }), marker: { color: t.series[0] }, customdata: keys.map(function (k) { return m[k].fires; }), hovertemplate: '%{y}<br>%{x:.2f}% of missing-owner fires (n = %{customdata:,})<extra></extra>' }],
+        layout: { showlegend: false, margin: { l: 10 }, yaxis: { automargin: true, tickfont: { size: 11 } }, xaxis: { ticksuffix: '%' } } }; }
+    });
+  }
+
+  var mr = C['ics.match_rate_by_size_class_2010_2020'];
+  if (mr) {
+    var r = mr.value, cl = Object.keys(r).sort();
+    WF.chart({ el: 'ics-match', title: 'Share of fires with a matched ICS-209-PLUS incident report, by size class, 2010-2020', claims: ['ics.match_rate_by_size_class_2010_2020', 'ics.fod_rows_matched'],
+      sub: 'Incident reports (structures, evacuations, personnel) exist mainly for fires of 300 acres and more.',
+      rows: cl.map(function (k) { return { size_class: k, fires: r[k].fires, matched: r[k].matched, share_matched: r[k].share_matched }; }),
+      columns: [{ key: 'size_class', label: 'size class' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'matched', num: true, fmt: WF.fmt.int }, { key: 'share_matched', label: 'share matched', num: true, fmt: function (x) { return WF.fmt.pct(x); } }], height: 260,
+      build: function (t) { return { data: [{ type: 'bar', x: cl, y: cl.map(function (k) { return 100 * r[k].share_matched; }), marker: { color: t.series[0] }, text: cl.map(function (k) { return (100 * r[k].share_matched).toFixed(1) + '%'; }), textposition: 'outside', textfont: { color: t.ink2 }, customdata: cl.map(function (k) { return [r[k].matched, r[k].fires]; }), hovertemplate: 'Class %{x}<br>%{y:.1f}% matched (%{customdata[0]:,} of %{customdata[1]:,})<extra></extra>' }],
+        layout: { showlegend: false, yaxis: { ticksuffix: '%', range: [0, 105] }, xaxis: { title: { text: 'size class' } } } }; }
+    });
+  }
+  var sr = C['ics.structures_destroyed_by_region_cause'];
+  if (sr) {
+    var sv = sr.value, regs = ['West', 'South', 'Other', 'Alaska', 'Northeast', 'Hawaii/PR'].filter(function (k) { return sv[k]; });
+    var causes = ['Human', 'Natural', MISS];
+    var srows = []; regs.forEach(function (rg) { causes.forEach(function (c) { srows.push({ region: rg, cause: LAB[c], structures_destroyed: Math.round(sv[rg][c]), _missing: c === MISS }); }); });
+    WF.chart({ el: 'ics-structures', title: 'Structures destroyed by region and cause classification of the largest joined fire', claims: ['ics.structures_destroyed_by_region_cause', 'ics.sample_definition'],
+      sub: 'ICS-209-PLUS incidents joined to FPA FOD, 2010-2020, fires of 300 acres and more. Cause is the FPA FOD classification.',
+      rows: srows, columns: [{ key: 'region' }, { key: 'cause' }, { key: 'structures_destroyed', label: 'structures destroyed', num: true, fmt: WF.fmt.int }], staticImg: 'figures/ics_structures_by_year_cause.png', height: 320,
+      build: function (t) { return { data: causes.map(function (c) { return { type: 'bar', name: LAB[c], x: regs, y: regs.map(function (rg) { return sv[rg][c]; }), marker: { color: WF.causeColor(t, c), line: { color: t.surface, width: 2 } }, hovertemplate: '%{x} · ' + LAB[c] + ': %{y:,.0f} structures<extra></extra>' }; }),
+        layout: { barmode: 'stack', yaxis: { tickformat: ',' }, legend: { y: -0.25 } } }; }
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Causes and seasons · US wildfire record, 1992-2020</title>
+<meta name="description" content="Human, natural and undetermined causes by fires and acres, cause within size class, and seasonality by region.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Overview</a><a href="trends.html">Trends</a><a href="causes.html" aria-current="page">Causes and seasons</a><a href="geography.html">Geography</a><a href="ownership.html">Ownership</a><a href="conservation.html">Conservation</a><a href="model.html">Prediction</a><a href="methods.html">Methods and ledger</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>Causes and seasons</h1>
+<p class="lede">Human ignitions are <button type="button" class="q" data-claim="cause.by_classification">77.4%</button> of recorded fires but <button type="button" class="q" data-claim="cause.by_classification">35.3%</button> of acres. Natural ignitions are <button type="button" class="q" data-claim="cause.by_classification">14.2%</button> of fires and <button type="button" class="q" data-claim="cause.by_classification">58.7%</button> of acres.
+The cause is undetermined for <button type="button" class="q" data-claim="cause.by_classification">8.4%</button> of fires, and that share is never dropped from a chart on this site.</p></header>
+
+<h2>Human, natural, undetermined</h2>
+<p>Human fires outnumber natural ones <button type="button" class="q" data-claim="cause.human_to_natural_fire_ratio">5.4 to 1</button>; natural fires burn <button type="button" class="q" data-claim="cause.natural_acres">105.64M</button> acres, most of it in the West and Alaska. The general cause (13 categories) is undetermined for a larger share, <button type="button" class="q" data-claim="overview.missing_shares">26.0%</button> of records.</p>
+<div id="cause-national" class="chart" aria-live="polite"></div>
+<h3>By region</h3>
+<div id="cause-region-fires" class="chart" aria-live="polite"></div><div id="cause-region-acres" class="chart" aria-live="polite"></div>
+
+<h2>Cause within size class</h2>
+<p>Among fires with a known cause, the human share falls with size: <button type="button" class="q" data-claim="cause.human_share_known_by_size_class">90%</button> in Class B, <button type="button" class="q" data-claim="cause.human_share_known_by_size_class">35%</button> in Class G. Natural causes are the majority only in Class G (<button type="button" class="q" data-claim="cause.classification_acre_share_by_size_class">67.1%</button> of Class G acres).</p>
+<div class="grid2"><div id="cause-size-acres" class="chart" aria-live="polite"></div><div id="human-size" class="chart" aria-live="polite"></div></div>
+<h3>Most common general cause in each size class</h3>
+<p>The earlier wording was that Classes B and C are "most often" debris burning. It is the most common single category, but never a majority, and in Class C arson is within 1.2 points. The undetermined category is the most common in Classes A and D.</p>
+<div class="table-wrap"><table><thead><tr><th>Size class</th><th>Top general cause</th><th class="num">Share</th><th>Majority?</th><th>Top three</th></tr></thead><tbody><tr><td>A</td><td>Undetermined / missing</td><td class="num"><button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">29.6%</button></td><td>plurality</td><td class="small">Undetermined 29.6%; Natural 20.3%; Debris and open burning 14.9%</td></tr><tr><td>B</td><td>Debris and open burning</td><td class="num"><button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">30.0%</button></td><td>plurality</td><td class="small">Debris and open burning 30.0%; Undetermined 24.2%; Arson/incendiarism 15.5%</td></tr><tr><td>C</td><td>Debris and open burning</td><td class="num"><button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">25.6%</button></td><td>plurality</td><td class="small">Debris and open burning 25.6%; Arson/incendiarism 24.4%; Undetermined 21.8%</td></tr><tr><td>D</td><td>Undetermined / missing</td><td class="num"><button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">24.2%</button></td><td>plurality</td><td class="small">Undetermined 24.2%; Arson/incendiarism 21.1%; Natural 20.8%</td></tr><tr><td>E</td><td>Natural</td><td class="num"><button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">30.5%</button></td><td>plurality</td><td class="small">Natural 30.5%; Undetermined 25.2%; Arson/incendiarism 15.6%</td></tr><tr><td>F</td><td>Natural</td><td class="num"><button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">44.4%</button></td><td>plurality</td><td class="small">Natural 44.4%; Undetermined 24.3%; Arson/incendiarism 8.8%</td></tr><tr><td>G</td><td>Natural</td><td class="num"><button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">61.8%</button></td><td>majority</td><td class="small">Natural 61.8%; Undetermined 18.0%; Equipment and vehicle use 5.9%</td></tr></tbody></table></div>
+<p class="small muted">n = <button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">2,303,566</button> records; <button type="button" class="q" data-claim="cause.top_general_cause_by_size_class">definition</button>.</p>
+<div id="general-cause" class="chart" aria-live="polite"></div>
+
+<h2 id="seasons">Seasonality by region</h2>
+<p>Peak month for fires and for acres: South <button type="button" class="q" data-claim="season.peak_month_by_region">Mar</button> and <button type="button" class="q" data-claim="season.peak_month_by_region">Mar</button>; West <button type="button" class="q" data-claim="season.peak_month_by_region">Jul</button> and <button type="button" class="q" data-claim="season.peak_month_by_region">Aug</button>; Alaska <button type="button" class="q" data-claim="season.peak_month_by_region">Jun</button> and <button type="button" class="q" data-claim="season.peak_month_by_region">Jun</button>; Northeast <button type="button" class="q" data-claim="season.peak_month_by_region">Apr</button>; Other (Midwest, Plains) <button type="button" class="q" data-claim="season.peak_month_by_region">Apr</button>. Nationally, <button type="button" class="q" data-claim="season.peak_months">Jul</button> has the most fires and the most acres.</p>
+<div id="season-heat" class="chart" aria-live="polite"></div>
+<div class="note"><p><strong>Prevention-calendar reading.</strong> Fires in the South peak in February to April (dormant grass, debris burning), in the West in June to August, in Alaska in May to July. A prevention message timed to the region's own peak reaches people in the weeks that matter; a national campaign timed to the Western summer misses the South's season entirely. Region membership is in the <a href="methods.html#glossary">glossary</a>.</p></div>
+<h3>The largest fires move from the South in winter to the West in summer</h3>
+<div class="table-wrap"><table><thead><tr><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th></tr></thead><tbody><tr><td>South</td><td>South</td><td>South</td><td>South</td><td>West</td><td>West</td><td>West</td><td>West</td><td>West</td><td>West</td><td>South</td><td>South</td></tr></tbody></table></div>
+<p class="small muted">Region with the most Class G fires in each month; n = <button type="button" class="q" data-claim="season.class_g_leading_region_by_month">4,783</button> Class G fires.</p>
+<div id="classg-month" class="chart" aria-live="polite"></div>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  var C = WF.data.claims, MISS = 'Missing data/not specified/undetermined';
+  var CAUSES = ['Human', 'Natural', MISS], LABEL = { 'Human': 'Human', 'Natural': 'Natural', 'Missing data/not specified/undetermined': 'Undetermined / missing' };
+  var bc = C['cause.by_classification'].value;
+  function stack100(rowsLabels, getShare, getN, t, hoverUnit) {
+    return CAUSES.map(function (k) { return { type: 'bar', orientation: 'h', name: LABEL[k], y: rowsLabels, x: rowsLabels.map(function (r) { return 100 * getShare(r, k); }),
+      marker: { color: WF.causeColor(t, k), line: { color: t.surface, width: 2 } },
+      customdata: rowsLabels.map(function (r) { return [getN(r, k), LABEL[k]]; }),
+      hovertemplate: '%{y} · %{customdata[1]}: %{x:.1f}%<br>' + hoverUnit + ' %{customdata[0]:,}<extra></extra>' }; });
+  }
+  WF.chart({ el: 'cause-national', title: 'Cause classification: share of fires and share of acres', claims: ['cause.by_classification', 'cause.human_to_natural_fire_ratio', 'cause.natural_acres'],
+    sub: 'NWCG_CAUSE_CLASSIFICATION, all records. Undetermined stays in the denominator.',
+    rows: CAUSES.map(function (k) { return { cause: LABEL[k], fires: bc[k].fires, share_of_fires: bc[k].share_fires, acres: Math.round(bc[k].acres), share_of_acres: bc[k].share_acres, _missing: k === MISS }; }),
+    columns: [{ key: 'cause', label: 'cause classification' }, { key: 'fires', label: 'fires', num: true, fmt: WF.fmt.int }, { key: 'share_of_fires', label: 'share of fires', num: true, fmt: function (v) { return WF.fmt.pct(v, 1); } }, { key: 'acres', label: 'acres', num: true, fmt: WF.fmt.int }, { key: 'share_of_acres', label: 'share of acres', num: true, fmt: function (v) { return WF.fmt.pct(v, 1); } }],
+    height: 220,
+    build: function (t) { return { data: stack100(['Acres', 'Fires'], function (r, k) { return r === 'Fires' ? bc[k].share_fires : bc[k].share_acres; }, function (r, k) { return r === 'Fires' ? bc[k].fires : Math.round(bc[k].acres); }, t, 'n ='),
+      layout: { barmode: 'stack', bargap: 0.45, xaxis: { ticksuffix: '%', range: [0, 100] }, margin: { l: 50 }, legend: { y: -0.35 } } }; }
+  });
+
+  var byRegion = C['cause.by_classification_by_region'];
+  if (byRegion) {
+    var br = byRegion.value, regions = Object.keys(br);
+    var rows = []; regions.forEach(function (r) { CAUSES.forEach(function (k) { var v = br[r][k] || { fires: 0, acres: 0 }; rows.push({ region: r, cause: LABEL[k], fires: v.fires, acres: Math.round(v.acres), _missing: k === MISS }); }); });
+    var tot = function (r, m) { return CAUSES.reduce(function (s, k) { return s + ((br[r][k] || {})[m] || 0); }, 0); };
+    ['fires', 'acres'].forEach(function (m) {
+      WF.chart({ el: 'cause-region-' + m, title: 'Cause classification by region: share of ' + m, claims: ['cause.by_classification_by_region', 'overview.region_definition'],
+        rows: rows, columns: [{ key: 'region' }, { key: 'cause' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'acres', num: true, fmt: WF.fmt.int }], height: 300,
+        build: function (t) { return { data: stack100(regions, function (r, k) { return ((br[r][k] || {})[m] || 0) / tot(r, m); }, function (r, k) { return Math.round((br[r][k] || {})[m] || 0); }, t, m + ' ='),
+          layout: { barmode: 'stack', xaxis: { ticksuffix: '%', range: [0, 100] }, margin: { l: 80 }, legend: { y: -0.25 } } }; }
+      });
+    });
+  }
+
+  var ac = C['cause.classification_acre_share_by_size_class'].value, classes = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  var fy = C['year.acres_by_size_class'].value, yrs = WF.years(fy);
+  var acresByClass = {}; classes.forEach(function (k) { acresByClass[k] = yrs.reduce(function (s, y) { return s + fy[y][k]; }, 0); });
+  var fbc = C['year.fires_by_size_class'].value; var firesByClass = {}; classes.forEach(function (k) { firesByClass[k] = yrs.reduce(function (s, y) { return s + fbc[y][k]; }, 0); });
+  var classLabel = { A: 'A (<0.26 ac)', B: 'B (0.26-9.9)', C: 'C (10-99.9)', D: 'D (100-299)', E: 'E (300-999)', F: 'F (1,000-4,999)', G: 'G (5,000+)' };
+  WF.chart({ el: 'cause-size-acres', title: 'Share of acres by cause classification within each size class', claims: ['cause.classification_acre_share_by_size_class', 'overview.size_class_definition'],
+    sub: 'Each bar sums to 100% of the acres in that size class. Hover shows the acres in the class.',
+    rows: classes.map(function (k) { return { size_class: classLabel[k], acres_in_class: Math.round(acresByClass[k]), human: ac[k]['Human'], natural: ac[k]['Natural'], undetermined: ac[k][MISS] }; }),
+    columns: [{ key: 'size_class' }, { key: 'acres_in_class', label: 'acres in class', num: true, fmt: WF.fmt.int }, { key: 'human', label: 'human share', num: true, fmt: function (v) { return WF.fmt.pct(v); } }, { key: 'natural', label: 'natural share', num: true, fmt: function (v) { return WF.fmt.pct(v); } }, { key: 'undetermined', label: 'undetermined share', num: true, fmt: function (v) { return WF.fmt.pct(v); } }],
+    height: 320,
+    build: function (t) { return { data: CAUSES.map(function (k) { return { type: 'bar', name: LABEL[k], x: classes.map(function (s) { return classLabel[s]; }), y: classes.map(function (s) { return 100 * ac[s][k]; }), marker: { color: WF.causeColor(t, k), line: { color: t.surface, width: 2 } },
+        customdata: classes.map(function (s) { return Math.round(acresByClass[s]); }), hovertemplate: '%{x}<br>' + LABEL[k] + ': %{y:.1f}% of %{customdata:,} acres<extra></extra>' }; }),
+      layout: { barmode: 'stack', yaxis: { ticksuffix: '%', range: [0, 100] }, legend: { y: -0.3 } } }; }
+  });
+  var hk = C['cause.human_share_known_by_size_class'].value;
+  WF.chart({ el: 'human-size', title: 'Human share of fires with a known cause, by size class', claims: ['cause.human_share_known_by_size_class'],
+    sub: 'Denominator excludes undetermined causes. Hover shows all fires in the class (including undetermined).',
+    rows: classes.map(function (k) { return { size_class: classLabel[k], fires_in_class: firesByClass[k], human_share_of_known: hk[k] }; }),
+    columns: [{ key: 'size_class' }, { key: 'fires_in_class', label: 'fires in class (all causes)', num: true, fmt: WF.fmt.int }, { key: 'human_share_of_known', label: 'human share of known', num: true, fmt: function (v) { return WF.fmt.pct(v); } }],
+    height: 280,
+    build: function (t) { return { data: [{ type: 'bar', x: classes.map(function (s) { return classLabel[s]; }), y: classes.map(function (s) { return 100 * hk[s]; }), marker: { color: t.series[0] }, text: classes.map(function (s) { return (100 * hk[s]).toFixed(0) + '%'; }), textposition: 'outside', textfont: { color: t.ink2 }, customdata: classes.map(function (s) { return firesByClass[s]; }), hovertemplate: '%{x}<br>%{y:.1f}% human among known causes<br>%{customdata:,} fires in class<extra></extra>' }],
+      layout: { showlegend: false, yaxis: { ticksuffix: '%', range: [0, 105] } } }; }
+  });
+
+  var gc = C['cause.by_general_cause'].value, gcNames = Object.keys(gc).sort(function (a, b) { return gc[a].share_fires - gc[b].share_fires; });
+  WF.chart({ el: 'general-cause', title: 'General cause: share of fires against share of acres', claims: ['cause.by_general_cause'],
+    sub: 'NWCG_GENERAL_CAUSE, 13 categories including the undetermined one. Natural means lightning and other non-human ignition.',
+    rows: gcNames.slice().reverse().map(function (k) { return { general_cause: k, fires: gc[k].fires, share_of_fires: gc[k].share_fires, acres: Math.round(gc[k].acres), share_of_acres: gc[k].share_acres, mean_acres: gc[k].mean_acres, _missing: k === MISS }; }),
+    columns: [{ key: 'general_cause' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'share_of_fires', label: 'share of fires', num: true, fmt: function (v) { return WF.fmt.pct(v); } }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'share_of_acres', label: 'share of acres', num: true, fmt: function (v) { return WF.fmt.pct(v); } }, { key: 'mean_acres', label: 'mean acres per fire', num: true, fmt: function (v) { return WF.fmt.num(v, 1); } }],
+    staticImg: 'figures/cause_share_fires_vs_acres.png', height: 420,
+    build: function (t) { var lab = gcNames.map(function (k) { return k === MISS ? 'Undetermined / missing' : k; }); return { data: [
+      { type: 'bar', orientation: 'h', name: 'Share of fires', y: lab, x: gcNames.map(function (k) { return 100 * gc[k].share_fires; }), marker: { color: t.series[0] }, customdata: gcNames.map(function (k) { return gc[k].fires; }), hovertemplate: '%{y}<br>%{x:.1f}% of fires (n = %{customdata:,})<extra></extra>' },
+      { type: 'bar', orientation: 'h', name: 'Share of acres', y: lab, x: gcNames.map(function (k) { return 100 * gc[k].share_acres; }), marker: { color: t.series[1] }, customdata: gcNames.map(function (k) { return Math.round(gc[k].acres); }), hovertemplate: '%{y}<br>%{x:.1f}% of acres (%{customdata:,} acres)<extra></extra>' }],
+      layout: { barmode: 'group', bargap: 0.3, xaxis: { ticksuffix: '%' }, margin: { l: 10 }, yaxis: { automargin: true, tickfont: { size: 11 } }, legend: { y: -0.12 } } }; }
+  });
+
+  var REG = ['West', 'South', 'Northeast', 'Alaska', 'Hawaii/PR', 'Other'];
+  var fm = C['season.fires_by_region_month'].value, am = C['season.acres_by_region_month'].value;
+  var fr = C['season.fires_by_region'].value, ar = C['season.acres_by_region'].value;
+  var mode = 'fires';
+  var seasonRows = []; REG.forEach(function (r) { for (var m = 1; m <= 12; m++) seasonRows.push({ region: r, month: WF.monthNames[m - 1], fires: fm[m][r], share_of_region_fires: fm[m][r] / fr[r], acres: Math.round(am[m][r]), share_of_region_acres: am[m][r] / ar[r] }); });
+  var seasonChart = WF.chart({ el: 'season-heat', title: 'Seasonality by region: share of the region\'s fires (or acres) in each month', claims: ['season.fires_by_region_month', 'season.acres_by_region_month', 'season.fires_by_region', 'season.acres_by_region', 'overview.region_definition'],
+    sub: 'Each row sums to 100%. Month is the month of discovery. Row labels carry the region\'s total n.',
+    controls: WF.segControl([{ label: 'Fires', value: 'fires' }, { label: 'Acres', value: 'acres' }], function (v) { mode = v; seasonChart.render(); }),
+    rows: seasonRows, columns: [{ key: 'region' }, { key: 'month' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'share_of_region_fires', label: 'share of region fires', num: true, fmt: function (v) { return WF.fmt.pct(v); } }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'share_of_region_acres', label: 'share of region acres', num: true, fmt: function (v) { return WF.fmt.pct(v); } }],
+    staticImg: 'figures/seasonality_by_region.png', height: 320,
+    build: function (t) {
+      var src = mode === 'fires' ? fm : am, totals = mode === 'fires' ? fr : ar;
+      var y = REG.map(function (r) { return r + ' (n = ' + WF.fmt.compact(totals[r]) + (mode === 'fires' ? ' fires)' : ' acres)'); });
+      var z = REG.map(function (r) { return WF.monthNames.map(function (_, i) { return 100 * src[i + 1][r] / totals[r]; }); });
+      var cd = REG.map(function (r) { return WF.monthNames.map(function (_, i) { return Math.round(src[i + 1][r]); }); });
+      return { data: [{ type: 'heatmap', z: z, x: WF.monthNames, y: y, customdata: cd, colorscale: WF.seqScale(t), xgap: 2, ygap: 2, zmin: 0,
+        hovertemplate: '%{y}<br>%{x}: %{z:.1f}% of the region\'s ' + mode + ' (%{customdata:,})<extra></extra>', colorbar: { title: { text: '% of region' }, thickness: 10, ticksuffix: '%', tickfont: { color: t.muted } } }],
+        layout: { margin: { l: 10 }, yaxis: { autorange: 'reversed', automargin: true } } };
+    }
+  });
+
+  var cg = C['season.class_g_fires_by_region_month'].value, lead = C['season.class_g_leading_region_by_month'].value;
+  var cgRows = []; for (var m = 1; m <= 12; m++) REG.forEach(function (r) { cgRows.push({ month: WF.monthNames[m - 1], region: r, class_g_fires: cg[m][r], leading_region: lead[WF.monthNames[m - 1]] }); });
+  WF.chart({ el: 'classg-month', title: 'Class G fires by month of discovery, stacked by region', claims: ['season.class_g_fires_by_region_month', 'season.class_g_leading_region_by_month'],
+    sub: 'Fires of 5,000+ acres, 1992-2020. The South leads November to April, the West May to October.',
+    rows: cgRows, columns: [{ key: 'month' }, { key: 'region' }, { key: 'class_g_fires', label: 'Class G fires', num: true, fmt: WF.fmt.int }, { key: 'leading_region', label: 'leading region that month' }],
+    staticImg: 'figures/monthly_class_g_by_region.png', height: 320,
+    build: function (t) { return { data: REG.map(function (r) { return { type: 'bar', name: r, x: WF.monthNames, y: WF.monthNames.map(function (_, i) { return cg[i + 1][r]; }), marker: { color: WF.regionColor(t, r), line: { color: t.surface, width: 1.5 } }, hovertemplate: '%{x} ' + r + ': %{y} fires<extra></extra>' }; }),
+      layout: { barmode: 'stack', yaxis: { title: { text: 'Class G fires' } }, legend: { y: -0.22 } } }; }
+  });
+})();
+</script>
+</body>
+</html>
