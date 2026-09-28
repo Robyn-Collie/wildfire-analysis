@@ -455,7 +455,7 @@
       ul.appendChild(li);
     });
     lg.appendChild(ul);
-    this.counts.textContent = 'Of these, ' + fmt(t.large) + ' reached 300 acres or more. Click the map for counts around a point. Dots overlap: dense areas saturate, so read the counts, not the brightness.';
+    this.counts.textContent = 'Of these, ' + fmt(t.large) + ' reached 300 acres or more. Tap or click the map for counts around a point. Dots overlap: dense areas saturate, so read the counts, not the brightness.';
   };
 
   window.WFConsole = {
