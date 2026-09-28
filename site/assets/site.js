@@ -142,16 +142,18 @@
   };
 
   /* ---------------- table view ---------------- */
+  /* Column classes: num right-aligns; hideSm drops a secondary column on narrow screens (the CSV keeps it). */
+  function colClass(c) { var k = [c.num ? 'num' : '', c.hideSm ? 'hide-sm' : ''].join(' ').trim(); return k || null; }
   WF.buildTable = function (columns, rows, opts) {
     var t = el('table'); if (opts && opts.cls) t.className = opts.cls;
     var thead = el('thead'), tr = el('tr');
-    columns.forEach(function (c) { var th = el('th', c.num ? 'num' : null, c.label || c.key); if (opts && opts.sortable) { th.className += ' sortable'; th.setAttribute('data-key', c.key); th.setAttribute('data-num', c.num ? '1' : '0'); } tr.appendChild(th); });
+    columns.forEach(function (c) { var th = el('th', colClass(c), c.label || c.key); if (opts && opts.sortable) { th.className += ' sortable'; th.setAttribute('data-key', c.key); th.setAttribute('data-num', c.num ? '1' : '0'); } tr.appendChild(th); });
     thead.appendChild(tr); t.appendChild(thead);
     var tb = el('tbody');
     rows.forEach(function (r) {
       var row = el('tr'); if (r._missing) row.className = 'missing-row';
       columns.forEach(function (c) {
-        var v = r[c.key]; var td = el('td', c.num ? 'num' : null);
+        var v = r[c.key]; var td = el('td', colClass(c));
         if (c.fmt && v !== null && v !== undefined && v !== '') td.textContent = c.fmt(v); else td.textContent = (v === null || v === undefined) ? '' : String(v);
         row.appendChild(td);
       });
@@ -178,7 +180,7 @@
       }
       sorted.forEach(function (r) {
         var row = el('tr'); if (r._missing) row.className = 'missing-row';
-        columns.forEach(function (c) { var v = r[c.key]; var td = el('td', c.num ? 'num' : null); td.textContent = (c.fmt && v !== null && v !== undefined && v !== '') ? c.fmt(v) : ((v === null || v === undefined) ? '' : String(v)); row.appendChild(td); });
+        columns.forEach(function (c) { var v = r[c.key]; var td = el('td', colClass(c)); td.textContent = (c.fmt && v !== null && v !== undefined && v !== '') ? c.fmt(v) : ((v === null || v === undefined) ? '' : String(v)); row.appendChild(td); });
         tb.appendChild(row);
       });
       for (var i = 0; i < ths.length; i++) { var k = ths[i].getAttribute('data-key'); if (k === state.key) ths[i].setAttribute('aria-sort', state.dir > 0 ? 'ascending' : 'descending'); else ths[i].removeAttribute('aria-sort'); }
