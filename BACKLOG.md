@@ -417,7 +417,7 @@ The README, the site, the figures, and a write-up, all generated from the same c
 - Key files: `scripts/build_site.py`, `site/model.html`
 
 ### [S-7.5] Deploy on Netlify
-- Status: In Review · review deploy live and password-protected (Netlify project wildfire-record-review); public launch is the owner's call
+- Status: Done · v2 is live at us-wildfires.netlify.app since 2026-09-28 (deployed from a local build of main at 2e9e0db; rollback deploy 6a5508527111d0505efaf807)
 - Issue: #57
 - Priority: P0 · Size: S · Depends: S-7.2
 - Description: Robyn links the GitHub repo in Netlify with publish directory `site/` and no build command (`docs/SITE.md`). A `NETLIFY_AUTH_TOKEN` in the cloud environment would let the session deploy directly; not required.
@@ -441,7 +441,7 @@ The README, the site, the figures, and a write-up, all generated from the same c
 - Key files: `scripts/build_site.py`, `site/geography.html`
 
 ### [S-7.8] Audit the existing us-wildfires site against the panel findings
-- Status: Open
+- Status: Done · audit in `docs/review/V1_SITE_AUDIT.md`; owner's decision (2026-09-28): retire it, keep it for the record at us-wildfires.netlify.app/archive/ (noindex, bannered), and replace it with this site; its old page addresses redirect to the v2 pages
 - Issue: #68
 - Priority: P1 · Size: M · Depends: none
 - Description: the owner's Netlify team already has a public site, us-wildfires ("the fire record, 1983-2025"), built outside this repo. It may repeat claims the panel refuted or weakened (the Arkansas June spike, "higher lows", count trends read as fire trends, the Control Efficiency Score, a duration model). Check each of its numbers against `docs/review/PANEL_REPORT.md` and the claims files, and decide whether to retire it, merge it with this site, or correct it.
