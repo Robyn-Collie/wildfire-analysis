@@ -213,7 +213,7 @@ CSS = r"""
   --seq-100: #cde2fb; --seq-200: #9ec5f4; --seq-300: #6da7ec; --seq-400: #3987e5; --seq-500: #256abf;
   --seq-600: #184f95; --seq-700: #0d366b;
   --link: #1c5cab; --focus: #2a78d6;
-  --note-bg: #fbf4e4; --note-border: #e6cf8e;
+  --note-bg: #fbf4e4; --note-border: #e6cf8e; --scroll-shadow: rgba(11,11,11,0.22);
   --radius: 8px; --gutter: 16px; --maxw: 1080px;
   --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -230,7 +230,7 @@ CSS = r"""
     --seq-100: #0d366b; --seq-200: #184f95; --seq-300: #256abf; --seq-400: #3987e5; --seq-500: #6da7ec;
     --seq-600: #9ec5f4; --seq-700: #cde2fb;
     --link: #86b6ef; --focus: #86b6ef;
-    --note-bg: #2a2416; --note-border: #5c4b1e;
+    --note-bg: #2a2416; --note-border: #5c4b1e; --scroll-shadow: rgba(255,255,255,0.22);
   }
 }
 :root[data-theme="dark"] {
@@ -244,7 +244,7 @@ CSS = r"""
   --seq-100: #0d366b; --seq-200: #184f95; --seq-300: #256abf; --seq-400: #3987e5; --seq-500: #6da7ec;
   --seq-600: #9ec5f4; --seq-700: #cde2fb;
   --link: #86b6ef; --focus: #86b6ef;
-  --note-bg: #2a2416; --note-border: #5c4b1e;
+  --note-bg: #2a2416; --note-border: #5c4b1e; --scroll-shadow: rgba(255,255,255,0.22);
 }
 
 * { box-sizing: border-box; }
@@ -273,7 +273,15 @@ table { border-collapse: collapse; width: 100%; font-size: .9rem; }
 th, td { text-align: left; padding: .4rem .5rem; border-bottom: 1px solid var(--grid); vertical-align: top; }
 th { color: var(--ink-2); font-weight: 600; }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
-.table-wrap { overflow-x: auto; max-width: 100%; }
+.table-wrap { overflow-x: auto; max-width: 100%;
+  /* Scroll shadows: a soft edge shows on whichever side has more table to scroll to. */
+  background: linear-gradient(90deg, var(--wrap-bg, var(--page)) 30%, transparent) left center / 2rem 100% no-repeat local,
+              linear-gradient(270deg, var(--wrap-bg, var(--page)) 30%, transparent) right center / 2rem 100% no-repeat local,
+              radial-gradient(farthest-side at 0 50%, var(--scroll-shadow), transparent) left center / .75rem 100% no-repeat scroll,
+              radial-gradient(farthest-side at 100% 50%, var(--scroll-shadow), transparent) right center / .75rem 100% no-repeat scroll; }
+.chart { --wrap-bg: var(--surface); }
+.note { --wrap-bg: var(--note-bg); }
+@media (max-width: 600px) { th.hide-sm, td.hide-sm { display: none; } }
 hr { border: 0; border-top: 1px solid var(--grid); margin: 2rem 0; }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
@@ -283,12 +291,19 @@ hr { border: 0; border-top: 1px solid var(--grid); margin: 2rem 0; }
 .topbar .wrap { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; padding-top: .5rem; padding-bottom: .5rem; }
 .brand { font-weight: 700; text-decoration: none; color: var(--ink); white-space: nowrap; }
 .brand span { color: var(--muted); font-weight: 500; }
-nav.main { display: flex; gap: .25rem; overflow-x: auto; flex: 1 1 auto; scrollbar-width: none; }
-nav.main::-webkit-scrollbar { display: none; }
+/* Brand and theme button share the first row; the nav takes its own full-width row and wraps, so every link is visible at every width. */
+nav.main { order: 3; flex: 1 1 100%; display: flex; flex-wrap: wrap; gap: .15rem .25rem; margin: 0 -.6rem; }
 nav.main a { text-decoration: none; color: var(--ink-2); padding: .35rem .6rem; border-radius: 6px; white-space: nowrap; font-size: .95rem; }
 nav.main a:hover { background: var(--surface-2); }
 nav.main a[aria-current="page"] { background: var(--surface-2); color: var(--ink); font-weight: 600; }
-.theme-btn { border: 1px solid var(--border-strong); background: transparent; color: var(--ink-2); border-radius: 6px; padding: .3rem .55rem; cursor: pointer; font: inherit; font-size: .85rem; }
+.theme-btn { order: 2; margin-left: auto; border: 1px solid var(--border-strong); background: transparent; color: var(--ink-2); border-radius: 6px; padding: .3rem .55rem; cursor: pointer; font: inherit; font-size: .85rem; }
+@media (max-width: 720px) {
+  .topbar { position: static; }
+  .brand { white-space: normal; min-width: 0; flex: 1 1 auto; }
+  .brand span { display: block; font-size: .8rem; }
+  nav.main { margin: 0 -.45rem; gap: 0; }
+  nav.main a { padding: .4rem .45rem; font-size: .9rem; }
+}
 
 main { padding: 1.5rem 0 3rem; }
 header.page-head { margin-bottom: 1rem; }
@@ -533,16 +548,18 @@ SITE_JS = r"""
   };
 
   /* ---------------- table view ---------------- */
+  /* Column classes: num right-aligns; hideSm drops a secondary column on narrow screens (the CSV keeps it). */
+  function colClass(c) { var k = [c.num ? 'num' : '', c.hideSm ? 'hide-sm' : ''].join(' ').trim(); return k || null; }
   WF.buildTable = function (columns, rows, opts) {
     var t = el('table'); if (opts && opts.cls) t.className = opts.cls;
     var thead = el('thead'), tr = el('tr');
-    columns.forEach(function (c) { var th = el('th', c.num ? 'num' : null, c.label || c.key); if (opts && opts.sortable) { th.className += ' sortable'; th.setAttribute('data-key', c.key); th.setAttribute('data-num', c.num ? '1' : '0'); } tr.appendChild(th); });
+    columns.forEach(function (c) { var th = el('th', colClass(c), c.label || c.key); if (opts && opts.sortable) { th.className += ' sortable'; th.setAttribute('data-key', c.key); th.setAttribute('data-num', c.num ? '1' : '0'); } tr.appendChild(th); });
     thead.appendChild(tr); t.appendChild(thead);
     var tb = el('tbody');
     rows.forEach(function (r) {
       var row = el('tr'); if (r._missing) row.className = 'missing-row';
       columns.forEach(function (c) {
-        var v = r[c.key]; var td = el('td', c.num ? 'num' : null);
+        var v = r[c.key]; var td = el('td', colClass(c));
         if (c.fmt && v !== null && v !== undefined && v !== '') td.textContent = c.fmt(v); else td.textContent = (v === null || v === undefined) ? '' : String(v);
         row.appendChild(td);
       });
@@ -569,7 +586,7 @@ SITE_JS = r"""
       }
       sorted.forEach(function (r) {
         var row = el('tr'); if (r._missing) row.className = 'missing-row';
-        columns.forEach(function (c) { var v = r[c.key]; var td = el('td', c.num ? 'num' : null); td.textContent = (c.fmt && v !== null && v !== undefined && v !== '') ? c.fmt(v) : ((v === null || v === undefined) ? '' : String(v)); row.appendChild(td); });
+        columns.forEach(function (c) { var v = r[c.key]; var td = el('td', colClass(c)); td.textContent = (c.fmt && v !== null && v !== undefined && v !== '') ? c.fmt(v) : ((v === null || v === undefined) ? '' : String(v)); row.appendChild(td); });
         tb.appendChild(row);
       });
       for (var i = 0; i < ths.length; i++) { var k = ths[i].getAttribute('data-key'); if (k === state.key) ths[i].setAttribute('aria-sort', state.dir > 0 ? 'ascending' : 'descending'); else ths[i].removeAttribute('aria-sort'); }

@@ -27,8 +27,8 @@ The cause is undetermined for <button type="button" class="q" data-claim="cause.
 <div class="grid2">
 <div>
 <h3>Debris burning has a season, and it differs by region</h3>
-<ul class="tight"><li><strong>Alaska</strong>: busiest in May, Jun, Apr; <button type="button" class="q" data-claim="calendar.debris_peak">17%</button> in March and April.</li><li><strong>Northeast</strong>: busiest in Apr, May, Mar; <button type="button" class="q" data-claim="calendar.debris_peak">51%</button> in March and April.</li><li><strong>Other</strong>: busiest in Apr, May, Mar; <button type="button" class="q" data-claim="calendar.debris_peak">54%</button> in March and April.</li><li><strong>South</strong>: busiest in Mar, Feb, Apr; <button type="button" class="q" data-claim="calendar.debris_peak">34%</button> in March and April.</li><li><strong>West</strong>: busiest in May, Jun, Apr; <button type="button" class="q" data-claim="calendar.debris_peak">22%</button> in March and April.</li></ul>
-<p class="small">Burn-permit timing and red-flag messaging for debris burning belong in late winter and spring in the South, Northeast and Midwest, and in late spring in the West and Alaska.</p>
+<ul class="tight"><li><strong>Alaska</strong>: busiest in May, Jun, Apr; <button type="button" class="q" data-claim="calendar.debris_peak">17%</button> in March and April.</li><li><strong>Northeast</strong>: busiest in Apr, May, Mar; <button type="button" class="q" data-claim="calendar.debris_peak">51%</button> in March and April.</li><li><strong>Midwest and Plains (Other)</strong>: busiest in Apr, May, Mar; <button type="button" class="q" data-claim="calendar.debris_peak">54%</button> in March and April.</li><li><strong>South</strong>: busiest in Mar, Feb, Apr; <button type="button" class="q" data-claim="calendar.debris_peak">34%</button> in March and April.</li><li><strong>West</strong>: busiest in May, Jun, Apr; <button type="button" class="q" data-claim="calendar.debris_peak">22%</button> in March and April.</li></ul>
+<p class="small">Burn-permit timing and red-flag messaging for debris burning belong in late winter and spring in the South, the Northeast and the Midwest and Plains, and in late spring in the West and Alaska. The Midwest and Plains region is every state not in the other regions, which also puts DC, Delaware and Maryland in it.</p>
 </div>
 <div>
 <h3>4 July</h3>
@@ -66,7 +66,7 @@ New Year's Eve and Day together run <button type="button" class="q" data-claim="
 </div></main>
 <footer class="site"><div class="wrap">
   <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
-  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  Site generated 2026-09-28 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
   <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
   <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
 </div></footer>
@@ -185,6 +185,9 @@ New Year's Eve and Day together run <button type="button" class="q" data-claim="
   var ctrl = document.createElement('div'), mode = 'row';
   var sel = document.createElement('select'); sel.setAttribute('aria-label', 'Region');
   var RL = { Other: 'Midwest and Plains (Other)' };
+  var SHORT = { 'Debris and open burning': 'Debris burning', 'Arson/incendiarism': 'Arson', 'Equipment and vehicle use': 'Equipment, vehicles',
+    'Recreation and ceremony': 'Recreation', 'Misuse of fire by a minor': 'Children', 'Railroad operations and maintenance': 'Railroads',
+    'Power generation/transmission/distribution': 'Power lines', 'Firearms and explosives use': 'Firearms', 'Other causes': 'Other' };
   regions.forEach(function (r) { sel.appendChild(new Option((RL[r] || r) + ' (' + WF.fmt.int(cal.totals[r]) + ' fires)', r)); });
   ctrl.appendChild(sel);
   ctrl.appendChild(WF.segControl([{ label: 'Each cause\'s season', value: 'row' }, { label: 'Share of all fires', value: 'all' }], function (v) { mode = v; entry.render(); }));
@@ -197,12 +200,17 @@ New Year's Eve and Day together run <button type="button" class="q" data-claim="
     build: function (t) {
       var z = grid(region), tot = cal.totals[region] || 1;
       var rs = z.map(function (row) { return row.reduce(function (a, b) { return a + b; }, 0); });
-      var lab = gens.map(function (g, i) { return (g === MISS ? 'Cause not recorded' : g) + (mode === 'row' ? ' (' + WF.fmt.compact(rs[i]) + ')' : ''); });
+      // On a phone the long cause names and a side colour bar leave the grid a few pixels wide: shorten the names and put the bar underneath.
+      var narrow = (document.getElementById('cal-heat') || document.body).clientWidth < 600;
+      var lab = gens.map(function (g, i) { return (g === MISS ? 'Cause not recorded' : (narrow && SHORT[g]) || g) + (mode === 'row' ? ' (' + WF.fmt.compact(rs[i]) + ')' : ''); });
       var zz = z.map(function (row, i) { return row.map(function (v) { return mode === 'row' ? (rs[i] ? 100 * v / rs[i] : null) : 100 * v / tot; }); });
       var unit = mode === 'row' ? 'of this cause\'s fires' : 'of the region\'s fires';
-      return { data: [{ type: 'heatmap', x: WF.monthNames, y: lab, z: zz, customdata: z,
-        colorscale: WF.seqScale(t), xgap: 2, ygap: 2, zmin: 0, hovertemplate: '%{y}, %{x}: %{customdata:,} fires (%{z:.1f}% ' + unit + ')<extra></extra>', colorbar: { title: { text: '%' }, thickness: 10, ticksuffix: '%' } }],
-        layout: { margin: { l: 10 }, yaxis: { autorange: 'reversed', automargin: true, tickfont: { size: 11 } } } };
+      var full = gens.map(function (g) { return WF.monthNames.map(function () { return g === MISS ? 'Cause not recorded' : g; }); });
+      var cb = narrow ? { title: { text: '%', side: 'right' }, thickness: 8, ticksuffix: '%', orientation: 'h', x: 0, xanchor: 'left', y: -0.08, yanchor: 'top', len: 1 }
+                      : { title: { text: '%' }, thickness: 10, ticksuffix: '%' };
+      return { data: [{ type: 'heatmap', x: WF.monthNames, y: lab, z: zz, customdata: z, text: full,
+        colorscale: WF.seqScale(t), xgap: narrow ? 1 : 2, ygap: 2, zmin: 0, hovertemplate: '%{text}, %{x}: %{customdata:,} fires (%{z:.1f}% ' + unit + ')<extra></extra>', colorbar: cb }],
+        layout: { margin: narrow ? { l: 4, r: 4, b: 70 } : { l: 10 }, xaxis: narrow ? { tickfont: { size: 9 }, tickangle: -90, dtick: 1 } : {}, yaxis: { autorange: 'reversed', automargin: true, tickfont: { size: narrow ? 10 : 11 } } } };
     }
   });
   sel.onchange = function () { region = sel.value; entry.render(); };

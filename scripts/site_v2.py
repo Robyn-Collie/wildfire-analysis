@@ -260,13 +260,14 @@ NIFC_JS = r"""
   var a = C['nifc.annual'].value, ys = WF.years(a), roll = C['nifc.rolling_p10_p50_p90'].value, rys = WF.years(roll);
   var ts = C['nifc.theil_sen'].value;
   WF.chart({ el: 'nifc-acres', title: 'Acres burned per year, United States, 1983-2025', claims: ['nifc.annual', 'nifc.rolling_p10_p50_p90', 'nifc.theil_sen', 'nifc.definition'],
-    sub: 'National Interagency Coordination Center totals, all jurisdictions. Band: the 10th to 90th percentile of the 11 years centred on each year.',
+    sub: 'National Interagency Coordination Center totals, all jurisdictions. Dotted lines: the 10th and 90th percentile of the 11 years centred on each year.',
     rows: ys.map(function (y) { var r = roll[y] || {}; return { year: y, acres: a[y].acres, fires: a[y].fires, rolling_p10_million: r.p10, rolling_p50_million: r.p50, rolling_p90_million: r.p90 }; }),
     columns: [{ key: 'year' }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'rolling_p10_million', label: 'rolling p10 (M acres)', num: true }, { key: 'rolling_p50_million', label: 'rolling median (M)', num: true }, { key: 'rolling_p90_million', label: 'rolling p90 (M)', num: true }],
     height: 340,
     build: function (t) { return { data: [
-      { type: 'scatter', mode: 'lines', x: rys, y: rys.map(function (y) { return roll[y].p90 * 1e6; }), line: { width: 0 }, hoverinfo: 'skip', showlegend: false },
-      { type: 'scatter', mode: 'lines', x: rys, y: rys.map(function (y) { return roll[y].p10 * 1e6; }), fill: 'tonexty', fillcolor: t.seq[0], line: { width: 0 }, name: '11-year p10-p90', hoverinfo: 'skip' },
+      // Percentile lines, not a filled band: Plotly draws scatter fills above bars whatever the trace order, so a band hides them.
+      { type: 'scatter', mode: 'lines', x: rys, y: rys.map(function (y) { return roll[y].p90 * 1e6; }), line: { color: t.series[0], dash: 'dot', width: 2 }, name: '11-year p10 and p90', legendgroup: 'band', hovertemplate: '%{x}: 11-year p90 %{y:.3s} acres<extra></extra>' },
+      { type: 'scatter', mode: 'lines', x: rys, y: rys.map(function (y) { return roll[y].p10 * 1e6; }), line: { color: t.series[0], dash: 'dot', width: 2 }, name: '11-year p10', legendgroup: 'band', showlegend: false, hovertemplate: '%{x}: 11-year p10 %{y:.3s} acres<extra></extra>' },
       { type: 'bar', x: ys, y: ys.map(function (y) { return a[y].acres; }), marker: { color: t.series[1] }, name: 'acres', hovertemplate: '%{x}: %{y:,} acres<extra></extra>' },
       { type: 'scatter', mode: 'lines', x: ys, y: ys.map(function (y) { return (ts.intercept + ts.slope_per_decade / 10 * y) * 1e6; }), line: { color: t.ink2, dash: 'dash', width: 1.5 }, name: 'Theil-Sen', hoverinfo: 'skip' }],
       layout: { yaxis: { title: { text: 'acres' }, tickformat: '.2s', rangemode: 'tozero' }, legend: { y: -0.2 }, barmode: 'overlay' } }; }
@@ -318,6 +319,9 @@ CAL_JS = r"""
   var ctrl = document.createElement('div'), mode = 'row';
   var sel = document.createElement('select'); sel.setAttribute('aria-label', 'Region');
   var RL = { Other: 'Midwest and Plains (Other)' };
+  var SHORT = { 'Debris and open burning': 'Debris burning', 'Arson/incendiarism': 'Arson', 'Equipment and vehicle use': 'Equipment, vehicles',
+    'Recreation and ceremony': 'Recreation', 'Misuse of fire by a minor': 'Children', 'Railroad operations and maintenance': 'Railroads',
+    'Power generation/transmission/distribution': 'Power lines', 'Firearms and explosives use': 'Firearms', 'Other causes': 'Other' };
   regions.forEach(function (r) { sel.appendChild(new Option((RL[r] || r) + ' (' + WF.fmt.int(cal.totals[r]) + ' fires)', r)); });
   ctrl.appendChild(sel);
   ctrl.appendChild(WF.segControl([{ label: 'Each cause\'s season', value: 'row' }, { label: 'Share of all fires', value: 'all' }], function (v) { mode = v; entry.render(); }));
@@ -330,12 +334,17 @@ CAL_JS = r"""
     build: function (t) {
       var z = grid(region), tot = cal.totals[region] || 1;
       var rs = z.map(function (row) { return row.reduce(function (a, b) { return a + b; }, 0); });
-      var lab = gens.map(function (g, i) { return (g === MISS ? 'Cause not recorded' : g) + (mode === 'row' ? ' (' + WF.fmt.compact(rs[i]) + ')' : ''); });
+      // On a phone the long cause names and a side colour bar leave the grid a few pixels wide: shorten the names and put the bar underneath.
+      var narrow = (document.getElementById('cal-heat') || document.body).clientWidth < 600;
+      var lab = gens.map(function (g, i) { return (g === MISS ? 'Cause not recorded' : (narrow && SHORT[g]) || g) + (mode === 'row' ? ' (' + WF.fmt.compact(rs[i]) + ')' : ''); });
       var zz = z.map(function (row, i) { return row.map(function (v) { return mode === 'row' ? (rs[i] ? 100 * v / rs[i] : null) : 100 * v / tot; }); });
       var unit = mode === 'row' ? 'of this cause\'s fires' : 'of the region\'s fires';
-      return { data: [{ type: 'heatmap', x: WF.monthNames, y: lab, z: zz, customdata: z,
-        colorscale: WF.seqScale(t), xgap: 2, ygap: 2, zmin: 0, hovertemplate: '%{y}, %{x}: %{customdata:,} fires (%{z:.1f}% ' + unit + ')<extra></extra>', colorbar: { title: { text: '%' }, thickness: 10, ticksuffix: '%' } }],
-        layout: { margin: { l: 10 }, yaxis: { autorange: 'reversed', automargin: true, tickfont: { size: 11 } } } };
+      var full = gens.map(function (g) { return WF.monthNames.map(function () { return g === MISS ? 'Cause not recorded' : g; }); });
+      var cb = narrow ? { title: { text: '%', side: 'right' }, thickness: 8, ticksuffix: '%', orientation: 'h', x: 0, xanchor: 'left', y: -0.08, yanchor: 'top', len: 1 }
+                      : { title: { text: '%' }, thickness: 10, ticksuffix: '%' };
+      return { data: [{ type: 'heatmap', x: WF.monthNames, y: lab, z: zz, customdata: z, text: full,
+        colorscale: WF.seqScale(t), xgap: narrow ? 1 : 2, ygap: 2, zmin: 0, hovertemplate: '%{text}, %{x}: %{customdata:,} fires (%{z:.1f}% ' + unit + ')<extra></extra>', colorbar: cb }],
+        layout: { margin: narrow ? { l: 4, r: 4, b: 70 } : { l: 10 }, xaxis: narrow ? { tickfont: { size: 9 }, tickangle: -90, dtick: 1 } : {}, yaxis: { autorange: 'reversed', automargin: true, tickfont: { size: narrow ? 10 : 11 } } } };
     }
   });
   sel.onchange = function () { region = sel.value; entry.render(); };
@@ -367,6 +376,10 @@ CAL_JS = r"""
   }
 })();
 """
+
+
+# The analysis calls this region "Other" (analysis/common.py REGION_DEFINITION); the calendar chart uses the same label.
+REGION_LABEL = {'Other': 'Midwest and Plains (Other)'}
 
 
 def calendar_data() -> dict | None:
@@ -404,8 +417,8 @@ def calendar_section(ctx: dict) -> str:
 <div class="grid2">
 <div>
 <h3>Debris burning has a season, and it differs by region</h3>
-<ul class="tight">{''.join(f'<li><strong>{esc(r)}</strong>: busiest in {", ".join(v["peak_months"])}; {q(c, "calendar.debris_peak", fmt_pct(v["mar_apr_share"], 0))} in March and April.</li>' for r, v in deb.items())}</ul>
-<p class="small">Burn-permit timing and red-flag messaging for debris burning belong in late winter and spring in the South, Northeast and Midwest, and in late spring in the West and Alaska.</p>
+<ul class="tight">{''.join(f'<li><strong>{esc(REGION_LABEL.get(r, r))}</strong>: busiest in {", ".join(v["peak_months"])}; {q(c, "calendar.debris_peak", fmt_pct(v["mar_apr_share"], 0))} in March and April.</li>' for r, v in deb.items())}</ul>
+<p class="small">Burn-permit timing and red-flag messaging for debris burning belong in late winter and spring in the South, the Northeast and the Midwest and Plains, and in late spring in the West and Alaska. The Midwest and Plains region is every state not in the other regions, which also puts DC, Delaware and Maryland in it.</p>
 </div>
 <div>
 <h3>4 July</h3>
@@ -579,8 +592,8 @@ def page_place(ctx: dict, st: str) -> str:
             f'<li><span>{esc(k)}</span><span class="bar"><i style="width:{100 * v["acre_share"]:.0f}%"></i></span><span class="v">{q(c, cid, fmt_pct(v["acre_share"], 0))} of acres · {q(c, cid, fmt_pct(v["fire_share"], 0))} of fires</span></li>'
             for k, v in g.items()) + '</ul>')
         if prot['top_units']:
-            prot_html += '<div class="table-wrap"><table><thead><tr><th>Protected or public unit</th><th>Manager</th><th>Designation</th><th class="num">Fires</th><th class="num">Acres</th></tr></thead><tbody>' + ''.join(
-                f'<tr><td>{esc(u["unit"])}</td><td>{esc(u["manager"])}</td><td>{esc(u["designation"])}</td><td class="num">{q(c, cid, fmt_int(u["fires"]))}</td><td class="num">{q(c, cid, fmt_int(u["acres"]))}</td></tr>'
+            prot_html += '<div class="table-wrap"><table><thead><tr><th>Protected or public unit</th><th class="num">Acres</th><th class="num">Fires</th><th>Manager</th><th>Designation</th></tr></thead><tbody>' + ''.join(
+                f'<tr><td>{esc(u["unit"])}</td><td class="num">{q(c, cid, fmt_int(u["acres"]))}</td><td class="num">{q(c, cid, fmt_int(u["fires"]))}</td><td>{esc(u["manager"])}</td><td>{esc(u["designation"])}</td></tr>'
                 for u in prot['top_units']) + '</tbody></table></div>'
         if prot['tribal']['fires']:
             prot_html += f'<p class="small">Tribal lands: {q(c, cid, fmt_int(prot["tribal"]["fires"]) + " fires")}, {q(c, cid, fmt_int(prot["tribal"]["acres"]) + " acres")}.</p>'
@@ -675,9 +688,10 @@ LARGEST_JS = r"""
   var L = WF.data.largest, C = WF.data.claims; if (!L) return;
   var host = document.getElementById('largest-table');
   var input = document.getElementById('largest-search');
-  var cols = [{ key: 'rank', num: true }, { key: 'name', label: 'Incident' }, { key: 'states', label: 'State' }, { key: 'years', label: 'Year' },
-    { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'components', label: 'fires in it', num: true }, { key: 'largest_component_acres', label: 'largest single fire', num: true, fmt: WF.fmt.int },
-    { key: 'cause' }, { key: 'component_names', label: 'component fires' }];
+  // Acres sits next to the name so it stays on screen on phones, where the secondary columns are dropped.
+  var cols = [{ key: 'rank', num: true }, { key: 'name', label: 'Incident' }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'states', label: 'State' }, { key: 'years', label: 'Year' },
+    { key: 'components', label: 'fires in it', num: true, hideSm: true }, { key: 'largest_component_acres', label: 'largest single fire', num: true, fmt: WF.fmt.int, hideSm: true },
+    { key: 'cause', hideSm: true }, { key: 'component_names', label: 'component fires', hideSm: true }];
   function draw(filter) {
     host.textContent = '';
     var rows = L.filter(function (r) { if (!filter) return +r.rank <= 100; var s = (r.name + ' ' + r.states + ' ' + r.years + ' ' + r.component_names).toLowerCase(); return s.indexOf(filter) >= 0; });
@@ -717,7 +731,7 @@ def page_largest(ctx: dict) -> str:
 Lightning started {q(c, 'incidents.largest100_summary', str(s['by_cause'].get('Natural', 0)))} of them and people {q(c, 'incidents.largest100_summary', str(s['by_cause'].get('Human', 0)))}; {q(c, 'incidents.largest100_summary', str(s['by_cause'].get(MISS, 0)))} have no recorded cause.</p>
 <div class="toolbar"><input id="largest-search" class="search" type="search" placeholder="Search the 250 largest by name, state or year" aria-label="Search incidents"><a class="btn" href="downloads/largest_incidents.csv">Download the 250 largest (CSV)</a></div>
 <div id="largest-table" class="table-wrap"></div>
-<p class="small muted">Acres are the sum of the component records' FIRE_SIZE. When fires merged and each record reports the merged area, the sum overstates; compare it with the largest single fire. The cause and state are those of the largest component. Names are as recorded.</p>
+<p class="small muted">On a narrow screen the table shows rank, name, acres, state and year; the CSV has every column. Acres are the sum of the component records' FIRE_SIZE. When fires merged and each record reports the merged area, the sum overstates; compare it with the largest single fire. The cause and state are those of the largest component. Names are as recorded.</p>
 {B.chart_div('big-per-year')}
 """
     return B.layout(ctx, 'largest.html', 'Largest fires · ' + B.SITE_TITLE, body, LARGEST_JS, extra_scripts=[ctx['largest_data']],

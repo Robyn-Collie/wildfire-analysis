@@ -65,7 +65,7 @@ The trend is carried by extreme years, which is what a fire regime driven by a f
 </div></main>
 <footer class="site"><div class="wrap">
   <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
-  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  Site generated 2026-09-28 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
   <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
   <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
 </div></footer>
@@ -80,13 +80,14 @@ The trend is carried by extreme years, which is what a fire regime driven by a f
   var a = C['nifc.annual'].value, ys = WF.years(a), roll = C['nifc.rolling_p10_p50_p90'].value, rys = WF.years(roll);
   var ts = C['nifc.theil_sen'].value;
   WF.chart({ el: 'nifc-acres', title: 'Acres burned per year, United States, 1983-2025', claims: ['nifc.annual', 'nifc.rolling_p10_p50_p90', 'nifc.theil_sen', 'nifc.definition'],
-    sub: 'National Interagency Coordination Center totals, all jurisdictions. Band: the 10th to 90th percentile of the 11 years centred on each year.',
+    sub: 'National Interagency Coordination Center totals, all jurisdictions. Dotted lines: the 10th and 90th percentile of the 11 years centred on each year.',
     rows: ys.map(function (y) { var r = roll[y] || {}; return { year: y, acres: a[y].acres, fires: a[y].fires, rolling_p10_million: r.p10, rolling_p50_million: r.p50, rolling_p90_million: r.p90 }; }),
     columns: [{ key: 'year' }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'rolling_p10_million', label: 'rolling p10 (M acres)', num: true }, { key: 'rolling_p50_million', label: 'rolling median (M)', num: true }, { key: 'rolling_p90_million', label: 'rolling p90 (M)', num: true }],
     height: 340,
     build: function (t) { return { data: [
-      { type: 'scatter', mode: 'lines', x: rys, y: rys.map(function (y) { return roll[y].p90 * 1e6; }), line: { width: 0 }, hoverinfo: 'skip', showlegend: false },
-      { type: 'scatter', mode: 'lines', x: rys, y: rys.map(function (y) { return roll[y].p10 * 1e6; }), fill: 'tonexty', fillcolor: t.seq[0], line: { width: 0 }, name: '11-year p10-p90', hoverinfo: 'skip' },
+      // Percentile lines, not a filled band: Plotly draws scatter fills above bars whatever the trace order, so a band hides them.
+      { type: 'scatter', mode: 'lines', x: rys, y: rys.map(function (y) { return roll[y].p90 * 1e6; }), line: { color: t.series[0], dash: 'dot', width: 2 }, name: '11-year p10 and p90', legendgroup: 'band', hovertemplate: '%{x}: 11-year p90 %{y:.3s} acres<extra></extra>' },
+      { type: 'scatter', mode: 'lines', x: rys, y: rys.map(function (y) { return roll[y].p10 * 1e6; }), line: { color: t.series[0], dash: 'dot', width: 2 }, name: '11-year p10', legendgroup: 'band', showlegend: false, hovertemplate: '%{x}: 11-year p10 %{y:.3s} acres<extra></extra>' },
       { type: 'bar', x: ys, y: ys.map(function (y) { return a[y].acres; }), marker: { color: t.series[1] }, name: 'acres', hovertemplate: '%{x}: %{y:,} acres<extra></extra>' },
       { type: 'scatter', mode: 'lines', x: ys, y: ys.map(function (y) { return (ts.intercept + ts.slope_per_decade / 10 * y) * 1e6; }), line: { color: t.ink2, dash: 'dash', width: 1.5 }, name: 'Theil-Sen', hoverinfo: 'skip' }],
       layout: { yaxis: { title: { text: 'acres' }, tickformat: '.2s', rangemode: 'tozero' }, legend: { y: -0.2 }, barmode: 'overlay' } }; }
