@@ -38,7 +38,7 @@ TYPES = {
     'S-5.7': 'docs',
     'S-6.1': 'data', 'S-6.2': 'data', 'S-6.3': 'data', 'S-6.4': 'data', 'S-6.5': 'data', 'S-6.6': 'docs',
     'S-7.1': 'docs', 'S-7.2': 'infra', 'S-7.3': 'docs', 'S-7.4': 'docs', 'S-7.5': 'infra', 'S-7.6': 'docs',
-    'S-7.7': 'infra',
+    'S-7.7': 'infra', 'S-7.9': 'docs', 'S-7.10': 'infra', 'S-7.11': 'bug',
 }
 
 

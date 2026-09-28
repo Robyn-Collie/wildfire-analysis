@@ -47,7 +47,7 @@
 
 <h2 id="ledger">Claims ledger</h2>
 <p>Search by id, definition or source. Object values expand in place. <button type="button" class="btn" id="ledger-csv">Download CSV</button></p>
-<p><input class="search" id="ledger-search" type="search" placeholder="Search claims, e.g. class_g or containment" aria-label="Search claims"> <span class="small muted" id="ledger-count"></span></p>
+<p><input class="search" id="ledger-search" type="search" placeholder="Search claims, e.g. class_g or containment" aria-label="Search claims"> <span class="small muted" id="ledger-count"></span> <button type="button" class="btn" id="ledger-all">Show all claims</button></p>
 <div class="table-wrap"><table class="ledger"><thead><tr><th>id</th><th>value</th><th>unit</th><th class="num">n</th><th>definition</th><th>source</th></tr></thead><tbody id="ledger-body"></tbody></table></div>
 
 <h2 id="downloads">Downloads</h2><p>Every table behind the site, as CSV, and every claims ledger as JSON. The per-state calendars are linked from each state brief.</p><ul class="tight"><li><a href="downloads/places_summary.csv">places_summary.csv</a> <span class="muted small">one row per state</span></li><li><a href="downloads/state_year.csv">state_year.csv</a> <span class="muted small">fires, acres, large fires and the usable flag per state-year</span></li><li><a href="downloads/calendar_regions.csv">calendar_regions.csv</a> <span class="muted small">fires by region, month and general cause, usable state-years</span></li><li><a href="downloads/largest_incidents.csv">largest_incidents.csv</a> <span class="muted small">the 250 largest incidents, grouped, with component fires</span></li><li><a href="downloads/coverage_state_year.csv">coverage_state_year.csv</a> <span class="muted small">record counts, breaks and usable windows per state-year</span></li><li><a href="downloads/claims.json">claims.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_conservation.json">claims_conservation.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_drivers.json">claims_drivers.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_incidents.json">claims_incidents.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_model.json">claims_model.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_nifc.json">claims_nifc.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_places.json">claims_places.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_wfigs.json">claims_wfigs.json</a> <span class="muted small">claims ledger</span></li></ul>
@@ -116,11 +116,15 @@
     return tr;
   }
   ids.forEach(function (id) { host.appendChild(row(id)); });
+  // The full ledger is tens of thousands of pixels tall on a phone: show the first rows until the reader searches or asks for all.
+  var FIRST = 20, all = false, more = document.getElementById('ledger-all');
   function filter() {
     var qv = (input.value || '').toLowerCase().trim(), n = 0;
-    for (var i = 0; i < host.children.length; i++) { var tr = host.children[i]; var show = !qv || tr.getAttribute('data-text').indexOf(qv) >= 0; tr.hidden = !show; if (show) n++; }
-    count.textContent = n + ' of ' + ids.length + ' claims';
+    for (var i = 0; i < host.children.length; i++) { var tr = host.children[i]; var show = (!qv || tr.getAttribute('data-text').indexOf(qv) >= 0) && (qv || all || i < FIRST); tr.hidden = !show; if (show) n++; }
+    count.textContent = (qv ? n + ' of ' + ids.length : (all ? 'All ' + ids.length : 'First ' + n + ' of ' + ids.length)) + ' claims';
+    more.hidden = !!qv || all;
   }
+  more.onclick = function () { all = true; filter(); };
   input.addEventListener('input', filter); filter();
   document.getElementById('ledger-csv').onclick = function () {
     var cols = [{ key: 'id' }, { key: 'value' }, { key: 'unit' }, { key: 'n' }, { key: 'definition' }, { key: 'note' }, { key: 'source' }, { key: 'file' }, { key: 'computed_at' }];

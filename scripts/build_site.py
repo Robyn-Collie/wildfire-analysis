@@ -22,6 +22,7 @@ import glob
 import html
 import json
 import os
+import re
 import shutil
 import sys
 
@@ -148,6 +149,19 @@ def V():
     sys.modules.setdefault('build_site', sys.modules[__name__])
     import site_v2
     return site_v2
+
+
+# Letter groups in incident names that are acronyms or initials, kept upper case by name_case().
+NAME_UPPER = {'NW', 'NE', 'SW', 'SE', 'SQF', 'SHF', 'BJ', 'MM', 'MP', 'BLM', 'USFS', 'NPS', 'II', 'III', 'IV'}
+
+
+def name_case(s) -> str:
+    """Title-case an upper-case incident name without str.title()'s slips: 'NW OKLAHOMA COMPLEX' ->
+    'NW Oklahoma Complex' (not 'Nw'), "COX'S WELL" -> "Cox's Well" (not "Cox'S")."""
+    def word(m):
+        w = m.group(0)
+        return w.upper() if w.upper() in NAME_UPPER else w[0].upper() + w[1:].lower()
+    return re.sub(r"[A-Za-z]+(?:'[A-Za-z]+)?", word, str(s))
 
 
 def esc(s) -> str:
@@ -339,6 +353,8 @@ header.page-head { margin-bottom: 1rem; }
 button.q { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer;
   border-bottom: 1px dotted var(--link); font-variant-numeric: tabular-nums; text-align: left; display: inline; }
 button.q:hover { color: var(--link); }
+/* Touch screens: a taller hit area on inline numbers and more room between lines that carry several of them. */
+@media (pointer: coarse) { button.q { padding: .3rem 0; } main p:has(button.q) { line-height: 1.75; } }
 .popover { position: absolute; z-index: 50; max-width: min(92vw, 420px); background: var(--surface); color: var(--ink);
   border: 1px solid var(--border-strong); border-radius: var(--radius); padding: .75rem .9rem; font-size: .85rem;
   box-shadow: 0 6px 24px rgba(0,0,0,.18); }
@@ -359,7 +375,6 @@ button.q:hover { color: var(--link); }
 .chart .foot button, .btn { font: inherit; font-size: .8rem; border: 1px solid var(--border-strong); background: transparent; color: var(--ink-2);
   border-radius: 6px; padding: .2rem .55rem; cursor: pointer; }
 .chart .foot button:hover, .btn:hover { background: var(--surface-2); }
-.chart .foot .ids { font-family: var(--mono); font-size: .72rem; overflow-wrap: anywhere; }
 .chart .caption { font-size: .85rem; color: var(--ink-2); margin: .5rem 0 0; max-width: none; }
 .chart .tableview { margin-top: .5rem; }
 .chart .tableview table { font-size: .82rem; }
@@ -381,9 +396,9 @@ th.sortable[aria-sort="ascending"]::after { content: " \2191"; color: var(--ink)
 th.sortable[aria-sort="descending"]::after { content: " \2193"; color: var(--ink); }
 input.search { font: inherit; padding: .4rem .6rem; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; max-width: 420px; }
 .ledger td { font-size: .82rem; }
-.ledger td.id { font-family: var(--mono); font-size: .75rem; overflow-wrap: anywhere; }
+.ledger td.id { font-family: var(--mono); font-size: .8rem; overflow-wrap: anywhere; }
 .ledger details summary { cursor: pointer; color: var(--link); }
-.ledger pre { max-height: 240px; overflow: auto; margin: .3rem 0 0; font-size: .72rem; }
+.ledger pre { max-height: 240px; overflow: auto; margin: .3rem 0 0; font-size: .8rem; }
 tr.missing-row td { background: var(--surface-2); }
 
 dl.glossary dt { font-weight: 650; margin-top: .75rem; }
@@ -505,6 +520,7 @@ SITE_JS = r"""
         dtdd(dl, 'Unit', c.unit);
         dtdd(dl, 'Note', c.note);
         dtdd(dl, 'Source', c.source + ' (' + c._file + ', computed ' + (c.computed_at || '').slice(0, 10) + ')');
+        dtdd(dl, 'Other claims in this chart', btn.getAttribute('data-claims'));
       } else { dtdd(dl, 'Claim id', id); dtdd(dl, 'Definition', 'not found in the loaded ledger'); }
     } else {
       dtdd(dl, 'Definition', btn.getAttribute('data-def'));
@@ -651,8 +667,9 @@ SITE_JS = r"""
     var defBtn = null;
     if (spec.claims && spec.claims.length) {
       defBtn = el('button', 'q', 'Definition'); defBtn.type = 'button'; defBtn.setAttribute('data-claim', spec.claims[0]);
+      // Every claim id behind the chart is listed in the definition popover rather than printed under the chart.
+      if (spec.claims.length > 1) defBtn.setAttribute('data-claims', spec.claims.slice(1).join(' '));
       foot.appendChild(defBtn);
-      var ids = el('span', 'ids', spec.claims.join(' ')); foot.appendChild(ids);
     } else if (spec.definition) {
       defBtn = el('button', 'q', 'Definition'); defBtn.type = 'button'; defBtn.setAttribute('data-def', spec.definition); defBtn.setAttribute('data-src', spec.source || '');
       foot.appendChild(defBtn);
@@ -1155,7 +1172,7 @@ def page_causes(ctx: dict) -> str:
     lead_row = ''.join(f'<td>{esc(lead[m])}</td>' for m in MONTHS)
     body = f"""
 <header class="page-head"><h1>Seasons and causes</h1>
-<p class="lede">Human ignitions are {q(c, 'cause.by_classification', fmt_pct(bc['Human']['share_fires']))} of recorded fires but {q(c, 'cause.by_classification', fmt_pct(bc['Human']['share_acres']))} of acres. Natural ignitions are {q(c, 'cause.by_classification', fmt_pct(bc['Natural']['share_fires']))} of fires and {q(c, 'cause.by_classification', fmt_pct(bc['Natural']['share_acres']))} of acres.
+<p class="lede">Counting every record from 1992 to 2020, human ignitions are {q(c, 'cause.by_classification', fmt_pct(bc['Human']['share_fires']))} of fires but {q(c, 'cause.by_classification', fmt_pct(bc['Human']['share_acres']))} of acres. Natural ignitions are {q(c, 'cause.by_classification', fmt_pct(bc['Natural']['share_fires']))} of fires and {q(c, 'cause.by_classification', fmt_pct(bc['Natural']['share_acres']))} of acres.
 The cause is undetermined for {q(c, 'cause.by_classification', fmt_pct(bc[miss]['share_fires']))} of fires, and that share is never dropped from a chart on this site.</p></header>
 
 {V().calendar_section(ctx)}
@@ -1397,11 +1414,15 @@ METHODS_JS = r"""
     return tr;
   }
   ids.forEach(function (id) { host.appendChild(row(id)); });
+  // The full ledger is tens of thousands of pixels tall on a phone: show the first rows until the reader searches or asks for all.
+  var FIRST = 20, all = false, more = document.getElementById('ledger-all');
   function filter() {
     var qv = (input.value || '').toLowerCase().trim(), n = 0;
-    for (var i = 0; i < host.children.length; i++) { var tr = host.children[i]; var show = !qv || tr.getAttribute('data-text').indexOf(qv) >= 0; tr.hidden = !show; if (show) n++; }
-    count.textContent = n + ' of ' + ids.length + ' claims';
+    for (var i = 0; i < host.children.length; i++) { var tr = host.children[i]; var show = (!qv || tr.getAttribute('data-text').indexOf(qv) >= 0) && (qv || all || i < FIRST); tr.hidden = !show; if (show) n++; }
+    count.textContent = (qv ? n + ' of ' + ids.length : (all ? 'All ' + ids.length : 'First ' + n + ' of ' + ids.length)) + ' claims';
+    more.hidden = !!qv || all;
   }
+  more.onclick = function () { all = true; filter(); };
   input.addEventListener('input', filter); filter();
   document.getElementById('ledger-csv').onclick = function () {
     var cols = [{ key: 'id' }, { key: 'value' }, { key: 'unit' }, { key: 'n' }, { key: 'definition' }, { key: 'note' }, { key: 'source' }, { key: 'file' }, { key: 'computed_at' }];
@@ -1468,7 +1489,7 @@ def page_methods(ctx: dict) -> str:
 
 <h2 id="ledger">Claims ledger</h2>
 <p>Search by id, definition or source. Object values expand in place. <button type="button" class="btn" id="ledger-csv">Download CSV</button></p>
-<p><input class="search" id="ledger-search" type="search" placeholder="Search claims, e.g. class_g or containment" aria-label="Search claims"> <span class="small muted" id="ledger-count"></span></p>
+<p><input class="search" id="ledger-search" type="search" placeholder="Search claims, e.g. class_g or containment" aria-label="Search claims"> <span class="small muted" id="ledger-count"></span> <button type="button" class="btn" id="ledger-all">Show all claims</button></p>
 <div class="table-wrap"><table class="ledger"><thead><tr><th>id</th><th>value</th><th>unit</th><th class="num">n</th><th>definition</th><th>source</th></tr></thead><tbody id="ledger-body"></tbody></table></div>
 
 {V().downloads_section(ctx)}
@@ -1755,7 +1776,7 @@ def page_model(ctx: dict) -> str:
         if cf:
             by = cf['brier_skill_vs_base_rate_by_year']
             fail_html = f"""<div class="note"><p><strong>These are ranks, not probabilities.</strong> For the tenth of 2019-2020 fires it scored highest, the model's mean score was {q(c, 'model.calibration_failure', fmt_pct(cf['top_decile_mean_score']))}; the share that actually reached 300 acres was {q(c, 'model.calibration_failure', fmt_pct(cf['top_decile_observed_rate']))}.
-Read as probabilities, the scores do worse than a single constant rate (Brier skill {q(c, 'model.calibration_failure', fmt_num(cf['brier_skill_vs_base_rate_overall'], 2))}), mostly in 2019, a quiet year after two large seasons ({q(c, 'model.calibration_failure', fmt_num(by.get('2019'), 2))} in 2019, {q(c, 'model.calibration_failure', fmt_num(by.get('2020'), 2))} in 2020). So this page shows how well the model <em>orders</em> fires and never a percent chance for a fire.</p></div>"""
+Read as probabilities, the scores do worse than a single constant rate (Brier skill {q(c, 'model.calibration_failure', fmt_num(cf['brier_skill_vs_base_rate_overall'], 2))}, where 0 is no better than always predicting the average rate and below 0 is worse), mostly in 2019, a quiet year after two large seasons ({q(c, 'model.calibration_failure', fmt_num(by.get('2019'), 2))} in 2019, {q(c, 'model.calibration_failure', fmt_num(by.get('2020'), 2))} in 2020). So this page shows how well the model <em>orders</em> fires and never a percent chance for a fire.</p></div>"""
         lead = ''
         if me and lk:
             lead = (f"On fires from 2019 and 2020 that it never saw, the model's top tenth of scores held {q(c, 'model.capture_at_top', fmt_pct(me['top_10pct'], 0))} of the fires that went on to reach 300 acres, "
@@ -1765,7 +1786,8 @@ Read as probabilities, the scores do worse than a single constant rate (Brier sk
 <p class="lede">A model that ranks newly discovered fires by how likely they are to reach 300 acres, using only what is known on the discovery day. {lead}
 Trained on {esc(card.get('train_years', '?'))}, tested once on {esc(card.get('test_years', '?'))}. Where a fire starts (its fuels, terrain and land status) carries the ranking; weather on the discovery day adds nothing measurable.</p></header>
 {fail_html}
-<div class="note"><p><strong>Coverage.</strong> {esc(cv(c, 'model.coverage', 'text') if 'model.coverage' in c and isinstance(cv(c, 'model.coverage'), dict) and 'text' in cv(c, 'model.coverage') else 'See the coverage claim in the ledger.')}</p></div>
+<div class="note"><p><strong>Coverage.</strong> {esc(cv(c, 'model.coverage', 'text') if 'model.coverage' in c and isinstance(cv(c, 'model.coverage'), dict) and 'text' in cv(c, 'model.coverage') else 'See the coverage claim in the ledger.')}
+CONUS is the lower 48 states and DC; Class G fires are those of 5,000 acres or more.</p></div>
 <h2>How many large fires the top of the ranking finds</h2>
 <p>Share of the 2019-2020 fires that reached 300 acres found among each model's highest-scored fires. Flagging fires at random finds the same share as the share flagged.</p>
 <div class="table-wrap" id="model-capture"></div>
@@ -1913,8 +1935,8 @@ def main() -> int:
             r[k] = round(float(r[k]), 1)
         r['components'] = int(r['components'])
         r['rank'] = int(r['rank'])
-        r['name'] = r['name'].title()
-        r['component_names'] = r['component_names'].title()
+        r['name'] = name_case(r['name'])
+        r['component_names'] = name_case(r['component_names'])
         r['cause'] = 'Not recorded' if r['cause'] == v2.MISS else r['cause']
         for k in ('mtbs_id', 'ics209_id', 'latitude', 'longitude', 'general_cause', 'first_discovery', 'lead_fire', ''):
             r.pop(k, None)

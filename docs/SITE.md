@@ -91,8 +91,9 @@ table view with a notice, so no number depends on it.
 3. Deploy. Every push to the default branch redeploys the committed `site/`; there is no build
    image to configure and no secrets, tokens or API keys anywhere on the site.
 
-   Since version 2 the committed `site/` lacks the map's point files (see above), so a git-linked deploy shows
-   the map's "did not load" notice. Version 2 is deployed from a local build instead, with the Netlify CLI or
+   Since version 2 a git-linked deploy does not work: `.gitignore`'s `data/` rule also matches `site/data/`, so
+   none of the site's data files are committed (not only the map's point files), and every chart page would fail.
+   Version 2 is deployed from a local build instead, with the Netlify CLI or
    the Netlify MCP deploy tool pointed at `site/`. The review deploy is the password-protected project
    `wildfire-record-review`. The public project `us-wildfires` is replaced only on the owner's explicit decision.
 

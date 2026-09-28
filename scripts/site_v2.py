@@ -11,9 +11,10 @@ from __future__ import annotations
 import csv
 import json
 import os
+import re
 
 import build_site as B
-from build_site import cv, esc, fmt_int, fmt_m, fmt_num, fmt_pct, js, q, qd
+from build_site import cv, esc, fmt_int, fmt_m, fmt_num, fmt_pct, js, name_case, q, qd
 
 MONTHS = B.MONTHS
 MISS = 'Missing data/not specified/undetermined'
@@ -49,7 +50,7 @@ main p, main li, main td { overflow-wrap: break-word; }
 .findings h3 { margin: 0 0 .3rem; font-size: 1.02rem; }
 .findings p { margin: 0; font-size: .92rem; color: var(--ink-2); max-width: none; }
 .findings .caveat { margin-top: .35rem; font-size: .84rem; color: var(--muted); }
-.verdict { display: inline-block; font-size: .72rem; font-weight: 650; padding: .08rem .45rem; border-radius: 999px; margin-left: .35rem; vertical-align: 2px; border: 1px solid var(--border-strong); }
+.verdict { display: inline-block; font-size: .8rem; font-weight: 650; padding: .08rem .45rem; border-radius: 999px; margin-left: .35rem; vertical-align: 2px; border: 1px solid var(--border-strong); }
 .verdict.holds { color: var(--s3); border-color: var(--s3); }
 .verdict.revised { color: var(--s4); border-color: var(--s4); }
 .verdict.wrong { color: var(--s8); border-color: var(--s8); }
@@ -89,6 +90,7 @@ main p, main li, main td { overflow-wrap: break-word; }
 .ratetable td, .ratetable th { text-align: right; font-variant-numeric: tabular-nums; padding: .3rem .35rem; font-size: .8rem; }
 .ratetable td:first-child, .ratetable th:first-child { text-align: left; }
 .ratetable td.hi { font-weight: 700; }
+.ratetable td[data-l] { cursor: pointer; }
 .ratetable td.thin { color: var(--muted); }
 .state-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: .35rem; margin: .5rem 0 1rem; }
 .state-grid a { display: block; padding: .3rem .5rem; border: 1px solid var(--border); border-radius: 6px; text-decoration: none; background: var(--surface); font-size: .88rem; }
@@ -100,6 +102,8 @@ main p, main li, main td { overflow-wrap: break-word; }
 .bars .bar { height: 10px; background: var(--seq-100); border-radius: 3px; overflow: hidden; }
 .bars .bar i { display: block; height: 100%; background: var(--s1); }
 .bars .v { font-variant-numeric: tabular-nums; color: var(--ink-2); white-space: nowrap; }
+/* Phones: label on its own row, then the bar with the value beside it (the value may wrap). */
+@media (max-width: 600px) { .bars li { grid-template-columns: minmax(0, 1fr) auto; row-gap: .1rem; margin: .45rem 0; } .bars li > span:first-child { grid-column: 1 / -1; } .bars .v { white-space: normal; text-align: right; } }
 @media print {
   .topbar, footer.site, .console, .toolbar, .chart .foot, .no-print { display: none !important; }
   body { background: #fff; color: #000; font-size: 11pt; }
@@ -116,6 +120,27 @@ def claim_or(c: dict, cid: str, *path, default=None):
         return cv(c, cid, *path)
     except (KeyError, IndexError, TypeError):
         return default
+
+
+MONTH_NAMES = dict(zip(MONTHS, ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']))
+
+
+# PAD-US manager and designation codes shown in the state briefs' protected-units table.
+PADUS_MANAGERS = {'USFS': 'Forest Service', 'FWS': 'Fish and Wildlife Service', 'BLM': 'Bureau of Land Management', 'NPS': 'National Park Service',
+                  'DOD': 'Defense', 'USACE': 'Army Corps of Engineers', 'NRCS': 'Natural Resources Conservation Service', 'TRIB': 'Tribal',
+                  'SDNR': 'State natural resources', 'SFW': 'State fish and wildlife', 'SPR': 'State parks', 'SLB': 'State land board',
+                  'SDC': 'State conservation', 'SDOL': 'State land', 'OTHS': 'Other state', 'CITY': 'City', 'CNTY': 'County', 'NGO': 'Nonprofit', 'UNK': 'Unknown'}
+PADUS_DESIGNATIONS = {'NF': 'National forest', 'NG': 'National grassland', 'NP': 'National park', 'NM': 'National monument', 'NWR': 'National wildlife refuge',
+                      'NRA': 'National recreation area', 'NCA': 'National conservation area', 'WA': 'Wilderness area', 'WSA': 'Wilderness study area',
+                      'WSR': 'Wild and scenic river', 'IRA': 'Inventoried roadless area', 'SRMA': 'Special recreation management area', 'MIL': 'Military land',
+                      'TRIBL': 'Tribal land', 'SCA': 'State conservation area', 'SP': 'State park', 'SOTH': 'Other state land', 'LP': 'Local park',
+                      'LOTH': 'Other local land', 'CONE': 'Conservation easement', 'PCON': 'Private conservation', 'POTH': 'Other private land',
+                      'PUB': 'Public access land', 'SDA': 'Special designation area', 'HCA': 'Historic or cultural area', 'REA': 'Research or education area',
+                      'REC': 'Recreation area', 'PREC': 'Private recreation', 'LRMA': 'Local resource management area', 'RMA': 'Resource management area'}
+
+
+def month_name(m: str | None) -> str:
+    return MONTH_NAMES.get(m, m) if m else 'n/a'
 
 
 def read_csv(name: str) -> list[dict]:
@@ -167,7 +192,8 @@ def page_home(ctx: dict) -> str:
         findings.append(('People start most fires, but lightning burns most of the land in the largest ones',
             f'People caused {q(c, "calendar.human_share", fmt_pct(hs["known_cause"], 0))} of fires whose cause is known, and {q(c, "calendar.human_share", fmt_pct(hs["large_known_cause"], 0))} of fires that reached 300 acres, '
             f'but only {q(c, "calendar.human_share", fmt_pct(hs["large_acres_known_cause"], 0))} of the acres in those large fires.',
-            'Counted inside each state\'s usable reporting years. Cause is not recorded for about one fire in five.', 'causes.html#calendar', 'holds'))
+            f'Counted inside each state\'s usable reporting years, where cause is not recorded for {qd(fmt_pct(1 - hs["all_fires"] / hs["known_cause"], 0), "Share of fires in usable state-years with no cause class recorded: 1 minus (human share of all fires / human share of fires with a known cause), both from calendar.human_share.", "derived from calendar.human_share (analysis.places)")} of fires. '
+            'The Seasons page\'s cause shares count all records, so its figures differ.', 'causes.html#calendar', 'holds'))
     if j4:
         findings.append(('The Fourth of July is the most predictable fire day of the year',
             f'On 4 July the record holds {q(c, "calendar.july4", fmt_num(j4["jul4_ratio"], 1) + " times")} as many new fires as on a typical day in the surrounding weeks, and 4 July was the single busiest day of the year in '
@@ -191,19 +217,19 @@ def page_home(ctx: dict) -> str:
             'Read as probabilities its scores failed in 2019, a quiet year, so the site shows ranks only.', 'model.html', 'holds'))
     if big and dup:
         findings.append(('The largest fires, counted once each',
-            f'The {q(c, "incidents.largest", big[0]["name"].title())} ({q(c, "incidents.largest", fmt_int(big[0]["acres"]) + " acres")}, {big[0]["year"]}) and the {q(c, "incidents.largest", big[1]["name"].title())} ({q(c, "incidents.largest", fmt_int(big[1]["acres"]) + " acres")}, {big[1]["year"]}) lead the list once complexes are grouped. '
+            f'The {q(c, "incidents.largest", name_case(big[0]["name"]))} ({q(c, "incidents.largest", fmt_int(big[0]["acres"]) + " acres")}, {big[0]["year"]}) and the {q(c, "incidents.largest", name_case(big[1]["name"]))} ({q(c, "incidents.largest", fmt_int(big[1]["acres"]) + " acres")}, {big[1]["year"]}) lead the list once complexes are grouped. '
             f'Among the 100 largest records, only {q(c, "incidents.row_top100_duplicates", str(dup["distinct_incidents"]))} distinct incidents appear.',
             'Grouped by ICS-209 incident and complex name; the rule and every component fire are listed.', 'largest.html', 'revised'))
 
     items = ''.join(f'<li><h3>{esc(t)} <span class="verdict {v}">{ {"holds": "holds up", "revised": "revised", "new": "new in v2", "wrong": "corrected"}[v] }</span></h3>'
-                    f'<p>{body}</p><p class="caveat">{cav} <a href="{href}">Details &rarr;</a></p></li>'
+                    f'<p>{body}</p><p class="caveat">{cav} <a href="{href}">Details&nbsp;&rarr;</a></p></li>'
                     for t, body, cav, href, v in findings)
 
     body = f"""
 <header class="page-head">
 <div class="kicker">US wildfires, 1992-2020, with national totals to 2025</div>
 <h1>Where fires start, when, and why some grow: {q(c, 'overview.n_rows', fmt_int(n_rows))} fires, with every number traced to its source</h1>
-<p class="lede">The map below holds every fire in the federal Fire Program Analysis record (FPA FOD, 6th edition). Filter it by year, season, cause, size and protected-land status, then click anywhere for the counts around that point.
+<p class="lede">The map below holds every fire in the federal Fire Program Analysis record (FPA FOD, 6th edition). Filter it by year, season, cause, size and protected-land status, then tap or click anywhere for the counts around that point.
 The pages after it turn the record into things a prevention planner, a land manager or a reporter can use, with what the record cannot tell you stated next to each answer.</p>
 </header>
 {console_block('home-console', {'compact': True, 'id': 'home'})}
@@ -237,7 +263,7 @@ def page_explore(ctx: dict) -> str:
 <div class="grid2">
 <div><h2>How to read it</h2>
 <ul class="tight">
-<li>Dots overlap. Where they pile up the colour saturates, so a dense area looks the same whether it holds a thousand fires or ten thousand. Click the map for the actual count around a point.</li>
+<li>Dots overlap. Where they pile up the colour saturates, so a dense area looks the same whether it holds a thousand fires or ten thousand. Tap or click the map for the actual count around a point.</li>
 <li>The map starts with the {fmt_int(ctx['points_meta']['files']['points_c_plus.bin'])} fires of 10 acres or more. Add the {fmt_int(ctx['points_meta']['files']['points_a_b.bin'])} smaller fires with the button; most of them are in the South and East.</li>
 <li>Some states did not report small fires in some years (see <a href="trends.html#coverage">coverage</a>). A year where a state looks empty may be a year its records are missing.</li>
 <li>"Not in PAD-US" means the point falls outside every protected or public area in the Protected Areas Database; most private land is in that group.</li>
@@ -535,6 +561,11 @@ PLACE_JS = r"""
       customdata: ys.map(function (y) { return [py[y].fires, py[y].large_fires, py[y].usable ? 'usable year' : 'outside usable window']; }), hovertemplate: '%{x}: %{y:,.0f} acres<br>%{customdata[0]:,} fires, %{customdata[1]} of 300+ acres<br>%{customdata[2]}<extra></extra>' }],
       layout: { showlegend: false, yaxis: { title: { text: 'acres' }, tickformat: '.2s', rangemode: 'tozero' } } }; }
   });
+  // Cell counts live in title attributes, which phones never show; a tap writes them under the table instead.
+  var out = document.getElementById('rate-readout');
+  document.querySelectorAll('.ratetable td[data-l]').forEach(function (td) {
+    td.addEventListener('click', function () { out.textContent = td.getAttribute('data-l') + ': ' + td.title + ' reached 300 acres.'; });
+  });
 })();
 """
 
@@ -553,7 +584,7 @@ def _rate_table(b: dict) -> str:
                 continue
             thin = x['fires'] < 50
             cls = 'thin' if thin else ('hi' if overall and x['rate'] >= 2 * overall else '')
-            cells += f'<td class="{cls}" title="{x["large"]} of {x["fires"]:,} fires">{100 * x["rate"]:.1f}%</td>'
+            cells += f'<td class="{cls}" title="{x["large"]} of {x["fires"]:,} fires" data-l="{lab}, {month_name(m)}">{100 * x["rate"]:.1f}%</td>'
         rows += f'<tr><td>{lab}</td>{cells}</tr>'
     return f'<div class="table-wrap"><table class="ratetable"><thead><tr><th>Cause</th>{heads}</tr></thead><tbody>{rows}</tbody></table></div>'
 
@@ -569,7 +600,7 @@ def page_place(ctx: dict, st: str) -> str:
     tiles = ''.join(f'<div class="tile"><div class="label">{esc(lab)}</div><div class="value">{q(c, cid, val)}</div><div class="sub">{esc(sub)}</div></div>' for lab, val, sub in [
         ('Fires a year', fmt_int(b['fires_per_year_in_window']), f'average, {w0}-{w1}'),
         ('Acres a year', B.fmt_m(b['acres_per_year_in_window']) if b['acres_per_year_in_window'] >= 1e6 else fmt_int(b['acres_per_year_in_window']), f'average, {w0}-{w1}'),
-        ('Started by people', fmt_pct(human, 0), f'{fmt_pct(b["cause_shares"].get(MISS, 0), 0)} cause not recorded'),
+        ('Started by people', fmt_pct(human, 0), f'of all fires; {fmt_pct(b["cause_shares"].get(MISS, 0), 0)} have no cause recorded'),
         ('Reach 300 acres', fmt_pct(b['large_rate_overall'] or 0, 1), f'{fmt_int(b["large_fires"])} such fires, 1992-2020'),
     ])
     breaks = b['break_years']
@@ -577,12 +608,16 @@ def page_place(ctx: dict, st: str) -> str:
                    + (f' Reporting breaks in {", ".join(str(y) for y in breaks)}' if breaks else '')
                    + (f'; no records in {", ".join(str(y) for y in b["zero_years"])}' if b['zero_years'] else '')
                    + ('.' if breaks or b['zero_years'] else ' No reporting breaks were found.'))
+    gacc = re.sub(r'\s*\(.*\)$', '', b['gacc'])  # 'California (North+South merged)' -> 'California'
+    hp, np_ = b['human_peak_month'], b['natural_peak_month']
+    peaks = (f'Human-caused and lightning fires both peak in {q(c, cid, month_name(hp))}.' if hp and hp == np_ else
+             f'Human-caused fires peak in {q(c, cid, month_name(hp))}; lightning fires in {q(c, cid, month_name(np_))}.')
     top = b['top_human_causes']
     top_html = ''
     if top:
         top_html = '<ul class="bars">' + ''.join(
             f'<li><span>{esc(t["cause"])}</span><span class="bar"><i style="width:{100 * t["share_of_known_human"]:.0f}%"></i></span>'
-            f'<span class="v">{q(c, cid, fmt_pct(t["share_of_known_human"], 0))} · peaks {", ".join(t.get("peak_months", []))}</span></li>' for t in top) + '</ul>'
+            f'<span class="v">{q(c, cid, fmt_pct(t["share_of_known_human"], 0))}{(" · peaks " + ", ".join(t["peak_months"])) if t.get("peak_months") else ""}</span></li>' for t in top) + '</ul>'
     gen_missing = comp['general_cause_missing_share']
     prot = b.get('protected')
     prot_html = '<p class="muted">Protected-land join not available in this build.</p>'
@@ -593,8 +628,8 @@ def page_place(ctx: dict, st: str) -> str:
             for k, v in g.items()) + '</ul>')
         if prot['top_units']:
             prot_html += '<div class="table-wrap"><table><thead><tr><th>Protected or public unit</th><th class="num">Acres</th><th class="num">Fires</th><th>Manager</th><th>Designation</th></tr></thead><tbody>' + ''.join(
-                f'<tr><td>{esc(u["unit"])}</td><td class="num">{q(c, cid, fmt_int(u["acres"]))}</td><td class="num">{q(c, cid, fmt_int(u["fires"]))}</td><td>{esc(u["manager"])}</td><td>{esc(u["designation"])}</td></tr>'
-                for u in prot['top_units']) + '</tbody></table></div>'
+                f'<tr><td>{esc(u["unit"])}</td><td class="num">{q(c, cid, fmt_int(u["acres"]))}</td><td class="num">{q(c, cid, fmt_int(u["fires"]))}</td><td>{esc(PADUS_MANAGERS.get(u["manager"], u["manager"]))}</td><td>{esc(PADUS_DESIGNATIONS.get(u["designation"], u["designation"]))}</td></tr>'
+                for u in prot['top_units']) + '</tbody></table></div><p class="small muted">Unit names are as recorded in PAD-US, where NF is a national forest, WA a wilderness area and NWR a national wildlife refuge.</p>'
         if prot['tribal']['fires']:
             prot_html += f'<p class="small">Tribal lands: {q(c, cid, fmt_int(prot["tribal"]["fires"]) + " fires")}, {q(c, cid, fmt_int(prot["tribal"]["acres"]) + " acres")}.</p>'
     loss = b.get('losses')
@@ -607,7 +642,7 @@ def page_place(ctx: dict, st: str) -> str:
                          f'{q(c, cid, fmt_int(loss["structures_destroyed"]) + " structures")} in all ({parts}).</p>')
             if loss['top_incidents']:
                 loss_html += '<div class="table-wrap"><table><thead><tr><th>Incident</th><th class="num">Year</th><th class="num">Structures destroyed</th><th>Cause</th></tr></thead><tbody>' + ''.join(
-                    f'<tr><td>{esc(str(t["name"]).title())}</td><td class="num">{t["year"]}</td><td class="num">{q(c, cid, fmt_int(t["destroyed"]))}</td><td>{esc(t["general_cause"] if t["cause"] == "Human" else ("Natural" if t["cause"] == "Natural" else "Not recorded"))}</td></tr>'
+                    f'<tr><td>{esc(name_case(t["name"]))}</td><td class="num">{t["year"]}</td><td class="num">{q(c, cid, fmt_int(t["destroyed"]))}</td><td>{esc(t["general_cause"] if t["cause"] == "Human" else ("Natural" if t["cause"] == "Natural" else "Not recorded"))}</td></tr>'
                     for t in loss['top_incidents']) + '</tbody></table></div>'
         else:
             loss_html = '<p>No incident in this state is in the ICS-209-PLUS table for 1999-2020.</p>'
@@ -633,23 +668,24 @@ def page_place(ctx: dict, st: str) -> str:
 
     body = f"""
 <header class="page-head">
-<div class="kicker"><a href="places.html">Places</a> · {esc(b['region'])} · {esc(b['gacc'])}</div>
+<div class="kicker"><a href="places.html">Places</a> · {esc(b['region'])} · {esc(gacc)}</div>
 <h1>{esc(name)}</h1>
 <p class="lede">{q(c, cid, fmt_int(b['fires']) + ' fires')} and {q(c, cid, fmt_int(b['acres']) + ' acres')} in the FPA FOD, 1992-2020. {window_note}</p>
 </header>
 <div class="toolbar no-print"><button type="button" class="btn" onclick="window.print()">Print this brief</button>
-<a class="btn" href="downloads/calendar/{st}.csv">Calendar CSV</a><a class="btn" href="data/place_{st}.js">All numbers (JSON)</a><span class="pill">claim id: {cid}</span></div>
+<a class="btn" href="downloads/calendar/{st}.csv">Calendar CSV</a><a class="btn" href="data/place_{st}.js">All numbers (JSON)</a></div>
 <div class="tiles">{tiles}</div>
 
 <h2>When fires start</h2>
-<p>The busiest month is {q(c, cid, b['busiest_month'] or 'n/a')}, with {q(c, cid, fmt_pct(b['busiest_month_share'] or 0, 0))} of the year's fires. Human-caused fires peak in {q(c, cid, b['human_peak_month'] or 'n/a')}; lightning fires in {q(c, cid, b['natural_peak_month'] or 'n/a')}.</p>
+<p>The busiest month is {q(c, cid, month_name(b['busiest_month']))}, with {q(c, cid, fmt_pct(b['busiest_month_share'] or 0, 0))} of the year's fires. {peaks}</p>
 {B.chart_div('p-cal')}
 <h3>What people start them with</h3>
-<p class="small">Share of human-caused fires with a known general cause, and the three months each cause is most common. The general cause is not recorded for {q(c, cid, fmt_pct(gen_missing, 0))} of this state's fires{', so read this list as describing the minority of fires with a recorded cause' if gen_missing > 0.5 else ''}.</p>
+<p class="small">Share of human-caused fires with a known general cause, and the three months each cause is most common. The specific cause (such as debris burning or equipment use) is not recorded for {q(c, cid, fmt_pct(gen_missing, 0))} of this state's fires{', so read this list as describing the minority of fires with a recorded cause' if gen_missing > 0.5 else ''}.</p>
 {top_html or '<p class="muted">No human-caused fires with a recorded general cause in the usable window.</p>'}
 
 <h2>Which fires become large</h2>
-<p>Share of fires that reached 300 acres, by month and cause, in the usable window. Bold cells are at least twice the state's overall rate ({q(c, cid, fmt_pct(b['large_rate_overall'] or 0, 2))}); grey cells rest on fewer than 50 fires. Hover a cell for its counts.</p>
+<p>Share of fires that reached 300 acres, by month and cause, in the usable window. Bold cells are at least twice the state's overall rate ({q(c, cid, fmt_pct(b['large_rate_overall'] or 0, 2))}); grey cells rest on fewer than 50 fires. Tap or hover over a cell for its counts.</p>
+<p id="rate-readout" class="small" aria-live="polite"></p>
 {_rate_table(b)}
 <p class="small">This is the same lookup the <a href="model.html">prediction page</a> uses as its baseline. Lightning fires are more likely to grow large in most Western states; human-caused fires in the South and East rarely do, but there are far more of them.</p>
 
@@ -689,7 +725,7 @@ LARGEST_JS = r"""
   var host = document.getElementById('largest-table');
   var input = document.getElementById('largest-search');
   // Acres sits next to the name so it stays on screen on phones, where the secondary columns are dropped.
-  var cols = [{ key: 'rank', num: true }, { key: 'name', label: 'Incident' }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'states', label: 'State' }, { key: 'years', label: 'Year' },
+  var cols = [{ key: 'rank', label: 'Rank', num: true }, { key: 'name', label: 'Incident' }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'states', label: 'State' }, { key: 'years', label: 'Year' },
     { key: 'components', label: 'fires in it', num: true, hideSm: true }, { key: 'largest_component_acres', label: 'largest single fire', num: true, fmt: WF.fmt.int, hideSm: true },
     { key: 'cause', hideSm: true }, { key: 'component_names', label: 'component fires', hideSm: true }];
   function draw(filter) {
@@ -719,19 +755,21 @@ def page_largest(ctx: dict) -> str:
     dup = cv(c, 'incidents.row_top100_duplicates')
     s = cv(c, 'incidents.largest100_summary')
     g = cv(c, 'incidents.grouping')
-    dup_list = ''.join(f'<li><strong>{esc(d["name"].title())}</strong> ({d["state"]}, {d["year"]}): {", ".join(esc(x.title()) for x in d["records"])} at record ranks {", ".join(str(r) for r in d["row_ranks"])}</li>' for d in dup['incidents_with_several_rows'])
+    dup_list = ''.join(f'<li><strong>{esc(name_case(d["name"]))}</strong> ({d["state"]}, {d["year"]}): {", ".join(esc(name_case(x)) for x in d["records"])} at record ranks {", ".join(str(r) for r in d["row_ranks"])}</li>' for d in dup['incidents_with_several_rows'])
     body = f"""
 <header class="page-head"><h1>The largest fires, counted once each</h1>
 <p class="lede">A complex of fires managed as one incident appears in the FPA FOD as several records. Listing records, as the first version of this site did, counts the same incident more than once and understates it: the August Complex of 2020 is {q(c, 'incidents.largest', fmt_int(cv(c, 'incidents.largest')[1]['acres']) + ' acres')} as an incident, but its largest single record is 589,368.</p></header>
 <p>Among the 100 largest records there are {q(c, 'incidents.row_top100_duplicates', str(dup['distinct_incidents']))} distinct incidents; {q(c, 'incidents.row_top100_duplicates', str(dup['rows_sharing_an_incident']))} records share an incident with another record in the list:</p>
 <ul class="tight">{dup_list}</ul>
-<p class="small">Rule: {esc(cv(c, 'incidents.rule'))} {q(c, 'incidents.grouping', fmt_int(g['multi_record_incidents']))} incidents group more than one record. MTBS perimeter ids are not used for grouping, because one perimeter can span fires managed as separate complexes. <a href="{B.REPO_URL}/blob/main/analysis/incidents.py">analysis/incidents.py</a></p>
+<p class="small">Rule: records are one incident when they share an ICS-209 incident or complex id, or the same year, state and complex name; the incident's acres add up all its records, and no record is dropped.</p>
+<details class="small"><summary>Exact rule</summary><code>{esc(cv(c, 'incidents.rule'))}</code></details>
+<p class="small">{q(c, 'incidents.grouping', fmt_int(g['multi_record_incidents']))} incidents group more than one record. MTBS perimeter ids are not used for grouping, because one perimeter can span fires managed as separate complexes. <a href="{B.REPO_URL}/blob/main/analysis/incidents.py">analysis/incidents.py</a></p>
 <h2>The 100 largest incidents, 1992-2020</h2>
 <p>From {q(c, 'incidents.largest100_summary', fmt_int(s['acres_min']))} to {q(c, 'incidents.largest100_summary', fmt_int(s['acres_max']) + ' acres')}. {q(c, 'incidents.largest100_summary', str(s['by_region'].get('Alaska', 0)))} are in Alaska; {q(c, 'incidents.largest100_summary', str(s['since_2010']))} started in 2010 or later.
 Lightning started {q(c, 'incidents.largest100_summary', str(s['by_cause'].get('Natural', 0)))} of them and people {q(c, 'incidents.largest100_summary', str(s['by_cause'].get('Human', 0)))}; {q(c, 'incidents.largest100_summary', str(s['by_cause'].get(MISS, 0)))} have no recorded cause.</p>
-<div class="toolbar"><input id="largest-search" class="search" type="search" placeholder="Search the 250 largest by name, state or year" aria-label="Search incidents"><a class="btn" href="downloads/largest_incidents.csv">Download the 250 largest (CSV)</a></div>
+<div class="toolbar"><input id="largest-search" class="search" type="search" placeholder="Search by name, state or year" aria-label="Search incidents"><a class="btn" href="downloads/largest_incidents.csv">Download the 250 largest (CSV)</a></div>
 <div id="largest-table" class="table-wrap"></div>
-<p class="small muted">On a narrow screen the table shows rank, name, acres, state and year; the CSV has every column. Acres are the sum of the component records' FIRE_SIZE. When fires merged and each record reports the merged area, the sum overstates; compare it with the largest single fire. The cause and state are those of the largest component. Names are as recorded.</p>
+<p class="small muted">On a narrow screen the table shows rank, name, acres, state and year; the CSV has every column. Acres are the sum of the component records' reported sizes. When fires merged and each record reports the merged area, the sum overstates; compare it with the largest single fire. The cause and state are those of the largest component. Names are as recorded.</p>
 {B.chart_div('big-per-year')}
 """
     return B.layout(ctx, 'largest.html', 'Largest fires · ' + B.SITE_TITLE, body, LARGEST_JS, extra_scripts=[ctx['largest_data']],

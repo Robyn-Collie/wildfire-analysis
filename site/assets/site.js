@@ -99,6 +99,7 @@
         dtdd(dl, 'Unit', c.unit);
         dtdd(dl, 'Note', c.note);
         dtdd(dl, 'Source', c.source + ' (' + c._file + ', computed ' + (c.computed_at || '').slice(0, 10) + ')');
+        dtdd(dl, 'Other claims in this chart', btn.getAttribute('data-claims'));
       } else { dtdd(dl, 'Claim id', id); dtdd(dl, 'Definition', 'not found in the loaded ledger'); }
     } else {
       dtdd(dl, 'Definition', btn.getAttribute('data-def'));
@@ -245,8 +246,9 @@
     var defBtn = null;
     if (spec.claims && spec.claims.length) {
       defBtn = el('button', 'q', 'Definition'); defBtn.type = 'button'; defBtn.setAttribute('data-claim', spec.claims[0]);
+      // Every claim id behind the chart is listed in the definition popover rather than printed under the chart.
+      if (spec.claims.length > 1) defBtn.setAttribute('data-claims', spec.claims.slice(1).join(' '));
       foot.appendChild(defBtn);
-      var ids = el('span', 'ids', spec.claims.join(' ')); foot.appendChild(ids);
     } else if (spec.definition) {
       defBtn = el('button', 'q', 'Definition'); defBtn.type = 'button'; defBtn.setAttribute('data-def', spec.definition); defBtn.setAttribute('data-src', spec.source || '');
       foot.appendChild(defBtn);

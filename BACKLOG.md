@@ -447,3 +447,27 @@ The README, the site, the figures, and a write-up, all generated from the same c
 - Description: the owner's Netlify team already has a public site, us-wildfires ("the fire record, 1983-2025"), built outside this repo. It may repeat claims the panel refuted or weakened (the Arkansas June spike, "higher lows", count trends read as fire trends, the Control Efficiency Score, a duration model). Check each of its numbers against `docs/review/PANEL_REPORT.md` and the claims files, and decide whether to retire it, merge it with this site, or correct it.
 - Acceptance: a table of the site's claims with Supported / Weakened / Refuted and the source for each; a decision recorded by the owner.
 - Key files: `docs/review/PANEL_REPORT.md`, `outputs/claims*.json`
+
+### [S-7.9] Decide whether Geography and Ownership stay on the site
+- Status: Open
+- Issue: #73
+- Priority: P2 · Size: S · Depends: none
+- Description: `geography.html` and `ownership.html` are still built but are not in the top navigation; they are linked only from Methods and Prediction (v2 phone review, finding 18). Either add them to the navigation, fold what they hold into Places and Protected lands, or stop building them.
+- Acceptance: an owner decision, and the navigation and build match it.
+- Key files: `scripts/site_v2.py` (`NAV`), `scripts/build_site.py`
+
+### [S-7.10] Commit the site's small data files
+- Status: Open
+- Issue: #74
+- Priority: P2 · Size: S · Depends: none
+- Description: `.gitignore`'s `data/` rule also matches `site/data/`, so none of the site's data files are in git, not only the map's point files (v2 phone review, finding 19). A git-linked Netlify deploy would fail on every chart page. The site is deployed from a local build, and `docs/SITE.md` now says why. Anchor the rule (`/data/`), keep `site/data/points_*.bin` ignored, and commit the small `site/data/*.js` and `.json` files so a checkout renders.
+- Acceptance: a fresh clone serves every page except the map from `site/`; CI checks that the build leaves the tree clean.
+- Key files: `.gitignore`, `site/data/`, `docs/SITE.md`
+
+### [S-7.11] Phone follow-ups after launch
+- Status: Open
+- Issue: #75
+- Priority: P2 · Size: S · Depends: none
+- Description: from the v2 phone review, findings 10 and 15. Recheck tap targets on a real phone after the launch fix (inline numbers now get a taller hit area on touch screens), and decide whether to expand source abbreviations in incident names ("Billy Ck", "Winter Traill" are as recorded; acronyms such as "NW" are now kept upper case).
+- Acceptance: inline numbers and dense-row links are at least 24 px tall to the touch on a phone; a recorded decision on name abbreviations.
+- Key files: `scripts/build_site.py` (`name_case`, `button.q`)

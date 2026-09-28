@@ -137,6 +137,8 @@ header.page-head { margin-bottom: 1rem; }
 button.q { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer;
   border-bottom: 1px dotted var(--link); font-variant-numeric: tabular-nums; text-align: left; display: inline; }
 button.q:hover { color: var(--link); }
+/* Touch screens: a taller hit area on inline numbers and more room between lines that carry several of them. */
+@media (pointer: coarse) { button.q { padding: .3rem 0; } main p:has(button.q) { line-height: 1.75; } }
 .popover { position: absolute; z-index: 50; max-width: min(92vw, 420px); background: var(--surface); color: var(--ink);
   border: 1px solid var(--border-strong); border-radius: var(--radius); padding: .75rem .9rem; font-size: .85rem;
   box-shadow: 0 6px 24px rgba(0,0,0,.18); }
@@ -157,7 +159,6 @@ button.q:hover { color: var(--link); }
 .chart .foot button, .btn { font: inherit; font-size: .8rem; border: 1px solid var(--border-strong); background: transparent; color: var(--ink-2);
   border-radius: 6px; padding: .2rem .55rem; cursor: pointer; }
 .chart .foot button:hover, .btn:hover { background: var(--surface-2); }
-.chart .foot .ids { font-family: var(--mono); font-size: .72rem; overflow-wrap: anywhere; }
 .chart .caption { font-size: .85rem; color: var(--ink-2); margin: .5rem 0 0; max-width: none; }
 .chart .tableview { margin-top: .5rem; }
 .chart .tableview table { font-size: .82rem; }
@@ -179,9 +180,9 @@ th.sortable[aria-sort="ascending"]::after { content: " \2191"; color: var(--ink)
 th.sortable[aria-sort="descending"]::after { content: " \2193"; color: var(--ink); }
 input.search { font: inherit; padding: .4rem .6rem; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; max-width: 420px; }
 .ledger td { font-size: .82rem; }
-.ledger td.id { font-family: var(--mono); font-size: .75rem; overflow-wrap: anywhere; }
+.ledger td.id { font-family: var(--mono); font-size: .8rem; overflow-wrap: anywhere; }
 .ledger details summary { cursor: pointer; color: var(--link); }
-.ledger pre { max-height: 240px; overflow: auto; margin: .3rem 0 0; font-size: .72rem; }
+.ledger pre { max-height: 240px; overflow: auto; margin: .3rem 0 0; font-size: .8rem; }
 tr.missing-row td { background: var(--surface-2); }
 
 dl.glossary dt { font-weight: 650; margin-top: .75rem; }
@@ -212,7 +213,7 @@ main p, main li, main td { overflow-wrap: break-word; }
 .findings h3 { margin: 0 0 .3rem; font-size: 1.02rem; }
 .findings p { margin: 0; font-size: .92rem; color: var(--ink-2); max-width: none; }
 .findings .caveat { margin-top: .35rem; font-size: .84rem; color: var(--muted); }
-.verdict { display: inline-block; font-size: .72rem; font-weight: 650; padding: .08rem .45rem; border-radius: 999px; margin-left: .35rem; vertical-align: 2px; border: 1px solid var(--border-strong); }
+.verdict { display: inline-block; font-size: .8rem; font-weight: 650; padding: .08rem .45rem; border-radius: 999px; margin-left: .35rem; vertical-align: 2px; border: 1px solid var(--border-strong); }
 .verdict.holds { color: var(--s3); border-color: var(--s3); }
 .verdict.revised { color: var(--s4); border-color: var(--s4); }
 .verdict.wrong { color: var(--s8); border-color: var(--s8); }
@@ -252,6 +253,7 @@ main p, main li, main td { overflow-wrap: break-word; }
 .ratetable td, .ratetable th { text-align: right; font-variant-numeric: tabular-nums; padding: .3rem .35rem; font-size: .8rem; }
 .ratetable td:first-child, .ratetable th:first-child { text-align: left; }
 .ratetable td.hi { font-weight: 700; }
+.ratetable td[data-l] { cursor: pointer; }
 .ratetable td.thin { color: var(--muted); }
 .state-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: .35rem; margin: .5rem 0 1rem; }
 .state-grid a { display: block; padding: .3rem .5rem; border: 1px solid var(--border); border-radius: 6px; text-decoration: none; background: var(--surface); font-size: .88rem; }
@@ -263,6 +265,8 @@ main p, main li, main td { overflow-wrap: break-word; }
 .bars .bar { height: 10px; background: var(--seq-100); border-radius: 3px; overflow: hidden; }
 .bars .bar i { display: block; height: 100%; background: var(--s1); }
 .bars .v { font-variant-numeric: tabular-nums; color: var(--ink-2); white-space: nowrap; }
+/* Phones: label on its own row, then the bar with the value beside it (the value may wrap). */
+@media (max-width: 600px) { .bars li { grid-template-columns: minmax(0, 1fr) auto; row-gap: .1rem; margin: .45rem 0; } .bars li > span:first-child { grid-column: 1 / -1; } .bars .v { white-space: normal; text-align: right; } }
 @media print {
   .topbar, footer.site, .console, .toolbar, .chart .foot, .no-print { display: none !important; }
   body { background: #fff; color: #000; font-size: 11pt; }
