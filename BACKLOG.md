@@ -4,7 +4,7 @@ Source of truth for the improvement program. Every story is mirrored as a GitHub
 
 Priorities: **P0** must be done before the repo goes public. **P1** next. **P2** later. Sizes: S under a day, M a few days, L a week or more.
 
-Status as of 2026-09-26. Open PRs: #1 Phase 0, #2 tests and CI, #3 descriptive, #4 panel, #5 research, #60 backlog, #61 src fixes, #62 conservation, #63 large-fire model, #64 site, #65 README, and the release PR that merges them all. "In Review" means built and waiting in an open PR; issues close when their PR merges.
+Status as of 2026-09-27. v2 merged to main via #69 on 2026-09-26, and the stacked PRs #2-#5 and #60-#65 were closed as shipped. #70 (site v2) is the only open PR. "In Review" means built and waiting in an open PR or on an owner decision; issues close when their work reaches main.
 
 ---
 
@@ -37,7 +37,7 @@ Pinned environment, verified data, tests, CI, and a `src/` that can be reused wi
 - Key files: `tests/`, `.github/workflows/ci.yml`, `pytest.ini`, `docs/findings/tests_summary.md`
 
 ### [S-1.4] Fix the silent-corruption paths in `src/` and the download script
-- Status: In Review · PR #61
+- Status: Done · PR #61
 - Issue: #16
 - Priority: P0 · Size: M · Depends: S-1.3
 - Description: `load_data` raises instead of `sys.exit` and orders rows by `FOD_ID`; fixed cause category list so the one-hot schema is stable; leap-aware day-of-year angle; no `fillna(0)` on coordinates; NaN and negative durations counted separately; `n_jobs` from one setting; plots to an `out_dir`; metrics returned as a dict; download to `.part`, verify `Content-Length` and SHA-256, resume, select the zip member by name (PR-10, PR-12, PR-16; `panel-repro` C1-C10, P1-P4; `panel-ml` 11).
@@ -45,7 +45,7 @@ Pinned environment, verified data, tests, CI, and a `src/` that can be reused wi
 - Key files: `src/data_loader.py`, `src/features.py`, `src/train_model.py`, `scripts/download_data.py`, `requirements.txt`, `requirements.lock`, `docs/EXPERIMENTS.md`
 
 ### [S-1.5] Retire or re-execute the notebook, and regenerate `docs/img`
-- Status: In Review · PR #65
+- Status: Done · PR #65
 - Issue: #17
 - Priority: P0 · Size: S · Depends: S-1.4
 - Description: the committed figures are byte-identical to an out-of-order notebook run on Python 3.14.2 (PR-11; `panel-repro` N1-N4). Either delete the notebook and point to `run_pipeline.py`, or strip outputs and re-execute top to bottom on the pinned interpreter. Replace `docs/img/*` with figures written by `reproduce.py`, captioned with run date and data hash.
@@ -53,7 +53,7 @@ Pinned environment, verified data, tests, CI, and a `src/` that can be reused wi
 - Key files: `notebooks/wildfire_duration_model.ipynb`, `docs/img/`, `scripts/reproduce.py`
 
 ### [S-1.6] Claims-ledger test: every number in the README and the site traces to a claim
-- Status: In Review · PR #65
+- Status: Done · PR #65
 - Issue: #18
 - Priority: P0 · Size: M · Depends: S-5.1, S-7.1, S-7.2
 - Description: a test that parses the README and the generated site for numbers tagged with claim ids and asserts they equal the value in `outputs/claims*.json` (`panel-repro` test plan item 6). Prevents the drift that produced the unverified 7.05 and the phantom Arkansas spike.
@@ -107,7 +107,7 @@ Baselines that match the target, forward-in-time and spatially blocked validatio
 - Key files: `docs/EXPERIMENTS.md`
 
 ### [S-2.4] Retire the duration regressor and document it as a negative result
-- Status: In Review · PR #65
+- Status: Done · PR #65
 - Issue: #24
 - Priority: P0 · Size: S · Depends: S-7.1
 - Description: the README's Part 2 is replaced by a short negative-result section citing E-001 to E-007: what was tried, why it fails (random-split artefact, loses to a constant on the typical fire, geography lookup), and the coverage gap (PR-1, PR-4, PR-9). Keep the code runnable for the record.
@@ -115,7 +115,7 @@ Baselines that match the target, forward-in-time and spatially blocked validatio
 - Key files: `README.md`, `docs/EXPERIMENTS.md`
 
 ### [S-2.5] Model card for the replacement model
-- Status: In Review · PR #63
+- Status: Done · PR #63
 - Issue: #25
 - Priority: P0 · Size: S · Depends: S-4.1
 - Description: `docs/MODEL_CARD.md` in the Mitchell et al. structure, filled from the skeleton in `panel-rai` Appendix E1, including the out-of-scope uses, factors, metrics with intervals, evaluation data, and the disclosed spent look (PR-3).
@@ -123,7 +123,7 @@ Baselines that match the target, forward-in-time and spatially blocked validatio
 - Key files: `docs/MODEL_CARD.md`
 
 ### [S-2.6] Bootstrap intervals on every reported metric
-- Status: In Review · PR #63
+- Status: Done · PR #63
 - Issue: #26
 - Priority: P0 · Size: S · Depends: S-4.1
 - Description: 1,000-resample bootstrap 95% intervals on all holdout metrics; the "± 0.13" fold std is never presented as an interval again (PR-8; `panel-rai` MAJ-1).
@@ -161,7 +161,7 @@ Baselines that match the target, forward-in-time and spatially blocked validatio
 Weather, fuels and terrain at the point and day of discovery, and ablations showing what each adds over climatology. Panel: PR-9; `panel-fire` F7; DS source 1; LIT implications 1 and 7.
 
 ### [S-3.1] Build the FPA FOD-Attributes table for 2010-2020
-- Status: In Review · PR #63
+- Status: Done · PR #63
 - Issue: #29
 - Priority: P0 · Size: M · Depends: S-1.2
 - Description: download the annual CSVs from Zenodo (10.5281/zenodo.8381129, CC BY 4.0), verify the 100% FOD_ID join, keep about 80 documented columns, exclude every `*_5D_*` field (two post-discovery days), record hashes and null rates (DS source 1).
@@ -169,7 +169,7 @@ Weather, fuels and terrain at the point and day of discovery, and ablations show
 - Key files: `scripts/download_attributes.py`, `docs/DATA_JOINS.md`
 
 ### [S-3.2] Ablation: what weather, fuels, terrain and suppression context add over climatology
-- Status: In Review · PR #63 (result: same-day weather adds nothing measurable)
+- Status: Done · PR #63 (result: same-day weather adds nothing measurable)
 - Issue: #30
 - Priority: P0 · Size: M · Depends: S-3.1, S-2.3
 - Description: nested feature groups G0 (geography+season) to G6 (suppression context and a drawdown proxy) on the temporal folds; PR-AUC and Brier skill per group per fold. The panel showed geography alone ranks half of large fires into the top decile (E-008); this story answers whether weather changes that.
@@ -207,7 +207,7 @@ Weather, fuels and terrain at the point and day of discovery, and ablations show
 The prediction piece practitioners can use: a calibrated probability that a new fire reaches 300 acres, evaluated forward in time against climatology. Panel: PR-1, PR-9; `panel-ml` c and d; `panel-fire` F7; `panel-conservation` question 10.
 
 ### [S-4.1] P(fire reaches 300 acres) under the locked protocol
-- Status: In Review · PR #63 (result: ranks well, not calibrated forward in time)
+- Status: Done · PR #63 (result: ranks well, not calibrated forward in time)
 - Issue: #34
 - Priority: P0 · Size: L · Depends: S-2.3, S-3.1
 - Description: HistGradientBoosting on all CONUS fires 2010-2020 with the features in S-3.2; expanding-window temporal CV, GroupKFold spatial check, small tuning grid logged, isotonic calibration if needed, one final evaluation on 2019-2020 with bootstrap intervals, per-year, per-region and per-state values; grouped permutation importance; baselines (base rate, cell x month climatology, logistic, geography-only) in every table.
@@ -215,7 +215,7 @@ The prediction piece practitioners can use: a calibrated probability that a new 
 - Key files: `analysis/large_fire.py`, `docs/EXPERIMENTS.md`, `outputs/claims_model.json`
 
 ### [S-4.2] MTBS-mapped fire as a second label
-- Status: In Review · PR #63
+- Status: Done · PR #63
 - Issue: #35
 - Priority: P0 · Size: S · Depends: S-4.1
 - Description: `MTBS_ID` present is an outcome independent of reported `FIRE_SIZE` (DS adoption order 2; LIT implication 2). Report the same metrics for it.
@@ -223,7 +223,7 @@ The prediction piece practitioners can use: a calibrated probability that a new 
 - Key files: `analysis/large_fire.py`
 
 ### [S-4.3] Area-of-applicability statement and per-state metrics
-- Status: In Review · PR #63
+- Status: Done · PR #63
 - Issue: #36
 - Priority: P0 · Size: S · Depends: S-4.1
 - Description: where the training data are thin or reporting differs (Texas coverage, missing-cause states, non-CONUS excluded) and what that means for use (LIT implication 6; PR-4).
@@ -231,7 +231,7 @@ The prediction piece practitioners can use: a calibrated probability that a new 
 - Key files: `docs/MODEL_CARD.md`, `docs/findings/large_fire_model.md`
 
 ### [S-4.4] Practitioner lookup table
-- Status: In Review · PR #64 (lookup table on the Prediction page)
+- Status: Done · PR #64 (lookup table on the Prediction page)
 - Issue: #37
 - Priority: P1 · Size: S · Depends: S-4.1
 - Description: the plain climatology a duty officer can read: P(300+ acres) by region x cause x month with n (`panel-fire` d question 2). Published as a CSV and a site table.
@@ -277,7 +277,7 @@ Every Tableau finding recomputed from the data with stated definitions, a covera
 - Key files: `analysis/descriptive.py`, `analysis/figures.py`, `outputs/claims.json`, `docs/findings/descriptive.md`
 
 ### [S-5.2] Coverage mask and coverage map
-- Status: In Review · PR #62
+- Status: Done · PR #62
 - Issue: #41
 - Priority: P0 · Size: S · Depends: S-5.1
 - Description: state x year record counts, break flags (>3x or <1/3 year-over-year, zero years), usable windows, reporter entry and exit, the 2020 IRWIN switch; a heatmap; a `coverage_ok(state, year)` rule used by every count trend (PR-2; `panel-fire` F1, d question 7).
@@ -285,7 +285,7 @@ Every Tableau finding recomputed from the data with stated definitions, a covera
 - Key files: `analysis/coverage.py`, `outputs/coverage.json`
 
 ### [S-5.3] Retire the Control Efficiency Score; keep a stratified containment table
-- Status: In Review · PR #65
+- Status: Done · PR #65
 - Issue: #42
 - Priority: P0 · Size: S · Depends: S-5.1, S-7.1
 - Description: the score's ranking flips between mean and median (Spearman 0.09); within every size class the owner gap is a reporting convention (PR-6; `panel-fire` F3). The replacement is a descriptive median-hours-to-containment-declaration table by size class and reporting system, labelled as such.
@@ -293,7 +293,7 @@ Every Tableau finding recomputed from the data with stated definitions, a covera
 - Key files: `README.md`, `analysis/descriptive.py`
 
 ### [S-5.4] Errata for the three anomalies
-- Status: In Review · PR #65
+- Status: Done · PR #65
 - Issue: #43
 - Priority: P0 · Size: S · Depends: S-7.1
 - Description: Arkansas June (does not exist; Arizona and Alaska peak in June), Texas December (one 2005 event in the first year of Texas A&M's compilation), Northeast 2010 (z = 0.98; a reporting series). What was claimed, what the check found, the probable mistake (PR-7; `panel-rai` MAJ-2).
@@ -331,7 +331,7 @@ Every Tableau finding recomputed from the data with stated definitions, a covera
 Ignitions and large fires against protected areas, outcomes and communities, using the join keys the record already carries. Panel: PR-5; `panel-conservation` c, d, e; DS adoption order 2 and 3.
 
 ### [S-6.1] ICS-209-PLUS outcomes join
-- Status: In Review · PR #62
+- Status: Done · PR #62
 - Issue: #47
 - Priority: P0 · Size: S · Depends: S-1.2
 - Description: 33,494 fires carry the join id (80% of 2010-2020 fires over 300 acres). Structures destroyed and threatened, personnel, cost and evacuations by cause, owner class and region; top 25 fires by structures destroyed (`panel-conservation` Table G, e; DS ICS-209-PLUS).
@@ -339,7 +339,7 @@ Ignitions and large fires against protected areas, outcomes and communities, usi
 - Key files: `scripts/download_external.py`, `analysis/conservation.py`, `docs/DATA_JOINS.md`
 
 ### [S-6.2] PAD-US protection status at the ignition point, and the ownership-gap fix
-- Status: In Review · PR #62
+- Status: Done · PR #62
 - Issue: #48
 - Priority: P0 · Size: M · Depends: S-1.2
 - Description: point-in-polygon of 2.3M ignitions into PAD-US 4.1; share of ignitions and acres by GAP status; human share by GAP status; top protected units by human-caused ignitions with peak months; agreement between PAD-US manager type and `OWNER_DESCR`, and what PAD-US assigns to the 46% with no recorded owner (PR-5; `panel-conservation` C2, d questions 1-2).
@@ -371,7 +371,7 @@ Ignitions and large fires against protected areas, outcomes and communities, usi
 - Key files: `scripts/download_external.py`, `analysis/conservation.py`
 
 ### [S-6.6] Conservation page on the site
-- Status: In Review · PR #64
+- Status: Done · PR #64
 - Issue: #52
 - Priority: P0 · Size: S · Depends: S-6.1, S-6.2, S-7.2
 - Description: render `outputs/claims_conservation.json`: GAP-status shares, top units, human-ignition hotspots (eastern Oklahoma, Cumberland Plateau), ICS-209 outcomes, with the completeness strip and the "which decision does this inform" line per chart (`panel-conservation` f).
@@ -385,7 +385,7 @@ Ignitions and large fires against protected areas, outcomes and communities, usi
 The README, the site, the figures, and a write-up, all generated from the same claims and saying exactly what the evidence supports. Panel: PR-3, PR-7, PR-8, PR-17; `panel-rai` e and f.
 
 ### [S-7.1] Rewrite the README to the claims ledger
-- Status: In Review · PR #65
+- Status: Done · PR #65
 - Issue: #53
 - Priority: P0 · Size: M · Depends: S-4.1, S-5.2, S-6.2
 - Description: the headline from `PANEL_REPORT.md` section 4; "what this data is and is not"; findings with claim ids and n; the coverage table; the negative result for the duration model; the new model's holdout table with intervals and out-of-scope uses; errata; data terms; how to run. Every Refuted sentence removed; every Weakened one restated (PR-3, PR-7; `panel-fire` e; `panel-rai` f; `panel-repro` e).
@@ -393,7 +393,7 @@ The README, the site, the figures, and a write-up, all generated from the same c
 - Key files: `README.md`
 
 ### [S-7.2] Static site generated from the claims files, published on Netlify
-- Status: In Review · PR #64
+- Status: Done · PR #64
 - Issue: #54
 - Priority: P0 · Size: L · Depends: S-5.1
 - Description: `scripts/build_site.py` writes `site/` (index, trends, causes, geography, ownership, methods, model, conservation) from `outputs/claims*.json`; `netlify.toml` publishes `site/` with no build step; every chart shows n, offers CSV, follows the ten uncertainty rules; completeness strip on every page (`panel-conservation` f; `panel-rai` e).
@@ -401,7 +401,7 @@ The README, the site, the figures, and a write-up, all generated from the same c
 - Key files: `scripts/build_site.py`, `site/`, `netlify.toml`, `docs/SITE.md`
 
 ### [S-7.3] Data terms and attribution
-- Status: In Review · PR #65
+- Status: Done · PR #65
 - Issue: #55
 - Priority: P0 · Size: S · Depends: S-7.2
 - Description: `docs/DATA_TERMS.md` with the Short 2022 citation, the statement that aggregates are project-derived, the USFS distribution-liability sentence, the FPA FOD-Attributes CC BY 4.0 and ICS-209-PLUS CC BY 4.0 attributions, and that the MIT license covers code only; footer on every site page (PR-17; `panel-repro` L1).
@@ -409,7 +409,7 @@ The README, the site, the figures, and a write-up, all generated from the same c
 - Key files: `docs/DATA_TERMS.md`, `scripts/build_site.py`
 
 ### [S-7.4] Model page on the site
-- Status: In Review · PR #64
+- Status: Done · PR #64
 - Issue: #56
 - Priority: P0 · Size: S · Depends: S-4.1, S-7.2
 - Description: render `outputs/claims_model.json`: holdout table with baselines and intervals, reliability diagram, PR curve, ablation, per-region metrics, the area-of-applicability statement, and the retired duration model as a negative result (`panel-rai` e rules).
