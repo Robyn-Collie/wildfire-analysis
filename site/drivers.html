@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drought · US wildfire record, 1992-2020</title>
+<meta name="description" content="How much seasonal drought, heat and rain explain year-to-year burned area by state, replicated and tested forward in time.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">US wildfires <span>1992-2020 · totals to 2025</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Story</a><a href="explore.html">Map</a><a href="trends.html">Trend</a><a href="causes.html">Seasons and causes</a><a href="places.html">Places</a><a href="conservation.html">Protected lands and losses</a><a href="largest.html">Largest fires</a><a href="drivers.html" aria-current="page">Drought</a><a href="model.html">Prediction</a><a href="methods.html">Data and methods</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>Drought and burned area</h1>
+<p class="lede">Drier, hotter summers go with more area burned in most states. A simple state-by-year climate model captures part of that, less when it has to predict a year it has not seen. In the desert Southwest the link is weak: there, fuel, not dryness, limits fire.</p></header>
+<h2>Replicating the first site</h2>
+<p>The first version of this site fitted a model of each state's annual acres burned (log scale) on May-October drought (Palmer index), temperature and precipitation from NOAA's climate divisions, with a term for each state. Rebuilt from the original sources, <button type="button" class="q" data-claim="drivers.v1_replication">45 of 45</button> of its published numbers reproduce exactly, including the headline skill of <button type="button" class="q" data-claim="drivers.loyo_cv">17.1%</button> (reduction in squared error against each state's median year) and out-of-sample R² <button type="button" class="q" data-claim="drivers.loyo_cv">0.711</button>.
+Drought carries the largest coefficient (<button type="button" class="q" data-claim="drivers.model_coefficients">-0.1013</button> per standard deviation of PDSI, against <button type="button" class="q" data-claim="drivers.model_coefficients">0.0915</button> for temperature and <button type="button" class="q" data-claim="drivers.model_coefficients">-0.0617</button> for precipitation).</p>
+
+<h2>Three stricter tests</h2>
+<div class="table-wrap"><table><thead><tr><th>Test</th><th class="num">State-years</th><th class="num">Skill vs state median</th><th class="num">Out-of-sample R²</th></tr></thead><tbody>
+<tr><td>Leave one year out, all years (the first site's test)</td><td class="num"><button type="button" class="q" data-claim="drivers.loyo_cv">1,102</button></td><td class="num"><button type="button" class="q" data-claim="drivers.loyo_cv">17.1%</button></td><td class="num"><button type="button" class="q" data-claim="drivers.loyo_cv">0.711</button></td></tr>
+<tr><td>Forward in time: fit on earlier years, predict 2005-2020</td><td class="num"><button type="button" class="q" data-claim="drivers.forward_cv">608</button></td><td class="num"><button type="button" class="q" data-claim="drivers.forward_cv">14.7%</button></td><td class="num"><button type="button" class="q" data-claim="drivers.forward_cv">0.690</button></td></tr>
+<tr><td>Leave one year out, usable reporting years only</td><td class="num"><button type="button" class="q" data-claim="drivers.loyo_cv_masked">883</button></td><td class="num"><button type="button" class="q" data-claim="drivers.loyo_cv_masked">21.9%</button></td><td class="num"><button type="button" class="q" data-claim="drivers.loyo_cv_masked">0.788</button></td></tr>
+<tr><td>Forward in time, usable reporting years only</td><td class="num"><button type="button" class="q" data-claim="drivers.forward_cv_masked">513</button></td><td class="num"><button type="button" class="q" data-claim="drivers.forward_cv_masked">9.8%</button></td><td class="num"><button type="button" class="q" data-claim="drivers.forward_cv_masked">0.730</button></td></tr>
+</tbody></table></div>
+<ul class="tight">
+<li><strong>Forward in time.</strong> Leaving one year out lets the model learn from later years. Predicting each year from earlier years only, as a forecaster would have to, the skill falls from 17.1% to 14.7%, and some years are worse than the baseline.</li>
+<li><strong>Reporting breaks.</strong> Of the model's 20 worst misses, <button type="button" class="q" data-claim="drivers.misses_vs_coverage">55%</button> fall in state-years outside the usable reporting window, against <button type="button" class="q" data-claim="drivers.misses_vs_coverage">20%</button> of all rows. Several of the first site's "worst misses" were years whose records are incomplete, not years the climate failed to explain. Dropping those years raises leave-one-year-out skill to 21.9%.</li>
+<li><strong>Both together.</strong> On usable years only, the forward test gives 9.8%: the cleaner panel has less between-state noise for the model to explain, and the baseline is harder to beat. The honest summary is that seasonal climate explains a real but modest part of year-to-year burned area, in the range of 10-20% of the error left by knowing a state's usual year.</li>
+</ul>
+<div id="d-forward" class="chart" aria-live="polite"></div>
+<div class="table-wrap"><table><thead><tr><th>First site's worst misses</th><th class="num">Actual acres</th><th class="num">Predicted</th><th>Reporting status</th></tr></thead><tbody><tr><td>KS 1992</td><td class="num"><button type="button" class="q" data-claim="drivers.worst_misses">252</button></td><td class="num"><button type="button" class="q" data-claim="drivers.worst_misses">16,117</button></td><td><strong>reporting break</strong></td></tr><tr><td>NE 1993</td><td class="num"><button type="button" class="q" data-claim="drivers.worst_misses">174</button></td><td class="num"><button type="button" class="q" data-claim="drivers.worst_misses">6,262</button></td><td><strong>reporting break</strong></td></tr><tr><td>PA 1995</td><td class="num"><button type="button" class="q" data-claim="drivers.worst_misses">51</button></td><td class="num"><button type="button" class="q" data-claim="drivers.worst_misses">1,722</button></td><td>usable</td></tr><tr><td>PA 1993</td><td class="num"><button type="button" class="q" data-claim="drivers.worst_misses">41</button></td><td class="num"><button type="button" class="q" data-claim="drivers.worst_misses">1,321</button></td><td>usable</td></tr><tr><td>KY 1993</td><td class="num"><button type="button" class="q" data-claim="drivers.worst_misses">843</button></td><td class="num"><button type="button" class="q" data-claim="drivers.worst_misses">26,394</button></td><td><strong>reporting break</strong></td></tr></tbody></table></div>
+
+<h2>State by state</h2>
+<p>Across <button type="button" class="q" data-claim="drivers.spearman_summary">38</button> states with enough fire, the median correlation between summer drought and acres burned is <button type="button" class="q" data-claim="drivers.spearman_summary">-0.45</button>; on usable years only it is <button type="button" class="q" data-claim="drivers.spearman_usable_only">-0.47</button> across <button type="button" class="q" data-claim="drivers.spearman_usable_only">36</button> states.
+Colorado is among the strongest (<button type="button" class="q" data-claim="drivers.spearman_by_state">-0.72</button>; <button type="button" class="q" data-claim="drivers.spearman_usable_only">-0.61</button> on usable years). Arizona (<button type="button" class="q" data-claim="drivers.spearman_by_state">-0.18</button>) and Nevada (<button type="button" class="q" data-claim="drivers.spearman_by_state">0.13</button>) show no significant link in either version:
+in these deserts a wet winter grows the grass that carries the next fire, so dry years are not the big fire years. That reading, from the first site, holds.</p>
+<div id="d-spearman" class="chart" aria-live="polite"></div>
+<p class="small">Sources: NOAA nClimDiv state-level monthly PDSI, average temperature, and precipitation (doi:10.7289/V5M32STR), fetched from https://www.ncei.noaa.gov/pub/data/cirs/climdiv/ on 2026-09-26: climdiv-pdsist-v1.0.0-20260904 (sha256 f182d76631c6fa35e637cc4bd6597ffbb07cb14b9f749469527f23b1ccaed802), climdiv-tmpcst-v1.0.0-20260904 (sha256 eba0699e448cb01a531462dbdb81a46015b44ae05d473b4e6124c5a5d6c50d28), climdiv-pcpnst-v1.0.0-20260904 (sha256 56b67e12075a65213d7a2cbaf39ef3ba0cee25dd84f562cd767e27bdcd39c60b). FPA FOD annual acres burned per state (sum of FIRE_SIZE by STATE, FIRE_YEAR), 1992-2020. Reporting-coverage mask from outputs/coverage.json / outputs/coverage_state_year.csv (analysis.coverage). Code: <a href="https://github.com/Robyn-Collie/wildfire-analysis/blob/main/analysis/drivers.py">analysis/drivers.py</a>; write-up: <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/findings/nifc_and_drivers.md">docs/findings/nifc_and_drivers.md</a>.</p>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+
+<script>
+(function(){
+  var C = WF.data.claims; if (!C['drivers.forward_cv']) return;
+  var fw = C['drivers.forward_cv'].value.by_year, ys = WF.years(fw);
+  WF.chart({ el: 'd-forward', title: 'Forward-in-time test: skill of the drought model in each year', claims: ['drivers.forward_cv', 'drivers.loyo_cv'],
+    sub: 'Each year predicted from a model fitted to earlier years only. Skill = reduction in mean squared error (log10 acres) against each state\'s median year up to then. Below zero: worse than that baseline.',
+    rows: ys.map(function (y) { return { year: y, skill_pct: fw[y].skill_pct_mse, oos_r2: fw[y].oos_r2, states: fw[y].n }; }),
+    columns: [{ key: 'year' }, { key: 'skill_pct', label: 'skill (%)', num: true, fmt: function (v) { return WF.fmt.num(v, 1); } }, { key: 'oos_r2', label: 'out-of-sample R2', num: true, fmt: function (v) { return WF.fmt.num(v, 3); } }, { key: 'states', num: true }],
+    height: 280,
+    build: function (t) { return { data: [{ type: 'bar', x: ys, y: ys.map(function (y) { return fw[y].skill_pct_mse; }), marker: { color: ys.map(function (y) { return fw[y].skill_pct_mse < 0 ? t.series[7] : t.series[0]; }) }, hovertemplate: '%{x}: %{y:.1f}% skill<extra></extra>' }],
+      layout: { showlegend: false, yaxis: { ticksuffix: '%', zeroline: true, zerolinecolor: t.ink2 } } }; }
+  });
+  var sp = C['drivers.spearman_by_state'].value, su = C['drivers.spearman_usable_only'].value.by_state;
+  var st = Object.keys(sp).sort(function (a, b) { return sp[a] - sp[b]; });
+  WF.chart({ el: 'd-spearman', title: 'Drought and burned area, state by state', claims: ['drivers.spearman_by_state', 'drivers.spearman_usable_only', 'drivers.spearman_summary'],
+    sub: 'Spearman correlation between May-October mean PDSI and log10 acres burned, 1992-2020. Negative: drier years burn more. Hollow markers: usable reporting years only.',
+    rows: st.map(function (s) { return { state: s, rho_all_years: sp[s], rho_usable_years: su[s] === undefined ? null : su[s] }; }),
+    columns: [{ key: 'state' }, { key: 'rho_all_years', label: 'rho, all years', num: true, fmt: function (v) { return WF.fmt.num(v, 3); } }, { key: 'rho_usable_years', label: 'rho, usable years', num: true, fmt: function (v) { return WF.fmt.num(v, 3); } }],
+    height: 340,
+    build: function (t) { return { data: [
+      { type: 'scatter', mode: 'markers', x: st, y: st.map(function (s) { return sp[s]; }), name: 'all years', marker: { color: t.series[0], size: 8 }, hovertemplate: '%{x}: rho %{y:.2f} (all years)<extra></extra>' },
+      { type: 'scatter', mode: 'markers', x: st, y: st.map(function (s) { return su[s] === undefined ? null : su[s]; }), name: 'usable years only', marker: { color: 'rgba(0,0,0,0)', size: 11, line: { color: t.series[1], width: 2 } }, hovertemplate: '%{x}: rho %{y:.2f} (usable years)<extra></extra>' }],
+      layout: { yaxis: { range: [-1, 0.5], zeroline: true, zerolinecolor: t.ink2, title: { text: 'Spearman rho' } }, xaxis: { tickfont: { size: 9 } }, legend: { y: -0.25 } } }; }
+  });
+})();
+</script>
+</body>
+</html>

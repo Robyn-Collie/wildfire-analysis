@@ -1,0 +1,805 @@
+REGION,MONTH,month,GENERAL,fires
+Alaska,1,Jan,Equipment and vehicle use,1
+Alaska,1,Jan,Missing data/not specified/undetermined,2
+Alaska,1,Jan,Natural,4
+Alaska,1,Jan,Power generation/transmission/distribution,1
+Alaska,1,Jan,Recreation and ceremony,1
+Alaska,2,Feb,Debris and open burning,5
+Alaska,2,Feb,Missing data/not specified/undetermined,7
+Alaska,2,Feb,Other causes,1
+Alaska,3,Mar,Arson/incendiarism,1
+Alaska,3,Mar,Debris and open burning,43
+Alaska,3,Mar,Equipment and vehicle use,3
+Alaska,3,Mar,Firearms and explosives use,8
+Alaska,3,Mar,Fireworks,1
+Alaska,3,Mar,Missing data/not specified/undetermined,40
+Alaska,3,Mar,Misuse of fire by a minor,2
+Alaska,3,Mar,Natural,1
+Alaska,3,Mar,Other causes,7
+Alaska,3,Mar,Power generation/transmission/distribution,11
+Alaska,3,Mar,Railroad operations and maintenance,1
+Alaska,3,Mar,Recreation and ceremony,10
+Alaska,3,Mar,Smoking,4
+Alaska,4,Apr,Arson/incendiarism,52
+Alaska,4,Apr,Debris and open burning,399
+Alaska,4,Apr,Equipment and vehicle use,29
+Alaska,4,Apr,Firearms and explosives use,57
+Alaska,4,Apr,Fireworks,5
+Alaska,4,Apr,Missing data/not specified/undetermined,274
+Alaska,4,Apr,Misuse of fire by a minor,67
+Alaska,4,Apr,Natural,6
+Alaska,4,Apr,Other causes,21
+Alaska,4,Apr,Power generation/transmission/distribution,34
+Alaska,4,Apr,Railroad operations and maintenance,1
+Alaska,4,Apr,Recreation and ceremony,74
+Alaska,4,Apr,Smoking,34
+Alaska,5,May,Arson/incendiarism,169
+Alaska,5,May,Debris and open burning,1259
+Alaska,5,May,Equipment and vehicle use,155
+Alaska,5,May,Firearms and explosives use,67
+Alaska,5,May,Fireworks,37
+Alaska,5,May,Missing data/not specified/undetermined,929
+Alaska,5,May,Misuse of fire by a minor,256
+Alaska,5,May,Natural,364
+Alaska,5,May,Other causes,162
+Alaska,5,May,Power generation/transmission/distribution,166
+Alaska,5,May,Railroad operations and maintenance,9
+Alaska,5,May,Recreation and ceremony,393
+Alaska,5,May,Smoking,87
+Alaska,6,Jun,Arson/incendiarism,83
+Alaska,6,Jun,Debris and open burning,444
+Alaska,6,Jun,Equipment and vehicle use,143
+Alaska,6,Jun,Firearms and explosives use,30
+Alaska,6,Jun,Fireworks,47
+Alaska,6,Jun,Missing data/not specified/undetermined,589
+Alaska,6,Jun,Misuse of fire by a minor,124
+Alaska,6,Jun,Natural,2582
+Alaska,6,Jun,Other causes,106
+Alaska,6,Jun,Power generation/transmission/distribution,96
+Alaska,6,Jun,Railroad operations and maintenance,1
+Alaska,6,Jun,Recreation and ceremony,399
+Alaska,6,Jun,Smoking,64
+Alaska,7,Jul,Arson/incendiarism,39
+Alaska,7,Jul,Debris and open burning,214
+Alaska,7,Jul,Equipment and vehicle use,68
+Alaska,7,Jul,Firearms and explosives use,14
+Alaska,7,Jul,Fireworks,94
+Alaska,7,Jul,Missing data/not specified/undetermined,391
+Alaska,7,Jul,Misuse of fire by a minor,67
+Alaska,7,Jul,Natural,1880
+Alaska,7,Jul,Other causes,73
+Alaska,7,Jul,Power generation/transmission/distribution,57
+Alaska,7,Jul,Recreation and ceremony,443
+Alaska,7,Jul,Smoking,49
+Alaska,8,Aug,Arson/incendiarism,23
+Alaska,8,Aug,Debris and open burning,131
+Alaska,8,Aug,Equipment and vehicle use,40
+Alaska,8,Aug,Firearms and explosives use,9
+Alaska,8,Aug,Fireworks,8
+Alaska,8,Aug,Missing data/not specified/undetermined,246
+Alaska,8,Aug,Misuse of fire by a minor,32
+Alaska,8,Aug,Natural,226
+Alaska,8,Aug,Other causes,40
+Alaska,8,Aug,Power generation/transmission/distribution,40
+Alaska,8,Aug,Recreation and ceremony,313
+Alaska,8,Aug,Smoking,30
+Alaska,9,Sep,Arson/incendiarism,11
+Alaska,9,Sep,Debris and open burning,58
+Alaska,9,Sep,Equipment and vehicle use,15
+Alaska,9,Sep,Firearms and explosives use,15
+Alaska,9,Sep,Fireworks,2
+Alaska,9,Sep,Missing data/not specified/undetermined,129
+Alaska,9,Sep,Misuse of fire by a minor,15
+Alaska,9,Sep,Natural,24
+Alaska,9,Sep,Other causes,10
+Alaska,9,Sep,Power generation/transmission/distribution,42
+Alaska,9,Sep,Recreation and ceremony,205
+Alaska,9,Sep,Smoking,3
+Alaska,10,Oct,Arson/incendiarism,3
+Alaska,10,Oct,Debris and open burning,24
+Alaska,10,Oct,Equipment and vehicle use,6
+Alaska,10,Oct,Firearms and explosives use,4
+Alaska,10,Oct,Missing data/not specified/undetermined,31
+Alaska,10,Oct,Misuse of fire by a minor,4
+Alaska,10,Oct,Natural,2
+Alaska,10,Oct,Other causes,5
+Alaska,10,Oct,Power generation/transmission/distribution,17
+Alaska,10,Oct,Recreation and ceremony,34
+Alaska,10,Oct,Smoking,1
+Alaska,11,Nov,Arson/incendiarism,1
+Alaska,11,Nov,Debris and open burning,3
+Alaska,11,Nov,Equipment and vehicle use,3
+Alaska,11,Nov,Missing data/not specified/undetermined,8
+Alaska,11,Nov,Other causes,3
+Alaska,11,Nov,Power generation/transmission/distribution,1
+Alaska,11,Nov,Recreation and ceremony,6
+Alaska,11,Nov,Smoking,1
+Alaska,12,Dec,Debris and open burning,5
+Alaska,12,Dec,Equipment and vehicle use,1
+Alaska,12,Dec,Missing data/not specified/undetermined,6
+Alaska,12,Dec,Recreation and ceremony,2
+Hawaii/PR,1,Jan,Arson/incendiarism,8
+Hawaii/PR,1,Jan,Fireworks,1
+Hawaii/PR,1,Jan,Missing data/not specified/undetermined,704
+Hawaii/PR,1,Jan,Natural,1
+Hawaii/PR,1,Jan,Smoking,1
+Hawaii/PR,2,Feb,Arson/incendiarism,6
+Hawaii/PR,2,Feb,Missing data/not specified/undetermined,450
+Hawaii/PR,2,Feb,Natural,1
+Hawaii/PR,2,Feb,Recreation and ceremony,1
+Hawaii/PR,3,Mar,Arson/incendiarism,20
+Hawaii/PR,3,Mar,Equipment and vehicle use,5
+Hawaii/PR,3,Mar,Firearms and explosives use,13
+Hawaii/PR,3,Mar,Missing data/not specified/undetermined,475
+Hawaii/PR,3,Mar,Natural,1
+Hawaii/PR,4,Apr,Arson/incendiarism,20
+Hawaii/PR,4,Apr,Debris and open burning,1
+Hawaii/PR,4,Apr,Equipment and vehicle use,11
+Hawaii/PR,4,Apr,Firearms and explosives use,3
+Hawaii/PR,4,Apr,Missing data/not specified/undetermined,613
+Hawaii/PR,5,May,Arson/incendiarism,5
+Hawaii/PR,5,May,Equipment and vehicle use,6
+Hawaii/PR,5,May,Missing data/not specified/undetermined,758
+Hawaii/PR,5,May,Natural,3
+Hawaii/PR,5,May,Smoking,1
+Hawaii/PR,6,Jun,Arson/incendiarism,22
+Hawaii/PR,6,Jun,Equipment and vehicle use,7
+Hawaii/PR,6,Jun,Firearms and explosives use,6
+Hawaii/PR,6,Jun,Missing data/not specified/undetermined,991
+Hawaii/PR,6,Jun,Natural,2
+Hawaii/PR,6,Jun,Recreation and ceremony,1
+Hawaii/PR,7,Jul,Arson/incendiarism,7
+Hawaii/PR,7,Jul,Equipment and vehicle use,6
+Hawaii/PR,7,Jul,Firearms and explosives use,4
+Hawaii/PR,7,Jul,Fireworks,2
+Hawaii/PR,7,Jul,Missing data/not specified/undetermined,2014
+Hawaii/PR,7,Jul,Natural,5
+Hawaii/PR,7,Jul,Recreation and ceremony,4
+Hawaii/PR,7,Jul,Smoking,1
+Hawaii/PR,8,Aug,Arson/incendiarism,16
+Hawaii/PR,8,Aug,Equipment and vehicle use,1
+Hawaii/PR,8,Aug,Firearms and explosives use,5
+Hawaii/PR,8,Aug,Missing data/not specified/undetermined,1099
+Hawaii/PR,8,Aug,Natural,2
+Hawaii/PR,8,Aug,Recreation and ceremony,2
+Hawaii/PR,8,Aug,Smoking,1
+Hawaii/PR,9,Sep,Arson/incendiarism,1
+Hawaii/PR,9,Sep,Equipment and vehicle use,2
+Hawaii/PR,9,Sep,Firearms and explosives use,1
+Hawaii/PR,9,Sep,Missing data/not specified/undetermined,844
+Hawaii/PR,9,Sep,Recreation and ceremony,1
+Hawaii/PR,10,Oct,Arson/incendiarism,1
+Hawaii/PR,10,Oct,Equipment and vehicle use,8
+Hawaii/PR,10,Oct,Firearms and explosives use,3
+Hawaii/PR,10,Oct,Missing data/not specified/undetermined,660
+Hawaii/PR,10,Oct,Natural,1
+Hawaii/PR,10,Oct,Recreation and ceremony,1
+Hawaii/PR,11,Nov,Debris and open burning,1
+Hawaii/PR,11,Nov,Equipment and vehicle use,4
+Hawaii/PR,11,Nov,Firearms and explosives use,15
+Hawaii/PR,11,Nov,Missing data/not specified/undetermined,417
+Hawaii/PR,11,Nov,Natural,2
+Hawaii/PR,12,Dec,Arson/incendiarism,1
+Hawaii/PR,12,Dec,Debris and open burning,1
+Hawaii/PR,12,Dec,Equipment and vehicle use,1
+Hawaii/PR,12,Dec,Missing data/not specified/undetermined,600
+Hawaii/PR,12,Dec,Natural,6
+Northeast,1,Jan,Arson/incendiarism,454
+Northeast,1,Jan,Debris and open burning,172
+Northeast,1,Jan,Equipment and vehicle use,159
+Northeast,1,Jan,Fireworks,10
+Northeast,1,Jan,Missing data/not specified/undetermined,1152
+Northeast,1,Jan,Misuse of fire by a minor,121
+Northeast,1,Jan,Natural,111
+Northeast,1,Jan,Other causes,61
+Northeast,1,Jan,Power generation/transmission/distribution,46
+Northeast,1,Jan,Railroad operations and maintenance,13
+Northeast,1,Jan,Recreation and ceremony,118
+Northeast,1,Jan,Smoking,138
+Northeast,2,Feb,Arson/incendiarism,705
+Northeast,2,Feb,Debris and open burning,286
+Northeast,2,Feb,Equipment and vehicle use,307
+Northeast,2,Feb,Firearms and explosives use,1
+Northeast,2,Feb,Fireworks,7
+Northeast,2,Feb,Missing data/not specified/undetermined,1463
+Northeast,2,Feb,Misuse of fire by a minor,267
+Northeast,2,Feb,Natural,120
+Northeast,2,Feb,Other causes,119
+Northeast,2,Feb,Power generation/transmission/distribution,74
+Northeast,2,Feb,Railroad operations and maintenance,34
+Northeast,2,Feb,Recreation and ceremony,131
+Northeast,2,Feb,Smoking,233
+Northeast,3,Mar,Arson/incendiarism,2504
+Northeast,3,Mar,Debris and open burning,1607
+Northeast,3,Mar,Equipment and vehicle use,780
+Northeast,3,Mar,Firearms and explosives use,3
+Northeast,3,Mar,Fireworks,47
+Northeast,3,Mar,Missing data/not specified/undetermined,6221
+Northeast,3,Mar,Misuse of fire by a minor,932
+Northeast,3,Mar,Natural,637
+Northeast,3,Mar,Other causes,213
+Northeast,3,Mar,Power generation/transmission/distribution,184
+Northeast,3,Mar,Railroad operations and maintenance,176
+Northeast,3,Mar,Recreation and ceremony,496
+Northeast,3,Mar,Smoking,817
+Northeast,4,Apr,Arson/incendiarism,5683
+Northeast,4,Apr,Debris and open burning,5039
+Northeast,4,Apr,Equipment and vehicle use,1586
+Northeast,4,Apr,Firearms and explosives use,14
+Northeast,4,Apr,Fireworks,81
+Northeast,4,Apr,Missing data/not specified/undetermined,17113
+Northeast,4,Apr,Misuse of fire by a minor,2052
+Northeast,4,Apr,Natural,1645
+Northeast,4,Apr,Other causes,286
+Northeast,4,Apr,Power generation/transmission/distribution,469
+Northeast,4,Apr,Railroad operations and maintenance,628
+Northeast,4,Apr,Recreation and ceremony,1141
+Northeast,4,Apr,Smoking,2088
+Northeast,5,May,Arson/incendiarism,3502
+Northeast,5,May,Debris and open burning,2087
+Northeast,5,May,Equipment and vehicle use,1388
+Northeast,5,May,Firearms and explosives use,1
+Northeast,5,May,Fireworks,59
+Northeast,5,May,Missing data/not specified/undetermined,9637
+Northeast,5,May,Misuse of fire by a minor,1044
+Northeast,5,May,Natural,1232
+Northeast,5,May,Other causes,146
+Northeast,5,May,Power generation/transmission/distribution,380
+Northeast,5,May,Railroad operations and maintenance,380
+Northeast,5,May,Recreation and ceremony,726
+Northeast,5,May,Smoking,1676
+Northeast,6,Jun,Arson/incendiarism,1823
+Northeast,6,Jun,Debris and open burning,738
+Northeast,6,Jun,Equipment and vehicle use,968
+Northeast,6,Jun,Firearms and explosives use,6
+Northeast,6,Jun,Fireworks,32
+Northeast,6,Jun,Missing data/not specified/undetermined,5226
+Northeast,6,Jun,Misuse of fire by a minor,479
+Northeast,6,Jun,Natural,981
+Northeast,6,Jun,Other causes,57
+Northeast,6,Jun,Power generation/transmission/distribution,225
+Northeast,6,Jun,Railroad operations and maintenance,208
+Northeast,6,Jun,Recreation and ceremony,467
+Northeast,6,Jun,Smoking,895
+Northeast,7,Jul,Arson/incendiarism,2039
+Northeast,7,Jul,Debris and open burning,774
+Northeast,7,Jul,Equipment and vehicle use,1004
+Northeast,7,Jul,Fireworks,129
+Northeast,7,Jul,Missing data/not specified/undetermined,6319
+Northeast,7,Jul,Misuse of fire by a minor,519
+Northeast,7,Jul,Natural,1173
+Northeast,7,Jul,Other causes,54
+Northeast,7,Jul,Power generation/transmission/distribution,217
+Northeast,7,Jul,Railroad operations and maintenance,151
+Northeast,7,Jul,Recreation and ceremony,640
+Northeast,7,Jul,Smoking,1222
+Northeast,8,Aug,Arson/incendiarism,1646
+Northeast,8,Aug,Debris and open burning,566
+Northeast,8,Aug,Equipment and vehicle use,791
+Northeast,8,Aug,Firearms and explosives use,3
+Northeast,8,Aug,Fireworks,31
+Northeast,8,Aug,Missing data/not specified/undetermined,5013
+Northeast,8,Aug,Misuse of fire by a minor,383
+Northeast,8,Aug,Natural,996
+Northeast,8,Aug,Other causes,48
+Northeast,8,Aug,Power generation/transmission/distribution,163
+Northeast,8,Aug,Railroad operations and maintenance,100
+Northeast,8,Aug,Recreation and ceremony,686
+Northeast,8,Aug,Smoking,881
+Northeast,9,Sep,Arson/incendiarism,1307
+Northeast,9,Sep,Debris and open burning,467
+Northeast,9,Sep,Equipment and vehicle use,567
+Northeast,9,Sep,Firearms and explosives use,2
+Northeast,9,Sep,Fireworks,17
+Northeast,9,Sep,Missing data/not specified/undetermined,4092
+Northeast,9,Sep,Misuse of fire by a minor,329
+Northeast,9,Sep,Natural,553
+Northeast,9,Sep,Other causes,64
+Northeast,9,Sep,Power generation/transmission/distribution,122
+Northeast,9,Sep,Railroad operations and maintenance,49
+Northeast,9,Sep,Recreation and ceremony,554
+Northeast,9,Sep,Smoking,631
+Northeast,10,Oct,Arson/incendiarism,1209
+Northeast,10,Oct,Debris and open burning,406
+Northeast,10,Oct,Equipment and vehicle use,430
+Northeast,10,Oct,Fireworks,11
+Northeast,10,Oct,Missing data/not specified/undetermined,2972
+Northeast,10,Oct,Misuse of fire by a minor,300
+Northeast,10,Oct,Natural,250
+Northeast,10,Oct,Other causes,67
+Northeast,10,Oct,Power generation/transmission/distribution,106
+Northeast,10,Oct,Railroad operations and maintenance,27
+Northeast,10,Oct,Recreation and ceremony,295
+Northeast,10,Oct,Smoking,400
+Northeast,11,Nov,Arson/incendiarism,1729
+Northeast,11,Nov,Debris and open burning,719
+Northeast,11,Nov,Equipment and vehicle use,638
+Northeast,11,Nov,Firearms and explosives use,3
+Northeast,11,Nov,Fireworks,12
+Northeast,11,Nov,Missing data/not specified/undetermined,4819
+Northeast,11,Nov,Misuse of fire by a minor,432
+Northeast,11,Nov,Natural,398
+Northeast,11,Nov,Other causes,236
+Northeast,11,Nov,Power generation/transmission/distribution,174
+Northeast,11,Nov,Railroad operations and maintenance,42
+Northeast,11,Nov,Recreation and ceremony,314
+Northeast,11,Nov,Smoking,653
+Northeast,12,Dec,Arson/incendiarism,523
+Northeast,12,Dec,Debris and open burning,175
+Northeast,12,Dec,Equipment and vehicle use,163
+Northeast,12,Dec,Fireworks,9
+Northeast,12,Dec,Missing data/not specified/undetermined,1607
+Northeast,12,Dec,Misuse of fire by a minor,138
+Northeast,12,Dec,Natural,121
+Northeast,12,Dec,Other causes,87
+Northeast,12,Dec,Power generation/transmission/distribution,45
+Northeast,12,Dec,Railroad operations and maintenance,8
+Northeast,12,Dec,Recreation and ceremony,92
+Northeast,12,Dec,Smoking,215
+Other,1,Jan,Arson/incendiarism,258
+Other,1,Jan,Debris and open burning,887
+Other,1,Jan,Equipment and vehicle use,236
+Other,1,Jan,Fireworks,18
+Other,1,Jan,Missing data/not specified/undetermined,479
+Other,1,Jan,Misuse of fire by a minor,171
+Other,1,Jan,Natural,39
+Other,1,Jan,Other causes,80
+Other,1,Jan,Power generation/transmission/distribution,48
+Other,1,Jan,Railroad operations and maintenance,27
+Other,1,Jan,Recreation and ceremony,66
+Other,1,Jan,Smoking,51
+Other,2,Feb,Arson/incendiarism,602
+Other,2,Feb,Debris and open burning,1711
+Other,2,Feb,Equipment and vehicle use,300
+Other,2,Feb,Firearms and explosives use,2
+Other,2,Feb,Fireworks,11
+Other,2,Feb,Missing data/not specified/undetermined,848
+Other,2,Feb,Misuse of fire by a minor,244
+Other,2,Feb,Natural,40
+Other,2,Feb,Other causes,91
+Other,2,Feb,Power generation/transmission/distribution,54
+Other,2,Feb,Railroad operations and maintenance,50
+Other,2,Feb,Recreation and ceremony,121
+Other,2,Feb,Smoking,98
+Other,3,Mar,Arson/incendiarism,3282
+Other,3,Mar,Debris and open burning,8229
+Other,3,Mar,Equipment and vehicle use,1429
+Other,3,Mar,Firearms and explosives use,3
+Other,3,Mar,Fireworks,53
+Other,3,Mar,Missing data/not specified/undetermined,3201
+Other,3,Mar,Misuse of fire by a minor,1146
+Other,3,Mar,Natural,164
+Other,3,Mar,Other causes,206
+Other,3,Mar,Power generation/transmission/distribution,340
+Other,3,Mar,Railroad operations and maintenance,344
+Other,3,Mar,Recreation and ceremony,593
+Other,3,Mar,Smoking,470
+Other,4,Apr,Arson/incendiarism,13053
+Other,4,Apr,Debris and open burning,19864
+Other,4,Apr,Equipment and vehicle use,3857
+Other,4,Apr,Firearms and explosives use,5
+Other,4,Apr,Fireworks,152
+Other,4,Apr,Missing data/not specified/undetermined,8655
+Other,4,Apr,Misuse of fire by a minor,3408
+Other,4,Apr,Natural,471
+Other,4,Apr,Other causes,419
+Other,4,Apr,Power generation/transmission/distribution,843
+Other,4,Apr,Railroad operations and maintenance,1059
+Other,4,Apr,Recreation and ceremony,1832
+Other,4,Apr,Smoking,1093
+Other,5,May,Arson/incendiarism,5744
+Other,5,May,Debris and open burning,8397
+Other,5,May,Equipment and vehicle use,2791
+Other,5,May,Firearms and explosives use,1
+Other,5,May,Fireworks,186
+Other,5,May,Missing data/not specified/undetermined,4964
+Other,5,May,Misuse of fire by a minor,1373
+Other,5,May,Natural,841
+Other,5,May,Other causes,340
+Other,5,May,Power generation/transmission/distribution,843
+Other,5,May,Railroad operations and maintenance,962
+Other,5,May,Recreation and ceremony,1425
+Other,5,May,Smoking,654
+Other,6,Jun,Arson/incendiarism,1009
+Other,6,Jun,Debris and open burning,1830
+Other,6,Jun,Equipment and vehicle use,1526
+Other,6,Jun,Firearms and explosives use,4
+Other,6,Jun,Fireworks,1408
+Other,6,Jun,Missing data/not specified/undetermined,2007
+Other,6,Jun,Misuse of fire by a minor,428
+Other,6,Jun,Natural,1362
+Other,6,Jun,Other causes,141
+Other,6,Jun,Power generation/transmission/distribution,380
+Other,6,Jun,Railroad operations and maintenance,407
+Other,6,Jun,Recreation and ceremony,550
+Other,6,Jun,Smoking,220
+Other,7,Jul,Arson/incendiarism,1393
+Other,7,Jul,Debris and open burning,1912
+Other,7,Jul,Equipment and vehicle use,2587
+Other,7,Jul,Firearms and explosives use,5
+Other,7,Jul,Fireworks,2912
+Other,7,Jul,Missing data/not specified/undetermined,3213
+Other,7,Jul,Misuse of fire by a minor,892
+Other,7,Jul,Natural,3457
+Other,7,Jul,Other causes,156
+Other,7,Jul,Power generation/transmission/distribution,385
+Other,7,Jul,Railroad operations and maintenance,275
+Other,7,Jul,Recreation and ceremony,729
+Other,7,Jul,Smoking,317
+Other,8,Aug,Arson/incendiarism,1079
+Other,8,Aug,Debris and open burning,1794
+Other,8,Aug,Equipment and vehicle use,1797
+Other,8,Aug,Firearms and explosives use,5
+Other,8,Aug,Fireworks,136
+Other,8,Aug,Missing data/not specified/undetermined,2044
+Other,8,Aug,Misuse of fire by a minor,820
+Other,8,Aug,Natural,3195
+Other,8,Aug,Other causes,128
+Other,8,Aug,Power generation/transmission/distribution,241
+Other,8,Aug,Railroad operations and maintenance,233
+Other,8,Aug,Recreation and ceremony,717
+Other,8,Aug,Smoking,226
+Other,9,Sep,Arson/incendiarism,996
+Other,9,Sep,Debris and open burning,1608
+Other,9,Sep,Equipment and vehicle use,1357
+Other,9,Sep,Firearms and explosives use,4
+Other,9,Sep,Fireworks,56
+Other,9,Sep,Missing data/not specified/undetermined,1825
+Other,9,Sep,Misuse of fire by a minor,608
+Other,9,Sep,Natural,1289
+Other,9,Sep,Other causes,129
+Other,9,Sep,Power generation/transmission/distribution,186
+Other,9,Sep,Railroad operations and maintenance,104
+Other,9,Sep,Recreation and ceremony,454
+Other,9,Sep,Smoking,209
+Other,10,Oct,Arson/incendiarism,1659
+Other,10,Oct,Debris and open burning,2672
+Other,10,Oct,Equipment and vehicle use,1760
+Other,10,Oct,Firearms and explosives use,2
+Other,10,Oct,Fireworks,24
+Other,10,Oct,Missing data/not specified/undetermined,2043
+Other,10,Oct,Misuse of fire by a minor,568
+Other,10,Oct,Natural,240
+Other,10,Oct,Other causes,230
+Other,10,Oct,Power generation/transmission/distribution,254
+Other,10,Oct,Railroad operations and maintenance,97
+Other,10,Oct,Recreation and ceremony,460
+Other,10,Oct,Smoking,273
+Other,11,Nov,Arson/incendiarism,1473
+Other,11,Nov,Debris and open burning,2370
+Other,11,Nov,Equipment and vehicle use,1070
+Other,11,Nov,Firearms and explosives use,3
+Other,11,Nov,Fireworks,19
+Other,11,Nov,Missing data/not specified/undetermined,1770
+Other,11,Nov,Misuse of fire by a minor,350
+Other,11,Nov,Natural,89
+Other,11,Nov,Other causes,210
+Other,11,Nov,Power generation/transmission/distribution,146
+Other,11,Nov,Railroad operations and maintenance,58
+Other,11,Nov,Recreation and ceremony,386
+Other,11,Nov,Smoking,240
+Other,12,Dec,Arson/incendiarism,248
+Other,12,Dec,Debris and open burning,765
+Other,12,Dec,Equipment and vehicle use,301
+Other,12,Dec,Firearms and explosives use,2
+Other,12,Dec,Fireworks,23
+Other,12,Dec,Missing data/not specified/undetermined,503
+Other,12,Dec,Misuse of fire by a minor,125
+Other,12,Dec,Natural,28
+Other,12,Dec,Other causes,116
+Other,12,Dec,Power generation/transmission/distribution,46
+Other,12,Dec,Railroad operations and maintenance,20
+Other,12,Dec,Recreation and ceremony,76
+Other,12,Dec,Smoking,49
+South,1,Jan,Arson/incendiarism,13972
+South,1,Jan,Debris and open burning,31496
+South,1,Jan,Equipment and vehicle use,5916
+South,1,Jan,Firearms and explosives use,11
+South,1,Jan,Fireworks,219
+South,1,Jan,Missing data/not specified/undetermined,14813
+South,1,Jan,Misuse of fire by a minor,2277
+South,1,Jan,Natural,367
+South,1,Jan,Other causes,188
+South,1,Jan,Power generation/transmission/distribution,1027
+South,1,Jan,Railroad operations and maintenance,2411
+South,1,Jan,Recreation and ceremony,1903
+South,1,Jan,Smoking,1987
+South,2,Feb,Arson/incendiarism,24822
+South,2,Feb,Debris and open burning,50550
+South,2,Feb,Equipment and vehicle use,7726
+South,2,Feb,Firearms and explosives use,15
+South,2,Feb,Fireworks,141
+South,2,Feb,Missing data/not specified/undetermined,23078
+South,2,Feb,Misuse of fire by a minor,3435
+South,2,Feb,Natural,595
+South,2,Feb,Other causes,294
+South,2,Feb,Power generation/transmission/distribution,1454
+South,2,Feb,Railroad operations and maintenance,3504
+South,2,Feb,Recreation and ceremony,3003
+South,2,Feb,Smoking,3201
+South,3,Mar,Arson/incendiarism,40168
+South,3,Mar,Debris and open burning,72687
+South,3,Mar,Equipment and vehicle use,9528
+South,3,Mar,Firearms and explosives use,15
+South,3,Mar,Fireworks,262
+South,3,Mar,Missing data/not specified/undetermined,28770
+South,3,Mar,Misuse of fire by a minor,5159
+South,3,Mar,Natural,1580
+South,3,Mar,Other causes,466
+South,3,Mar,Power generation/transmission/distribution,2126
+South,3,Mar,Railroad operations and maintenance,4019
+South,3,Mar,Recreation and ceremony,4233
+South,3,Mar,Smoking,3960
+South,4,Apr,Arson/incendiarism,25052
+South,4,Apr,Debris and open burning,41566
+South,4,Apr,Equipment and vehicle use,7607
+South,4,Apr,Firearms and explosives use,1
+South,4,Apr,Fireworks,286
+South,4,Apr,Missing data/not specified/undetermined,17221
+South,4,Apr,Misuse of fire by a minor,4647
+South,4,Apr,Natural,3023
+South,4,Apr,Other causes,395
+South,4,Apr,Power generation/transmission/distribution,2365
+South,4,Apr,Railroad operations and maintenance,3361
+South,4,Apr,Recreation and ceremony,2893
+South,4,Apr,Smoking,2880
+South,5,May,Arson/incendiarism,10508
+South,5,May,Debris and open burning,19469
+South,5,May,Equipment and vehicle use,6508
+South,5,May,Firearms and explosives use,3
+South,5,May,Fireworks,97
+South,5,May,Missing data/not specified/undetermined,9906
+South,5,May,Misuse of fire by a minor,2276
+South,5,May,Natural,6948
+South,5,May,Other causes,154
+South,5,May,Power generation/transmission/distribution,1253
+South,5,May,Railroad operations and maintenance,3125
+South,5,May,Recreation and ceremony,1301
+South,5,May,Smoking,1507
+South,6,Jun,Arson/incendiarism,6093
+South,6,Jun,Debris and open burning,13730
+South,6,Jun,Equipment and vehicle use,6189
+South,6,Jun,Firearms and explosives use,4
+South,6,Jun,Fireworks,153
+South,6,Jun,Missing data/not specified/undetermined,9849
+South,6,Jun,Misuse of fire by a minor,1442
+South,6,Jun,Natural,13419
+South,6,Jun,Other causes,103
+South,6,Jun,Power generation/transmission/distribution,1131
+South,6,Jun,Railroad operations and maintenance,1503
+South,6,Jun,Recreation and ceremony,636
+South,6,Jun,Smoking,1191
+South,7,Jul,Arson/incendiarism,6895
+South,7,Jul,Debris and open burning,13062
+South,7,Jul,Equipment and vehicle use,5332
+South,7,Jul,Firearms and explosives use,2
+South,7,Jul,Fireworks,733
+South,7,Jul,Missing data/not specified/undetermined,12744
+South,7,Jul,Misuse of fire by a minor,1506
+South,7,Jul,Natural,12602
+South,7,Jul,Other causes,112
+South,7,Jul,Power generation/transmission/distribution,1176
+South,7,Jul,Railroad operations and maintenance,1066
+South,7,Jul,Recreation and ceremony,751
+South,7,Jul,Smoking,1153
+South,8,Aug,Arson/incendiarism,7585
+South,8,Aug,Debris and open burning,13983
+South,8,Aug,Equipment and vehicle use,5449
+South,8,Aug,Firearms and explosives use,6
+South,8,Aug,Fireworks,87
+South,8,Aug,Missing data/not specified/undetermined,10279
+South,8,Aug,Misuse of fire by a minor,856
+South,8,Aug,Natural,8988
+South,8,Aug,Other causes,146
+South,8,Aug,Power generation/transmission/distribution,1378
+South,8,Aug,Railroad operations and maintenance,900
+South,8,Aug,Recreation and ceremony,688
+South,8,Aug,Smoking,1205
+South,9,Sep,Arson/incendiarism,9808
+South,9,Sep,Debris and open burning,17729
+South,9,Sep,Equipment and vehicle use,5362
+South,9,Sep,Firearms and explosives use,5
+South,9,Sep,Fireworks,99
+South,9,Sep,Missing data/not specified/undetermined,9481
+South,9,Sep,Misuse of fire by a minor,881
+South,9,Sep,Natural,2746
+South,9,Sep,Other causes,199
+South,9,Sep,Power generation/transmission/distribution,1035
+South,9,Sep,Railroad operations and maintenance,880
+South,9,Sep,Recreation and ceremony,1100
+South,9,Sep,Smoking,1373
+South,10,Oct,Arson/incendiarism,12840
+South,10,Oct,Debris and open burning,21451
+South,10,Oct,Equipment and vehicle use,5105
+South,10,Oct,Firearms and explosives use,10
+South,10,Oct,Fireworks,199
+South,10,Oct,Missing data/not specified/undetermined,10793
+South,10,Oct,Misuse of fire by a minor,1210
+South,10,Oct,Natural,666
+South,10,Oct,Other causes,197
+South,10,Oct,Power generation/transmission/distribution,868
+South,10,Oct,Railroad operations and maintenance,1162
+South,10,Oct,Recreation and ceremony,1584
+South,10,Oct,Smoking,1402
+South,11,Nov,Arson/incendiarism,17318
+South,11,Nov,Debris and open burning,22553
+South,11,Nov,Equipment and vehicle use,5048
+South,11,Nov,Firearms and explosives use,23
+South,11,Nov,Fireworks,391
+South,11,Nov,Missing data/not specified/undetermined,12091
+South,11,Nov,Misuse of fire by a minor,1861
+South,11,Nov,Natural,421
+South,11,Nov,Other causes,350
+South,11,Nov,Power generation/transmission/distribution,932
+South,11,Nov,Railroad operations and maintenance,1115
+South,11,Nov,Recreation and ceremony,2051
+South,11,Nov,Smoking,1759
+South,12,Dec,Arson/incendiarism,9236
+South,12,Dec,Debris and open burning,16833
+South,12,Dec,Equipment and vehicle use,3569
+South,12,Dec,Firearms and explosives use,4
+South,12,Dec,Fireworks,127
+South,12,Dec,Missing data/not specified/undetermined,8429
+South,12,Dec,Misuse of fire by a minor,1347
+South,12,Dec,Natural,227
+South,12,Dec,Other causes,157
+South,12,Dec,Power generation/transmission/distribution,556
+South,12,Dec,Railroad operations and maintenance,1170
+South,12,Dec,Recreation and ceremony,1069
+South,12,Dec,Smoking,1091
+West,1,Jan,Arson/incendiarism,805
+West,1,Jan,Debris and open burning,1496
+West,1,Jan,Equipment and vehicle use,831
+West,1,Jan,Firearms and explosives use,14
+West,1,Jan,Fireworks,29
+West,1,Jan,Missing data/not specified/undetermined,5614
+West,1,Jan,Misuse of fire by a minor,336
+West,1,Jan,Natural,106
+West,1,Jan,Other causes,71
+West,1,Jan,Power generation/transmission/distribution,135
+West,1,Jan,Railroad operations and maintenance,39
+West,1,Jan,Recreation and ceremony,623
+West,1,Jan,Smoking,257
+West,2,Feb,Arson/incendiarism,802
+West,2,Feb,Debris and open burning,2075
+West,2,Feb,Equipment and vehicle use,939
+West,2,Feb,Firearms and explosives use,23
+West,2,Feb,Fireworks,24
+West,2,Feb,Missing data/not specified/undetermined,5516
+West,2,Feb,Misuse of fire by a minor,329
+West,2,Feb,Natural,142
+West,2,Feb,Other causes,79
+West,2,Feb,Power generation/transmission/distribution,178
+West,2,Feb,Railroad operations and maintenance,58
+West,2,Feb,Recreation and ceremony,700
+West,2,Feb,Smoking,265
+West,3,Mar,Arson/incendiarism,1304
+West,3,Mar,Debris and open burning,5095
+West,3,Mar,Equipment and vehicle use,1384
+West,3,Mar,Firearms and explosives use,41
+West,3,Mar,Fireworks,59
+West,3,Mar,Missing data/not specified/undetermined,9099
+West,3,Mar,Misuse of fire by a minor,560
+West,3,Mar,Natural,384
+West,3,Mar,Other causes,108
+West,3,Mar,Power generation/transmission/distribution,246
+West,3,Mar,Railroad operations and maintenance,148
+West,3,Mar,Recreation and ceremony,1438
+West,3,Mar,Smoking,572
+West,4,Apr,Arson/incendiarism,2253
+West,4,Apr,Debris and open burning,7697
+West,4,Apr,Equipment and vehicle use,2677
+West,4,Apr,Firearms and explosives use,64
+West,4,Apr,Fireworks,99
+West,4,Apr,Missing data/not specified/undetermined,13534
+West,4,Apr,Misuse of fire by a minor,1076
+West,4,Apr,Natural,1521
+West,4,Apr,Other causes,156
+West,4,Apr,Power generation/transmission/distribution,510
+West,4,Apr,Railroad operations and maintenance,234
+West,4,Apr,Recreation and ceremony,2625
+West,4,Apr,Smoking,898
+West,5,May,Arson/incendiarism,4585
+West,5,May,Debris and open burning,8170
+West,5,May,Equipment and vehicle use,6892
+West,5,May,Firearms and explosives use,238
+West,5,May,Fireworks,179
+West,5,May,Missing data/not specified/undetermined,21290
+West,5,May,Misuse of fire by a minor,1913
+West,5,May,Natural,8769
+West,5,May,Other causes,190
+West,5,May,Power generation/transmission/distribution,809
+West,5,May,Railroad operations and maintenance,414
+West,5,May,Recreation and ceremony,5074
+West,5,May,Smoking,1794
+West,6,Jun,Arson/incendiarism,6529
+West,6,Jun,Debris and open burning,8157
+West,6,Jun,Equipment and vehicle use,12178
+West,6,Jun,Firearms and explosives use,463
+West,6,Jun,Fireworks,1397
+West,6,Jun,Missing data/not specified/undetermined,30346
+West,6,Jun,Misuse of fire by a minor,2887
+West,6,Jun,Natural,28488
+West,6,Jun,Other causes,397
+West,6,Jun,Power generation/transmission/distribution,1360
+West,6,Jun,Railroad operations and maintenance,719
+West,6,Jun,Recreation and ceremony,6939
+West,6,Jun,Smoking,2691
+West,7,Jul,Arson/incendiarism,8714
+West,7,Jul,Debris and open burning,6799
+West,7,Jul,Equipment and vehicle use,15143
+West,7,Jul,Firearms and explosives use,580
+West,7,Jul,Fireworks,5998
+West,7,Jul,Missing data/not specified/undetermined,37991
+West,7,Jul,Misuse of fire by a minor,3519
+West,7,Jul,Natural,82091
+West,7,Jul,Other causes,576
+West,7,Jul,Power generation/transmission/distribution,1853
+West,7,Jul,Railroad operations and maintenance,942
+West,7,Jul,Recreation and ceremony,10668
+West,7,Jul,Smoking,3666
+West,8,Aug,Arson/incendiarism,6115
+West,8,Aug,Debris and open burning,4708
+West,8,Aug,Equipment and vehicle use,13013
+West,8,Aug,Firearms and explosives use,429
+West,8,Aug,Fireworks,629
+West,8,Aug,Missing data/not specified/undetermined,26604
+West,8,Aug,Misuse of fire by a minor,2376
+West,8,Aug,Natural,81149
+West,8,Aug,Other causes,592
+West,8,Aug,Power generation/transmission/distribution,1765
+West,8,Aug,Railroad operations and maintenance,954
+West,8,Aug,Recreation and ceremony,9935
+West,8,Aug,Smoking,3343
+West,9,Sep,Arson/incendiarism,4486
+West,9,Sep,Debris and open burning,4140
+West,9,Sep,Equipment and vehicle use,8476
+West,9,Sep,Firearms and explosives use,232
+West,9,Sep,Fireworks,251
+West,9,Sep,Missing data/not specified/undetermined,19274
+West,9,Sep,Misuse of fire by a minor,1645
+West,9,Sep,Natural,24979
+West,9,Sep,Other causes,442
+West,9,Sep,Power generation/transmission/distribution,1148
+West,9,Sep,Railroad operations and maintenance,454
+West,9,Sep,Recreation and ceremony,7510
+West,9,Sep,Smoking,2478
+West,10,Oct,Arson/incendiarism,2878
+West,10,Oct,Debris and open burning,4736
+West,10,Oct,Equipment and vehicle use,5092
+West,10,Oct,Firearms and explosives use,98
+West,10,Oct,Fireworks,73
+West,10,Oct,Missing data/not specified/undetermined,13446
+West,10,Oct,Misuse of fire by a minor,1100
+West,10,Oct,Natural,3417
+West,10,Oct,Other causes,254
+West,10,Oct,Power generation/transmission/distribution,673
+West,10,Oct,Railroad operations and maintenance,193
+West,10,Oct,Recreation and ceremony,5385
+West,10,Oct,Smoking,1495
+West,11,Nov,Arson/incendiarism,1305
+West,11,Nov,Debris and open burning,2967
+West,11,Nov,Equipment and vehicle use,1776
+West,11,Nov,Firearms and explosives use,35
+West,11,Nov,Fireworks,37
+West,11,Nov,Missing data/not specified/undetermined,7632
+West,11,Nov,Misuse of fire by a minor,473
+West,11,Nov,Natural,372
+West,11,Nov,Other causes,112
+West,11,Nov,Power generation/transmission/distribution,308
+West,11,Nov,Railroad operations and maintenance,69
+West,11,Nov,Recreation and ceremony,2138
+West,11,Nov,Smoking,463
+West,12,Dec,Arson/incendiarism,641
+West,12,Dec,Debris and open burning,1258
+West,12,Dec,Equipment and vehicle use,872
+West,12,Dec,Firearms and explosives use,15
+West,12,Dec,Fireworks,19
+West,12,Dec,Missing data/not specified/undetermined,4776
+West,12,Dec,Misuse of fire by a minor,305
+West,12,Dec,Natural,73
+West,12,Dec,Other causes,54
+West,12,Dec,Power generation/transmission/distribution,151
+West,12,Dec,Railroad operations and maintenance,30
+West,12,Dec,Recreation and ceremony,568
+West,12,Dec,Smoking,234

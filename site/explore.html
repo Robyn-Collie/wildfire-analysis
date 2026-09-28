@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Map · US wildfire record, 1992-2020</title>
+<meta name="description" content="Interactive map of 2.3 million US wildfire ignition points, filterable by year, month, cause, size and protected-area status.">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">US wildfires <span>1992-2020 · totals to 2025</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Story</a><a href="explore.html" aria-current="page">Map</a><a href="trends.html">Trend</a><a href="causes.html">Seasons and causes</a><a href="places.html">Places</a><a href="conservation.html">Protected lands and losses</a><a href="largest.html">Largest fires</a><a href="drivers.html">Drought</a><a href="model.html">Prediction</a><a href="methods.html">Data and methods</a></nav>
+  <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
+</div></div>
+<main><div class="wrap">
+
+<header class="page-head"><h1>Every fire, 1992-2020</h1>
+<p class="lede">Each dot is one fire's point of origin. Colour shows the cause, the size, or the protected-area status of the land it started on. The list beside the map counts what is shown, so the picture always comes with its n.</p></header>
+<div id="explore-console" class="console" aria-label="Map of fire ignition points"></div><noscript><p>The map needs JavaScript. Every number on this site is also in the tables under each chart.</p></noscript><script>document.addEventListener("DOMContentLoaded",function(){WFConsole.mount("explore-console",{"id":"explore"});});</script>
+<div class="grid2">
+<div><h2>How to read it</h2>
+<ul class="tight">
+<li>Dots overlap. Where they pile up the colour saturates, so a dense area looks the same whether it holds a thousand fires or ten thousand. Click the map for the actual count around a point.</li>
+<li>The map starts with the 322,769 fires of 10 acres or more. Add the 1,980,796 smaller fires with the button; most of them are in the South and East.</li>
+<li>Some states did not report small fires in some years (see <a href="trends.html#coverage">coverage</a>). A year where a state looks empty may be a year its records are missing.</li>
+<li>"Not in PAD-US" means the point falls outside every protected or public area in the Protected Areas Database; most private land is in that group.</li>
+</ul></div>
+<div><h2>What is encoded</h2>
+<p class="small">Each fire is 8 bytes: its projected position and a 32-bit word with the year, day of year, cause class, size class, protection status, state and general cause. ESRI:102003 lower 48; EPSG:3338 x0.35 Alaska inset; ESRI:102007 Hawaii inset; EPSG:32161 Puerto Rico inset.
+Built by <code>scripts/build_points.py</code> from the same parquet file as every other number here; 1 fire falls outside the map frame and is not drawn.</p>
+<p class="small">Protection status comes from a point-in-polygon join to PAD-US 4.1 (<a href="conservation.html">details</a>). Size classes follow the FPA FOD: A under 0.25 acres, B 0.25-10, C 10-100, D 100-300, E 300-1,000, F 1,000-5,000, G 5,000 and more.</p></div>
+</div>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
+  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
+  <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
+</div></footer>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="vendor/geo_assets.js"></script>
+<script src="vendor/plotly.min.js" charset="utf-8"></script>
+<script src="assets/site.js"></script>
+<script src="assets/console.js"></script>
+
+</body>
+</html>

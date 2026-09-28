@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Methods and ledger · US wildfire record, 1992-2020</title>
+<title>Data and methods · US wildfire record, 1992-2020</title>
 <meta name="description" content="Data version and hash, definitions glossary, the searchable claims ledger and the errata.">
 <link rel="stylesheet" href="assets/site.css">
 <script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body>
 <div class="topbar"><div class="wrap">
-  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
-  <nav class="main" aria-label="Pages"><a href="index.html">Overview</a><a href="trends.html">Trends</a><a href="causes.html">Causes and seasons</a><a href="geography.html">Geography</a><a href="ownership.html">Ownership</a><a href="conservation.html">Conservation</a><a href="model.html">Prediction</a><a href="methods.html" aria-current="page">Methods and ledger</a></nav>
+  <a class="brand" href="index.html">US wildfires <span>1992-2020 · totals to 2025</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Story</a><a href="explore.html">Map</a><a href="trends.html">Trend</a><a href="causes.html">Seasons and causes</a><a href="places.html">Places</a><a href="conservation.html">Protected lands and losses</a><a href="largest.html">Largest fires</a><a href="drivers.html">Drought</a><a href="model.html">Prediction</a><a href="methods.html" aria-current="page">Data and methods</a></nav>
   <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
 </div></div>
 <main><div class="wrap">
@@ -28,7 +28,7 @@
 <tr><th>What it is</th><td>A compilation of federal, state and local wildfire reports: one row per reported fire with a discovery date, a final size and a point location at least as precise as a PLSS section. Nonfederal records were not available from every state for every year, so counts underrepresent activity in some places and periods.</td></tr>
 <tr><th>What it is not</th><td>No perimeters (points only), no prescribed fire, no burn severity, no structures or losses, no weather or fuels.</td></tr>
 <tr><th>Missing fields</th><td>Containment date null in <button type="button" class="q" data-claim="overview.missing_counts">894,813</button> records; discovery time in <button type="button" class="q" data-claim="overview.missing_counts">789,095</button>; containment time in <button type="button" class="q" data-claim="overview.missing_counts">989,902</button>; owner not specified in <button type="button" class="q" data-claim="overview.missing_counts">1,068,424</button>; general cause undetermined in <button type="button" class="q" data-claim="overview.missing_counts">597,933</button>; cause classification undetermined in <button type="button" class="q" data-claim="overview.missing_counts">193,341</button>; coordinates null in <button type="button" class="q" data-claim="overview.missing_counts">0</button>.</td></tr>
-<tr><th>Ledger files</th><td>claims.json, claims_conservation.json, claims_model.json (206 claims). Not present yet: claims_coverage.json.</td></tr>
+<tr><th>Ledger files</th><td>claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json (325 claims). Not present yet: claims_coverage.json.</td></tr>
 </tbody></table></div>
 
 <h2 id="glossary">Glossary</h2>
@@ -50,6 +50,9 @@
 <p><input class="search" id="ledger-search" type="search" placeholder="Search claims, e.g. class_g or containment" aria-label="Search claims"> <span class="small muted" id="ledger-count"></span></p>
 <div class="table-wrap"><table class="ledger"><thead><tr><th>id</th><th>value</th><th>unit</th><th class="num">n</th><th>definition</th><th>source</th></tr></thead><tbody id="ledger-body"></tbody></table></div>
 
+<h2 id="downloads">Downloads</h2><p>Every table behind the site, as CSV, and every claims ledger as JSON. The per-state calendars are linked from each state brief.</p><ul class="tight"><li><a href="downloads/places_summary.csv">places_summary.csv</a> <span class="muted small">one row per state</span></li><li><a href="downloads/state_year.csv">state_year.csv</a> <span class="muted small">fires, acres, large fires and the usable flag per state-year</span></li><li><a href="downloads/calendar_regions.csv">calendar_regions.csv</a> <span class="muted small">fires by region, month and general cause, usable state-years</span></li><li><a href="downloads/largest_incidents.csv">largest_incidents.csv</a> <span class="muted small">the 250 largest incidents, grouped, with component fires</span></li><li><a href="downloads/coverage_state_year.csv">coverage_state_year.csv</a> <span class="muted small">record counts, breaks and usable windows per state-year</span></li><li><a href="downloads/claims.json">claims.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_conservation.json">claims_conservation.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_drivers.json">claims_drivers.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_incidents.json">claims_incidents.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_model.json">claims_model.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_nifc.json">claims_nifc.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_places.json">claims_places.json</a> <span class="muted small">claims ledger</span></li><li><a href="downloads/claims_wfigs.json">claims_wfigs.json</a> <span class="muted small">claims ledger</span></li></ul>
+<h2 id="audit">Audit of the first public site</h2>
+<p>The first public version of this project was rebuilt from its sources and re-tested; <a href="audit.html">what held and what changed</a>.</p>
 <h2 id="errata">Errata</h2>
 <p>Claims from the earlier version of this project that did not survive the check, kept next to what the check found.</p>
 <div class="cards"><div class="card"><h3>A June spike in Class G acreage in Arkansas</h3><p class="small"><strong>What was claimed:</strong> A June spike in Class G acreage in Arkansas, in the earlier README.</p><p class="small"><strong>What the check found:</strong> Refuted: Arkansas has 2 Class G fires in 29 years and none in June. June is the peak Class G month for Arizona and Alaska; the README most likely mislabels AZ or AK as AR.</p><p class="n">n = 4,783 · <button type="button" class="q" data-claim="anom.verdict_arkansas_june">definition</button> · evidence claims: <code>anom.arkansas_class_g anom.june_class_g_by_state_top10</code></p></div><div class="card"><h3>December fires in Texas as a recurring pattern</h3><p class="small"><strong>What was claimed:</strong> December fires in Texas as a recurring pattern, in the earlier README.</p><p class="small"><strong>What the check found:</strong> Not a general pattern: December ranks 10 of 12 Texas months by fires and 10 of 12 by acres. Texas&#x27;s big-fire season is January to April. One December stands out: 2005 with 94,523 acres, 2.7x the next largest December.</p><p class="n">n = 180,087 · <button type="button" class="q" data-claim="anom.verdict_texas_december">definition</button> · evidence claims: <code>anom.texas_by_month anom.texas_december_top_year</code></p></div><div class="card"><h3>A 2010 outlier in the Northeast</h3><p class="small"><strong>What was claimed:</strong> A 2010 outlier in the Northeast, in the earlier README.</p><p class="small"><strong>What the check found:</strong> Not reproduced with this region definition: 2010 has z = 0.98 on fires and z = 0.48 on acres, ranking 7 of 29 years by fires. The series is dominated by reporting shifts (largest jumps in 2020, 2005, 2015) and by states with zero-record years.</p><p class="n">n = 180,427 · <button type="button" class="q" data-claim="anom.verdict_northeast_2010">definition</button> · evidence claims: <code>anom.northeast_2010 anom.northeast_largest_yoy_count_jumps anom.northeast_zero_report_years</code></p></div>
@@ -79,14 +82,15 @@
 </div></main>
 <footer class="site"><div class="wrap">
   <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
-  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
-  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
   <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
 </div></footer>
 <script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
 <script src="vendor/geo_assets.js"></script>
 <script src="vendor/plotly.min.js" charset="utf-8"></script>
 <script src="assets/site.js"></script>
+
 <script>
 (function(){
   var C = WF.data.claims, ids = Object.keys(C).sort();

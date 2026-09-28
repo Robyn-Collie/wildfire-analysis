@@ -1,0 +1,10 @@
+# Extra packages for the analysis modules that fetch or join external data
+# (analysis.conservation, analysis.nifc, analysis.drivers, analysis.wfigs, scripts/build_points.py).
+# Install on top of requirements.txt. CI does not need these: it never downloads data.
+geopandas==1.1.4
+pyogrio==0.13.0
+shapely==2.1.2
+pyproj==3.8.0
+requests==2.34.2
+lxml==6.1.3
+joblib==1.6.0

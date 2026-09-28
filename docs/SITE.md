@@ -6,16 +6,57 @@ written by `scripts/build_site.py` from `outputs/claims*.json`, `outputs/cells_1
 prose; every number is a claim with a definition and an n, and the script fails if a claim it
 needs is missing from the ledger.
 
+## Version 2 (2026-09-26)
+
+Version 2 rebuilds the first public site (us-wildfires.netlify.app, audited in `docs/review/V1_SITE_AUDIT.md`)
+on this repository's ledger, for three audiences: prevention planners, land managers, and the public, reporters
+and officials. `scripts/build_site.py` still writes every page; the version 2 pages and sections live in
+`scripts/site_v2.py`, the map renderer in `scripts/site_assets/console.js`, and the point files come from
+`scripts/build_points.py`.
+
+| Page | Content | Main claims |
+|---|---|---|
+| `index.html` Story | the map, three audience routes, seven findings with verdicts | several |
+| `explore.html` Map | the full map console | `points_meta.json` |
+| `trends.html` Trend | NIFC 1983-2025 national series and era table, then the FPA FOD trends and coverage | `nifc.*`, `year.*`, `class_g.*` |
+| `causes.html` Seasons and causes | prevention calendar (region x month x general cause), 4 July, debris season, cause-missing by state, then the v1 cause charts | `calendar.*`, `cause.*`, `season.*` |
+| `places.html`, `place-XX.html` | state comparison map and table; one printable brief per state (52) | `places.state.XX`, `drivers.*`, `wfigs.per_state_2021_2025` |
+| `conservation.html` Protected lands and losses | unchanged from v1 of this repo | `padus.*`, `ics.*` |
+| `largest.html` | the 250 largest incidents, grouped, searchable | `incidents.*` |
+| `drivers.html` Drought | replication of the first site's drought model and three stricter tests | `drivers.*` |
+| `model.html` Prediction | the ranking model, plus the WFIGS 2021-2025 forward test and its diagnostic | `model.*`, `wfigs.*` |
+| `methods.html`, `audit.html` | ledger, downloads, errata; audit of the first site | all |
+
+`geography.html` and `ownership.html` are still built and linked from the methods and places pages, but they
+are not in the top navigation.
+
+**Map console.** Every FPA FOD fire is one 8-byte record: projected x and y as uint16, plus a uint32 with year,
+day of year, cause class, size class, PAD-US protection class, state and general cause. The layout is in
+`site/data/points_meta.json`. The page first fetches `points_c_plus.bin` (fires of 10+ acres, 2.6 MB) and
+fetches `points_a_b.bin` (1.98 million smaller fires, 15.8 MB) only when the reader asks. Filters run in the
+vertex shader. Counts beside the map are computed in JavaScript from the same bits, and a click gives the
+counts in a square around the point. No library is used: WebGL 1 with a 2D canvas for the state outlines.
+Without WebGL the console says so, and every other page still works.
+
+**Not committed:** `site/data/points_*.bin`. They encode every record's location and attributes, so they are
+derived data and follow the repository's no-data-in-git rule. They are rebuilt by `python scripts/build_site.py`,
+which needs `data/fires.parquet` and the PAD-US join. A deploy is therefore made from a local build (see Deploy)
+and not by Netlify building from git.
+
+**Per-state claims** (`places.state.XX`, about 16 KB each) are not in `site/data/claims.js`. Each state page
+loads its own `site/data/place_XX.js`, so the data every page loads stays under 1 MB.
+
 ## Generate
 
 ```
 python scripts/build_site.py
 ```
 
-Run from the repo root with the project venv (Python 3.12, standard library only; the script
-imports nothing outside the standard library). It rebuilds `site/` from scratch in about a second
-and prints the page count, the data size and which ledger files it found. Commit `site/` with the
-`outputs/` files that produced it.
+Run from the repo root with the project venv. This needs `requirements.txt` plus `requirements-analysis.txt`
+(pyproj for the map projection) and the local data files. It rebuilds `site/` from scratch in about 15
+seconds and prints the page count, the data size and which ledger files it found. Commit `site/`, except the
+point files, with the `outputs/` files that produced it. `tests/test_site_claims.py` checks every number on the
+generated pages against the ledger.
 
 What it writes:
 
@@ -49,6 +90,11 @@ table view with a notice, so no number depends on it.
    both, plus cache and security headers, so the UI values only need to agree with it.)
 3. Deploy. Every push to the default branch redeploys the committed `site/`; there is no build
    image to configure and no secrets, tokens or API keys anywhere on the site.
+
+   Since version 2 the committed `site/` lacks the map's point files (see above), so a git-linked deploy shows
+   the map's "did not load" notice. Version 2 is deployed from a local build instead, with the Netlify CLI or
+   the Netlify MCP deploy tool pointed at `site/`. The review deploy is the password-protected project
+   `wildfire-record-review`. The public project `us-wildfires` is replaced only on the owner's explicit decision.
 
 Because the site is generated locally and committed, a deploy is exactly what was reviewed in the
 pull request. The regeneration step belongs in the same commit as the `outputs/` change that

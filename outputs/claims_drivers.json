@@ -1,0 +1,983 @@
+{
+ "drivers.definition": {
+  "computed_at": "2026-09-26T15:32:15+00:00",
+  "definition": null,
+  "n": null,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": "NOAA nClimDiv state-level monthly PDSI, average temperature, and precipitation (doi:10.7289/V5M32STR), fetched from https://www.ncei.noaa.gov/pub/data/cirs/climdiv/ on 2026-09-26: climdiv-pdsist-v1.0.0-20260904 (sha256 f182d76631c6fa35e637cc4bd6597ffbb07cb14b9f749469527f23b1ccaed802), climdiv-tmpcst-v1.0.0-20260904 (sha256 eba0699e448cb01a531462dbdb81a46015b44ae05d473b4e6124c5a5d6c50d28), climdiv-pcpnst-v1.0.0-20260904 (sha256 56b67e12075a65213d7a2cbaf39ef3ba0cee25dd84f562cd767e27bdcd39c60b). FPA FOD annual acres burned per state (sum of FIRE_SIZE by STATE, FIRE_YEAR), 1992-2020. Reporting-coverage mask from outputs/coverage.json / outputs/coverage_state_year.csv (analysis.coverage)."
+ },
+ "drivers.forward_cv": {
+  "computed_at": "2026-09-26T15:32:26+00:00",
+  "definition": "Forward-in-time test of the same model: for each test year Y in 2005-2020, fit on all state-years < Y (expanding window, per-state z-scored on training years only), predict Y; climatology baseline also fit on years < Y only. Overall pools all 16 test years; by_year breaks out each one.",
+  "n": 608,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "by_year": {
+    "2005": {
+     "mse_climatology": 0.30292394369261,
+     "mse_model": 0.2145819958229449,
+     "n": 38,
+     "oos_r2": 0.5675695474233787,
+     "skill_pct_mse": 29.2
+    },
+    "2006": {
+     "mse_climatology": 0.46100265189664813,
+     "mse_model": 0.3611975439019581,
+     "n": 38,
+     "oos_r2": 0.3846961587131901,
+     "skill_pct_mse": 21.6
+    },
+    "2007": {
+     "mse_climatology": 0.30601520511163116,
+     "mse_model": 0.19598554281531397,
+     "n": 38,
+     "oos_r2": 0.7306501418291649,
+     "skill_pct_mse": 36.0
+    },
+    "2008": {
+     "mse_climatology": 0.21848909859110907,
+     "mse_model": 0.23664380572657892,
+     "n": 38,
+     "oos_r2": 0.5629630724360397,
+     "skill_pct_mse": -8.3
+    },
+    "2009": {
+     "mse_climatology": 0.21823654292630393,
+     "mse_model": 0.30900311012005927,
+     "n": 38,
+     "oos_r2": 0.2422537209869553,
+     "skill_pct_mse": -41.6
+    },
+    "2010": {
+     "mse_climatology": 0.1266280495868962,
+     "mse_model": 0.13897471893428803,
+     "n": 38,
+     "oos_r2": 0.560999537039957,
+     "skill_pct_mse": -9.8
+    },
+    "2011": {
+     "mse_climatology": 0.32264088022208115,
+     "mse_model": 0.2152896596627929,
+     "n": 38,
+     "oos_r2": 0.7411539421498293,
+     "skill_pct_mse": 33.3
+    },
+    "2012": {
+     "mse_climatology": 0.2970699993516233,
+     "mse_model": 0.18767577744815178,
+     "n": 38,
+     "oos_r2": 0.7218448071756989,
+     "skill_pct_mse": 36.8
+    },
+    "2013": {
+     "mse_climatology": 0.10830390917324303,
+     "mse_model": 0.09779862623136795,
+     "n": 38,
+     "oos_r2": 0.8338960162246327,
+     "skill_pct_mse": 9.7
+    },
+    "2014": {
+     "mse_climatology": 0.18693024021969423,
+     "mse_model": 0.22260707636544322,
+     "n": 38,
+     "oos_r2": 0.5354510714339827,
+     "skill_pct_mse": -19.1
+    },
+    "2015": {
+     "mse_climatology": 0.19493360326503237,
+     "mse_model": 0.20282774343101648,
+     "n": 38,
+     "oos_r2": 0.627455623344299,
+     "skill_pct_mse": -4.0
+    },
+    "2016": {
+     "mse_climatology": 0.17472381779529922,
+     "mse_model": 0.15429850163702885,
+     "n": 38,
+     "oos_r2": 0.7424855746186271,
+     "skill_pct_mse": 11.7
+    },
+    "2017": {
+     "mse_climatology": 0.2424746194629952,
+     "mse_model": 0.2123836033386838,
+     "n": 38,
+     "oos_r2": 0.7622533113075982,
+     "skill_pct_mse": 12.4
+    },
+    "2018": {
+     "mse_climatology": 0.21898473306499897,
+     "mse_model": 0.18211604054255312,
+     "n": 38,
+     "oos_r2": 0.7916982703744952,
+     "skill_pct_mse": 16.8
+    },
+    "2019": {
+     "mse_climatology": 0.15435370852094868,
+     "mse_model": 0.1351310910821941,
+     "n": 38,
+     "oos_r2": 0.7495787350705689,
+     "skill_pct_mse": 12.5
+    },
+    "2020": {
+     "mse_climatology": 0.22672063541502416,
+     "mse_model": 0.14200745079929428,
+     "n": 38,
+     "oos_r2": 0.8318815476607022,
+     "skill_pct_mse": 37.4
+    }
+   },
+   "overall": {
+    "mse_climatology": 0.2350269773935087,
+    "mse_model": 0.20053264299122936,
+    "n": 608,
+    "oos_r2": 0.689587187614457,
+    "skill_pct_mse": 14.7
+   }
+  }
+ },
+ "drivers.forward_cv_masked": {
+  "computed_at": "2026-09-26T15:32:30+00:00",
+  "definition": "Same forward-in-time (expanding window, 2005-2020) test as drivers.forward_cv, but on the coverage-masked panel (unusable state-years dropped before fitting or predicting).",
+  "n": 513,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "mse_climatology": 0.18887314512483755,
+   "mse_model": 0.1703937746860389,
+   "n": 513,
+   "oos_r2": 0.7296486250860847,
+   "skill_pct_mse": 9.8
+  }
+ },
+ "drivers.loyo_cv": {
+  "computed_at": "2026-09-26T15:32:25+00:00",
+  "definition": "Leave-one-year-out cross-validation of the pooled OLS model: each year held out, model refit on the other 28 years with per-state z-scores recomputed from training years only (no leakage), climatology baseline = per-state median log10(acres+1) from the same training years. Skill = 1 - MSE_model / MSE_climatology on log10 scale (this is the metric that reproduces v1's 17.1%; RMSE-based skill is about 9%).",
+  "n": 1102,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "mse_climatology": 0.2549428476748784,
+   "mse_model": 0.2114281634015038,
+   "n": 1102,
+   "oos_r2": 0.7111470843845934,
+   "skill_pct_mse": 17.1
+  }
+ },
+ "drivers.loyo_cv_masked": {
+  "computed_at": "2026-09-26T15:32:29+00:00",
+  "definition": "Same LOYO cross-validation as drivers.loyo_cv, but with unusable (reporting-break) state-years dropped first: 883 rows across 38 states (each with >=5 usable rows remaining), vs 1102 rows / 38 states unmasked.",
+  "n": 883,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "mse_climatology": 0.19033289132098447,
+   "mse_model": 0.14871282992149953,
+   "n": 883,
+   "oos_r2": 0.7875395765968728,
+   "skill_pct_mse": 21.9
+  }
+ },
+ "drivers.misses_vs_coverage": {
+  "computed_at": "2026-09-26T15:32:30+00:00",
+  "definition": "Whether the model's worst misses fall in reporting-coverage breaks: v1's five worst misses and our top 20 LOYO misses joined to coverage_ok, plus the share of unusable state-years among the top 20 misses versus among all 38-state rows (if misses cluster in unusable years, the model is not \"wrong\", the input years are unreliable).",
+  "n": 1102,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "all_rows_unusable_share": 0.199,
+   "top20_states_years": [
+    {
+     "STATE": "KS",
+     "usable": false,
+     "year": 1992
+    },
+    {
+     "STATE": "NE",
+     "usable": false,
+     "year": 1993
+    },
+    {
+     "STATE": "PA",
+     "usable": true,
+     "year": 1995
+    },
+    {
+     "STATE": "PA",
+     "usable": true,
+     "year": 1993
+    },
+    {
+     "STATE": "KY",
+     "usable": false,
+     "year": 1993
+    },
+    {
+     "STATE": "PA",
+     "usable": true,
+     "year": 1996
+    },
+    {
+     "STATE": "PA",
+     "usable": true,
+     "year": 1998
+    },
+    {
+     "STATE": "KY",
+     "usable": false,
+     "year": 1992
+    },
+    {
+     "STATE": "IA",
+     "usable": true,
+     "year": 1995
+    },
+    {
+     "STATE": "LA",
+     "usable": false,
+     "year": 2007
+    },
+    {
+     "STATE": "VA",
+     "usable": false,
+     "year": 1993
+    },
+    {
+     "STATE": "IA",
+     "usable": true,
+     "year": 1998
+    },
+    {
+     "STATE": "NV",
+     "usable": true,
+     "year": 2003
+    },
+    {
+     "STATE": "ID",
+     "usable": false,
+     "year": 1993
+    },
+    {
+     "STATE": "IA",
+     "usable": true,
+     "year": 2001
+    },
+    {
+     "STATE": "WA",
+     "usable": true,
+     "year": 1995
+    },
+    {
+     "STATE": "AL",
+     "usable": false,
+     "year": 1992
+    },
+    {
+     "STATE": "IA",
+     "usable": false,
+     "year": 2009
+    },
+    {
+     "STATE": "TN",
+     "usable": false,
+     "year": 1992
+    },
+    {
+     "STATE": "TN",
+     "usable": false,
+     "year": 1993
+    }
+   ],
+   "top20_unusable_share": 0.55,
+   "v1_worst_misses_coverage": [
+    {
+     "STATE": "KS",
+     "usable": false,
+     "year": 1992
+    },
+    {
+     "STATE": "NE",
+     "usable": false,
+     "year": 1993
+    },
+    {
+     "STATE": "PA",
+     "usable": true,
+     "year": 1995
+    },
+    {
+     "STATE": "PA",
+     "usable": true,
+     "year": 1993
+    },
+    {
+     "STATE": "KY",
+     "usable": false,
+     "year": 1993
+    }
+   ]
+  }
+ },
+ "drivers.model_coefficients": {
+  "computed_at": "2026-09-26T15:32:22+00:00",
+  "definition": "Pooled OLS log10(acres+1) = state FE + b1*z(PDSI) + b2*z(temp) + b3*z(precip), May-Oct season means, 38 states x 1992-2020, z-scored per state (ddof=1) over the full 29-year window (not cross-validation folds); coefficients on the standardized predictors.",
+  "n": 1102,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "pdsi": -0.1013,
+   "precip": -0.0617,
+   "temp": 0.0915
+  }
+ },
+ "drivers.panel": {
+  "computed_at": "2026-09-26T15:32:21+00:00",
+  "definition": "State x year panel used for the drought-driver analysis: May-Oct mean PDSI/temperature/precipitation (NOAA nClimDiv) joined to FPA FOD annual acres (sum FIRE_SIZE by state-year, zero-fire state-years set to 0 acres) and the coverage_ok flag from analysis.coverage, 1992-2020, states with nClimDiv statewide climate data (48 contiguous states; AK/HI have no statewide PDSI/temp/precip in these files and are excluded).",
+  "n": 1392,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "n_rows": 1392,
+   "n_states": 48,
+   "n_usable_rows": 1029,
+   "share_usable": 0.739,
+   "years": [
+    1992,
+    2020
+   ]
+  }
+ },
+ "drivers.per_state_oos_r2": {
+  "computed_at": "2026-09-26T15:32:25+00:00",
+  "definition": "Per-state OOS R2 from the LOYO cross-validation above (1 - SSE/SST on log10(acres+1), pooled across the 29 held-out-year predictions for that state).",
+  "n": 1102,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "AL": -0.007,
+   "AR": 0.051,
+   "AZ": 0.129,
+   "CA": 0.48,
+   "CO": 0.386,
+   "FL": 0.037,
+   "GA": 0.216,
+   "IA": -0.064,
+   "ID": 0.136,
+   "KS": 0.034,
+   "KY": 0.075,
+   "LA": 0.096,
+   "MD": -0.06,
+   "MI": 0.143,
+   "MN": 0.171,
+   "MO": -0.324,
+   "MS": -0.625,
+   "MT": 0.313,
+   "NC": 0.039,
+   "ND": 0.186,
+   "NE": 0.092,
+   "NJ": 0.199,
+   "NM": 0.007,
+   "NV": -0.163,
+   "NY": 0.167,
+   "OK": -0.098,
+   "OR": 0.213,
+   "PA": -0.048,
+   "SC": -0.302,
+   "SD": 0.379,
+   "TN": 0.204,
+   "TX": 0.247,
+   "UT": 0.05,
+   "VA": -0.029,
+   "WA": 0.203,
+   "WI": 0.031,
+   "WV": 0.069,
+   "WY": 0.282
+  }
+ },
+ "drivers.spearman_by_state": {
+  "computed_at": "2026-09-26T15:32:22+00:00",
+  "definition": "Spearman rho between state May-Oct mean PDSI and log10(FPA FOD annual acres + 1), 1992-2020, for states with >=25 years of data and >50,000 total acres (v1 inclusion rule), all years used (no coverage restriction).",
+  "n": 1102,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "AL": -0.524,
+   "AR": -0.553,
+   "AZ": -0.177,
+   "CA": -0.506,
+   "CO": -0.724,
+   "FL": -0.599,
+   "GA": -0.654,
+   "IA": -0.006,
+   "ID": -0.326,
+   "KS": -0.211,
+   "KY": -0.471,
+   "LA": -0.53,
+   "MD": -0.194,
+   "MI": -0.436,
+   "MN": -0.39,
+   "MO": -0.336,
+   "MS": -0.426,
+   "MT": -0.394,
+   "NC": -0.548,
+   "ND": -0.608,
+   "NE": 0.003,
+   "NJ": -0.559,
+   "NM": -0.52,
+   "NV": 0.13,
+   "NY": -0.507,
+   "OK": -0.34,
+   "OR": -0.41,
+   "PA": -0.172,
+   "SC": -0.404,
+   "SD": -0.655,
+   "TN": -0.645,
+   "TX": -0.473,
+   "UT": -0.276,
+   "VA": -0.302,
+   "WA": -0.362,
+   "WI": -0.463,
+   "WV": -0.524,
+   "WY": -0.455
+  }
+ },
+ "drivers.spearman_summary": {
+  "computed_at": "2026-09-26T15:32:22+00:00",
+  "definition": "Summary of the per-state Spearman table: count of qualifying states, median rho, and count with rho <= -0.5 (\"strong negative\").",
+  "n": 38,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "median_rho": -0.446,
+   "n_qualifying_states": 38,
+   "n_strong_negative_rho_le_neg0.5": 15
+  }
+ },
+ "drivers.spearman_usable_only": {
+  "computed_at": "2026-09-26T15:32:25+00:00",
+  "definition": "Same Spearman test restricted to state-years inside the state's reporting-coverage usable window (analysis.coverage), states with >=15 usable years (no acres filter). Compared state-by-state to the all-years v1-replication table for states in both.",
+  "n": 907,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "AZ": -0.177,
+   "CO": -0.615,
+   "NV": 0.13,
+   "by_state": {
+    "AL": -0.611,
+    "AR": -0.686,
+    "AZ": -0.177,
+    "CA": -0.506,
+    "CO": -0.615,
+    "FL": -0.599,
+    "GA": -0.654,
+    "ID": -0.272,
+    "IL": 0.135,
+    "IN": -0.414,
+    "KS": -0.125,
+    "KY": -0.763,
+    "MD": -0.362,
+    "ME": -0.39,
+    "MI": -0.657,
+    "MN": -0.39,
+    "MS": -0.426,
+    "MT": -0.423,
+    "NC": -0.548,
+    "ND": -0.608,
+    "NJ": -0.559,
+    "NM": -0.52,
+    "NV": 0.13,
+    "NY": -0.548,
+    "OH": 0.026,
+    "OK": -0.34,
+    "OR": -0.41,
+    "SC": -0.366,
+    "SD": -0.657,
+    "TN": -0.838,
+    "UT": -0.276,
+    "VA": -0.583,
+    "WA": -0.362,
+    "WI": -0.471,
+    "WV": -0.524,
+    "WY": -0.48
+   },
+   "median_rho": -0.475,
+   "n_states": 36,
+   "states_changed_sign_or_significance": [
+    {
+     "STATE": "SC",
+     "p_all_years": 0.0298,
+     "p_usable_only": 0.1348,
+     "rho_all_years": -0.404,
+     "rho_usable_only": -0.366,
+     "sign_changed": false,
+     "significance_changed": true
+    },
+    {
+     "STATE": "VA",
+     "p_all_years": 0.1108,
+     "p_usable_only": 0.0111,
+     "rho_all_years": -0.302,
+     "rho_usable_only": -0.583,
+     "sign_changed": false,
+     "significance_changed": true
+    }
+   ]
+  }
+ },
+ "drivers.state_code_verification": {
+  "computed_at": "2026-09-26T15:32:15+00:00",
+  "definition": "NCEI state-code-to-USPS-abbreviation mapping (codes 001-048 alphabetical Alabama..Wyoming, 049 Hawaii, 050 Alaska) checked against the STATE CODE TABLE in the freshly fetched https://www.ncei.noaa.gov/pub/data/cirs/climdiv/state-readme.txt.",
+  "n": 50,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "codes_checked": 50,
+   "mismatches": [],
+   "source": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/state-readme.txt"
+  }
+ },
+ "drivers.v1_replication": {
+  "computed_at": "2026-09-26T15:32:25+00:00",
+  "definition": "Every v1 drivers number recomputed and compared to the v1-published value. Spearman and per-state OOS R2 matches are within 0.01; model coefficients within 0.001; the model spec that reproduces these exactly z-scores each climate predictor within state using the sample std (ddof=1), and for cross-validated numbers recomputes that z-score from training-fold years only. 45/45 items match within tolerance.",
+  "n": 1102,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": {
+   "coef_pdsi": {
+    "match": true,
+    "ours": -0.1013,
+    "v1": -0.1013
+   },
+   "coef_precip": {
+    "match": true,
+    "ours": -0.0617,
+    "v1": -0.0617
+   },
+   "coef_temp": {
+    "match": true,
+    "ours": 0.0915,
+    "v1": 0.0915
+   },
+   "median_rho": {
+    "match": true,
+    "ours": -0.446,
+    "v1": -0.45
+   },
+   "miss_KS_1992": {
+    "in_our_top20": true,
+    "match": true,
+    "ours": {
+     "actual": 251.6,
+     "predicted": 16116.643747535198
+    },
+    "v1": {
+     "actual": 251,
+     "predicted": 16116
+    }
+   },
+   "miss_KY_1993": {
+    "in_our_top20": true,
+    "match": true,
+    "ours": {
+     "actual": 843.1,
+     "predicted": 26393.846814196782
+    },
+    "v1": {
+     "actual": 843,
+     "predicted": 26393
+    }
+   },
+   "miss_NE_1993": {
+    "in_our_top20": true,
+    "match": true,
+    "ours": {
+     "actual": 173.5,
+     "predicted": 6262.437287824104
+    },
+    "v1": {
+     "actual": 173,
+     "predicted": 6262
+    }
+   },
+   "miss_PA_1993": {
+    "in_our_top20": true,
+    "match": true,
+    "ours": {
+     "actual": 40.8,
+     "predicted": 1320.8736408093005
+    },
+    "v1": {
+     "actual": 40,
+     "predicted": 1320
+    }
+   },
+   "miss_PA_1995": {
+    "in_our_top20": true,
+    "match": true,
+    "ours": {
+     "actual": 51.2,
+     "predicted": 1721.850329398747
+    },
+    "v1": {
+     "actual": 51,
+     "predicted": 1721
+    }
+   },
+   "n_qualifying_states": {
+    "match": true,
+    "ours": 38,
+    "v1": 38
+   },
+   "n_strong_negative": {
+    "match": true,
+    "ours": 15,
+    "v1": 15
+   },
+   "oos_r2": {
+    "match": true,
+    "ours": 0.711,
+    "v1": 0.711
+   },
+   "oos_r2_bot_MO": {
+    "match": true,
+    "ours": -0.324,
+    "v1": -0.324
+   },
+   "oos_r2_bot_MS": {
+    "match": true,
+    "ours": -0.625,
+    "v1": -0.625
+   },
+   "oos_r2_bot_NV": {
+    "match": true,
+    "ours": -0.163,
+    "v1": -0.163
+   },
+   "oos_r2_bot_OK": {
+    "match": true,
+    "ours": -0.098,
+    "v1": -0.098
+   },
+   "oos_r2_bot_SC": {
+    "match": true,
+    "ours": -0.302,
+    "v1": -0.302
+   },
+   "oos_r2_top_CA": {
+    "match": true,
+    "ours": 0.48,
+    "v1": 0.48
+   },
+   "oos_r2_top_CO": {
+    "match": true,
+    "ours": 0.386,
+    "v1": 0.386
+   },
+   "oos_r2_top_GA": {
+    "match": true,
+    "ours": 0.216,
+    "v1": 0.216
+   },
+   "oos_r2_top_MT": {
+    "match": true,
+    "ours": 0.313,
+    "v1": 0.313
+   },
+   "oos_r2_top_OR": {
+    "match": true,
+    "ours": 0.213,
+    "v1": 0.213
+   },
+   "oos_r2_top_SD": {
+    "match": true,
+    "ours": 0.379,
+    "v1": 0.379
+   },
+   "oos_r2_top_TN": {
+    "match": true,
+    "ours": 0.204,
+    "v1": 0.204
+   },
+   "oos_r2_top_TX": {
+    "match": true,
+    "ours": 0.247,
+    "v1": 0.247
+   },
+   "oos_r2_top_WA": {
+    "match": true,
+    "ours": 0.203,
+    "v1": 0.203
+   },
+   "oos_r2_top_WY": {
+    "match": true,
+    "ours": 0.282,
+    "v1": 0.282
+   },
+   "skill_pct": {
+    "match": true,
+    "ours": 17.1,
+    "v1": 17.1
+   },
+   "spearman_AR": {
+    "match": true,
+    "ours": -0.553,
+    "v1": -0.553
+   },
+   "spearman_AZ": {
+    "match": true,
+    "ours": -0.177,
+    "v1": -0.177
+   },
+   "spearman_CA": {
+    "match": true,
+    "ours": -0.506,
+    "v1": -0.51
+   },
+   "spearman_CO": {
+    "match": true,
+    "ours": -0.724,
+    "v1": -0.724
+   },
+   "spearman_FL": {
+    "match": true,
+    "ours": -0.599,
+    "v1": -0.599
+   },
+   "spearman_GA": {
+    "match": true,
+    "ours": -0.654,
+    "v1": -0.654
+   },
+   "spearman_ID": {
+    "match": true,
+    "ours": -0.326,
+    "v1": -0.33
+   },
+   "spearman_LA": {
+    "match": true,
+    "ours": -0.53,
+    "v1": -0.53
+   },
+   "spearman_NC": {
+    "match": true,
+    "ours": -0.548,
+    "v1": -0.548
+   },
+   "spearman_ND": {
+    "match": true,
+    "ours": -0.608,
+    "v1": -0.608
+   },
+   "spearman_NJ": {
+    "match": true,
+    "ours": -0.559,
+    "v1": -0.559
+   },
+   "spearman_NM": {
+    "match": true,
+    "ours": -0.52,
+    "v1": -0.52
+   },
+   "spearman_NV": {
+    "match": true,
+    "ours": 0.13,
+    "v1": 0.13
+   },
+   "spearman_SD": {
+    "match": true,
+    "ours": -0.655,
+    "v1": -0.655
+   },
+   "spearman_TN": {
+    "match": true,
+    "ours": -0.645,
+    "v1": -0.645
+   },
+   "spearman_UT": {
+    "match": true,
+    "ours": -0.276,
+    "v1": -0.28
+   },
+   "spearman_WY": {
+    "match": true,
+    "ours": -0.455,
+    "v1": -0.46
+   }
+  }
+ },
+ "drivers.verdict": {
+  "computed_at": "2026-09-26T15:32:30+00:00",
+  "definition": "Plain-language verdict on what survives from the v1 drivers claims (drought signal, AZ/NV fuel-limited reading, skill number) and what changes under coverage-restriction and forward-in-time testing.",
+  "n": null,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": "The pooled-OLS skill number replicates almost exactly (17.1% vs v1's 17.1%, OOS R2 0.711 vs 0.711). The drought signal survives: median per-state Spearman rho is -0.45 (negative, PDSI down -> acres up), Colorado stays the strongest single-state signal (rho -0.724), and the model's own z-coefficient on PDSI (-0.1013) is the largest of the three climate terms. The AZ/NV \"fuel-limited\" reading (weak or positive PDSI-acres relationship, drought does not increase burned area because there is little fine fuel to carry fire) holds up under the coverage restriction: AZ rho -0.177 (all years) vs -0.177 (usable years only), NV 0.13 vs 0.13; both stay in the same sign and both stay non-significant (p > 0.05) in both versions. What changes: the model's worst misses are not random, 55% of the top 20 LOYO misses fall in state-years outside the coverage-usable window, against 20% of all rows, so a meaningful share of the model's apparent error is really reporting-coverage noise, not a climate-model failure. The forward-in-time test is the real stress test: an expanding-window fit (train on the past, predict the next year, 2005-2020) gets 14.7% skill and OOS R2 0.690, versus 17.1% and 0.711 for LOYO, a 14% relative drop in skill. Some of the LOYO number comes from interpolating within a year that shares its state-level climatology with 28 other years already in the training set, a form of leakage a genuine forecast would not have; the forward test is the more honest estimate of how well this model would have predicted a new fire season in real time."
+ },
+ "drivers.worst_misses": {
+  "computed_at": "2026-09-26T15:32:25+00:00",
+  "definition": "The 20 state-years with the largest absolute error on the log10(acres+1) scale in the LOYO cross-validation, actual vs model-predicted acres.",
+  "n": 1102,
+  "note": null,
+  "source": "analysis.drivers",
+  "unit": null,
+  "value": [
+   {
+    "STATE": "KS",
+    "actual_acres": 251.6,
+    "predicted_acres": 16116.6,
+    "usable": false,
+    "year": 1992
+   },
+   {
+    "STATE": "NE",
+    "actual_acres": 173.5,
+    "predicted_acres": 6262.4,
+    "usable": false,
+    "year": 1993
+   },
+   {
+    "STATE": "PA",
+    "actual_acres": 51.2,
+    "predicted_acres": 1721.9,
+    "usable": true,
+    "year": 1995
+   },
+   {
+    "STATE": "PA",
+    "actual_acres": 40.8,
+    "predicted_acres": 1320.9,
+    "usable": true,
+    "year": 1993
+   },
+   {
+    "STATE": "KY",
+    "actual_acres": 843.1,
+    "predicted_acres": 26393.8,
+    "usable": false,
+    "year": 1993
+   },
+   {
+    "STATE": "PA",
+    "actual_acres": 18.9,
+    "predicted_acres": 574.9,
+    "usable": true,
+    "year": 1996
+   },
+   {
+    "STATE": "PA",
+    "actual_acres": 54.2,
+    "predicted_acres": 1578.1,
+    "usable": true,
+    "year": 1998
+   },
+   {
+    "STATE": "KY",
+    "actual_acres": 604.5,
+    "predicted_acres": 17042.2,
+    "usable": false,
+    "year": 1992
+   },
+   {
+    "STATE": "IA",
+    "actual_acres": 57.4,
+    "predicted_acres": 1617.6,
+    "usable": true,
+    "year": 1995
+   },
+   {
+    "STATE": "LA",
+    "actual_acres": 772.0,
+    "predicted_acres": 20299.0,
+    "usable": false,
+    "year": 2007
+   },
+   {
+    "STATE": "VA",
+    "actual_acres": 564.0,
+    "predicted_acres": 14804.6,
+    "usable": false,
+    "year": 1993
+   },
+   {
+    "STATE": "IA",
+    "actual_acres": 70.0,
+    "predicted_acres": 1625.1,
+    "usable": true,
+    "year": 1998
+   },
+   {
+    "STATE": "NV",
+    "actual_acres": 17386.0,
+    "predicted_acres": 373317.8,
+    "usable": true,
+    "year": 2003
+   },
+   {
+    "STATE": "ID",
+    "actual_acres": 7978.2,
+    "predicted_acres": 158783.1,
+    "usable": false,
+    "year": 1993
+   },
+   {
+    "STATE": "IA",
+    "actual_acres": 85.0,
+    "predicted_acres": 1511.8,
+    "usable": true,
+    "year": 2001
+   },
+   {
+    "STATE": "WA",
+    "actual_acres": 6727.8,
+    "predicted_acres": 118260.1,
+    "usable": true,
+    "year": 1995
+   },
+   {
+    "STATE": "AL",
+    "actual_acres": 1253.2,
+    "predicted_acres": 21842.4,
+    "usable": false,
+    "year": 1992
+   },
+   {
+    "STATE": "IA",
+    "actual_acres": 7949.0,
+    "predicted_acres": 466.6,
+    "usable": false,
+    "year": 2009
+   },
+   {
+    "STATE": "TN",
+    "actual_acres": 429.6,
+    "predicted_acres": 7313.2,
+    "usable": false,
+    "year": 1992
+   },
+   {
+    "STATE": "TN",
+    "actual_acres": 866.4,
+    "predicted_acres": 14430.8,
+    "usable": false,
+    "year": 1993
+   }
+  ]
+ }
+}

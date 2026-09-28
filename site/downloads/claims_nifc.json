@@ -1,0 +1,760 @@
+{
+ "nifc.annual": {
+  "computed_at": "2026-09-26T15:32:10+00:00",
+  "definition": "NIFC national annual wildland fire count and acres burned, as published in the \"Total Wildland Fires and Acres\" table on the NIFC statistics page (2004 figures exclude North Carolina state lands per NIFC's own footnote).",
+  "n": 43,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "1983": {
+    "acres": 1323666,
+    "fires": 18229
+   },
+   "1984": {
+    "acres": 1148409,
+    "fires": 20493
+   },
+   "1985": {
+    "acres": 2896147,
+    "fires": 82591
+   },
+   "1986": {
+    "acres": 2719162,
+    "fires": 85907
+   },
+   "1987": {
+    "acres": 2447296,
+    "fires": 71300
+   },
+   "1988": {
+    "acres": 5009290,
+    "fires": 72750
+   },
+   "1989": {
+    "acres": 1827310,
+    "fires": 48949
+   },
+   "1990": {
+    "acres": 4621621,
+    "fires": 66481
+   },
+   "1991": {
+    "acres": 2953578,
+    "fires": 75754
+   },
+   "1992": {
+    "acres": 2069929,
+    "fires": 87394
+   },
+   "1993": {
+    "acres": 1797574,
+    "fires": 58810
+   },
+   "1994": {
+    "acres": 4073579,
+    "fires": 79107
+   },
+   "1995": {
+    "acres": 1840546,
+    "fires": 82234
+   },
+   "1996": {
+    "acres": 6065998,
+    "fires": 96363
+   },
+   "1997": {
+    "acres": 2856959,
+    "fires": 66196
+   },
+   "1998": {
+    "acres": 1329704,
+    "fires": 81043
+   },
+   "1999": {
+    "acres": 5626093,
+    "fires": 92487
+   },
+   "2000": {
+    "acres": 7393493,
+    "fires": 92250
+   },
+   "2001": {
+    "acres": 3570911,
+    "fires": 84079
+   },
+   "2002": {
+    "acres": 7184712,
+    "fires": 73457
+   },
+   "2003": {
+    "acres": 3960842,
+    "fires": 63629
+   },
+   "2004": {
+    "acres": 8097880,
+    "fires": 65461
+   },
+   "2005": {
+    "acres": 8689389,
+    "fires": 66753
+   },
+   "2006": {
+    "acres": 9873745,
+    "fires": 96385
+   },
+   "2007": {
+    "acres": 9328045,
+    "fires": 85705
+   },
+   "2008": {
+    "acres": 5292468,
+    "fires": 78979
+   },
+   "2009": {
+    "acres": 5921786,
+    "fires": 78792
+   },
+   "2010": {
+    "acres": 3422724,
+    "fires": 71971
+   },
+   "2011": {
+    "acres": 8711367,
+    "fires": 74126
+   },
+   "2012": {
+    "acres": 9326238,
+    "fires": 67774
+   },
+   "2013": {
+    "acres": 4319546,
+    "fires": 47579
+   },
+   "2014": {
+    "acres": 3595613,
+    "fires": 63312
+   },
+   "2015": {
+    "acres": 10125149,
+    "fires": 68151
+   },
+   "2016": {
+    "acres": 5509995,
+    "fires": 67743
+   },
+   "2017": {
+    "acres": 10026086,
+    "fires": 71499
+   },
+   "2018": {
+    "acres": 8767492,
+    "fires": 58083
+   },
+   "2019": {
+    "acres": 4664364,
+    "fires": 50477
+   },
+   "2020": {
+    "acres": 10122336,
+    "fires": 58950
+   },
+   "2021": {
+    "acres": 7125643,
+    "fires": 58985
+   },
+   "2022": {
+    "acres": 7577183,
+    "fires": 68988
+   },
+   "2023": {
+    "acres": 2693910,
+    "fires": 56580
+   },
+   "2024": {
+    "acres": 8924884,
+    "fires": 64897
+   },
+   "2025": {
+    "acres": 5131474,
+    "fires": 77850
+   }
+  }
+ },
+ "nifc.count_flag_1983_84": {
+  "computed_at": "2026-09-26T15:32:11+00:00",
+  "definition": "NIFC national fire counts for 1983 and 1984, flagged in v1 as anomalously low relative to neighbouring years (likely an artifact of the Situation Report era reporting, not a real dip).",
+  "n": null,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "1983": 18229,
+   "1984": 20493
+  }
+ },
+ "nifc.definition": {
+  "computed_at": "2026-09-26T15:32:10+00:00",
+  "definition": null,
+  "n": null,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": "National Interagency Coordination Center, \"Wildfires and Acres\", https://www.nifc.gov/fire-information/statistics/wildfires, accessed 2026-09-26; public domain (U.S. government work). Raw HTML saved to data/external/nifc/wildfires_2026-09-26.html (sha256 91d1baa33c1c227624dbcd2d2cad1b4b80ff75e08805c7720f9ed36ad97f5533); parsed table at data/external/nifc/nifc_annual.csv."
+ },
+ "nifc.era_table": {
+  "computed_at": "2026-09-26T15:32:10+00:00",
+  "definition": "Five-number summary (numpy percentile, linear interpolation) of NIFC annual acres burned (million acres) for 1983-1999 and 2000-2025, matching the v1 era split.",
+  "n": 43,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "1983_1999": {
+    "max": 6.07,
+    "median": 2.72,
+    "min": 1.15,
+    "n": 17,
+    "p25": 1.83,
+    "p75": 4.07
+   },
+   "2000_2025": {
+    "max": 10.13,
+    "median": 7.29,
+    "min": 2.69,
+    "n": 26,
+    "p25": 4.78,
+    "p75": 8.89
+   }
+  }
+ },
+ "nifc.floor_median_ceiling_shift": {
+  "computed_at": "2026-09-26T15:32:10+00:00",
+  "definition": "Ratio of 2000-2025 to 1983-1999 for the era-table min (floor), median, and max (ceiling) of NIFC annual acres burned.",
+  "n": 43,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "ceiling_shift": 1.67,
+   "floor_shift": 2.34,
+   "median_shift": 2.68
+  }
+ },
+ "nifc.floor_shift_sensitivity_drop_1983_85": {
+  "computed_at": "2026-09-26T15:32:11+00:00",
+  "definition": "Floor and median shift recomputed after dropping 1983-1985 (earliest Situation Report-era years, sometimes flagged as less reliable) from the early era, comparing against the unchanged 2000-2025 era.",
+  "n": 40,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "era_1986_1999": {
+    "max": 6.07,
+    "median": 2.79,
+    "min": 1.33,
+    "n": 14,
+    "p25": 1.9,
+    "p75": 4.48
+   },
+   "floor_shift": 2.02,
+   "median_shift": 2.61,
+   "original_floor_shift": 2.34,
+   "original_median_shift": 2.68
+  }
+ },
+ "nifc.kendall": {
+  "computed_at": "2026-09-26T15:32:10+00:00",
+  "definition": "Kendall rank correlation of NIFC annual acres against year, full published series (1983-2025).",
+  "n": 43,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "p_value": 2.7091164980207815e-05,
+   "tau": 0.4440753045404208
+  }
+ },
+ "nifc.lowest_five_years": {
+  "computed_at": "2026-09-26T15:32:11+00:00",
+  "definition": "The five lowest NIFC annual-acres years in the full published series, with year and million acres.",
+  "n": 43,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "1983": 1.324,
+   "1984": 1.148,
+   "1989": 1.827,
+   "1993": 1.798,
+   "1998": 1.33
+  }
+ },
+ "nifc.lows_verdict": {
+  "computed_at": "2026-09-26T15:32:11+00:00",
+  "definition": "Plain-language verdict on whether \"the lows rose too\" survives stricter tests, combining the NIFC floor-shift, rolling-minimum trend and 1983-85 sensitivity results with the FPA FOD 1992-2020 cross-check.",
+  "n": null,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": "On the NIFC series, \"the lows rose too\" holds: the era-table floor rises 2.34x (1983-1999 min 1.15M to 2000-2025 min 2.69M acres), and the rolling 11-year minimum trends up with Kendall tau 0.51 (p=0.0001) against the window centre year, so the rise is not just the two 1988-vs-2020 endpoints v1 quoted. Dropping the earliest 1983-1985 years (the lowest points in the whole series, 1983-84 fire counts are separately flagged as anomalous) weakens it somewhat: the floor shift falls to 2.02x (1986-1999 min 1.33M vs the same 2000-2025 min 2.69M), because part of the original 1983-1999 floor was set by those specific early years. The claim survives this trim but is not as dramatic as the headline number once those years are set aside. On FPA FOD for the 1992-2020 overlap the floor also rises: FPA FOD min acres 2.02M (1992-1999) vs 3.53M (2000-2020), a 1.75x shift; NIFC and FPA FOD annual acres correlate at r=0.99 (Spearman rho=0.98) over the same 29 years, so FPA FOD is a noisier, reporting-limited echo of the same national total rather than an independent confirmation."
+ },
+ "nifc.mann_whitney": {
+  "computed_at": "2026-09-26T15:32:10+00:00",
+  "definition": "Two-sided Mann-Whitney U test, NIFC annual acres 1983-1999 vs 2000-2025 (scipy.stats.mannwhitneyu).",
+  "n": 43,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "p_value": 1.0379350651352964e-05,
+   "statistic": 43.0
+  }
+ },
+ "nifc.nifc_vs_fpafod_1992_2020": {
+  "computed_at": "2026-09-26T15:32:11+00:00",
+  "definition": "NIFC national annual acres vs FPA FOD annual acres (sum of FIRE_SIZE by FIRE_YEAR), 1992-2020, the years the two datasets overlap: per-year ratio, Pearson and Spearman correlation, and whether the FPA FOD series shows the same 1990s-vs-2000s+ floor rise as NIFC.",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "fod_floor_shift": 1.75,
+   "fod_min_macres_1992_1999": 2.016,
+   "fod_min_macres_2000_2020": 3.526,
+   "pearson_p": 5.109640303500233e-27,
+   "pearson_r": 0.9934951428476183,
+   "per_year_ratio": {
+    "1992": 0.941,
+    "1993": 0.82,
+    "1994": 0.99,
+    "1995": 0.898,
+    "1996": 1.01,
+    "1997": 0.884,
+    "1998": 0.66,
+    "1999": 0.917,
+    "2000": 0.951,
+    "2001": 0.931,
+    "2002": 1.053,
+    "2003": 0.878,
+    "2004": 0.982,
+    "2005": 0.895,
+    "2006": 0.979,
+    "2007": 1.005,
+    "2008": 0.975,
+    "2009": 0.972,
+    "2010": 0.971,
+    "2011": 0.901,
+    "2012": 0.987,
+    "2013": 0.961,
+    "2014": 0.978,
+    "2015": 0.99,
+    "2016": 1.028,
+    "2017": 0.979,
+    "2018": 1.064,
+    "2019": 0.949,
+    "2020": 0.964
+   },
+   "spearman_p": 1.1315018715117505e-21,
+   "spearman_rho": 0.9837438423645317
+  }
+ },
+ "nifc.rolling_min_p10_trend": {
+  "computed_at": "2026-09-26T15:32:11+00:00",
+  "definition": "Kendall tau of the 11-year centred rolling minimum, and of the rolling p10, of NIFC annual acres against the window centre year: a direct trend test of \"the lows rose too\" rather than a two-point comparison of the 1988 and 2020 windows.",
+  "n": 33,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "kendall_tau_rolling_min": 0.5115264173859118,
+   "kendall_tau_rolling_p10": 0.7251784872594046,
+   "p_rolling_min": 0.0001192178328612293,
+   "p_rolling_p10": 1.759631018871407e-08
+  }
+ },
+ "nifc.rolling_p10_p50_p90": {
+  "computed_at": "2026-09-26T15:32:11+00:00",
+  "definition": "11-year centred rolling p10/p50/p90 of NIFC annual acres (million acres), one entry per centre year (centre year must have 5 years on each side within 1983-2025).",
+  "n": 43,
+  "note": "v1 compared the windows centred 1988 and 2020.",
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "1988": {
+    "p10": 1.32,
+    "p50": 2.45,
+    "p90": 4.62
+   },
+   "1989": {
+    "p10": 1.8,
+    "p50": 2.72,
+    "p90": 4.62
+   },
+   "1990": {
+    "p10": 1.83,
+    "p50": 2.72,
+    "p90": 4.62
+   },
+   "1991": {
+    "p10": 1.83,
+    "p50": 2.72,
+    "p90": 5.01
+   },
+   "1992": {
+    "p10": 1.83,
+    "p50": 2.86,
+    "p90": 5.01
+   },
+   "1993": {
+    "p10": 1.8,
+    "p50": 2.86,
+    "p90": 5.01
+   },
+   "1994": {
+    "p10": 1.8,
+    "p50": 2.86,
+    "p90": 5.63
+   },
+   "1995": {
+    "p10": 1.8,
+    "p50": 2.95,
+    "p90": 6.07
+   },
+   "1996": {
+    "p10": 1.8,
+    "p50": 2.95,
+    "p90": 6.07
+   },
+   "1997": {
+    "p10": 1.8,
+    "p50": 3.57,
+    "p90": 7.18
+   },
+   "1998": {
+    "p10": 1.8,
+    "p50": 3.96,
+    "p90": 7.18
+   },
+   "1999": {
+    "p10": 1.84,
+    "p50": 4.07,
+    "p90": 7.39
+   },
+   "2000": {
+    "p10": 1.84,
+    "p50": 5.63,
+    "p90": 8.1
+   },
+   "2001": {
+    "p10": 2.86,
+    "p50": 6.07,
+    "p90": 8.69
+   },
+   "2002": {
+    "p10": 2.86,
+    "p50": 7.18,
+    "p90": 9.33
+   },
+   "2003": {
+    "p10": 3.57,
+    "p50": 7.18,
+    "p90": 9.33
+   },
+   "2004": {
+    "p10": 3.96,
+    "p50": 7.18,
+    "p90": 9.33
+   },
+   "2005": {
+    "p10": 3.57,
+    "p50": 7.18,
+    "p90": 9.33
+   },
+   "2006": {
+    "p10": 3.57,
+    "p50": 7.18,
+    "p90": 9.33
+   },
+   "2007": {
+    "p10": 3.96,
+    "p50": 8.1,
+    "p90": 9.33
+   },
+   "2008": {
+    "p10": 3.96,
+    "p50": 8.1,
+    "p90": 9.33
+   },
+   "2009": {
+    "p10": 3.6,
+    "p50": 8.1,
+    "p90": 9.33
+   },
+   "2010": {
+    "p10": 3.6,
+    "p50": 8.69,
+    "p90": 9.87
+   },
+   "2011": {
+    "p10": 3.6,
+    "p50": 5.92,
+    "p90": 9.87
+   },
+   "2012": {
+    "p10": 3.6,
+    "p50": 5.92,
+    "p90": 10.03
+   },
+   "2013": {
+    "p10": 3.6,
+    "p50": 5.92,
+    "p90": 10.03
+   },
+   "2014": {
+    "p10": 3.6,
+    "p50": 5.92,
+    "p90": 10.03
+   },
+   "2015": {
+    "p10": 3.6,
+    "p50": 8.71,
+    "p90": 10.12
+   },
+   "2016": {
+    "p10": 4.32,
+    "p50": 8.71,
+    "p90": 10.12
+   },
+   "2017": {
+    "p10": 4.32,
+    "p50": 7.58,
+    "p90": 10.12
+   },
+   "2018": {
+    "p10": 3.6,
+    "p50": 7.13,
+    "p90": 10.12
+   },
+   "2019": {
+    "p10": 3.6,
+    "p50": 7.58,
+    "p90": 10.12
+   },
+   "2020": {
+    "p10": 4.66,
+    "p50": 7.58,
+    "p90": 10.12
+   }
+  }
+ },
+ "nifc.ten_million_years": {
+  "computed_at": "2026-09-26T15:32:11+00:00",
+  "definition": "NIFC years with annual acres burned exceeding 10 million, full published series.",
+  "n": 43,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "2015": 10.13,
+   "2017": 10.03,
+   "2020": 10.12
+  }
+ },
+ "nifc.theil_sen": {
+  "computed_at": "2026-09-26T15:32:10+00:00",
+  "definition": "Theil-Sen slope of NIFC annual acres (million acres) on year, full published series (1983-2025), with 95% CI (scipy.stats.theilslopes); reported per decade.",
+  "n": 43,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "ci95_per_decade": [
+    0.81,
+    2.12
+   ],
+   "intercept": -277.5816869230769,
+   "slope_per_decade": 1.41
+  }
+ },
+ "nifc.v1_cache_cross_check": {
+  "computed_at": "2026-09-26T15:32:10+00:00",
+  "definition": "Row-by-row comparison of the freshly fetched NIFC table against the \"nifc\" list cached at https://us-wildfires.netlify.app/data/national_annual.json (v1's own snapshot). Lists every year where fires or acres differ.",
+  "n": 43,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "diffs": [],
+   "fetched": true,
+   "n_diffs": 0,
+   "our_years": 43,
+   "v1_years": 43,
+   "years_in_v1_not_ours": []
+  }
+ },
+ "nifc.v1_replication": {
+  "computed_at": "2026-09-26T15:32:11+00:00",
+  "definition": "Every v1 NIFC number recomputed from the freshly fetched table and compared to the v1-published value. 20/20 items match within tolerance (era-table figures exact to 2dp; ratios/slopes within 3% or 0.05 abs; p-values within a factor of 1.5).",
+  "n": 43,
+  "note": null,
+  "source": "analysis.nifc",
+  "unit": null,
+  "value": {
+   "ceiling_shift": {
+    "match": true,
+    "ours": 1.67,
+    "v1": 1.67
+   },
+   "era_1983_1999": {
+    "match": true,
+    "ours": {
+     "max": 6.07,
+     "median": 2.72,
+     "min": 1.15,
+     "n": 17,
+     "p25": 1.83,
+     "p75": 4.07
+    },
+    "v1": {
+     "max": 6.07,
+     "median": 2.72,
+     "min": 1.15,
+     "n": 17,
+     "p25": 1.83,
+     "p75": 4.07
+    }
+   },
+   "era_2000_2025": {
+    "match": true,
+    "ours": {
+     "max": 10.13,
+     "median": 7.29,
+     "min": 2.69,
+     "n": 26,
+     "p25": 4.78,
+     "p75": 8.89
+    },
+    "v1": {
+     "max": 10.13,
+     "median": 7.29,
+     "min": 2.69,
+     "n": 26,
+     "p25": 4.78,
+     "p75": 8.89
+    }
+   },
+   "floor_shift": {
+    "match": true,
+    "ours": 2.34,
+    "v1": 2.35
+   },
+   "kendall_p": {
+    "match": true,
+    "ours": 2.7091164980207815e-05,
+    "v1": 2.7e-05
+   },
+   "kendall_tau": {
+    "match": true,
+    "ours": 0.44,
+    "v1": 0.44
+   },
+   "mann_whitney_p": {
+    "match": true,
+    "ours": 1.0379350651352964e-05,
+    "v1": 1e-05
+   },
+   "median_shift": {
+    "match": true,
+    "ours": 2.68,
+    "v1": 2.68
+   },
+   "rolling_p10_1988": {
+    "match": true,
+    "ours": 1.32,
+    "v1": 1.32
+   },
+   "rolling_p10_2020": {
+    "match": true,
+    "ours": 4.66,
+    "v1": 4.66
+   },
+   "rolling_p90_1988": {
+    "match": true,
+    "ours": 4.62,
+    "v1": 4.62
+   },
+   "rolling_p90_2020": {
+    "match": true,
+    "ours": 10.12,
+    "v1": 10.12
+   },
+   "ten_million_years": {
+    "match": true,
+    "ours": {
+     "2015": 10.13,
+     "2017": 10.03,
+     "2020": 10.12
+    },
+    "v1": {
+     "2015": 10.13,
+     "2017": 10.03,
+     "2020": 10.12
+    }
+   },
+   "theil_sen_ci": {
+    "match": true,
+    "ours": [
+     0.81,
+     2.12
+    ],
+    "v1": [
+     0.81,
+     2.13
+    ]
+   },
+   "theil_sen_slope_per_decade": {
+    "match": true,
+    "ours": 1.41,
+    "v1": 1.41
+   },
+   "y1983_fires": {
+    "match": true,
+    "ours": 18229,
+    "v1": 18229
+   },
+   "y1984_fires": {
+    "match": true,
+    "ours": 20493,
+    "v1": 20493
+   },
+   "y2023_macres": {
+    "match": true,
+    "ours": 2.69,
+    "v1": 2.69
+   },
+   "y2024": {
+    "match": true,
+    "ours": {
+     "acres": 8924884,
+     "fires": 64897
+    },
+    "v1": {
+     "acres": 8924884,
+     "fires": 64897
+    }
+   },
+   "y2025": {
+    "match": true,
+    "ours": {
+     "acres": 5131474,
+     "fires": 77850
+    },
+    "v1": {
+     "acres": 5131474,
+     "fires": 77850
+    }
+   }
+  }
+ }
+}

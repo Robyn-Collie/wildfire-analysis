@@ -10,8 +10,8 @@
 </head>
 <body>
 <div class="topbar"><div class="wrap">
-  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
-  <nav class="main" aria-label="Pages"><a href="index.html">Overview</a><a href="trends.html">Trends</a><a href="causes.html">Causes and seasons</a><a href="geography.html">Geography</a><a href="ownership.html">Ownership</a><a href="conservation.html">Conservation</a><a href="model.html" aria-current="page">Prediction</a><a href="methods.html">Methods and ledger</a></nav>
+  <a class="brand" href="index.html">US wildfires <span>1992-2020 · totals to 2025</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Story</a><a href="explore.html">Map</a><a href="trends.html">Trend</a><a href="causes.html">Seasons and causes</a><a href="places.html">Places</a><a href="conservation.html">Protected lands and losses</a><a href="largest.html">Largest fires</a><a href="drivers.html">Drought</a><a href="model.html" aria-current="page">Prediction</a><a href="methods.html">Data and methods</a></nav>
   <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
 </div></div>
 <main><div class="wrap">
@@ -52,17 +52,36 @@ Read as probabilities, the scores do worse than a single constant rate (Brier sk
 </ul>
 <p>No duration prediction appears on this site.</p>
 
+<h2 id="wfigs">After 2020: a test on 2021-2025 fires</h2>
+<p>The FPA FOD ends in 2020. For later years the interagency WFIGS incident service records <button type="button" class="q" data-claim="wfigs.comparability_verdict">39,019 fires a year</button>, about half the FPA FOD's <button type="button" class="q" data-claim="wfigs.comparison_fpa_fod_2016_2020">76,390</button> a year in 2016-2020, because it misses many small fires handled by local departments. Cause is missing for <button type="button" class="q" data-claim="wfigs.share_missing_cause">50%</button> of WFIGS fires.
+It is a different reporting system, so this site never joins it to the FPA FOD series. It does allow one honest test: train on the FPA FOD, score fires from years the model could not have seen.</p>
+<p>The 96-input model cannot be scored on WFIGS, because its fuels, terrain and weather inputs come from a companion dataset that stops in 2020. The test therefore uses a small model with the inputs both systems share: location, day of year, month, cause class and owner class. It was specified before the test was run.</p>
+<div class="table-wrap"><table><thead><tr><th>WFIGS 2021-2025, lower 48 (185,618 fires, 4,486 reached 300 acres)</th><th class="num">PR-AUC [95%]</th><th class="num">ROC-AUC</th><th class="num">Top 10% of scores capture</th></tr></thead><tbody>
+<tr><td>Lookup: 1-degree cell x month (from FPA FOD 2010-2020)</td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test">0.081</button> <button type="button" class="q" data-claim="wfigs.forward_test">[0.075, 0.086]</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test">0.734</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test">34%</button></td></tr>
+<tr><td>Small model, pre-specified inputs</td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test">0.041</button> <button type="button" class="q" data-claim="wfigs.forward_test">[0.039, 0.044]</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test">0.655</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test">21%</button></td></tr>
+</tbody></table></div>
+<p><strong>The pre-specified model failed.</strong> It ranked 2021-2025 fires worse than the lookup in <button type="button" class="q" data-claim="wfigs.forward_test">5 of 5</button> years.</p>
+
+<h3>Why it failed: one field means different things in the two systems</h3>
+<p>This check was run <em>after</em> seeing the result above, so it explains the failure rather than rescuing the model. The same model was refitted with fewer inputs and scored twice: forward in time inside the FPA FOD (2019-2020), and across to WFIGS.</p>
+<div class="table-wrap"><table><thead><tr><th>Inputs</th><th class="num">PR-AUC, FPA FOD 2019-2020</th><th class="num">PR-AUC, WFIGS 2021-2025</th><th class="num">WFIGS top 10% capture</th></tr></thead><tbody><tr><td>Location and season</td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">0.086</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">0.111</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">41%</button></td></tr><tr><td>+ cause</td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">0.091</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">0.107</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">41%</button></td></tr><tr><td>+ cause + owner (the pre-specified model)</td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">0.091</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">0.041</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">21%</button></td></tr><tr><td>Lookup: cell x month</td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">0.075</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">0.081</button></td><td class="num"><button type="button" class="q" data-claim="wfigs.forward_test_ablation">34%</button></td></tr></tbody></table></div>
+<p>Inside the FPA FOD the owner field helps a little. Across systems it breaks the model: <button type="button" class="q" data-claim="wfigs.forward_test_ablation">41%</button> of FPA FOD training fires have no owner recorded, and those rarely become large, because they come mostly from local reporting systems that record many small fires.
+WFIGS records an owner for almost every fire (<button type="button" class="q" data-claim="wfigs.forward_test_ablation">0.05%</button> missing). Without the owner field, the model ranks 2021-2025 fires better than the lookup (PR-AUC <button type="button" class="q" data-claim="wfigs.forward_test_ablation">0.111</button>, interval <button type="button" class="q" data-claim="wfigs.forward_test_ablation">[0.104, 0.119]</button>).</p>
+<p class="note">This is the model card's warning made concrete: inputs that record how a reporting system codes a fire, such as owner and agency, can carry much of a model's apparent skill and do not transfer to another system. The full model leans on the same kind of inputs, which is one more reason its scores are shown as ranks only.</p>
+<p class="small">Source: <button type="button" class="q" data-claim="wfigs.source_service">WFIGS Incident Locations, full history layer</button>, wildfires discovered 2021-2025, fetched 2026-09-26. Code: <a href="https://github.com/Robyn-Collie/wildfire-analysis/blob/main/analysis/wfigs.py">analysis/wfigs.py</a>; write-up: <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/findings/wfigs_2021_2025.md">docs/findings/wfigs_2021_2025.md</a>.</p>
+
 </div></main>
 <footer class="site"><div class="wrap">
   <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
-  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
-  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
   <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
 </div></footer>
 <script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
 <script src="vendor/geo_assets.js"></script>
 <script src="vendor/plotly.min.js" charset="utf-8"></script>
 <script src="assets/site.js"></script>
+
 <script>
 (function(){
   var C = WF.data.claims, has = function (id) { return !!C[id]; };

@@ -3,22 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Causes and seasons · US wildfire record, 1992-2020</title>
+<title>Seasons and causes · US wildfire record, 1992-2020</title>
 <meta name="description" content="Human, natural and undetermined causes by fires and acres, cause within size class, and seasonality by region.">
 <link rel="stylesheet" href="assets/site.css">
 <script>(function(){try{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body>
 <div class="topbar"><div class="wrap">
-  <a class="brand" href="index.html">Wildfire record <span>1992-2020</span></a>
-  <nav class="main" aria-label="Pages"><a href="index.html">Overview</a><a href="trends.html">Trends</a><a href="causes.html" aria-current="page">Causes and seasons</a><a href="geography.html">Geography</a><a href="ownership.html">Ownership</a><a href="conservation.html">Conservation</a><a href="model.html">Prediction</a><a href="methods.html">Methods and ledger</a></nav>
+  <a class="brand" href="index.html">US wildfires <span>1992-2020 · totals to 2025</span></a>
+  <nav class="main" aria-label="Pages"><a href="index.html">Story</a><a href="explore.html">Map</a><a href="trends.html">Trend</a><a href="causes.html" aria-current="page">Seasons and causes</a><a href="places.html">Places</a><a href="conservation.html">Protected lands and losses</a><a href="largest.html">Largest fires</a><a href="drivers.html">Drought</a><a href="model.html">Prediction</a><a href="methods.html">Data and methods</a></nav>
   <button type="button" class="theme-btn" aria-label="Toggle dark or light mode">Dark mode</button>
 </div></div>
 <main><div class="wrap">
 
-<header class="page-head"><h1>Causes and seasons</h1>
+<header class="page-head"><h1>Seasons and causes</h1>
 <p class="lede">Human ignitions are <button type="button" class="q" data-claim="cause.by_classification">77.4%</button> of recorded fires but <button type="button" class="q" data-claim="cause.by_classification">35.3%</button> of acres. Natural ignitions are <button type="button" class="q" data-claim="cause.by_classification">14.2%</button> of fires and <button type="button" class="q" data-claim="cause.by_classification">58.7%</button> of acres.
 The cause is undetermined for <button type="button" class="q" data-claim="cause.by_classification">8.4%</button> of fires, and that share is never dropped from a chart on this site.</p></header>
+
+
+<h2 id="calendar">Prevention calendar</h2>
+<p class="lede">When to run which message, and where. People start <button type="button" class="q" data-claim="calendar.human_share">80%</button> of fires whose cause is known. Debris and open burning is the most common known human cause in <button type="button" class="q" data-claim="calendar.top_human_cause_by_month">every month but Jul</button>; in July, equipment and vehicle use takes over (<button type="button" class="q" data-claim="calendar.top_human_cause_by_month">22%</button> of known human causes).</p>
+<div id="cal-heat" class="chart" aria-live="polite"></div>
+<div class="grid2">
+<div>
+<h3>Debris burning has a season, and it differs by region</h3>
+<ul class="tight"><li><strong>Alaska</strong>: busiest in May, Jun, Apr; <button type="button" class="q" data-claim="calendar.debris_peak">17%</button> in March and April.</li><li><strong>Northeast</strong>: busiest in Apr, May, Mar; <button type="button" class="q" data-claim="calendar.debris_peak">51%</button> in March and April.</li><li><strong>Other</strong>: busiest in Apr, May, Mar; <button type="button" class="q" data-claim="calendar.debris_peak">54%</button> in March and April.</li><li><strong>South</strong>: busiest in Mar, Feb, Apr; <button type="button" class="q" data-claim="calendar.debris_peak">34%</button> in March and April.</li><li><strong>West</strong>: busiest in May, Jun, Apr; <button type="button" class="q" data-claim="calendar.debris_peak">22%</button> in March and April.</li></ul>
+<p class="small">Burn-permit timing and red-flag messaging for debris burning belong in late winter and spring in the South, Northeast and Midwest, and in late spring in the West and Alaska.</p>
+</div>
+<div>
+<h3>4 July</h3>
+<p>A typical day in late June or mid July brings <button type="button" class="q" data-claim="calendar.july4">269</button> new fires nationally; 4 July brings <button type="button" class="q" data-claim="calendar.july4">625</button> and 5 July <button type="button" class="q" data-claim="calendar.july4">416</button> (means over 1992-2020).
+New Year's Eve and Day together run <button type="button" class="q" data-claim="calendar.july4">1.5 times</button> the surrounding days.</p>
+<p class="small">Only <button type="button" class="q" data-claim="calendar.july4">16%</button> of 4-5 July fires are coded as fireworks and <button type="button" class="q" data-claim="calendar.july4">34%</button> have no recorded cause, so the spike is a better measure of fireworks fires than the cause code is. Texas shows the spike with almost no fires coded as fireworks: its state records rarely carry a general cause.</p>
+</div></div>
+<div id="jul4-states" class="chart" aria-live="polite"></div>
+<div id="cause-missing" class="chart" aria-live="polite"></div>
 
 <h2>Human, natural, undetermined</h2>
 <p>Human fires outnumber natural ones <button type="button" class="q" data-claim="cause.human_to_natural_fire_ratio">5.4 to 1</button>; natural fires burn <button type="button" class="q" data-claim="cause.natural_acres">105.64M</button> acres, most of it in the West and Alaska. The general cause (13 categories) is undetermined for a larger share, <button type="button" class="q" data-claim="overview.missing_shares">26.0%</button> of records.</p>
@@ -47,14 +66,15 @@ The cause is undetermined for <button type="button" class="q" data-claim="cause.
 </div></main>
 <footer class="site"><div class="wrap">
   <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>04f5ab8b</code> (full hash in <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
-  Site generated 2026-09-25 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_model.json.</p>
-  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one.
+  Site generated 2026-09-26 by <code>scripts/build_site.py</code> from claims.json, claims_conservation.json, claims_drivers.json, claims_incidents.json, claims_model.json, claims_nifc.json, claims_places.json, claims_wfigs.json.</p>
+  <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
   <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs">Repository docs</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis/tree/main/docs/SITE.md">How this site is built</a> · <a href="https://github.com/Robyn-Collie/wildfire-analysis">github.com/Robyn-Collie/wildfire-analysis</a> · Robyn Collie.</p>
 </div></footer>
-<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script>
+<script src="data/meta.js"></script><script src="data/claims.js"></script><script src="data/cells.js"></script><script src="data/coverage.js"></script><script src="data/calendar.js"></script>
 <script src="vendor/geo_assets.js"></script>
 <script src="vendor/plotly.min.js" charset="utf-8"></script>
 <script src="assets/site.js"></script>
+
 <script>
 (function(){
   var C = WF.data.claims, MISS = 'Missing data/not specified/undetermined';
@@ -155,6 +175,63 @@ The cause is undetermined for <button type="button" class="q" data-claim="cause.
     build: function (t) { return { data: REG.map(function (r) { return { type: 'bar', name: r, x: WF.monthNames, y: WF.monthNames.map(function (_, i) { return cg[i + 1][r]; }), marker: { color: WF.regionColor(t, r), line: { color: t.surface, width: 1.5 } }, hovertemplate: '%{x} ' + r + ': %{y} fires<extra></extra>' }; }),
       layout: { barmode: 'stack', yaxis: { title: { text: 'Class G fires' } }, legend: { y: -0.22 } } }; }
   });
+})();
+
+(function(){
+  var C = WF.data.claims, cal = WF.data.calendar; if (!cal) return;
+  var MISS = 'Missing data/not specified/undetermined';
+  var gens = cal.general, regions = cal.regions, region = regions[0];
+  function grid(r) { var z = gens.map(function (g) { return WF.monthNames.map(function (m, i) { return (cal.counts[r][g] || [])[i] || 0; }); }); return z; }
+  var ctrl = document.createElement('div'), mode = 'row';
+  var sel = document.createElement('select'); sel.setAttribute('aria-label', 'Region');
+  var RL = { Other: 'Midwest and Plains (Other)' };
+  regions.forEach(function (r) { sel.appendChild(new Option((RL[r] || r) + ' (' + WF.fmt.int(cal.totals[r]) + ' fires)', r)); });
+  ctrl.appendChild(sel);
+  ctrl.appendChild(WF.segControl([{ label: 'Each cause\'s season', value: 'row' }, { label: 'Share of all fires', value: 'all' }], function (v) { mode = v; entry.render(); }));
+  var entry = WF.chart({ el: 'cal-heat', title: 'Prevention calendar: fires by month and general cause', claims: ['calendar.region_month', 'calendar.top_human_cause_by_month'],
+    sub: '"Each cause\'s season": every row sums to 100%, so each cause\'s peak months stand out whatever its size (row labels give its fires). "Share of all fires": cells are shares of the region\'s fires. Usable state-years only; state calendars are on each state\'s brief.',
+    controls: ctrl, csvName: 'prevention_calendar',
+    rows: [].concat.apply([], regions.map(function (r) { return gens.map(function (g) { var o = { region: r, general_cause: g }; WF.monthNames.forEach(function (m, i) { o[m] = (cal.counts[r][g] || [])[i] || 0; }); return o; }); })),
+    columns: [{ key: 'region' }, { key: 'general_cause', label: 'general cause' }].concat(WF.monthNames.map(function (m) { return { key: m, num: true, fmt: WF.fmt.int }; })),
+    height: 460,
+    build: function (t) {
+      var z = grid(region), tot = cal.totals[region] || 1;
+      var rs = z.map(function (row) { return row.reduce(function (a, b) { return a + b; }, 0); });
+      var lab = gens.map(function (g, i) { return (g === MISS ? 'Cause not recorded' : g) + (mode === 'row' ? ' (' + WF.fmt.compact(rs[i]) + ')' : ''); });
+      var zz = z.map(function (row, i) { return row.map(function (v) { return mode === 'row' ? (rs[i] ? 100 * v / rs[i] : null) : 100 * v / tot; }); });
+      var unit = mode === 'row' ? 'of this cause\'s fires' : 'of the region\'s fires';
+      return { data: [{ type: 'heatmap', x: WF.monthNames, y: lab, z: zz, customdata: z,
+        colorscale: WF.seqScale(t), xgap: 2, ygap: 2, zmin: 0, hovertemplate: '%{y}, %{x}: %{customdata:,} fires (%{z:.1f}% ' + unit + ')<extra></extra>', colorbar: { title: { text: '%' }, thickness: 10, ticksuffix: '%' } }],
+        layout: { margin: { l: 10 }, yaxis: { autorange: 'reversed', automargin: true, tickfont: { size: 11 } } } };
+    }
+  });
+  sel.onchange = function () { region = sel.value; entry.render(); };
+
+  var j = C['calendar.july4_by_state'];
+  if (j) {
+    var rows = j.value.slice(0, 20);
+    WF.chart({ el: 'jul4-states', title: 'Fires on 4 July against a normal early-summer day, by state', claims: ['calendar.july4_by_state', 'calendar.july4'],
+      sub: 'Ratio of fires discovered on 4 July to the mean of 24 Jun-1 Jul and 8-15 Jul, usable years, states with 30+ fires on 4 July. Bar colour: share coded as fireworks.',
+      rows: rows.map(function (r) { return { state: r.state, fires_on_jul4: r.jul4_fires, ratio_to_baseline_day: r.ratio, fireworks_share: r.fireworks_share }; }),
+      columns: [{ key: 'state' }, { key: 'fires_on_jul4', label: 'fires on 4 July (all years)', num: true, fmt: WF.fmt.int }, { key: 'ratio_to_baseline_day', label: 'ratio to baseline day', num: true, fmt: function (v) { return WF.fmt.num(v, 1); } }, { key: 'fireworks_share', label: 'coded fireworks', num: true, fmt: function (v) { return WF.fmt.pct(v, 0); } }],
+      height: 420,
+      build: function (t) { return { data: [{ type: 'bar', orientation: 'h', y: rows.map(function (r) { return r.state; }), x: rows.map(function (r) { return r.ratio; }),
+        marker: { color: rows.map(function (r) { return r.fireworks_share; }), colorscale: WF.seqScale(t), cmin: 0, cmax: 0.7, colorbar: { title: { text: 'fireworks' }, tickformat: '.0%', thickness: 10 } },
+        customdata: rows.map(function (r) { return [r.jul4_fires, r.fireworks_share]; }), hovertemplate: '%{y}: %{x:.1f}x a normal day<br>%{customdata[0]:,} fires on 4 July; %{customdata[1]:.0%} coded fireworks<extra></extra>' }],
+        layout: { yaxis: { autorange: 'reversed' }, xaxis: { title: { text: 'times a normal early-summer day' }, rangemode: 'tozero' }, shapes: [{ type: 'line', x0: 1, x1: 1, yref: 'paper', y0: 0, y1: 1, line: { color: t.axis, dash: 'dot' } }] } }; }
+    });
+  }
+  var cm = C['calendar.cause_missing_by_state'];
+  if (cm) {
+    var st = Object.keys(cm.value).sort(function (a, b) { return cm.value[b] - cm.value[a]; });
+    WF.chart({ el: 'cause-missing', title: 'Share of fires with no recorded cause, by state', claims: ['calendar.cause_missing_by_state'],
+      sub: 'Where this is high, a cause calendar describes only the fires whose cause was recorded. States with 1,000+ fires, all years.',
+      rows: st.map(function (s) { return { state: s, cause_not_recorded: cm.value[s] }; }), columns: [{ key: 'state' }, { key: 'cause_not_recorded', label: 'cause not recorded', num: true, fmt: function (v) { return WF.fmt.pct(v, 1); } }],
+      height: 300,
+      build: function (t) { return { data: [{ type: 'bar', x: st, y: st.map(function (s) { return 100 * cm.value[s]; }), marker: { color: t.missing }, hovertemplate: '%{x}: %{y:.1f}% with no recorded cause<extra></extra>' }],
+        layout: { yaxis: { ticksuffix: '%', rangemode: 'tozero' }, xaxis: { tickfont: { size: 9 } } } }; }
+    });
+  }
 })();
 </script>
 </body>

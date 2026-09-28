@@ -85,3 +85,42 @@ Pourmohamad, Y., Abatzoglou, J. T., Belval, E. J., Fleishman, E., Short, K., Ree
 | `2018_FPA_FOD_cons.csv` | 186,160,898 | `f1267c0e8f3a4d081e36b6e8fced0c5534ad9b2fd6824d5a6fa1a5814c845270` |
 | `2019_FPA_FOD_cons.csv` | 143,602,358 | `217c9b808b7a90271090aa2912386969daff22daab0305d9ccfd1fe3e9797372` |
 | `2020_FPA_FOD_cons.csv` | 167,785,443 | `79e0cbc27dad54b4ca0af66884f794de21d15223ffe3e2b329bae92c457bdec1` |
+
+## Sources added for version 2 of the site (2026-09-26)
+
+None of these is joined to FPA FOD records. Each is kept as its own series, and the site labels it by source.
+
+### NIFC national annual totals, 1983-2025 (`analysis/nifc.py`)
+
+National Interagency Coordination Center, "Wildfires and Acres", https://www.nifc.gov/fire-information/statistics/wildfires, accessed 2026-09-26. Public domain (U.S. government work).
+
+- Raw HTML: `data/external/nifc/wildfires_2026-09-26.html`, SHA-256 `91d1baa33c1c227624dbcd2d2cad1b4b80ff75e08805c7720f9ed36ad97f5533`.
+- Parsed table: `data/external/nifc/nifc_annual.csv` (year, fires, acres; 43 years).
+- Cross-check: the first site's cached `national_annual.json` agrees in every year (`nifc.v1_cache_cross_check`).
+- Use: national trend only. The site does not use the 1983-1984 fire counts, which are anomalously low (`nifc.count_flag_1983_84`).
+
+### NOAA nClimDiv state climate, 1992-2020 (`analysis/drivers.py`)
+
+NOAA NCEI Climate Divisional Database (nClimDiv), doi:10.7289/V5M32STR, https://www.ncei.noaa.gov/pub/data/cirs/climdiv/, accessed 2026-09-26. Public domain.
+
+| File | SHA-256 |
+|---|---|
+| `climdiv-pdsist-v1.0.0-20260904` (Palmer Drought Severity Index, state) | `f182d76631c6fa35e637cc4bd6597ffbb07cb14b9f749469527f23b1ccaed802` |
+| `climdiv-tmpcst-v1.0.0-20260904` (average temperature, state) | `eba0699e448cb01a531462dbdb81a46015b44ae05d473b4e6124c5a5d6c50d28` |
+| `climdiv-pcpnst-v1.0.0-20260904` (precipitation, state) | `56b67e12075a65213d7a2cbaf39ef3ba0cee25dd84f562cd767e27bdcd39c60b` |
+
+- State codes were checked against `state-readme.txt` in the same directory: 50 codes, no mismatches (`drivers.state_code_verification`).
+- Join: May-October means per state-year, joined to FPA FOD acres summed by `STATE` and `FIRE_YEAR`, plus the coverage flag from `outputs/coverage_state_year.csv`.
+
+### WFIGS incident locations, 2021-2025 (`analysis/wfigs.py`)
+
+Wildland Fire Interagency Geospatial Services (WFIGS), "WFIGS Incident Locations", layer 0 (full history), https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/WFIGS_Incident_Locations/FeatureServer/0, accessed 2026-09-26. Public domain (U.S. government work, NIFC open data).
+
+- Query: `IncidentTypeCategory = 'WF' AND FireDiscoveryDateTime >= TIMESTAMP '2021-01-01 00:00:00' AND FireDiscoveryDateTime < TIMESTAMP '2026-01-01 00:00:00'`, `outSR=4326`, 2,000 rows a page, 98 pages.
+- Fields kept: listed in claim `wfigs.query`. The layer schema is in `data/external/wfigs/layer_schema.json`.
+- Rows: 195,139 fetched, 195,093 after de-duplicating on `UniqueFireIdentifier`. None was dropped for a missing location or date; 33,328 locations were taken from the point geometry.
+- Rows by discovery year: 2021 36,898; 2022 37,807; 2023 37,147; 2024 41,507; 2025 41,734 (`wfigs.rows_per_year`).
+- Clean file: `data/external/wfigs/wfigs_2021_2025.parquet`, SHA-256 `158ef4c817fe6b6716103856e32e75b1110b7201842d8b4fcdf02ff05d08d4d1`.
+- Size field precedence: `IncidentSize`, then `FinalAcres`, then `DiscoveryAcres`.
+- Cause and owner mappings are in `analysis/wfigs.py` and in claim `wfigs.cleaning`.
+- Comparability: WFIGS holds about half as many fires a year as FPA FOD 2016-2020, and cause is missing for half of them (`wfigs.comparability_verdict`). It is never spliced onto an FPA FOD series.
