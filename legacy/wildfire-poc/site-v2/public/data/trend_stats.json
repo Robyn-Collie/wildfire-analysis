@@ -1,0 +1,403 @@
+{
+ "_meta": {
+  "built": "2026-07-12T12:29:47",
+  "script": "analysis/trend_stats.py",
+  "framing": "Original analysis on NIFC (1983-2025) and FPA-FOD (1992-2020); literature context: EPA/NCA5 support rising large-year acreage; the floor/variance findings are this project's own."
+ },
+ "era_comparison_nifc_macres": {
+  "1983-1999": {
+   "years": "1983-1999",
+   "n": 17,
+   "min": 1.15,
+   "p25": 1.83,
+   "median": 2.72,
+   "p75": 4.07,
+   "max": 6.07,
+   "iqr": 2.25
+  },
+  "2000-2025": {
+   "years": "2000-2025",
+   "n": 26,
+   "min": 2.69,
+   "p25": 4.78,
+   "median": 7.29,
+   "p75": 8.89,
+   "max": 10.13,
+   "iqr": 4.1
+  },
+  "floor_shift": {
+   "pre2000_min": 1.15,
+   "post2000_min": 2.69,
+   "ratio": 2.35
+  },
+  "ceiling_shift": {
+   "pre2000_max": 6.07,
+   "post2000_max": 10.13,
+   "ratio": 1.67
+  },
+  "mannwhitney_p": 1e-05,
+  "note_lowest_years": "All 5 lowest-acre years in the official record are 1983-1998 (R2)."
+ },
+ "rolling_band_nifc_macres": {
+  "window": 11,
+  "rows": [
+   [
+    1988,
+    1.32,
+    2.45,
+    4.62
+   ],
+   [
+    1989,
+    1.8,
+    2.72,
+    4.62
+   ],
+   [
+    1990,
+    1.83,
+    2.72,
+    4.62
+   ],
+   [
+    1991,
+    1.83,
+    2.72,
+    5.01
+   ],
+   [
+    1992,
+    1.83,
+    2.86,
+    5.01
+   ],
+   [
+    1993,
+    1.8,
+    2.86,
+    5.01
+   ],
+   [
+    1994,
+    1.8,
+    2.86,
+    5.63
+   ],
+   [
+    1995,
+    1.8,
+    2.95,
+    6.07
+   ],
+   [
+    1996,
+    1.8,
+    2.95,
+    6.07
+   ],
+   [
+    1997,
+    1.8,
+    3.57,
+    7.18
+   ],
+   [
+    1998,
+    1.8,
+    3.96,
+    7.18
+   ],
+   [
+    1999,
+    1.84,
+    4.07,
+    7.39
+   ],
+   [
+    2000,
+    1.84,
+    5.63,
+    8.1
+   ],
+   [
+    2001,
+    2.86,
+    6.07,
+    8.69
+   ],
+   [
+    2002,
+    2.86,
+    7.18,
+    9.33
+   ],
+   [
+    2003,
+    3.57,
+    7.18,
+    9.33
+   ],
+   [
+    2004,
+    3.96,
+    7.18,
+    9.33
+   ],
+   [
+    2005,
+    3.57,
+    7.18,
+    9.33
+   ],
+   [
+    2006,
+    3.57,
+    7.18,
+    9.33
+   ],
+   [
+    2007,
+    3.96,
+    8.1,
+    9.33
+   ],
+   [
+    2008,
+    3.96,
+    8.1,
+    9.33
+   ],
+   [
+    2009,
+    3.6,
+    8.1,
+    9.33
+   ],
+   [
+    2010,
+    3.6,
+    8.69,
+    9.87
+   ],
+   [
+    2011,
+    3.6,
+    5.92,
+    9.87
+   ],
+   [
+    2012,
+    3.6,
+    5.92,
+    10.03
+   ],
+   [
+    2013,
+    3.6,
+    5.92,
+    10.03
+   ],
+   [
+    2014,
+    3.6,
+    5.92,
+    10.03
+   ],
+   [
+    2015,
+    3.6,
+    8.71,
+    10.12
+   ],
+   [
+    2016,
+    4.32,
+    8.71,
+    10.12
+   ],
+   [
+    2017,
+    4.32,
+    7.58,
+    10.12
+   ],
+   [
+    2018,
+    3.6,
+    7.13,
+    10.12
+   ],
+   [
+    2019,
+    3.6,
+    7.58,
+    10.12
+   ],
+   [
+    2020,
+    4.66,
+    7.58,
+    10.12
+   ]
+  ],
+  "first_vs_last": {
+   "first_center_year": 1988,
+   "last_center_year": 2020,
+   "p10_change": "1.32 -> 4.66 M acres",
+   "p90_change": "4.62 -> 10.12 M acres"
+  }
+ },
+ "trend_nifc": {
+  "theil_sen_slope_macres_per_decade": 1.41,
+  "theil_sen_ci95_per_decade": [
+   0.809,
+   2.125
+  ],
+  "kendall_tau": 0.444,
+  "kendall_p": 2.7e-05
+ },
+ "ten_million_club": {
+  "years": [
+   2015,
+   2017,
+   2020
+  ],
+  "note": "Never reached before 2015 in the official record; reached three times 2015-2020. No new record 2021-2025 \u2014 the story is a rising floor plus a ceiling first touched in 2015."
+ },
+ "fire_climate_correlation": {
+  "spec": "Spearman rank corr: state May-Oct mean PDSI vs log10 annual FOD acres, 1992-2020; states with >=25 yrs and >50k total acres. Negative = drier -> more burned.",
+  "n_states": 38,
+  "strongest_negative_10": [
+   {
+    "state": "CO",
+    "spearman_r": -0.724,
+    "p": 0.0,
+    "years": 29
+   },
+   {
+    "state": "SD",
+    "spearman_r": -0.655,
+    "p": 0.0001,
+    "years": 29
+   },
+   {
+    "state": "GA",
+    "spearman_r": -0.654,
+    "p": 0.0001,
+    "years": 29
+   },
+   {
+    "state": "TN",
+    "spearman_r": -0.645,
+    "p": 0.0002,
+    "years": 29
+   },
+   {
+    "state": "ND",
+    "spearman_r": -0.608,
+    "p": 0.0005,
+    "years": 29
+   },
+   {
+    "state": "FL",
+    "spearman_r": -0.599,
+    "p": 0.0006,
+    "years": 29
+   },
+   {
+    "state": "NJ",
+    "spearman_r": -0.559,
+    "p": 0.0016,
+    "years": 29
+   },
+   {
+    "state": "AR",
+    "spearman_r": -0.553,
+    "p": 0.0019,
+    "years": 29
+   },
+   {
+    "state": "NC",
+    "spearman_r": -0.548,
+    "p": 0.0021,
+    "years": 29
+   },
+   {
+    "state": "LA",
+    "spearman_r": -0.53,
+    "p": 0.0031,
+    "years": 29
+   }
+  ],
+  "n_strong_negative": 15,
+  "median_r": -0.446,
+  "west_11": [
+   {
+    "state": "CO",
+    "spearman_r": -0.724,
+    "p": 0.0,
+    "years": 29
+   },
+   {
+    "state": "NM",
+    "spearman_r": -0.52,
+    "p": 0.0038,
+    "years": 29
+   },
+   {
+    "state": "CA",
+    "spearman_r": -0.506,
+    "p": 0.0051,
+    "years": 29
+   },
+   {
+    "state": "WY",
+    "spearman_r": -0.455,
+    "p": 0.0131,
+    "years": 29
+   },
+   {
+    "state": "OR",
+    "spearman_r": -0.41,
+    "p": 0.0272,
+    "years": 29
+   },
+   {
+    "state": "MT",
+    "spearman_r": -0.394,
+    "p": 0.0344,
+    "years": 29
+   },
+   {
+    "state": "WA",
+    "spearman_r": -0.362,
+    "p": 0.0539,
+    "years": 29
+   },
+   {
+    "state": "ID",
+    "spearman_r": -0.326,
+    "p": 0.0843,
+    "years": 29
+   },
+   {
+    "state": "UT",
+    "spearman_r": -0.276,
+    "p": 0.1471,
+    "years": 29
+   },
+   {
+    "state": "AZ",
+    "spearman_r": -0.177,
+    "p": 0.3574,
+    "years": 29
+   },
+   {
+    "state": "NV",
+    "spearman_r": 0.13,
+    "p": 0.5013,
+    "years": 29
+   }
+  ]
+ }
+}

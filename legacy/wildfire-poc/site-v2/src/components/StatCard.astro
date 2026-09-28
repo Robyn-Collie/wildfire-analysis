@@ -1,0 +1,55 @@
+---
+// StatCard.astro — a single presentational stat beat.
+// value + label + optional sublabel; the STAT source is passed as `stat` and
+// emitted as an HTML comment so the P11 audit can trace every on-page number.
+interface Props {
+  value: string;
+  label: string;
+  sub?: string;
+  stat?: string;      // e.g. "trend_stats.floor_shift.ratio"
+  tone?: "ember" | "amber" | "flame" | "cool";
+}
+const { value, label, sub, stat, tone = "ember" } = Astro.props;
+---
+<div class:list={["statcard", `statcard--${tone}`]}>
+  {stat && <Fragment set:html={`<!-- STAT: ${stat} -->`} />}
+  <span class="statcard__value mono">{value}</span>
+  <span class="statcard__label">{label}</span>
+  {sub && <span class="statcard__sub">{sub}</span>}
+</div>
+
+<style>
+  .statcard {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 18px;
+    border: 1px solid var(--border, #332d24);
+    border-radius: 12px;
+    background: var(--surface, rgba(20, 17, 13, 0.82));
+    backdrop-filter: blur(8px);
+    min-width: 150px;
+  }
+  .statcard__value {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.05;
+    font-variant-numeric: tabular-nums;
+    color: var(--ember, #fb923c);
+  }
+  .statcard--amber .statcard__value { color: var(--amber, #fbbf24); }
+  .statcard--flame .statcard__value { color: var(--flame-red, #ef4444); }
+  .statcard--cool  .statcard__value { color: var(--cool, #7dd3fc); }
+  .statcard__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text, #ece8e2);
+    letter-spacing: 0.2px;
+  }
+  .statcard__sub {
+    font-size: 11px;
+    color: var(--text-faint, #6b6357);
+    line-height: 1.4;
+  }
+</style>

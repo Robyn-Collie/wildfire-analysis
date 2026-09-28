@@ -1,0 +1,17 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
+/data/*
+  Cache-Control: public, max-age=86400, must-revalidate
+/figures/*
+  Cache-Control: public, max-age=86400, must-revalidate
+/vendor/*
+  Cache-Control: public, max-age=2592000, immutable
+/assets/*
+  Cache-Control: public, max-age=3600, must-revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/archive/*
+  X-Robots-Tag: noindex

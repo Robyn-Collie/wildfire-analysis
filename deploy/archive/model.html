@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en"> <head><meta name="robots" content="noindex"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Model &middot; US Wildfires &middot; Robyn Collie</title><meta name="description" content="A bounded seasonal-risk model: state area burned vs drought, temperature, and precipitation. What it can say, what it can't, and where it fails."><link rel="icon" type="image/svg+xml" href="/archive/favicon.svg"><link rel="stylesheet" href="/archive/_astro/drivers.Dk-sUTy2.css"></head> <body class="page-model"><div style="position:sticky;top:0;z-index:1000;background:#7c2d12;color:#fff;font:600 14px/1.4 system-ui,sans-serif;padding:.55rem 1rem;text-align:center">Archived: the first version of this site (July 2026), kept for the record. <a href="/" style="color:#fff;text-decoration:underline">The current analysis is here</a>.</div> <header class="site-header"> <div class="brand"> <span class="brand-title">US Wildfires</span> <span class="brand-byline">the fire record, 1983&ndash;2025 &middot; Robyn Collie <span class="flower">&#10048;</span></span> </div> <nav class="module-nav" aria-label="Primary"> <a href="/archive/">Story</a><a href="/archive/monsters">Largest fires</a><a href="/archive/explore">Explore</a><a href="/archive/trend.html">The Trend</a><a href="/archive/seasonality.html">Seasonality</a><a href="/archive/map.html">Map</a><a href="/archive/drivers.html">Drivers</a><a href="/archive/model.html" class="active" aria-current="page">Model</a><a href="/archive/methods.html">Methods</a> </nav> </header> <main> <p class="callout-tag">Bounded tier &middot; technical note</p> <h1>A seasonal-risk model, and its limits</h1> <p class="dek">We fit one deliberately small model: does a season's drought, heat, and rainfall
+  explain how many acres a state burns? It captures a modest, real signal &mdash; and this page is
+  as much about where it breaks as where it works.</p> <!-- 1. WHAT THIS IS / IS NOT ------------------------------------------------ --> <section id="honesty" aria-labelledby="honesty-h"> <h2 id="honesty-h"><span class="section-num">01</span>What this is &mdash; and what it is not</h2> <div class="callout honesty"> <span class="callout-tag">Honesty block &mdash; verbatim from the model</span> <blockquote data-model-honesty> <!-- STAT: model_results.json _meta.honesty (verbatim) -->
+&ldquo;Prior art ceiling: Riley et al. 2013 PDSI-area R^2 ~ 0.25. This model explains state
+        identity (FE) + a modest climate signal; it is a seasonal risk indicator, not a forecast of
+        individual fires.&rdquo;
+</blockquote> <p class="src">&mdash; <code>analysis/model.py</code>, <code>_meta.honesty</code></p> </div> <p>To be explicit about the boundary, this model does <strong>not</strong> do any of the following:</p> <ul class="non-claims"> <li><strong>No fire spread.</strong> It says nothing about how a given fire moves across a
+      landscape, how fast, or in which direction. It is not a fire-behavior model.</li> <li><strong>No sub-seasonal forecasts.</strong> It relates a whole season's climate to that
+      season's acres. It cannot tell you next week, or next month, is dangerous.</li> <li><strong>No individual-fire prediction.</strong> The unit of analysis is state &times; year.
+      It never predicts whether, where, or when a single fire ignites.</li> </ul> <p>What it <em>is</em>: a coarse, held-out-validated indicator of how much a state's fire season
+    tracks its drought and weather &mdash; useful for ranking relative risk, honest about its ceiling.</p> </section> <!-- 2. SPEC + LOYO ----------------------------------------------------------- --> <section id="spec" aria-labelledby="spec-h"> <h2 id="spec-h"><span class="section-num">02</span>The specification</h2> <p>One pooled ordinary-least-squares regression. The outcome is log-transformed acres; the
+    inputs are the season's drought, temperature, and precipitation, each standardized (z-scored);
+    a fixed effect for each state absorbs its baseline fire level.</p> <p class="formula readout" role="img" aria-label="log base ten of acres plus one, regressed on z-scored PDSI, z-scored average temperature, z-scored precipitation over May through October, plus a state fixed effect."> <!-- STAT: model_results.json _meta.spec -->
+log<sub>10</sub>(acres + 1) &nbsp;=&nbsp; &beta;<sub>0</sub>
++ &beta;<sub>1</sub>&middot;z(PDSI) + &beta;<sub>2</sub>&middot;z(temp) + &beta;<sub>3</sub>&middot;z(precip)
+      &nbsp;+&nbsp; state&nbsp;fixed&nbsp;effect &nbsp;&nbsp;<span class="k">(May&ndash;Oct season)</span> </p> <p>The panel is small on purpose:
+<strong data-stat="panel.states"><!-- STAT: model_results.json panel.states -->38</strong> states,
+<strong data-stat="panel.years"><!-- STAT: model_results.json panel.years -->1992&ndash;2020</strong>,
+<strong data-stat="panel.rows"><!-- STAT: model_results.json panel.rows -->1,102</strong> state-year rows.</p> <h3>How we tested it honestly: leave-one-year-out</h3> <p>A model graded on the same data it learned from will always look better than it is. So we
+    validated it the hard way &mdash; leave-one-year-out (LOYO) cross-validation. A non-statistician
+    can follow it in four steps:</p> <ol class="loyo-steps"> <li><strong>Hold out one year.</strong> Set aside every state's data for, say, 2017.</li> <li><strong>Train on the rest.</strong> Fit the model on all the <em>other</em> years only &mdash;
+      it has never seen 2017.</li> <li><strong>Predict the held-out year.</strong> Use that model to predict 2017's acres, and
+      compare to what actually burned.</li> <li><strong>Repeat for every year, then score.</strong> Rotate through all years so each is
+      the held-out test once. The reported skill is measured only on these out-of-sample predictions.</li> </ol> <p>Every number below the &ldquo;out-of-sample&rdquo; (OOS) label is a prediction the model made
+    for data it was <em>not</em> trained on.</p> </section> <!-- 3. LEAD NUMBER: SKILL VS CLIMATOLOGY ------------------------------------- --> <section id="skill" aria-labelledby="skill-h"> <h2 id="skill-h"><span class="section-num">03</span>The number that matters: skill versus climatology</h2> <p class="lede"> <span class="big-number" data-stat="skill_vs_climatology"> <!-- STAT: model_results.json skill_vs_climatology -->+17.1%</span>
+reduction in prediction error versus a same-state climatology baseline, measured out-of-sample.</p> <p>The right question is not &ldquo;how much variance does the model explain?&rdquo; but
+    &ldquo;does it beat the dumbest defensible guess?&rdquo; The dumb guess &mdash; the baseline &mdash;
+    is <em>climatology</em>: predict each state's typical (median) burned acres from its training
+    years, ignoring the weather entirely. Against that baseline, the climate model cuts prediction
+    error by
+<strong data-stat="skill_vs_climatology"><!-- STAT: model_results.json skill_vs_climatology -->17.1%</strong>
+on held-out years. That is a modest, honest gain from knowing the season's drought and heat.</p> <div class="callout"> <span class="callout-tag">Why the raw R&sup2; flatters the model</span> <p>The overall out-of-sample R&sup2; is
+<strong data-stat="oos_r2_overall"><!-- STAT: model_results.json oos_r2_overall -->0.711</strong>,
+      which sounds strong. Most of that is an illusion of the design: the <em>state fixed effects</em>
+do the heavy lifting. Knowing simply &ldquo;this is California&rdquo; versus &ldquo;this is
+      Rhode Island&rdquo; already predicts wildly different acreage &mdash; before a single weather
+      variable is added. So the 0.711 mostly measures the model's ability to tell states apart, not
+      its ability to read the weather. The <strong>+17.1% skill over climatology</strong> is the
+      honest measure of what the <em>climate signal</em> adds, because the climatology baseline
+      already knows which state it is.</p> </div> <p> <strong>Prior-art context.</strong> This ceiling is expected. Riley et&nbsp;al. (2013) related
+      the Palmer Drought Severity Index to area burned across the western USA and found only a
+<strong>weak correlation, R&sup2; &asymp; 0.25</strong> <a href="#ref-riley2013">[riley2013]</a>
+&mdash; and showed that short-term fire-danger indices (like the Energy Release Component)
+      outperform PDSI. A drought-based seasonal model is <em>supposed</em> to explain a modest share
+      of the variance. Ours claiming more would be a red flag, not a triumph.</p> </section> <!-- 4. WHERE IT WORKS / FAILS ------------------------------------------------ --> <section id="where" aria-labelledby="where-h"> <h2 id="where-h"><span class="section-num">04</span>Where it works, and where it fails</h2> <p>Skill is not uniform. Broken out by state (each state's own out-of-sample R&sup2;), the model
+    reads drought-driven Western fire regimes well and fails in fuel-limited or human-dominated ones.</p> <figure class="chart full-bleed"> <div id="state-r2-tilemap" class="wf-tilemap" role="img" aria-label="US tile-grid map of per-state out-of-sample R-squared. California, Colorado, South Dakota and the Mountain West score highest; Nevada, Missouri, South Carolina and Mississippi are negative."> <!-- WF.tilemap renders here from model_results per_state_oos_r2. Static tables below are the no-JS fallback. --> </div> <p class="data-fallback" hidden>Interactive map unavailable &mdash; the per-state values are in the tables below.</p> <figcaption class="src">Per-state out-of-sample R&sup2;. Cool tiles = negative (worse than
+      climatology); ember tiles = positive skill. Source: <code>model_results.json</code>,
+<code>per_state_oos_r2</code>.</figcaption> </figure> <h3>Where it works &mdash; top 10 states by OOS R&sup2;</h3> <div class="data-table-wrap"> <table class="data" id="top10-table"> <caption>Top ten states by out-of-sample R-squared (Source: model_results.json, per_state_oos_r2_top10)</caption> <thead><tr><th scope="col">State</th><th scope="col">OOS R&sup2;</th></tr></thead> <tbody> <!-- STAT: model_results.json per_state_oos_r2_top10 (verbatim) --> <tr><td>California</td><td class="num">0.480</td></tr> <tr><td>Colorado</td><td class="num">0.386</td></tr> <tr><td>South Dakota</td><td class="num">0.379</td></tr> <tr><td>Montana</td><td class="num">0.313</td></tr> <tr><td>Wyoming</td><td class="num">0.282</td></tr> <tr><td>Texas</td><td class="num">0.247</td></tr> <tr><td>Georgia</td><td class="num">0.216</td></tr> <tr><td>Oregon</td><td class="num">0.213</td></tr> <tr><td>Tennessee</td><td class="num">0.204</td></tr> <tr><td>Washington</td><td class="num">0.203</td></tr> </tbody> </table> </div> <h3>Where it fails &mdash; the negative states</h3> <div class="data-table-wrap"> <table class="data" id="bottom5-table"> <caption>Five worst states by out-of-sample R-squared (Source: model_results.json, per_state_oos_r2_bottom5)</caption> <thead><tr><th scope="col">State</th><th scope="col">OOS R&sup2;</th></tr></thead> <tbody> <!-- STAT: model_results.json per_state_oos_r2_bottom5 (verbatim) --> <tr><td>Oklahoma</td><td class="num">&minus;0.098</td></tr> <tr><td>Nevada</td><td class="num">&minus;0.163</td></tr> <tr><td>South Carolina</td><td class="num">&minus;0.302</td></tr> <tr><td>Missouri</td><td class="num">&minus;0.324</td></tr> <tr><td>Mississippi</td><td class="num">&minus;0.625</td></tr> </tbody> </table> </div> <p>A negative R&sup2; means the model does <em>worse</em> than simply guessing the state's usual
+    acreage. In these states the drought signal is either absent or points the wrong way.</p> <div class="callout"> <span class="callout-tag">Nevada, and the fuel-limitation wrinkle</span> <p>Nevada's
+<strong data-stat="per_state_oos_r2_bottom5.NV"><!-- STAT: model_results.json per_state_oos_r2_bottom5 (NV = -0.163) -->&minus;0.163</strong>
+is not noise &mdash; it is the model meeting its own assumption head-on. The model encodes the
+      Western logic that <em>drier means more fire</em>. But the Great Basin is
+<strong>fuel-limited</strong>, not flammability-limited: its sparse desert grasses only carry
+      fire after a <em>wet</em> year grows enough of them, so the biggest burns often follow the
+      rain, not the drought. That inversion is exactly the wrinkle laid out on the
+<a href="/archive/drivers.html#wrinkle">Drivers page</a> &mdash; and the model, built on the
+      drought-drives-fire premise, gets Nevada backwards for precisely that reason. It is an honest
+      failure that points at real physics.</p> </div> </section> <!-- 5. COEFFICIENTS ---------------------------------------------------------- --> <section id="coefficients" aria-labelledby="coef-h"> <h2 id="coef-h"><span class="section-num">05</span>Coefficients: do the signs make physical sense?</h2> <p>A model can score well for the wrong reasons. The cleanest sanity check is whether the signs
+    of the coefficients match physical intuition. They do. Values are on z-scored inputs, so the
+    magnitudes are directly comparable &mdash; each is the change in log<sub>10</sub>(acres) per one
+    standard deviation of that variable.</p> <div class="data-table-wrap"> <table class="data" id="coef-table"> <caption>Standardized regression coefficients and their physical interpretation (Source: model_results.json, coefficients_z)</caption> <thead><tr> <th scope="col">Variable</th><th scope="col">z-coefficient</th> <th scope="col">Sign</th><th scope="col">Physically&hellip;</th> </tr></thead> <tbody> <!-- STAT: model_results.json coefficients_z (verbatim) --> <tr> <td>PDSI (drought index)</td> <td class="num">&minus;0.1013</td> <td>&minus;</td> <td>Correct. Higher PDSI = <em>wetter</em>, so more moisture &rarr; fewer acres burned.</td> </tr> <tr> <td>Average temperature</td> <td class="num">+0.0915</td> <td>+</td> <td>Correct. Hotter seasons &rarr; more acres burned.</td> </tr> <tr> <td>Precipitation</td> <td class="num">&minus;0.0617</td> <td>&minus;</td> <td>Correct. More rain &rarr; fewer acres burned.</td> </tr> </tbody> </table> </div> <p>Drought (PDSI) carries the largest standardized weight, temperature next, precipitation
+    smallest &mdash; a physically coherent ordering for area burned at the seasonal scale.</p> </section> <!-- 6. WORST MISSES ---------------------------------------------------------- --> <section id="misses" aria-labelledby="misses-h"> <h2 id="misses-h"><span class="section-num">06</span>The honesty exhibit: worst misses</h2> <p>These are the five predictions the model got most wrong. In every case it predicted a large
+    burn where almost nothing happened &mdash; small Plains and Eastern states in the early 1990s.</p> <div class="data-table-wrap"> <table class="data" id="misses-table"> <caption>Five worst prediction errors: predicted versus actual acres (Source: model_results.json, worst_misses)</caption> <thead><tr> <th scope="col">State</th><th scope="col">Year</th> <th scope="col">Actual acres</th><th scope="col">Predicted acres</th> </tr></thead> <tbody> <!-- STAT: model_results.json worst_misses (verbatim) --> <tr><td>Kansas</td><td class="num">1992</td><td class="num">251</td><td class="num">16,116</td></tr> <tr><td>Nebraska</td><td class="num">1993</td><td class="num">173</td><td class="num">6,262</td></tr> <tr><td>Pennsylvania</td><td class="num">1995</td><td class="num">51</td><td class="num">1,721</td></tr> <tr><td>Pennsylvania</td><td class="num">1993</td><td class="num">40</td><td class="num">1,320</td></tr> <tr><td>Kentucky</td><td class="num">1993</td><td class="num">843</td><td class="num">26,393</td></tr> </tbody> </table> </div> <div class="callout"> <span class="callout-tag">Read these in log space</span> <p>The model is fit on log<sub>10</sub>(acres + 1), so it is penalized for getting the
+<em>order of magnitude</em> wrong, not the raw acre gap. A predicted 16,116 against an actual
+      251 is a miss of roughly two orders of magnitude &mdash; large on the scale the model actually
+      optimizes &mdash; even though, against a ten-million-acre Western fire year, 16,000 acres is a
+      rounding error. These are the biggest <em>relative</em> misses, which is why small, low-fire
+      states dominate the list.</p> </div> </section> <!-- Scatter (progressive enhancement) ---------------------------------------- --> <section id="scatter" aria-labelledby="scatter-h"> <h2 id="scatter-h"><span class="section-num">07</span>Predicted versus actual (the worst misses, plotted)</h2> <figure class="chart"> <div id="misses-scatter" class="wf-scatter" role="img" aria-label="Scatter of all 1,102 held-out predictions: predicted versus actual acres on log scales, with a one-to-one reference line. The cloud tracks the line with wide spread; the five worst misses sit far above it."> <!-- WF.scatter renders ALL cv_predictions vs a 1:1 line. Falls back to the table above. --> </div> <p class="data-fallback">This chart requires JavaScript. A five-row excerpt (the worst misses)
+      is in the <a href="#misses-table">table</a> above; the full 1,102-row validation set is in
+<code>/data/model_results.json</code>.</p> <figcaption class="src">Every point is one held-out state-year prediction (1,102 in all
+      &mdash; each made by a model that never saw that year); the diagonal is a perfect prediction.
+      The cloud hugs the line loosely &mdash; that spread <em>is</em> the modest skill &mdash; and the
+      five worst misses from the table sit far above it. Source:
+<code>model_results.json</code>, <code>cv_predictions</code>. <!-- STAT: model_results.json cv_predictions.rows (n=1102) --></figcaption> </figure> </section> <!-- 8. WHAT WOULD MAKE IT BETTER --------------------------------------------- --> <section id="better" aria-labelledby="better-h"> <h2 id="better-h"><span class="section-num">08</span>What would make it better</h2> <p>The point of a bounded model is knowing its next move. Three would matter most:</p> <ul class="improvements"> <li><strong>Gridded fuel data.</strong> Fuel load and continuity explain why Nevada burns after
+      wet years; a drought index alone cannot see the grass.</li> <li><strong>Sub-seasonal fire-danger indices (e.g.&nbsp;ERC).</strong> Short-term indices track
+      area burned better than PDSI does <a href="#ref-riley2013">[riley2013]</a>, and would move the
+      model toward operational timescales.</li> <li><strong>Ignition modeling.</strong> Most fires are human-started; a model with no ignition
+      term is blind to the spark, only the conditions.</li> </ul> <p>Each is a direction, not a promise &mdash; and none would change what this page opens with:
+    this is a seasonal risk indicator, not a forecast of individual fires.</p> </section> <!-- REFERENCES --------------------------------------------------------------- --> <section id="references" class="references" aria-labelledby="ref-h"> <h2 id="ref-h">References</h2> <ol> <li id="ref-riley2013"><span class="ref-key">[riley2013]</span> Riley, K.L., Abatzoglou, J.T.,
+      Grenfell, I.C., Klene, A.E., &amp; Heinsch, F.A. (2013). The relationship of large fire
+      occurrence with drought and fire danger indices in the western USA, 1984&ndash;2008: The role
+      of temporal scale. <em>International Journal of Wildland Fire</em>, 22(7), 894&ndash;909.
+<a href="https://doi.org/10.1071/WF12149" rel="noopener">doi:10.1071/WF12149</a></li> <li id="ref-short2022"><span class="ref-key">[short2022fpafod]</span> Short, Karen C. (2022).
+      Spatial wildfire occurrence data for the United States, 1992&ndash;2020 [FPA_FOD_20221014].
+      6th Edition. Fort Collins, CO: Forest Service Research Data Archive.
+<a href="https://doi.org/10.2737/RDS-2013-0009.6" rel="noopener">doi:10.2737/RDS-2013-0009.6</a></li> <li id="ref-nclimdiv"><span class="ref-key">[nclimdiv]</span> Vose, R.S., et&nbsp;al. (2014).
+      NOAA Monthly U.S. Climate Divisional Database (nClimDiv), state-level PDSI, temperature, and
+      precipitation. NOAA National Centers for Environmental Information.
+<a href="https://doi.org/10.7289/V5M32STR" rel="noopener">doi:10.7289/V5M32STR</a>.
+      Accessed 2026-07-12. See the <a href="/archive/methods.html">Methods page</a> for full provenance and caveats.</li> </ol> </section> <footer class="site-footer"> <p class="footer-credit">Built with Claude Fable 5 (1M-token context) &middot; July 2026</p> <p class="footer-links"> <a href="https://agent-built-demos.netlify.app" rel="noopener">Build replay &rarr;</a> </p> <p class="footer-byline">Robyn Collie <span class="flower">&#10048;</span></p> </footer> </main> <noscript> <p style="max-width:64ch;margin:1rem auto;padding:0 1rem;color:var(--text-dim)">This page renders
+  fully without JavaScript &mdash; every number above lives in a table or the prose. The two charts
+  are optional visual aids; their data is in the tables.</p> </noscript> <script src="/archive/js/common.js"></script> <script>
+  // Progressive enhancement only. All numbers already live in the static HTML above
+  // (STAT-commented). common.js (w1) provides WF.load / WF.tilemap / WF.scatter.
+  (function () {
+    if (typeof WF === 'undefined' || !WF.load) return;
+    WF.load(['model_results'], function (data) {
+      var m = data && data.model_results;
+      if (!m) return;
+
+      // Per-state OOS R2 tilemap. opts contract (common.js WF.tilemap):
+      //   mode:"diverging", valueFmt, unit, label, onselect.
+      var tileEl = document.getElementById('state-r2-tilemap');
+      if (tileEl && WF.tilemap) {
+        var values = {};
+        (m.per_state_oos_r2_top10 || []).forEach(function (r) { values[r.state] = r.oos_r2; });
+        (m.per_state_oos_r2_bottom5 || []).forEach(function (r) { values[r.state] = r.oos_r2; });
+        WF.tilemap(tileEl, values, {
+          mode: 'diverging',
+          valueFmt: function (v) { return v == null ? 'n/a' : v.toFixed(3); },
+          unit: 'OOS R²',
+          label: 'Per-state out-of-sample R² tile-grid; cool = negative, ember = positive skill.'
+        });
+      }
+
+      // Worst-misses scatter. WF.scatter accepts the worst_misses shape verbatim
+      // ({state,year,actual_acres,predicted_acres}); opts = {log, xlabel, ylabel, label}.
+      var scEl = document.getElementById('misses-scatter');
+      if (scEl && WF.scatter) {
+        var cvRows = (m.cv_predictions && m.cv_predictions.rows || []).map(function (r) {
+          return { state: r[0], year: r[1], actual_acres: r[2], predicted_acres: r[3] };
+        });
+        WF.scatter(scEl, cvRows.length ? cvRows : (m.worst_misses || []), {
+          log: true,
+          xlabel: 'Actual (log₁₀ acres+1)',
+          ylabel: 'Predicted (log₁₀ acres+1)',
+          label: 'Predicted versus actual acres for the five worst misses, with a 1:1 line.'
+        });
+      }
+    });
+  })();
+</script> </body> </html>

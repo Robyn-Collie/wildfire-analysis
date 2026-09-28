@@ -1,0 +1,31 @@
+---
+// hero.astro — redirect stub. Keeps the shared prototype URL (/hero.html) alive
+// by meta-refreshing into the promoted hero, now Act 0 of the narrative.
+const target = "/#year-of-fire";
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>A Year of Fire — US Wildfires</title>
+    <style>
+      body {
+        background: #070604;
+        color: #ece8e2;
+        font-family: Inter, system-ui, sans-serif;
+        display: grid;
+        place-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      a { color: #fb923c; }
+    </style>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>A Year of Fire</a>…</p>
+    <script>window.location.replace("/#year-of-fire");</script>
+  </body>
+</html>

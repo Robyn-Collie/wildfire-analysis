@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Map &middot; US Wildfires</title>
+<meta name="description" content="Where the fire record lands: a 0.5-degree discovery-point grid stepped across six eras, 1992-2020.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand"><span class="brand-title">US Wildfires</span>
+    <span class="brand-byline">the fire record, 1983&ndash;2025 &middot; Robyn Collie <span class="flower">&#10048;</span></span></div>
+  <nav class="module-nav">
+    <a href="index.html">Story</a><a href="trend.html">The Trend</a><a href="seasonality.html">Seasonality</a>
+    <a href="map.html" class="active">Map</a><a href="drivers.html">Drivers</a><a href="model.html">Model</a><a href="methods.html">Methods</a>
+  </nav>
+</header>
+
+<main class="page page-map">
+
+  <section class="page-head">
+    <p class="kicker">The era explorer</p>
+    <h1>Where the record lands, and where it moves</h1>
+    <p class="lede">
+      Every wildfire in the federal record carries a point location. Bin those points into
+      half-degree cells and step them across six five-year eras, and the geography of American
+      fire stops being a single map and becomes a moving one. The Southeast lights up in
+      count; the West lights up in acreage; and the Great Basin&rsquo;s invasive-grass belt
+      stays lit the whole way through.
+    </p>
+    <p class="source-line">
+      Source: FPA-FOD discovery points, 1992&ndash;2020 (Short 2022, 6th ed.), binned to
+      0.5&deg; cells by five-year era. <span class="mono">21,919</span> cells.
+      <!-- STAT: map_grid._meta.cells -->
+    </p>
+  </section>
+
+  <section class="explorer">
+    <div id="eramap" class="eramap-canvas" role="img"
+         aria-label="Dot-grid map of the contiguous US plus Alaska and Hawaii, one dot per half-degree cell, shaded by wildfire discovery count or acres burned, stepped across six five-year eras from 1992 to 2020.">
+      <p class="data-fallback">
+        Interactive map unavailable &mdash; the per-era national totals table below carries the
+        same figures.
+      </p>
+    </div>
+    <p class="map-note mono">
+      Log scale on cell shading &middot; grid is equirectangular &mdash; <strong>not a projection</strong>,
+      so relative areas are distorted, especially toward Alaska.
+    </p>
+  </section>
+
+  <section class="prose">
+    <h2>What moves across the eras</h2>
+
+    <p>
+      <strong>California intensifies without lighting more fires.</strong> Across the six eras
+      the California box&rsquo;s discovery <em>count</em> stays inside a narrow band &mdash;
+      <span class="mono">41,000&ndash;55,000</span> fires per era &mdash; while its acreage
+      roughly triples, from <span class="mono">3.34M</span> acres in 1992&ndash;96 to
+      <span class="mono">10.42M</span> in 2017&ndash;2020. In fact the last era is the sharpest
+      version of the story: the <em>fewest</em> fires of any era
+      (<span class="mono">41,394</span>) and by far the <em>most</em> acres.
+      <!-- STAT: map_grid.rows (computed: CA box 32-42N,125-114W inclusive, per-era sums; 1992-96 = 50,059 fires/3.34M ac; 2017-20 = 41,394 fires/10.42M ac) -->
+      Roughly the same dots, far more acreage behind them: the map is showing intensification,
+      not proliferation.
+    </p>
+
+    <p>
+      <strong>The Great-Basin invasive-grass belt stays lit.</strong> The Nevada&ndash;western-Utah
+      corridor holds roughly <span class="mono">4&ndash;5M</span> acres per era across the whole
+      span even as its fire count drifts <em>down</em> (from
+      <span class="mono">~17,900</span> to <span class="mono">~13,200</span> fires).
+      <!-- STAT: map_grid.rows (computed: Great Basin box 36-43N,120-112W inclusive, per-era sums; fires 17,865 (1992-96) -> 13,166 (2017-20); acres 3.88-5.39M per era) -->
+      This is the cheatgrass signature &mdash; a small number of very large grass-and-shrub fires
+      that dominate the acreage while the count says little. It is also the region the
+      <a href="drivers.html">drivers page</a> flags as the exception to the drought&ndash;fire rule.
+    </p>
+
+    <p>
+      <strong>The Southeast is dense in count, light in acres.</strong> The southeastern cells
+      carry the country&rsquo;s highest fire <em>counts</em> &mdash; up to
+      <span class="mono">~187,700</span> fires in a single era (1997&ndash;2001) &mdash; but only
+      <span class="mono">1.3&ndash;3.2M</span> acres behind them.
+      <!-- STAT: map_grid.rows (computed: Southeast box 25-37N,92-75W inclusive, per-era sums; peak 187,707 fires (1997-01); acres 1.33-3.23M per era) -->
+      Many small, mostly human-set and prescribed-adjacent fires. The same era&rsquo;s Great Basin
+      burns more acreage from a tenth as many fires. The dot-grid makes the contrast literal:
+      a wall of dots in the Southeast, a scatter of hot ones in the interior West.
+    </p>
+
+    <p>
+      <strong>The Pacific Northwest arrives late.</strong> The Oregon&ndash;Washington box runs
+      <span class="mono">2.0&ndash;3.3M</span> acres per era through 2011, then jumps to
+      <span class="mono">7.38M</span> in 2012&ndash;2016 and stays elevated
+      (<span class="mono">5.62M</span> in 2017&ndash;20) &mdash; the megafire-year signature
+      reaching the northern forests a decade after it reached the Southwest.
+      <!-- STAT: map_grid.rows (computed: PacNW box 42-49N,125-116W inclusive, per-era sums; 1992-2011 range 1.99-3.30M; 2012-16 = 7.38M; 2017-20 = 5.62M) -->
+    </p>
+
+    <p>
+      Read the two toggles together and the national pattern is the same one the
+      <a href="trend.html">trend page</a> makes at the annual scale: <strong>count and acres
+      are different stories.</strong> National discovery count actually <em>falls</em> in the later
+      eras (from <span class="mono">~453,000</span> fires in 2007&ndash;2011 to
+      <span class="mono">~300,000</span> in 2017&ndash;2020), while acreage stays near its ceiling.
+      <!-- STAT: map_grid.rows (computed: national per-era sums) -->
+      Fewer fires, not smaller ones.
+    </p>
+  </section>
+
+  <section class="honesty">
+    <h2>What this map is &mdash; and is not</h2>
+    <div class="honesty-block">
+      <p>
+        <strong>These dots are discovery points, not burned footprints.</strong> Each cell is
+        anchored at the reported point-of-origin of the fires that fall inside a 0.5&deg; bin.
+        A single large fire is one dot at its origin cell, even though its perimeter may have
+        crossed several cells. The map shows <em>where fires start and how much they ultimately
+        burn</em>, attributed to the origin cell &mdash; it is not a burned-area or perimeter map.
+      </p>
+      <p>
+        <strong>Class-G footprints dominate the acreage.</strong> In the acres view, a handful of
+        very large fires &mdash; the 5,000-plus-acre class-G events &mdash; carry most of the total
+        for any hot cell. A bright acres-dot can be one fire, not many. The count view and the acres
+        view are answering different questions on purpose; that is the point of the toggle.
+        <!-- STAT: research/r3-provenance-lit.md A3 (FIRE_SIZE_CLASS: G = 5000+ acres) -->
+      </p>
+      <p>
+        <strong>The grid under-represents where reporting is thin.</strong> The FPA-FOD
+        &ldquo;may&hellip;underrepresent actual wildfire activity in certain areas and time
+        periods&rdquo; where nonfederal records were incomplete, so empty or dim cells are not
+        proof of no fire. See <a href="methods.html">Methods</a> for the full caveat.
+        <!-- STAT: research/r3-provenance-lit.md A2 (FPA-FOD undercount language) -->
+      </p>
+      <p class="footnote">
+        <strong>Not a projection.</strong> The grid is drawn equirectangular (lat/lon straight to
+        x/y) for legibility, not as a cartographic projection. Cell areas are distorted &mdash;
+        increasingly so toward the poles &mdash; so do not read a northern cell&rsquo;s on-screen
+        size as land area. The last era (2017&ndash;2020) spans four years, not five, so its
+        per-era totals are not directly comparable to the earlier five-year eras without
+        year-normalizing.
+      </p>
+    </div>
+  </section>
+
+  <noscript>
+  <section class="static-table">
+    <h2>Per-era national totals</h2>
+    <p class="table-note">
+      Sums across all <span class="mono">21,919</span> grid cells, by era. Discovery-point counts
+      and origin-attributed acres. The 2017&ndash;2020 era is four years; all others are five.
+    </p>
+    <table class="data-table">
+      <caption>National wildfire totals by five-year era, FPA-FOD grid (1992&ndash;2020)</caption>
+      <thead>
+        <tr><th scope="col">Era</th><th scope="col">Fires</th><th scope="col">Acres</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1992&ndash;96</td><td class="mono">352,869</td><td class="mono">16,561,458</td></tr>
+        <tr><td>1997&ndash;01</td><td class="mono">402,545</td><td class="mono">22,996,490</td></tr>
+        <tr><td>2002&ndash;06</td><td class="mono">424,637</td><td class="mono">39,377,529</td></tr>
+        <tr><td>2007&ndash;11</td><td class="mono">453,117</td><td class="mono">34,004,378</td></tr>
+        <tr><td>2012&ndash;16</td><td class="mono">370,440</td><td class="mono">33,208,395</td></tr>
+        <tr><td>2017&ndash;20</td><td class="mono">299,958</td><td class="mono">33,900,299</td></tr>
+      </tbody>
+    </table>
+    <!-- STAT: map_grid.rows (per-era national sums of fires and acres) -->
+  </section>
+  </noscript>
+
+  <footer class="site-footer">
+    <p class="footer-credit">Built with Claude Fable 5 (1M-token context) &middot; July 2026</p>
+    <p class="footer-byline">Robyn Collie <span class="flower">&#10048;</span></p>
+  </footer>
+
+</main>
+
+<script src="js/common.js" defer></script>
+<script defer>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.WF || !WF.load) return;
+    WF.load(['map_grid'], function (data) {
+      var el = document.getElementById('eramap');
+      if (el && WF.eramap) {
+        WF.eramap(el, data.map_grid, { metric: 'acres' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

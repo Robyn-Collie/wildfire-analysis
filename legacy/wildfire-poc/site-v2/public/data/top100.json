@@ -1,0 +1,811 @@
+{
+ "_meta": {
+  "built": "2026-07-12T17:50:55",
+  "script": "pipeline/build_monsters.py",
+  "source": "FPA-FOD 6th ed. class G (>=5,000 acres), regions CONUS/AK/HI",
+  "note": "0 class-G records outside region bounds dropped (offshore/PR)",
+  "name_rule": "MTBS_FIRE_NAME preferred, else FIRE_NAME, title-cased"
+ },
+ "rows": [
+  {
+   "rank": 1,
+   "name": "Oks - Starbuck",
+   "year": 2017,
+   "state": "OK",
+   "acres": 662700,
+   "cause": "Missing data/not specified/undetermined"
+  },
+  {
+   "rank": 2,
+   "name": "Inowak",
+   "year": 1997,
+   "state": "AK",
+   "acres": 606945,
+   "cause": "Natural"
+  },
+  {
+   "rank": 3,
+   "name": "August Complex",
+   "year": 2020,
+   "state": "CA",
+   "acres": 589368,
+   "cause": "Natural"
+  },
+  {
+   "rank": 4,
+   "name": "Long Draw",
+   "year": 2012,
+   "state": "OR",
+   "acres": 558198,
+   "cause": "Natural"
+  },
+  {
+   "rank": 5,
+   "name": "Wallow",
+   "year": 2011,
+   "state": "AZ",
+   "acres": 538049,
+   "cause": "Human"
+  },
+  {
+   "rank": 6,
+   "name": "Boundary",
+   "year": 2004,
+   "state": "AK",
+   "acres": 537627,
+   "cause": "Natural"
+  },
+  {
+   "rank": 7,
+   "name": "Railbelt Complex (Minto Flats South)",
+   "year": 2009,
+   "state": "AK",
+   "acres": 517078,
+   "cause": "Natural"
+  },
+  {
+   "rank": 8,
+   "name": "Biscuit Complex (Biscuit)",
+   "year": 2002,
+   "state": "OR",
+   "acres": 499945,
+   "cause": "Natural"
+  },
+  {
+   "rank": 9,
+   "name": "Dall City",
+   "year": 2004,
+   "state": "AK",
+   "acres": 483280,
+   "cause": "Natural"
+  },
+  {
+   "rank": 10,
+   "name": "East Amarillo Complex",
+   "year": 2006,
+   "state": "TX",
+   "acres": 479549,
+   "cause": "Human"
+  },
+  {
+   "rank": 11,
+   "name": "Taylor Highway Complex (Billy Creek)",
+   "year": 2004,
+   "state": "AK",
+   "acres": 463994,
+   "cause": "Natural"
+  },
+  {
+   "rank": 12,
+   "name": "Holloway",
+   "year": 2012,
+   "state": "OR",
+   "acres": 461047,
+   "cause": "Natural"
+  },
+  {
+   "rank": 13,
+   "name": "East Amarillo Complex",
+   "year": 2006,
+   "state": "TX",
+   "acres": 427696,
+   "cause": "Human"
+  },
+  {
+   "rank": 14,
+   "name": "North Dag",
+   "year": 2004,
+   "state": "AK",
+   "acres": 419884,
+   "cause": "Natural"
+  },
+  {
+   "rank": 15,
+   "name": "Martin",
+   "year": 2018,
+   "state": "NV",
+   "acres": 416821,
+   "cause": "Human"
+  },
+  {
+   "rank": 16,
+   "name": "Ranch",
+   "year": 2018,
+   "state": "CA",
+   "acres": 410203,
+   "cause": "Human"
+  },
+  {
+   "rank": 17,
+   "name": "Pingo",
+   "year": 2004,
+   "state": "AK",
+   "acres": 403993,
+   "cause": "Natural"
+  },
+  {
+   "rank": 18,
+   "name": "Scu Lightning Complex",
+   "year": 2020,
+   "state": "CA",
+   "acres": 396624,
+   "cause": "Missing data/not specified/undetermined"
+  },
+  {
+   "rank": 19,
+   "name": "Creek",
+   "year": 2020,
+   "state": "CA",
+   "acres": 379895,
+   "cause": "Human"
+  },
+  {
+   "rank": 20,
+   "name": "Murphy Complex",
+   "year": 2007,
+   "state": "ID",
+   "acres": 367785,
+   "cause": "Natural"
+  },
+  {
+   "rank": 21,
+   "name": "Anderson Creek Fire",
+   "year": 2016,
+   "state": "OK",
+   "acres": 367740,
+   "cause": "Missing data/not specified/undetermined"
+  },
+  {
+   "rank": 22,
+   "name": "Simels 732",
+   "year": 1997,
+   "state": "AK",
+   "acres": 365871,
+   "cause": "Natural"
+  },
+  {
+   "rank": 23,
+   "name": "Milford Flat",
+   "year": 2007,
+   "state": "UT",
+   "acres": 357185,
+   "cause": "Natural"
+  },
+  {
+   "rank": 24,
+   "name": "Crazy Mountain Complex (Little Black One)",
+   "year": 2009,
+   "state": "AK",
+   "acres": 349449,
+   "cause": "Natural"
+  },
+  {
+   "rank": 25,
+   "name": "Winter Trail",
+   "year": 2004,
+   "state": "AK",
+   "acres": 344833,
+   "cause": "Natural"
+  },
+  {
+   "rank": 26,
+   "name": "August Complex",
+   "year": 2020,
+   "state": "CA",
+   "acres": 328363,
+   "cause": "Natural"
+  },
+  {
+   "rank": 27,
+   "name": "Taylor Highway Complex (Chicken)",
+   "year": 2004,
+   "state": "AK",
+   "acres": 320155,
+   "cause": "Natural"
+  },
+  {
+   "rank": 28,
+   "name": "Claremont",
+   "year": 2020,
+   "state": "CA",
+   "acres": 318776,
+   "cause": "Natural"
+  },
+  {
+   "rank": 29,
+   "name": "Perryton",
+   "year": 2017,
+   "state": "TX",
+   "acres": 318156,
+   "cause": "Human"
+  },
+  {
+   "rank": 30,
+   "name": "Rush",
+   "year": 2012,
+   "state": "CA",
+   "acres": 315578,
+   "cause": "Natural"
+  },
+  {
+   "rank": 31,
+   "name": "Rock House",
+   "year": 2011,
+   "state": "TX",
+   "acres": 314444,
+   "cause": "Human"
+  },
+  {
+   "rank": 32,
+   "name": "Middle Yukon Fires",
+   "year": 2015,
+   "state": "AK",
+   "acres": 312918,
+   "cause": "Natural"
+  },
+  {
+   "rank": 33,
+   "name": "Honey Prairie",
+   "year": 2011,
+   "state": "GA",
+   "acres": 309200,
+   "cause": "Natural"
+  },
+  {
+   "rank": 34,
+   "name": "Old Grouch Top",
+   "year": 2019,
+   "state": "AK",
+   "acres": 308922,
+   "cause": "Natural"
+  },
+  {
+   "rank": 35,
+   "name": "Magitchlie",
+   "year": 1997,
+   "state": "AK",
+   "acres": 308120,
+   "cause": "Natural"
+  },
+  {
+   "rank": 36,
+   "name": "Long Butte",
+   "year": 2010,
+   "state": "ID",
+   "acres": 306113,
+   "cause": "Natural"
+  },
+  {
+   "rank": 37,
+   "name": "Hennessey",
+   "year": 2020,
+   "state": "CA",
+   "acres": 305651,
+   "cause": "Natural"
+  },
+  {
+   "rank": 38,
+   "name": "Whitewater-Baldy",
+   "year": 2012,
+   "state": "NM",
+   "acres": 297845,
+   "cause": "Natural"
+  },
+  {
+   "rank": 39,
+   "name": "Rhea",
+   "year": 2018,
+   "state": "OK",
+   "acres": 286196,
+   "cause": "Human"
+  },
+  {
+   "rank": 40,
+   "name": "Taylor Highway Complex (Porcupine)",
+   "year": 2004,
+   "state": "AK",
+   "acres": 284595,
+   "cause": "Natural"
+  },
+  {
+   "rank": 41,
+   "name": "Soda",
+   "year": 2015,
+   "state": "ID",
+   "acres": 283180,
+   "cause": "Natural"
+  },
+  {
+   "rank": 42,
+   "name": "Thomas",
+   "year": 2017,
+   "state": "CA",
+   "acres": 281893,
+   "cause": "Human"
+  },
+  {
+   "rank": 43,
+   "name": "Saddle Draw",
+   "year": 2014,
+   "state": "OR",
+   "acres": 280141,
+   "cause": "Natural"
+  },
+  {
+   "rank": 44,
+   "name": "Cedar",
+   "year": 2003,
+   "state": "CA",
+   "acres": 280059,
+   "cause": "Human"
+  },
+  {
+   "rank": 45,
+   "name": "Sushgitit Hills",
+   "year": 2015,
+   "state": "AK",
+   "acres": 276038,
+   "cause": "Natural"
+  },
+  {
+   "rank": 46,
+   "name": "Mustang Complex",
+   "year": 2012,
+   "state": "ID",
+   "acres": 275960,
+   "cause": "Natural"
+  },
+  {
+   "rank": 47,
+   "name": "Bridge Coulee",
+   "year": 2017,
+   "state": "MT",
+   "acres": 270723,
+   "cause": "Natural"
+  },
+  {
+   "rank": 48,
+   "name": "Bonanza Creek",
+   "year": 2004,
+   "state": "AK",
+   "acres": 265919,
+   "cause": "Natural"
+  },
+  {
+   "rank": 49,
+   "name": "Rodeo",
+   "year": 2002,
+   "state": "AZ",
+   "acres": 259158,
+   "cause": "Human"
+  },
+  {
+   "rank": 50,
+   "name": "Geskakmina Lake",
+   "year": 2002,
+   "state": "AK",
+   "acres": 257549,
+   "cause": "Natural"
+  },
+  {
+   "rank": 51,
+   "name": "Anaktuvuk River",
+   "year": 2007,
+   "state": "AK",
+   "acres": 256734,
+   "cause": "Natural"
+  },
+  {
+   "rank": 52,
+   "name": "Rim",
+   "year": 2013,
+   "state": "CA",
+   "acres": 255858,
+   "cause": "Human"
+  },
+  {
+   "rank": 53,
+   "name": "Carlton Complex",
+   "year": 2014,
+   "state": "WA",
+   "acres": 255575,
+   "cause": "Natural"
+  },
+  {
+   "rank": 54,
+   "name": "Ash Creek",
+   "year": 2012,
+   "state": "MT",
+   "acres": 249562,
+   "cause": "Natural"
+  },
+  {
+   "rank": 55,
+   "name": "Cave Creek Complex",
+   "year": 2005,
+   "state": "AZ",
+   "acres": 248310,
+   "cause": "Natural"
+  },
+  {
+   "rank": 56,
+   "name": "Nelson Mountain",
+   "year": 2005,
+   "state": "AK",
+   "acres": 244599,
+   "cause": "Natural"
+  },
+  {
+   "rank": 57,
+   "name": "Edwards Creek",
+   "year": 2004,
+   "state": "AK",
+   "acres": 243900,
+   "cause": "Natural"
+  },
+  {
+   "rank": 58,
+   "name": "Central Complex",
+   "year": 2004,
+   "state": "AK",
+   "acres": 243254,
+   "cause": "Natural"
+  },
+  {
+   "rank": 59,
+   "name": "Zaca",
+   "year": 2007,
+   "state": "CA",
+   "acres": 240207,
+   "cause": "Human"
+  },
+  {
+   "rank": 60,
+   "name": "Winters",
+   "year": 2006,
+   "state": "NV",
+   "acres": 238462,
+   "cause": "Natural"
+  },
+  {
+   "rank": 61,
+   "name": "Southern Nevada Complex (Duzak)",
+   "year": 2005,
+   "state": "NV",
+   "acres": 238058,
+   "cause": "Natural"
+  },
+  {
+   "rank": 62,
+   "name": "Chalkyitsik Complex",
+   "year": 2019,
+   "state": "AK",
+   "acres": 237494,
+   "cause": "Natural"
+  },
+  {
+   "rank": 63,
+   "name": "Salmon Fork",
+   "year": 2005,
+   "state": "AK",
+   "acres": 236701,
+   "cause": "Natural"
+  },
+  {
+   "rank": 64,
+   "name": "Silver",
+   "year": 2013,
+   "state": "NM",
+   "acres": 234000,
+   "cause": "Natural"
+  },
+  {
+   "rank": 65,
+   "name": "South Sugarloaf",
+   "year": 2018,
+   "state": "NV",
+   "acres": 233458,
+   "cause": "Natural"
+  },
+  {
+   "rank": 66,
+   "name": "Kevinjik",
+   "year": 1999,
+   "state": "AK",
+   "acres": 232828,
+   "cause": "Natural"
+  },
+  {
+   "rank": 67,
+   "name": "Old Dummy",
+   "year": 2005,
+   "state": "AK",
+   "acres": 231821,
+   "cause": "Natural"
+  },
+  {
+   "rank": 68,
+   "name": "Dun Glenn Complex (Poker Brown)",
+   "year": 1999,
+   "state": "NV",
+   "acres": 231389,
+   "cause": "Natural"
+  },
+  {
+   "rank": 69,
+   "name": "Carr",
+   "year": 2018,
+   "state": "CA",
+   "acres": 229651,
+   "cause": "Human"
+  },
+  {
+   "rank": 70,
+   "name": "Reindeer",
+   "year": 2002,
+   "state": "AK",
+   "acres": 226833,
+   "cause": "Natural"
+  },
+  {
+   "rank": 71,
+   "name": "Pearl Hill",
+   "year": 2020,
+   "state": "WA",
+   "acres": 223731,
+   "cause": "Missing data/not specified/undetermined"
+  },
+  {
+   "rank": 72,
+   "name": "Horseshoe 2",
+   "year": 2011,
+   "state": "AZ",
+   "acres": 222954,
+   "cause": "Human"
+  },
+  {
+   "rank": 73,
+   "name": "Crystal",
+   "year": 2006,
+   "state": "ID",
+   "acres": 220042,
+   "cause": "Natural"
+  },
+  {
+   "rank": 74,
+   "name": "Glass",
+   "year": 2008,
+   "state": "TX",
+   "acres": 220000,
+   "cause": "Human"
+  },
+  {
+   "rank": 75,
+   "name": "North Star",
+   "year": 2015,
+   "state": "WA",
+   "acres": 218138,
+   "cause": "Human"
+  },
+  {
+   "rank": 76,
+   "name": "332557",
+   "year": 1993,
+   "state": "AK",
+   "acres": 215360,
+   "cause": "Natural"
+  },
+  {
+   "rank": 77,
+   "name": "Central Complex (Wolf Creek)",
+   "year": 2004,
+   "state": "AK",
+   "acres": 214868,
+   "cause": "Natural"
+  },
+  {
+   "rank": 78,
+   "name": "Holtnakatna",
+   "year": 2015,
+   "state": "AK",
+   "acres": 213254,
+   "cause": "Natural"
+  },
+  {
+   "rank": 79,
+   "name": "Kinyon Road",
+   "year": 2012,
+   "state": "ID",
+   "acres": 210874,
+   "cause": "Natural"
+  },
+  {
+   "rank": 80,
+   "name": "Rodeo",
+   "year": 2002,
+   "state": "AZ",
+   "acres": 209704,
+   "cause": "Human"
+  },
+  {
+   "rank": 81,
+   "name": "Cameron Peak",
+   "year": 2020,
+   "state": "CO",
+   "acres": 208913,
+   "cause": "Human"
+  },
+  {
+   "rank": 82,
+   "name": "Derby",
+   "year": 2006,
+   "state": "MT",
+   "acres": 207115,
+   "cause": "Natural"
+  },
+  {
+   "rank": 83,
+   "name": "Coxs Well",
+   "year": 1996,
+   "state": "ID",
+   "acres": 206202,
+   "cause": "Natural"
+  },
+  {
+   "rank": 84,
+   "name": "Roosters Comb",
+   "year": 2017,
+   "state": "NV",
+   "acres": 204947,
+   "cause": "Natural"
+  },
+  {
+   "rank": 85,
+   "name": "Lionshead",
+   "year": 2020,
+   "state": "OR",
+   "acres": 204469,
+   "cause": "Natural"
+  },
+  {
+   "rank": 86,
+   "name": "Central Complex (Crazy And Bolgen Creek)",
+   "year": 2004,
+   "state": "AK",
+   "acres": 201894,
+   "cause": "Natural"
+  },
+  {
+   "rank": 87,
+   "name": "Lime Hills",
+   "year": 2013,
+   "state": "AK",
+   "acres": 201808,
+   "cause": "Natural"
+  },
+  {
+   "rank": 88,
+   "name": "Sadler Complex",
+   "year": 1999,
+   "state": "NV",
+   "acres": 199288,
+   "cause": "Natural"
+  },
+  {
+   "rank": 89,
+   "name": "Witch",
+   "year": 2007,
+   "state": "CA",
+   "acres": 197990,
+   "cause": "Human"
+  },
+  {
+   "rank": 90,
+   "name": "Funny River",
+   "year": 2014,
+   "state": "AK",
+   "acres": 196722,
+   "cause": "Missing data/not specified/undetermined"
+  },
+  {
+   "rank": 91,
+   "name": "Holtnatkatna Creek",
+   "year": 2005,
+   "state": "AK",
+   "acres": 194015,
+   "cause": "Natural"
+  },
+  {
+   "rank": 92,
+   "name": "East Troublesome",
+   "year": 2020,
+   "state": "CO",
+   "acres": 193812,
+   "cause": "Human"
+  },
+  {
+   "rank": 93,
+   "name": "Beachie Creek",
+   "year": 2020,
+   "state": "OR",
+   "acres": 193573,
+   "cause": "Missing data/not specified/undetermined"
+  },
+  {
+   "rank": 94,
+   "name": "Bush",
+   "year": 2020,
+   "state": "AZ",
+   "acres": 193455,
+   "cause": "Human"
+  },
+  {
+   "rank": 95,
+   "name": "Little Mud 2",
+   "year": 2005,
+   "state": "AK",
+   "acres": 193399,
+   "cause": "Natural"
+  },
+  {
+   "rank": 96,
+   "name": "Clover",
+   "year": 2005,
+   "state": "ID",
+   "acres": 192846,
+   "cause": "Natural"
+  },
+  {
+   "rank": 97,
+   "name": "Hadweenzic",
+   "year": 2003,
+   "state": "AK",
+   "acres": 192489,
+   "cause": "Natural"
+  },
+  {
+   "rank": 98,
+   "name": "Big Turnaround Complex",
+   "year": 2007,
+   "state": "GA",
+   "acres": 191474,
+   "cause": "Human"
+  },
+  {
+   "rank": 99,
+   "name": "Rabbit Mountain",
+   "year": 2005,
+   "state": "AK",
+   "acres": 191444,
+   "cause": "Natural"
+  },
+  {
+   "rank": 100,
+   "name": "Chetco Bar",
+   "year": 2017,
+   "state": "OR",
+   "acres": 191125,
+   "cause": "Natural"
+  }
+ ]
+}

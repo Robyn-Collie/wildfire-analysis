@@ -1,0 +1,29 @@
+---
+// Cite.astro — renders [key] as a link into the receipts pages' reference anchors.
+// The narrative layer cites the same reference keys the v1 receipts pages use
+// (e.g. [NIFC], [epa2021wildfires]); the link targets the receipts page + anchor.
+// `page` is the receipts page (default methods) and `anchor` the ref id there.
+interface Props {
+  ckey: string;             // display key inside the brackets, e.g. "NIFC"
+  page?: string;            // receipts page slug, e.g. "trend" | "methods"
+  anchor?: string;          // ref anchor id on that page, e.g. "ref-nifc"
+}
+const { ckey, page = "methods", anchor } = Astro.props;
+const target = `/${page}.html#${anchor ?? "ref-" + ckey.toLowerCase()}`;
+---
+<a class="cite mono" href={target}>[{ckey}]</a>
+
+<style>
+  .cite {
+    color: var(--text-faint, #6b6357);
+    text-decoration: none;
+    font-size: 0.82em;
+    border-bottom: 1px dotted var(--border, #332d24);
+    white-space: nowrap;
+  }
+  .cite:hover,
+  .cite:focus-visible {
+    color: var(--amber, #fbbf24);
+    border-bottom-color: var(--amber, #fbbf24);
+  }
+</style>

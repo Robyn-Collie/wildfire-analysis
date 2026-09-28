@@ -1,0 +1,5 @@
+# Deploy settings for the folder scripts/deploy.py assembles (copied to its root): a pre-built static site,
+# published as-is. Headers and redirects are in _headers and _redirects next to this file.
+[build]
+  publish = "."
+  command = ""

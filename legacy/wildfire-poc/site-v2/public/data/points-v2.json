@@ -1,0 +1,109 @@
+{
+ "built": "2026-07-12T17:50:53",
+ "script": "pipeline/build_points_v2.py",
+ "source": "FPA-FOD 6th ed. (Short 2022, doi:10.2737/RDS-2013-0009.6), 1992-2020",
+ "record": "4x uint16 LE: x, y, doy<<3|class, year5<<11|cause2<<9|region2<<7|state6<<1",
+ "regions": [
+  {
+   "name": "CONUS",
+   "bounds": [
+    -125.0,
+    -66.0,
+    24.0,
+    50.0
+   ]
+  },
+  {
+   "name": "AK",
+   "bounds": [
+    -170.0,
+    -129.0,
+    54.0,
+    72.0
+   ]
+  },
+  {
+   "name": "HI",
+   "bounds": [
+    -161.0,
+    -154.0,
+    18.5,
+    22.8
+   ]
+  }
+ ],
+ "states": [
+  "AK",
+  "AL",
+  "AR",
+  "AZ",
+  "CA",
+  "CO",
+  "CT",
+  "DC",
+  "DE",
+  "FL",
+  "GA",
+  "HI",
+  "IA",
+  "ID",
+  "IL",
+  "IN",
+  "KS",
+  "KY",
+  "LA",
+  "MA",
+  "MD",
+  "ME",
+  "MI",
+  "MN",
+  "MO",
+  "MS",
+  "MT",
+  "NC",
+  "ND",
+  "NE",
+  "NH",
+  "NJ",
+  "NM",
+  "NV",
+  "NY",
+  "OH",
+  "OK",
+  "OR",
+  "PA",
+  "RI",
+  "SC",
+  "SD",
+  "TN",
+  "TX",
+  "UT",
+  "VA",
+  "VT",
+  "WA",
+  "WI",
+  "WV",
+  "WY"
+ ],
+ "cause2": {
+  "0": "Human",
+  "1": "Natural",
+  "2": "Missing data/not specified/undetermined"
+ },
+ "points": 1020005,
+ "sampling": {
+  "C_to_G": "complete",
+  "A_B": "seeded sample 700,000 (seed 20260712)",
+  "dropped_out_of_region": 22209
+ },
+ "class_counts": {
+  "A": 312555,
+  "B": 387445,
+  "C": 254541,
+  "D": 33856,
+  "E": 17142,
+  "F": 9683,
+  "G": 4783
+ },
+ "seed": 20260712
+}

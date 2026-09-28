@@ -1,0 +1,43 @@
+---
+/*
+ * SiteHeader — PINNED chrome (design-spec-v2 §7). Owner: w5-receipts-chrome.
+ * Brand + byline strings and the 9-link nav are EXACT and must not be reworded.
+ * `active` marks the current page; it accepts either the short key ("trend",
+ * "monsters", …) that the act pages already pass, or the visible label
+ * ("The Trend", "Monsters", …). Match is case-insensitive.
+ */
+interface Props {
+  active?: string;
+}
+const { active = "" } = Astro.props;
+const cur = active.trim().toLowerCase();
+
+const links = [
+  { key: "story", label: "Story", href: "/" },
+  { key: "monsters", label: "Largest fires", href: "/monsters" },
+  { key: "explore", label: "Explore", href: "/explore" },
+  { key: "trend", label: "The Trend", href: "/trend.html" },
+  { key: "seasonality", label: "Seasonality", href: "/seasonality.html" },
+  { key: "map", label: "Map", href: "/map.html" },
+  { key: "drivers", label: "Drivers", href: "/drivers.html" },
+  { key: "model", label: "Model", href: "/model.html" },
+  { key: "methods", label: "Methods", href: "/methods.html" },
+];
+const isActive = (l: { key: string; label: string }) =>
+  cur === l.key || cur === l.label.toLowerCase();
+---
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-title">US Wildfires</span>
+    <span class="brand-byline">the fire record, 1983&ndash;2025 &middot; Robyn Collie <span class="flower">&#10048;</span></span>
+  </div>
+  <nav class="module-nav" aria-label="Primary">
+    {links.map((l) => (
+      <a
+        href={l.href}
+        class={isActive(l) ? "active" : undefined}
+        aria-current={isActive(l) ? "page" : undefined}
+      >{l.label}</a>
+    ))}
+  </nav>
+</header>
