@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>US Wildfires: the highs are higher. So are the lows.</title>
+<meta name="description" content="The US fire record, 1983–2025: annual acres burned haven't just trended up — the whole distribution has shifted. The biggest years are bigger, and the quiet years are no longer as quiet. An original analysis of 2.3M federal fire records and the official NIFC totals.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="US Wildfires: the highs are higher. So are the lows.">
+<meta property="og:description" content="The whole fire-year distribution has shifted upward, 1983–2025. The floor rose 2.35×; the ceiling first crossed 10 million acres in 2015. An original analysis by Robyn Collie.">
+<meta property="og:site_name" content="US Wildfires — the fire record, 1983–2025">
+<meta name="author" content="Robyn Collie">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand"><span class="brand-title">US Wildfires</span>
+    <span class="brand-byline">the fire record, 1983&ndash;2025 &middot; Robyn Collie <span class="flower">&#10048;</span></span></div>
+  <nav class="module-nav">
+    <a href="index.html" class="active">Story</a><a href="trend.html">The Trend</a><a href="seasonality.html">Seasonality</a>
+    <a href="map.html">Map</a><a href="drivers.html">Drivers</a><a href="model.html">Model</a><a href="methods.html">Methods</a>
+  </nav>
+</header>
+
+<main class="story">
+
+  <section class="hero">
+    <h1>US Wildfires: the highs are higher.<br><span class="hero-accent">So are the lows.</span></h1>
+    <p class="hero-sub">Annual acres burned haven't just trended up. Across four decades of the official record, the whole distribution has shifted &mdash; the biggest fire years are bigger, and the quiet years are no longer as quiet.</p>
+  </section>
+
+  <section class="lede">
+    <p>This site reads the American fire record through three lenses. The first is <strong>2.3 million individual federal fire records</strong><!-- STAT: research/r3-provenance-lit.md A1 --> from 1992 to 2020 &mdash; Karen Short's FPA-FOD, the per-incident spine of everything below. The second is the <strong>official National Interagency Fire Center national totals, 1983 through 2025</strong><!-- STAT: data/raw/nifc_annual.csv --> &mdash; the number every headline quotes, and the series NIFC itself considers reliable only from 1983 forward [NIFC]. The third is NOAA's divisional climate record, the drought and temperature backdrop against which those fires burned.</p>
+
+    <p>It extends a 2023 analysis whose own limitations slide named weather as the missing variable. That earlier capstone charted the rise in acres burned but stopped at the trend line; here the same question is pushed further &mdash; into the <em>shape</em> of the distribution, and toward a bounded model that finally puts drought on the same axis as fire. Where that lineage matters, it is disclosed, including the correction of a labeling bug that mislabeled the 1992&ndash;2020 records as &ldquo;1990&ndash;2022.&rdquo;<!-- STAT: research/r3-provenance-lit.md guardrail 9 --></p>
+
+    <p>What you will find is a claim defended in stages. The published literature &mdash; the EPA's climate indicators [epa2021wildfires] and the Fifth National Climate Assessment [nca5_focus_wildfire] &mdash; establishes that the largest fire years cluster in recent decades. The <strong>rising floor</strong>, the widening band between quiet and catastrophic years, is this project's own analysis of the NIFC and FPA-FOD series, presented as such. From there the site walks through the trend, the seasons, the geography, the drought&ndash;fire link, and a deliberately modest predictive model &mdash; each with its uncertainties in view.</p>
+  </section>
+
+  <section class="envelope-section">
+    <figure class="envelope-figure">
+      <div id="envelope-chart" class="chart-host" role="img"
+           aria-label="Rolling 11-year band of US annual acres burned, 1983–2025. The 10th-to-90th percentile ribbon and its median both climb across the record; annual NIFC totals shown as bars, with 2015, 2017 and 2020 exceeding 10 million acres.">
+        <p class="data-fallback">Interactive envelope chart. If it does not load, the four headline numbers and the era-comparison table below carry the same finding: across 1983&ndash;2025 the rolling 10th&ndash;90th percentile band of annual acres burned shifts upward, its floor rising faster than its ceiling.</p>
+      </div>
+      <figcaption>
+        <strong>The fire-year envelope, 1983&ndash;2025.</strong> Bars are NIFC annual acres burned; the shaded ribbon is the rolling <span class="mono">11-year</span> 10th&ndash;90th percentile band with the median line through it. The band is <em>this project's own analysis</em> of the NIFC series, not a published statistic. Bars: NIFC national totals [NIFC]; upward-trend context: [epa2021wildfires], [nca5_focus_wildfire].
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="stat-cards" aria-label="Headline numbers">
+    <div class="stat-card">
+      <div class="stat-label">Floor &mdash; lowest fire year</div>
+      <div class="stat-value" data-stat="floor"><span class="mono">1.15</span> &rarr; <span class="mono">2.69M</span></div>
+      <div class="stat-note"><span class="mono">2.35&times;</span> higher. The quietest post-2000 year burns more than twice the quietest pre-2000 year.<!-- STAT: analysis/trend_stats.json era_comparison_nifc_macres.floor_shift --></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Median fire year</div>
+      <div class="stat-value" data-stat="median"><span class="mono">2.72</span> &rarr; <span class="mono">7.29M</span></div>
+      <div class="stat-note">The typical year nearly tripled between the two eras.<!-- STAT: analysis/trend_stats.json era_comparison_nifc_macres --></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Ceiling &mdash; worst fire year</div>
+      <div class="stat-value" data-stat="ceiling"><span class="mono">6.07</span> &rarr; <span class="mono">10.13M</span></div>
+      <div class="stat-note"><span class="mono">1.67&times;</span> higher &mdash; the ceiling rose, but less than the floor did.<!-- STAT: analysis/trend_stats.json era_comparison_nifc_macres.ceiling_shift --></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">The 10-million-acre club</div>
+      <div class="stat-value" data-stat="club"><span class="mono">2015 &middot; 2017 &middot; 2020</span></div>
+      <div class="stat-note">Never reached before 2015; three times since. No new record 2021&ndash;2025.<!-- STAT: analysis/trend_stats.json ten_million_club --></div>
+    </div>
+  </section>
+
+  <noscript>
+    <section class="era-table-section">
+      <p class="table-intro">Without JavaScript, the finding still reads directly from the numbers. Annual US acres burned (millions), NIFC 1983&ndash;2025, split at 2000:</p>
+      <table class="era-table">
+        <caption>Distribution of annual acres burned by era &mdash; NIFC national totals<!-- STAT: analysis/trend_stats.json era_comparison_nifc_macres --></caption>
+        <thead>
+          <tr><th scope="col">Era</th><th scope="col">Years</th><th scope="col">Floor (min)</th><th scope="col">Median</th><th scope="col">Ceiling (max)</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Pre-2000</th><td class="mono">1983&ndash;1999 (n=17)</td><td class="mono">1.15M</td><td class="mono">2.72M</td><td class="mono">6.07M</td></tr>
+          <tr><th scope="row">Post-2000</th><td class="mono">2000&ndash;2025 (n=26)</td><td class="mono">2.69M</td><td class="mono">7.29M</td><td class="mono">10.13M</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td colspan="5">Floor rose <span class="mono">2.35&times;</span>; ceiling <span class="mono">1.67&times;</span>. The 10-million-acre club is 2015, 2017 and 2020 only.</td></tr>
+        </tfoot>
+      </table>
+    </section>
+  </noscript>
+
+  <section class="section-cards" aria-label="The rest of the analysis">
+    <h2 class="section-cards-head">Follow the record, one question at a time</h2>
+    <div class="card-grid">
+      <a class="section-card" href="trend.html">
+        <span class="card-kicker">01 &middot; The Trend</span>
+        <span class="card-title">The thesis, defended</span>
+        <span class="card-hook">The literature backs the rising highs; the rising floor is ours &mdash; and we show the significance tests and the years that break the story.</span>
+      </a>
+      <a class="section-card" href="seasonality.html">
+        <span class="card-kicker">02 &middot; Seasonality</span>
+        <span class="card-title">Two fire seasons</span>
+        <span class="card-hook">Humans burn the calendar's edges; lightning burns July. The Southeast's spring and the West's summer are two different calendars.</span>
+      </a>
+      <a class="section-card" href="map.html">
+        <span class="card-kicker">03 &middot; Map</span>
+        <span class="card-title">Where the fire moved</span>
+        <span class="card-hook">Four decades of ignition points, binned and stepped through six eras &mdash; the Great Basin grass belt, California's intensification.</span>
+      </a>
+      <a class="section-card" href="drivers.html">
+        <span class="card-kicker">04 &middot; Drivers</span>
+        <span class="card-title">Drought, and its limits</span>
+        <span class="card-hook">Drier means more burned across most states &mdash; Colorado at &minus;0.72 &mdash; except where fuel, not moisture, is the binding constraint.</span>
+      </a>
+      <a class="section-card" href="model.html">
+        <span class="card-kicker">05 &middot; Model</span>
+        <span class="card-title">A bounded prediction</span>
+        <span class="card-hook">A drought-and-season model that beats climatology by 17% and says plainly where and why it fails.</span>
+      </a>
+      <a class="section-card" href="methods.html">
+        <span class="card-kicker">06 &middot; Methods</span>
+        <span class="card-title">How this was built</span>
+        <span class="card-hook">Sources, spans, caveats, and the honest lineage from a 2023 capstone &mdash; including the bugs we found in it.</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="references" aria-label="References">
+    <h2>References</h2>
+    <ol class="ref-list">
+      <li id="ref-epa2021wildfires"><span class="ref-key">[epa2021wildfires]</span> U.S. EPA. <em>Climate Change Indicators: Wildfires</em> (January 2021 snapshot). Data: National Interagency Fire Center, 1983&ndash;2015. Key findings: &ldquo;The extent of area burned by wildfires each year appears to have increased since the 1980s&rdquo; and &ldquo;of the 10 years with the largest acreage burned, nine have occurred since 2000.&rdquo; <a href="https://19january2021snapshot.epa.gov/climate-indicators/climate-change-indicators-wildfires_.html" rel="nofollow noopener">19january2021snapshot.epa.gov/climate-indicators/climate-change-indicators-wildfires_.html</a></li>
+      <li id="ref-nca5_focus_wildfire"><span class="ref-key">[nca5_focus_wildfire]</span> USGCRP. 2023. <em>Fifth National Climate Assessment &mdash; Focus on Western Wildfires.</em> &ldquo;The annual area burned and area burned by high-severity wildfires have increased in the West about eightfold since 1985.&rdquo; <a href="https://nca2023.globalchange.gov/chapter/focus-on-2/" rel="nofollow noopener">nca2023.globalchange.gov/chapter/focus-on-2/</a></li>
+      <li id="ref-short2022fpafod"><span class="ref-key">[short2022fpafod]</span> Short, Karen C. 2022. <em>Spatial wildfire occurrence data for the United States, 1992&ndash;2020 [FPA_FOD_20221014]</em>. 6th Edition. Fort Collins, CO: Forest Service Research Data Archive. <a href="https://doi.org/10.2737/RDS-2013-0009.6" rel="nofollow noopener">doi.org/10.2737/RDS-2013-0009.6</a></li>
+      <li id="ref-NIFC"><span class="ref-key">[NIFC]</span> National Interagency Fire Center (NIFC), &ldquo;Wildfires and Acres,&rdquo; National Interagency Coordination Center annual statistics, 1983&ndash;2025 (accessed 2026-07-12). Public domain (US Government). <a href="https://www.nifc.gov/fire-information/statistics/wildfires" rel="nofollow noopener">nifc.gov/fire-information/statistics/wildfires</a></li>
+    </ol>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p class="footer-byline">Robyn Collie <span class="flower">&#10048;</span></p>
+  <p class="footer-credit">Built with Claude Fable 5 (1M-token context) &middot; July 2026</p>
+</footer>
+
+<script src="js/common.js"></script>
+<script>
+  (function () {
+    if (typeof WF === "undefined" || !WF.load) return;
+    WF.load(["trend_stats", "national_annual"], function (data) {
+      var ts = data.trend_stats, na = data.national_annual;
+      if (ts) {
+        var ec = ts.era_comparison_nifc_macres;
+        if (ec) {
+          var setCard = function (key, html) {
+            var el = document.querySelector('.stat-card [data-stat="' + key + '"]');
+            if (el) el.innerHTML = html;
+          };
+          var m = function (v) { return '<span class="mono">' + v + '</span>'; };
+          setCard("floor", m(ec.floor_shift.pre2000_min.toFixed(2)) + ' &rarr; ' + m(WF.macres(ec.floor_shift.post2000_min * 1e6)));
+          setCard("median", m(ec["1983-1999"].median.toFixed(2)) + ' &rarr; ' + m(WF.macres(ec["2000-2025"].median * 1e6)));
+          setCard("ceiling", m(ec.ceiling_shift.pre2000_max.toFixed(2)) + ' &rarr; ' + m(WF.macres(ec.ceiling_shift.post2000_max * 1e6)));
+        }
+        if (ts.ten_million_club && ts.ten_million_club.years) {
+          var clubEl = document.querySelector('.stat-card [data-stat="club"]');
+          if (clubEl) clubEl.innerHTML = '<span class="mono">' + ts.ten_million_club.years.join(" &middot; ") + '</span>';
+        }
+      }
+      if (WF.envelope && ts && na) {
+        var band = ts.rolling_band_nifc_macres ? ts.rolling_band_nifc_macres.rows : null;
+        var annual = na.nifc || null;
+        if (band && annual) {
+          WF.envelope(document.getElementById("envelope-chart"), band, annual, {
+            club: [2015, 2017, 2020],
+            eraSplit: 2000,
+            window: 11
+          });
+        }
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

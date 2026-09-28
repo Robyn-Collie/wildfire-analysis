@@ -1,0 +1,41 @@
+{
+  "source": "NOAA NCEI nClimDiv state-level monthly, v1.0.0-20260707 (current through Jun 2026)",
+  "source_url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/",
+  "accessed": "2026-07-12",
+  "citation": "Vose et al. (2014), NOAA Monthly U.S. Climate Divisional Database (NClimDiv), doi:10.7289/V5M32STR",
+  "script": "pipeline/parse_climate.py",
+  "built": "2026-07-12T12:26:36",
+  "rows": 77688,
+  "year_range": [
+    1895,
+    2026
+  ],
+  "states": 50,
+  "element_counts": {
+    "tavg_f": {
+      "rows": 77688,
+      "non_null": 77388
+    },
+    "precip_in": {
+      "rows": 77688,
+      "non_null": 77388
+    },
+    "pdsi": {
+      "rows": 76032,
+      "non_null": 75744
+    },
+    "phdi": {
+      "rows": 76032,
+      "non_null": 75744
+    },
+    "pmdi": {
+      "rows": 76032,
+      "non_null": 75744
+    }
+  },
+  "notes": [
+    "Sentinels NaN'd per element (temp -99.90, precip -9.99, PDSI-family -99.99).",
+    "Region/basin codes (>=101) dropped; 50 states only.",
+    "Alaska temp/precip begin 1925 (per NOAA readme); CONUS complete 1895->present."
+  ]
+}

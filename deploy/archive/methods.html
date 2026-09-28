@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en"> <head><meta name="robots" content="noindex"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Methods &amp; provenance &middot; US Wildfires &middot; Robyn Collie</title><meta name="description" content="Data sources, licenses, caveats, and pipeline for the US Wildfires site. The full technical note behind every number."><link rel="icon" type="image/svg+xml" href="/archive/favicon.svg"><link rel="stylesheet" href="/archive/_astro/drivers.Dk-sUTy2.css"></head> <body class="page-methods"><div style="position:sticky;top:0;z-index:1000;background:#7c2d12;color:#fff;font:600 14px/1.4 system-ui,sans-serif;padding:.55rem 1rem;text-align:center">Archived: the first version of this site (July 2026), kept for the record. <a href="/" style="color:#fff;text-decoration:underline">The current analysis is here</a>.</div> <header class="site-header"> <div class="brand"> <span class="brand-title">US Wildfires</span> <span class="brand-byline">the fire record, 1983&ndash;2025 &middot; Robyn Collie <span class="flower">&#10048;</span></span> </div> <nav class="module-nav" aria-label="Primary"> <a href="/archive/">Story</a><a href="/archive/monsters">Largest fires</a><a href="/archive/explore">Explore</a><a href="/archive/trend.html">The Trend</a><a href="/archive/seasonality.html">Seasonality</a><a href="/archive/map.html">Map</a><a href="/archive/drivers.html">Drivers</a><a href="/archive/model.html">Model</a><a href="/archive/methods.html" class="active" aria-current="page">Methods</a> </nav> </header> <main> <p class="callout-tag">Technical note</p> <h1>Methods &amp; provenance</h1> <p class="dek">Every chart on this site is built from three public federal datasets. This page is the
+  full account: where the data came from, how it is licensed, what it can't tell you, and exactly
+  how it was processed. Nothing here is proprietary; everything is reproducible.</p> <!-- 1. DATA SOURCES ---------------------------------------------------------- --> <section id="sources" aria-labelledby="sources-h"> <h2 id="sources-h"><span class="section-num">01</span>Data sources</h2> <div class="data-table-wrap"> <table class="data"> <caption>The three primary data sources</caption> <thead><tr> <th scope="col">Dataset</th><th scope="col">Role on this site</th> <th scope="col">Span</th><th scope="col">Accessed</th> </tr></thead> <tbody> <tr> <td>FPA-FOD (Short 2022, 6th ed.)</td> <td>Per-fire records &mdash; counts, sizes, causes, locations</td> <td>1992&ndash;2020</td> <td class="num">2026-07-12</td> </tr> <tr> <td>NIFC annual statistics</td> <td>National annual fires &amp; acres trend line</td> <td>1983&ndash;2025</td> <td class="num">2026-07-12</td> </tr> <tr> <td>NOAA nClimDiv (Vose et&nbsp;al. 2014)</td> <td>State-level PDSI, temperature, precipitation</td> <td>1895&ndash;present (join 1992&ndash;2020)</td> <td class="num">2026-07-12</td> </tr> </tbody> </table> </div> <h3>FPA-FOD &mdash; the per-fire record</h3> <p>Short, Karen C. 2022. Spatial wildfire occurrence data for the United States, 1992-2020
+    [FPA_FOD_20221014]. 6th Edition. Fort Collins, CO: Forest Service Research Data Archive.
+<a href="https://doi.org/10.2737/RDS-2013-0009.6" rel="noopener">https://doi.org/10.2737/RDS-2013-0009.6</a></p> <p><strong>DOI:</strong> <code>10.2737/RDS-2013-0009.6</code> &middot; 2.3&nbsp;million
+    geo-referenced records. Sourced, in the dataset's own words, from
+<q>the reporting systems of federal, state, and local fire organizations.</q></p> <div class="callout"> <span class="callout-tag">Rights &amp; no-warranty &mdash; verbatim</span> <p><strong>Rights:</strong> <q>These data were collected using funding from the U.S. Government
+      and can be used without additional permissions or fees.</q></p> <p><strong>No-warranty:</strong> <q>Neither the author, the Archive, nor any part of the federal
+      government can assure the reliability or suitability of these data for a particular purpose.</q></p> </div> <h3>NIFC &mdash; national annual totals</h3> <p>National Interagency Fire Center (NIFC), &ldquo;Wildfires and Acres,&rdquo; National
+    Interagency Coordination Center annual statistics, 1983&ndash;2025.
+<a href="https://www.nifc.gov/fire-information/statistics/wildfires" rel="noopener">https://www.nifc.gov/fire-information/statistics/wildfires</a>
+(accessed 2026-07-12). Public domain (US Government).</p> <p><strong>Source line NIFC prints under the table (verbatim):</strong> <q>Source: National Interagency Coordination Center.</q></p> <h3>NOAA nClimDiv &mdash; the climate covariates</h3> <p>Vose, Russell S.; Applequist, Scott; Squires, Mike; Durre, Imke; Menne, Matthew J.; Williams,
+    Claude N., Jr.; Fenimore, Chris; Gleason, Karin; Arndt, Derek (2014): NOAA Monthly U.S. Climate
+    Divisional Database (nClimDiv), state-level average temperature, precipitation, and PDSI. NOAA
+    National Centers for Environmental Information.
+<a href="https://doi.org/10.7289/V5M32STR" rel="noopener">doi:10.7289/V5M32STR</a>.
+    Accessed 2026-07-12.</p> <p><strong>Version:</strong> <code>v1.0.0-20260707</code> (data current through June 2026).
+    State-level files, area-averaged. Methodology: Vose et&nbsp;al. 2014,
+<em>J. Appl. Meteor. Climatol.</em>,
+<a href="https://doi.org/10.1175/JAMC-D-13-0248.1" rel="noopener">doi:10.1175/JAMC-D-13-0248.1</a>.</p> <div class="callout"> <span class="callout-tag">No-warranty &mdash; verbatim (NCEI metadata)</span> <p><q>NOAA and NCEI cannot provide any warranty as to the accuracy, reliability, or completeness
+      of furnished data. Users assume responsibility to determine the usability of these data.</q></p> </div> </section> <!-- 2. CAVEATS --------------------------------------------------------------- --> <section id="caveats" aria-labelledby="caveats-h"> <h2 id="caveats-h"><span class="section-num">02</span>Caveats &mdash; read before trusting any number</h2> <p>These are not fine print. Each one bounds a claim somewhere on this site, and each is
+    documented from the source datasets themselves.</p> <h3 id="cav-contdate">Containment date is 39% null &mdash; no duration analysis</h3> <p>The <code>CONT_DATE</code> field is missing for roughly <strong>39%</strong> of FPA-FOD
+    records. Any analysis of fire duration or containment time would be biased by which fires happen
+    to record an end date, so this site does <strong>not</strong> run duration analyses. Where fire
+    &ldquo;length&rdquo; might otherwise be implied, it is scoped out.</p> <h3 id="cav-cause">The 8% &ldquo;missing cause&rdquo; is a real category, not dirty data</h3> <p>About 8% of records carry no human/natural cause. This is <em>not</em> a cleaning artifact:
+    the FPA-FOD cause field is the NWCG standard (approved August 2020), whose broad classification
+    is literally three values &mdash; <q>Human, Natural, Missing data/not specified/undetermined.</q>
+The undetermined bucket is a native, first-class category of the dataset. This is why the
+    human-caused share reported here (77% of <em>all</em> records) sits below Balch et&nbsp;al.
+    (2017)'s published 84%: Balch computes the human share among <em>cause-attributed</em> fires only
+<a href="#ref-balch2017">[balch2017]</a>. Both are correct under their own denominators.</p> <h3 id="cav-nifc-pre1983">No data before 1983 &mdash; by NIFC's design</h3> <p>The trend line starts in 1983 because NIFC's own record does. Verbatim:</p> <div class="callout"> <span class="callout-tag">NIFC, verbatim</span> <p>The National Interagency Coordination Center at NIFC compiles annual wildland fire statistics
+      for federal and state agencies. This information is provided through Situation Reports, which
+      have been in use for several decades. Prior to 1983, the federal wildland fire agencies did not
+      track official wildfire data using current reporting processes. As a result, there is no
+      official data prior to 1983 posted on this site.</p> </div> <p>Pre-1983 figures are not dropped here &mdash; they never existed in NIFC's product. This site
+    states that rather than implying an omission.</p> <h3 id="cav-8384">1983&ndash;1984 fire counts are undercounts</h3> <p>The first two years of the modern series report anomalously low fire <em>counts</em>
+(18,229 and 20,493) against the ~70,000&ndash;90,000 typical of later years, while acres are
+    normal. This is early Situation-Report undercounting of ignitions, not a real collapse. Acres for
+    1983&ndash;1984 are fine to chart; the fire-<em>count</em> line is flagged or started later to
+    avoid implying a spurious jump.</p> <h3 id="cav-2004nc">2004 acres exclude North Carolina state lands</h3> <p>NIFC's own footnote (verbatim): <q>2004 fires and acres do not include state lands for North
+    Carolina.</q> The 2004 total is therefore slightly low &mdash; immaterial to the trend, but
+    labeled wherever 2004 is annotated.</p> <h3 id="cav-2024conflict">2024 fire count: NIFC disagrees with itself</h3> <p>NIFC's live &ldquo;Wildfires and Acres&rdquo; table lists <strong>64,897</strong> fires for
+    2024; the 2025 Annual Report narrative says <strong>67,897</strong> &mdash; a difference of
+    exactly 3,000 that looks like a digit transposition (6<strong>4</strong>,897 vs
+    6<strong>7</strong>,897). Acres for 2024 agree across both sources (8,924,884). This site uses
+<strong>64,897</strong>, from the canonical statistics table, and discloses the report's figure
+    rather than silently choosing one.</p> <h3 id="cav-fod-undercount">FPA-FOD undercounts nonfederal activity</h3> <p>The per-fire dataset is not a complete census. Verbatim from its metadata: <q>Viable state and
+    local (i.e., nonfederal) records were not available from all states for all years,</q> and as a
+    result the data <q>may therefore underrepresent actual wildfire activity in certain areas and
+    time periods.</q> Every state-level or count-based claim on this site inherits this caveat.
+    FPA-FOD (per-fire, 1992&ndash;2020) and NIFC (national totals, 1983&ndash;2025) are also
+<em>different measurements</em> &mdash; different scopes, denominators, and start years &mdash; so
+    their acre sums differ slightly year to year; neither is &ldquo;wrong.&rdquo;</p> <h3 id="cav-pdsi">PDSI is a blunt drought instrument</h3> <p>The drought covariate in the <a href="/archive/model.html">model</a> is the Palmer Drought Severity
+    Index, which has well-documented limits &mdash; stated here so the drought&rarr;fire link is not
+    overclaimed:</p> <ul> <li><strong>Slow response (~9-month timescale).</strong> PDSI lags rapidly emerging drought and
+      performs poorly on flash drought and short-term soil-moisture swings; it best captures
+      established, long-term dry or wet spells. Source: UCAR/NCAR Climate Data Guide, <em>Palmer
+      Drought Severity Index (PDSI)</em> <a href="#ref-pdsi-cdg">[pdsi-cdg]</a>.</li> <li><strong>Calibration sensitivity + weak standardization.</strong> PDSI values depend on the
+      calibration period, and the standardization is &ldquo;only weakly justified on physical or
+      statistical grounds&rdquo;; drought-termination rules can retroactively shift prior-month
+      values. Source: Alley (1984) <a href="#ref-alley1984">[alley1984]</a>.</li> <li><strong>Warming-era bias.</strong> Its temperature-driven (Thornthwaite)
+      potential-evapotranspiration term can overstate drying under warming unless self-calibrated /
+      Penman-Monteith variants are used. Source: Dai, Trenberth &amp; Qian (2004)
+<a href="#ref-dai2004">[dai2004]</a>.</li> </ul> <p>PDSI is a defensible <em>contemporaneous</em> drought covariate at monthly/seasonal, regional
+    resolution &mdash; but not a fire-spread predictor and not a sub-seasonal forecast input. See the
+    model page's honesty block.</p> <h3 id="cav-warranty">No-warranty on every source</h3> <p>All three datasets are furnished as-is. NOAA/NCEI: <q>cannot provide any warranty as to the
+    accuracy, reliability, or completeness of furnished data.</q> USDA Forest Service / FPA-FOD:
+<q>Neither the author, the Archive, nor any part of the federal government can assure the
+    reliability or suitability of these data for a particular purpose.</q> This site inherits those
+    terms in full.</p> </section> <!-- 3. LINEAGE (capstone sequel) --------------------------------------------- --> <section id="lineage" aria-labelledby="lineage-h"> <h2 id="lineage-h"><span class="section-num">03</span>Lineage: the sequel to a limitations slide</h2> <p>This site is the sequel to a 2023 Georgia analytics capstone project. That project charted the
+    rise in US wildfire acreage and, to its credit, ended on a <strong>limitations slide</strong> that
+    named the missing piece out loud: it had no <em>weather</em> variable. This site is the answer to
+    that slide &mdash; the same fire record, now joined to NOAA's climate data so the drought&rarr;fire
+    relationship can actually be tested rather than gestured at.</p> <div class="callout"> <span class="callout-tag">A correction the original got wrong</span> <p>The 2023 capstone labeled its data <strong>&ldquo;1990&ndash;2022.&rdquo;</strong> That
+      labeling is incorrect. The FPA-FOD 6th edition covers <strong>1992&ndash;2020</strong> &mdash;
+      the sheet titles were mislabeled. Every date range on this site reflects the true span. Carrying
+      an inherited error forward silently would defeat the entire point of a methods page, so it is
+      corrected here explicitly.</p> </div> <p>This site was built by <strong>Robyn Collie</strong>. It reuses the fire story of the 2023
+    capstone but is an independent, re-sourced, re-validated analysis.</p> </section> <!-- 4. PIPELINE -------------------------------------------------------------- --> <section id="pipeline" aria-labelledby="pipeline-h"> <h2 id="pipeline-h"><span class="section-num">04</span>Pipeline</h2> <p>Raw federal data flows through a small, named set of scripts into the JSON files this site
+    fetches at runtime. The path is: original archive (Tableau <code>.twbx</code> &rarr; extracted
+<code>.hyper</code> &rarr; Parquet) and fixed-width NOAA text, into a merged panel, into per-page
+    JSON.</p> <ol> <li><code>pipeline/extract_fires.py</code> &mdash; reads the FPA-FOD per-fire records (from the
+      archived Tableau extract, via <code>.hyper</code> &rarr; Parquet) and aggregates to
+      state &times; year fire counts and acres.</li> <li><code>pipeline/parse_climate.py</code> &mdash; parses NOAA nClimDiv fixed-width files,
+      replaces element-specific missing-value sentinels with NaN, filters to the 50 states (nClimDiv
+      state codes are not FIPS), and aggregates the May&ndash;Oct season (PDSI/temp mean, precip sum).</li> <li><code>pipeline/build_site_data.py</code> &mdash; joins fire and climate on state &times;
+      year and writes the site-data JSON files (the fire-climate panel, national annual totals,
+      seasonality, map grid, cause/class breakdowns).</li> <li><code>analysis/trend_stats.py</code> &mdash; computes the trend statistics: era comparison,
+      rolling percentile band, Theil-Sen / Mann-Kendall / Mann-Whitney tests, the 10-million-acre
+      club, and fire-climate correlations &rarr; <code>trend_stats.json</code>.</li> <li><code>analysis/model.py</code> &mdash; fits the pooled OLS seasonal-risk model with
+      leave-one-year-out cross-validation and writes <code>model_results.json</code> (the numbers
+      behind the <a href="/archive/model.html">Model page</a>).</li> </ol> <div class="callout"> <span class="callout-tag">The audit convention: every number is traceable</span> <p>Every statistic printed on this site is either loaded at runtime from
+<code>/data/*.json</code> or carries an inline <code>&lt;!-- STAT: file.path --&gt;</code>
+comment in the page source, pointing at the exact JSON path it came from. A verification pass
+      audits each STAT comment against its source file. No number on this site was typed from memory;
+      if it isn't traceable to a source JSON, it doesn't ship.</p> </div> </section> <!-- 5. LINKS ----------------------------------------------------------------- --> <section id="links" aria-labelledby="links-h"> <h2 id="links-h"><span class="section-num">05</span>How this was built</h2> <p>This site was assembled by a team of coordinated AI agents whose entire build was recorded.
+    You can watch the process and read the companion primer:</p> <ul> <li><a href="https://agent-built-demos.netlify.app" rel="noopener">Build replay &rarr;</a>
+&mdash; the step-by-step trace of how this site was researched, built, and verified.</li> <li><a href="https://thinking-in-agents.netlify.app" rel="noopener">Thinking in Agents &rarr;</a>
+&mdash; the primer on context engineering and multi-agent orchestration behind this workflow.</li> </ul> </section> <!-- 6. FULL REFERENCE REGISTRY ----------------------------------------------- --> <section id="references" class="references" aria-labelledby="ref-h"> <h2 id="ref-h">Full reference registry</h2> <ol> <li id="ref-short2022fpafod"><span class="ref-key">[short2022fpafod]</span> Short, Karen C.
+      2022. Spatial wildfire occurrence data for the United States, 1992-2020 [FPA_FOD_20221014].
+      6th Edition. Fort Collins, CO: Forest Service Research Data Archive.
+<a href="https://doi.org/10.2737/RDS-2013-0009.6" rel="noopener">doi:10.2737/RDS-2013-0009.6</a></li> <li id="ref-nifc"><span class="ref-key">[nifc]</span> National Interagency Fire Center.
+      &ldquo;Wildfires and Acres,&rdquo; National Interagency Coordination Center annual statistics,
+      1983&ndash;2025.
+<a href="https://www.nifc.gov/fire-information/statistics/wildfires" rel="noopener">nifc.gov/fire-information/statistics/wildfires</a>
+(accessed 2026-07-12). Public domain (US Government).</li> <li id="ref-nclimdiv"><span class="ref-key">[nclimdiv]</span> Vose, R.S., Applequist, S.,
+      Squires, M., Durre, I., Menne, M.J., Williams, C.N. Jr., Fenimore, C., Gleason, K., &amp; Arndt,
+      D. (2014). NOAA Monthly U.S. Climate Divisional Database (nClimDiv). NOAA National Centers for
+      Environmental Information. <a href="https://doi.org/10.7289/V5M32STR" rel="noopener">doi:10.7289/V5M32STR</a>.
+      Version v1.0.0-20260707. Accessed 2026-07-12.</li> <li id="ref-nclimdiv-method"><span class="ref-key">[nclimdiv-method]</span> Vose, R.S.,
+      et&nbsp;al. (2014). Improved historical temperature and precipitation time series for U.S.
+      climate divisions. <em>Journal of Applied Meteorology and Climatology</em>.
+<a href="https://doi.org/10.1175/JAMC-D-13-0248.1" rel="noopener">doi:10.1175/JAMC-D-13-0248.1</a></li> <li id="ref-epa2021wildfires"><span class="ref-key">[epa2021wildfires]</span> U.S. EPA. Climate
+      Change Indicators: Wildfires (January 2021 snapshot). Data: National Interagency Fire Center,
+      1983&ndash;2015.
+<a href="https://19january2021snapshot.epa.gov/climate-indicators/climate-change-indicators-wildfires_.html" rel="noopener">19january2021snapshot.epa.gov/climate-indicators/climate-change-indicators-wildfires_.html</a>
+(accessed 2026-07-12).</li> <li id="ref-nca5_focus_wildfire"><span class="ref-key">[nca5_focus_wildfire]</span> USGCRP.
+      2023. Fifth National Climate Assessment &mdash; Focus on Western Wildfires.
+<a href="https://nca2023.globalchange.gov/chapter/focus-on-2/" rel="noopener">nca2023.globalchange.gov/chapter/focus-on-2/</a>
+(accessed 2026-07-12).</li> <li id="ref-abatzoglou2016"><span class="ref-key">[abatzoglou2016]</span> Abatzoglou, J.T.,
+      &amp; Williams, A.P. (2016). Impact of anthropogenic climate change on wildfire across western
+      US forests. <em>PNAS</em>, 113(42), 11770&ndash;11775.
+<a href="https://doi.org/10.1073/pnas.1607171113" rel="noopener">doi:10.1073/pnas.1607171113</a></li> <li id="ref-westerling2016"><span class="ref-key">[westerling2016]</span> Westerling, A.L.
+      (2016). Increasing western US forest wildfire activity: sensitivity to changes in the timing of
+      spring. <em>Phil. Trans. R. Soc. B</em>, 371(1696), 20150178.
+<a href="https://doi.org/10.1098/rstb.2015.0178" rel="noopener">doi:10.1098/rstb.2015.0178</a></li> <li id="ref-riley2013"><span class="ref-key">[riley2013]</span> Riley, K.L., Abatzoglou, J.T.,
+      Grenfell, I.C., Klene, A.E., &amp; Heinsch, F.A. (2013). The relationship of large fire
+      occurrence with drought and fire danger indices in the western USA, 1984&ndash;2008: The role of
+      temporal scale. <em>International Journal of Wildland Fire</em>, 22(7), 894&ndash;909.
+<a href="https://doi.org/10.1071/WF12149" rel="noopener">doi:10.1071/WF12149</a></li> <li id="ref-balch2017"><span class="ref-key">[balch2017]</span> Balch, J.K., Bradley, B.A.,
+      Abatzoglou, J.T., Nagy, R.C., Fusco, E.J., &amp; Mahood, A.L. (2017). Human-started wildfires
+      expand the fire niche across the United States. <em>PNAS</em>, 114(11), 2946&ndash;2951.
+<a href="https://doi.org/10.1073/pnas.1617394114" rel="noopener">doi:10.1073/pnas.1617394114</a></li> <li id="ref-pdsi-cdg"><span class="ref-key">[pdsi-cdg]</span> UCAR/NCAR Climate Data Guide.
+      Palmer Drought Severity Index (PDSI).
+<a href="https://climatedataguide.ucar.edu/climate-data/palmer-drought-severity-index-pdsi" rel="noopener">climatedataguide.ucar.edu/climate-data/palmer-drought-severity-index-pdsi</a>
+(accessed 2026-07-12).</li> <li id="ref-alley1984"><span class="ref-key">[alley1984]</span> Alley, W.M. (1984). The Palmer
+      Drought Severity Index: Limitations and Assumptions. <em>Journal of Climate and Applied
+      Meteorology</em>, 23(7), 1100&ndash;1109.
+<a href="https://journals.ametsoc.org/view/journals/apme/23/7/1520-0450_1984_023_1100_tpdsil_2_0_co_2.xml" rel="noopener">journals.ametsoc.org</a></li> <li id="ref-dai2004"><span class="ref-key">[dai2004]</span> Dai, A., Trenberth, K.E., &amp;
+      Qian, T. (2004). A Global Dataset of Palmer Drought Severity Index for 1870&ndash;2002.
+<em>Journal of Hydrometeorology</em>, 5(6), 1117&ndash;1130.</li> </ol> </section> <footer class="site-footer"> <p class="footer-credit">Built with Claude Fable 5 (1M-token context) &middot; July 2026</p> <p class="footer-links"> <a href="https://agent-built-demos.netlify.app" rel="noopener">Build replay &rarr;</a> </p> <p class="footer-byline">Robyn Collie <span class="flower">&#10048;</span></p> </footer> </main> </body></html>

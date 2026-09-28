@@ -1,0 +1,49 @@
+{
+ "built": "2026-07-12T17:56:20",
+ "script": "pipeline/build_explore_cause13.py",
+ "source": "FPA-FOD 6th ed. (Short 2022, doi:10.2737/RDS-2013-0009.6), 1992-2020",
+ "record": "1x uint8 LE per point; index into 'categories'; aligned 1:1 with points-v2.bin row order",
+ "aligns_with": "points-v2.bin (same seed, region filter, sample, permutation as build_points_v2.py)",
+ "categories": [
+  "Arson/incendiarism",
+  "Debris and open burning",
+  "Equipment and vehicle use",
+  "Firearms and explosives use",
+  "Fireworks",
+  "Missing data/not specified/undetermined",
+  "Misuse of fire by a minor",
+  "Natural",
+  "Other causes",
+  "Power generation/transmission/distribution",
+  "Railroad operations and maintenance",
+  "Recreation and ceremony",
+  "Smoking"
+ ],
+ "count": 1020005,
+ "seed": 20260712,
+ "category_counts": {
+  "Arson/incendiarism": 161839,
+  "Debris and open burning": 238587,
+  "Equipment and vehicle use": 84622,
+  "Firearms and explosives use": 1403,
+  "Fireworks": 7567,
+  "Missing data/not specified/undetermined": 250383,
+  "Misuse of fire by a minor": 25842,
+  "Natural": 147947,
+  "Other causes": 4130,
+  "Power generation/transmission/distribution": 14755,
+  "Railroad operations and maintenance": 16994,
+  "Recreation and ceremony": 40284,
+  "Smoking": 25652
+ },
+ "asserts": {
+  "row_count": "len(codes)==1020005 == points-v2.json .points==1020005",
+  "spot_requantize": [
+   "row 211040: blob(x,y)=(45551,33837) vs re-quantized=(45551,33837) cause='Misuse of fire by a minor' idx=6 -> OK",
+   "row 223622: blob(x,y)=(1993,36818) vs re-quantized=(1993,36818) cause='Equipment and vehicle use' idx=2 -> OK",
+   "row 593988: blob(x,y)=(47189,26004) vs re-quantized=(47189,26004) cause='Missing data/not specified/undetermined' idx=5 -> OK",
+   "row 934995: blob(x,y)=(21736,51998) vs re-quantized=(21736,51998) cause='Natural' idx=7 -> OK",
+   "row 972000: blob(x,y)=(51836,26382) vs re-quantized=(51836,26382) cause='Arson/incendiarism' idx=0 -> OK"
+  ]
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "built": "2026-07-12T16:56:13",
+ "script": "pipeline/build_hero_points.py",
+ "source": "FPA-FOD 6th ed. (Short 2022, doi:10.2737/RDS-2013-0009.6), 1992-2020",
+ "record": "3x uint16 LE per fire: x, y, (doy<<3|class)",
+ "bounds": {
+  "lon": [
+   -125.0,
+   -66.0
+  ],
+  "lat": [
+   24.0,
+   50.0
+  ]
+ },
+ "points": 1015865,
+ "sampling": {
+  "total_records": 2303566,
+  "conus_records": 2256199,
+  "classes_C_to_G": "complete",
+  "classes_A_B": "random sample of 700,000 (seed 20260712) from 1,940,334",
+  "excluded": "AK/HI/PR (prototype is CONUS-only; noted on page)"
+ },
+ "class_counts": {
+  "A": 310214,
+  "B": 389786,
+  "C": 252881,
+  "D": 33322,
+  "E": 16563,
+  "F": 9094,
+  "G": 4005
+ },
+ "seed": 20260712
+}

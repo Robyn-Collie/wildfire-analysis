@@ -1,0 +1,162 @@
+---
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+// Build-time fs read of the pipeline output (top100.json). Renders as a plain HTML
+// table that works unsorted with zero JS; a tiny inline script adds column sorting.
+const dataUrl = new URL("../../public/data/top100.json", import.meta.url);
+const top100 = JSON.parse(readFileSync(fileURLToPath(dataUrl), "utf-8"));
+const rows = top100.rows;
+const meta = top100._meta;
+
+const fmt = (n) => n.toLocaleString("en-US");
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The 100 largest fires · US Wildfires</title>
+    <meta
+      name="description"
+      content="The 100 largest wildfires in the U.S. fire record (1992–2020), by acreage. Class G fires — 0.2% of fires, 75% of the acres."
+    />
+    <style is:global>
+      :root { color-scheme: dark; }
+      body {
+        margin: 0; background: #14100e; color: #eee1d6;
+        font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+      }
+      main { max-width: 1000px; margin: 0 auto; padding: 1.5rem 1.25rem 2rem; }
+      h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); margin: 0.5rem 0 0.75rem; letter-spacing: -0.01em; }
+      .intro { color: #d7c8bc; max-width: 68ch; }
+      .intro strong { color: #ff8a4c; }
+      .lede-num { font-variant-numeric: tabular-nums; }
+      table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.9rem; }
+      caption { text-align: left; color: #b7a89c; font-size: 0.82rem; padding-bottom: 0.5rem; }
+      thead th {
+        text-align: left; padding: 0.5rem 0.6rem; border-bottom: 2px solid #3a2f28;
+        position: sticky; top: 0; background: #14100e; white-space: nowrap;
+      }
+      thead th button {
+        background: none; border: 0; color: inherit; font: inherit; font-weight: 600;
+        cursor: pointer; padding: 0; display: inline-flex; gap: 0.3rem; align-items: center;
+      }
+      thead th button:hover { color: #ff8a4c; }
+      .sort-ind { font-size: 0.7rem; color: #b7a89c; }
+      tbody td { padding: 0.4rem 0.6rem; border-bottom: 1px solid #241d18; }
+      tbody tr:hover { background: #1c1712; }
+      td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+      .cause-Human { color: #ffb37a; }
+      .cause-Natural { color: #7ac0ff; }
+      .cause-Missing { color: #b7a89c; }
+      .note { color: #b7a89c; font-size: 0.8rem; margin-top: 1.25rem; }
+    </style>
+  </head>
+  <body>
+    <SiteHeader active="monsters" />
+    <main>
+      <h1>The 100 largest fires in the record</h1>
+      <p class="intro">
+        <!-- STAT: site-data/causes_classes.json size_class[G].fires=4783 -->
+        <!-- STAT: 4783 / (1782906+193341+327319 = 2303566 total) = 0.208% -->
+        Class G fires — those that burned 5,000 acres or more — are
+        <strong class="lede-num">0.2%</strong> of every wildfire in the record.
+        <!-- STAT: site-data/causes_classes.json size_class[G].acres=135131873 -->
+        <!-- STAT: 135131873 / (63498303+10913486+105636947 = 180048736 total) = 75.1% -->
+        They account for <strong class="lede-num">75%</strong> of all the acreage. The
+        hundred below are the largest of them, ranked by acres burned.
+      </p>
+      <p class="intro">
+        <!-- name rule surfaced honestly from top100.json._meta.name_rule -->
+        Names come from the federal record: <em>{meta.name_rule}</em>. A handful read as codes or
+        complex identifiers rather than the names you might see in the news — that is exactly what the
+        source database recorded, shown as-is.
+        <!-- dropped-offshore note surfaced honestly from top100.json._meta.note -->
+        {meta.note && meta.note.startsWith("0 ") ? (
+          <> No class-G fires fell outside the mapped CONUS/AK/HI bounds, so none were dropped from this list.</>
+        ) : (
+          <> {meta.note}</>
+        )}
+      </p>
+
+      <table id="monsters-table">
+        <caption>
+          Top 100 wildfires by acreage · FPA-FOD 6th ed. (Short 2022), 1992–2020. Click a column
+          heading to sort.
+        </caption>
+        <thead>
+          <tr>
+            <th class="num" data-key="rank" data-type="num" aria-sort="ascending">
+              <button type="button">Rank <span class="sort-ind">▲</span></button>
+            </th>
+            <th data-key="name" data-type="str"><button type="button">Name <span class="sort-ind"></span></button></th>
+            <th class="num" data-key="year" data-type="num"><button type="button">Year <span class="sort-ind"></span></button></th>
+            <th data-key="state" data-type="str"><button type="button">State <span class="sort-ind"></span></button></th>
+            <th class="num" data-key="acres" data-type="num"><button type="button">Acres <span class="sort-ind"></span></button></th>
+            <th data-key="cause" data-type="str"><button type="button">Cause <span class="sort-ind"></span></button></th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => {
+            const causeClass = r.cause === "Human" ? "cause-Human"
+              : r.cause === "Natural" ? "cause-Natural" : "cause-Missing";
+            const causeLabel = r.cause.startsWith("Missing") ? "Undetermined" : r.cause;
+            return (
+              <tr>
+                <td class="num">{r.rank}</td>
+                <td>{r.name}</td>
+                <td class="num">{r.year}</td>
+                <td>{r.state}</td>
+                <td class="num">{fmt(r.acres)}</td>
+                <td class={causeClass}>{causeLabel}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+
+      <p class="note">
+        Source: {meta.source}. Built by {meta.script}. The story page links here from its
+        class-G section.
+      </p>
+    </main>
+    <SiteFooter />
+
+    <script>
+      // Progressive enhancement: table is correct unsorted; this adds click-to-sort.
+      const table = document.getElementById("monsters-table");
+      if (table) {
+        const tbody = table.querySelector("tbody");
+        const headers = Array.from(table.querySelectorAll("thead th"));
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+        const cellVal = (tr, i, type) => {
+          const raw = tr.children[i].textContent.trim();
+          return type === "num" ? parseFloat(raw.replace(/[^0-9.\-]/g, "")) : raw.toLowerCase();
+        };
+        headers.forEach((th, i) => {
+          const type = th.dataset.type;
+          th.querySelector("button").addEventListener("click", () => {
+            const asc = th.getAttribute("aria-sort") !== "ascending";
+            headers.forEach((h) => {
+              h.removeAttribute("aria-sort");
+              const ind = h.querySelector(".sort-ind");
+              if (ind) ind.textContent = "";
+            });
+            th.setAttribute("aria-sort", asc ? "ascending" : "descending");
+            th.querySelector(".sort-ind").textContent = asc ? "▲" : "▼";
+            rows.sort((a, b) => {
+              const va = cellVal(a, i, type), vb = cellVal(b, i, type);
+              if (va < vb) return asc ? -1 : 1;
+              if (va > vb) return asc ? 1 : -1;
+              return 0;
+            });
+            rows.forEach((r) => tbody.appendChild(r));
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

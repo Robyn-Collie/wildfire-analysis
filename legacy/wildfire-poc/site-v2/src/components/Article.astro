@@ -1,0 +1,443 @@
+---
+/**
+ * Article.astro — the verified story as a PLAIN, readable article (v3).
+ *
+ * v3 design rule: no scroll-driven behavior anywhere. The console above is
+ * the instrument; this is the writing. Every section's prose and every
+ * <!-- STAT --> comment is ported content-identical from the v2 acts
+ * (Act0–Act5 + Coda); only the layout machinery (shells, beats, scenes)
+ * is gone. Inline exhibits (envelope, heatmini, tilemap, scatter, lookup)
+ * mount as normal-flow figures via their proven modules.
+ */
+import StatCard from './StatCard.astro';
+import Cite from './Cite.astro';
+import top100 from '../../public/data/top100.json';
+
+// Class-G constants (verbatim from Act3.astro)
+const callouts = top100.rows.slice(0, 5);
+const G_FIRES = 4783;
+const TOTAL_FIRES = 1782906 + 193341 + 327319; // = 2,303,566
+const TOTAL_ACRES = 63498303 + 10913486 + 105636947; // = 180,048,736
+const G_ACRES = 135131873;
+const firePct = ((G_FIRES / TOTAL_FIRES) * 100).toFixed(1); // 0.2
+const acrePct = Math.round((G_ACRES / TOTAL_ACRES) * 100); // 75
+
+// The seasonal indicator model is NOT showcased in the story (author's call:
+// keep the site factual — a lookup that can miss by millions of acres reads
+// as overclaim even with honest framing). The full technical record stays on
+// the /model receipts page, linked from the receipts grid below.
+
+// Coda receipts (verbatim from Coda.astro)
+const receipts = [
+  { href: '/trend', label: 'The Trend', note: 'the rising floor and ceiling, NIFC + FOD' },
+  { href: '/seasonality', label: 'Seasonality', note: 'month × cause, the calendar of fire' },
+  { href: '/map', label: 'Map', note: 'discovery-point density by era' },
+  { href: '/drivers', label: 'Drivers', note: 'drought, fuel, people — and the wrinkle' },
+  { href: '/model', label: 'Model', note: 'the bounded model and its limits' },
+  { href: '/methods', label: 'Methods', note: 'full provenance and caveats' },
+];
+---
+<article class="story" id="story">
+
+  <!-- ═══ 1 · A year of fire (from Act0) ═══ -->
+  <section class="story-sec" id="year-of-fire" aria-labelledby="h-year-of-fire">
+    <p class="sec-kicker mono">The map</p>
+    <h2 id="h-year-of-fire">The seasonal cycle of ignitions</h2>
+    <p>
+      One million real ignition points, 1992–2020 (all fires ≥10 acres, plus a
+      sample of the smaller ones). No basemap is drawn — every mark is an
+      ignition location from the federal fire record.
+      <!-- STAT: points-v2.json meta (1,020,005 points) -->
+    </p>
+    <p>
+      Play the year in the console above: the Southeast peaks first, in spring —
+      mostly human-caused ignitions. The Southwest follows in early summer as
+      fuels dry. Mid-summer is lightning season in the West and Northwest.
+      Activity tapers through fall, with a smaller southern uptick.
+      <!-- STAT: seasonality.by_cause_month (regional season narrative) -->
+    </p>
+  </section>
+
+  <!-- ═══ 2 · Three decades (from Act1) ═══ -->
+  <section class="story-sec" id="three-decades" aria-labelledby="h-three-decades">
+    <p class="sec-kicker mono">The trend</p>
+    <h2 id="h-three-decades">Annual acres burned, 1992–2020</h2>
+    <p>
+      Twenty-nine fire years, replayed year by year in the console's
+      <em>Year by year</em> chapter; the year and acres readout track the sweep.
+      The West brightens over the period, and 2015, 2017 and 2020 stand out.
+      <!-- STAT: national_annual.fod[*].acres -->
+    </p>
+
+    <div class="stat-row">
+      <StatCard tone="ember" value="×2.35" label="The floor rose"
+        sub="Lowest-acre year: 1.15M → 2.69M, pre- vs post-2000"
+        stat="trend_stats.era_comparison_nifc_macres.floor_shift.ratio" />
+      <StatCard tone="amber" value="×2.7" label="The median rose"
+        sub="Typical year: 2.72M → 7.29M acres"
+        stat="trend_stats.era_comparison_nifc_macres.2000-2025.median" />
+      <StatCard tone="flame" value="×1.67" label="The ceiling rose"
+        sub="Worst year: 6.07M → 10.13M acres"
+        stat="trend_stats.era_comparison_nifc_macres.ceiling_shift.ratio" />
+      <StatCard tone="flame" value="2015 · 2017 · 2020" label="The 10-million-acre club"
+        sub="Never reached before 2015, then three times by 2020"
+        stat="trend_stats.ten_million_club.years" />
+    </div>
+
+    <figure class="story-fig">
+      <div id="art-envelope" class="fig-mount"
+        role="img"
+        aria-label="Rolling percentile band of NIFC annual burned acres, 1983 to 2025, showing the 10th-to-90th percentile ribbon and median rising over time, with the three 10-million-acre years 2015, 2017 and 2020 annotated."></div>
+      <figcaption>
+        NIFC annual burned acreage, 1983–2025 (bars), with the FPA-FOD series
+        overlaid (amber ticks, 1992–2020), an 11-year rolling 10th–90th percentile
+        ribbon and median line. The rising-floor and widening-distribution reading
+        is this project's own analysis of the official series. <Cite ckey="NIFC" page="trend" anchor="ref-nifc" />
+        <!-- STAT: trend_stats._meta.framing -->
+      </figcaption>
+      <noscript>
+        <p class="fig-nojs">
+          Chart requires JavaScript. The full static trend analysis lives at
+          <a href="/trend.html">The Trend</a>.
+        </p>
+      </noscript>
+    </figure>
+
+    <p class="correction">
+      <strong>There is no new acreage record in 2021–2025.</strong> The modern peak
+      still belongs to 2015. The honest thesis is narrower: a rising floor plus a
+      ceiling first touched in 2015 and hit three times by 2020 — rising variance
+      and rising floors, not monotonic escalation.
+      <Cite ckey="NIFC" page="trend" anchor="ref-nifc" />
+      <!-- STAT: trend_stats.ten_million_club.note -->
+    </p>
+  </section>
+
+  <!-- ═══ 3 · Two kinds of fire (from Act2) ═══ -->
+  <section class="story-sec" id="two-kinds" aria-labelledby="h-two-kinds">
+    <p class="sec-kicker mono">The causes</p>
+    <h2 id="h-two-kinds">Ignitions by cause</h2>
+    <p>
+      Roughly seven in ten wildfires are human-caused, clustering in the East
+      and in the spring calendar; lightning fires cluster in the West in
+      mid-summer. (Toggle the lens in the <em>By cause</em> chapter above to
+      see the split on the map.)
+    </p>
+
+    <div class="stat-row">
+      <StatCard tone="ember" value="256,679" label="Human fires · April"
+        sub="Fire follows people — and the calendar's edges. The human peak lands in spring, ahead of green-up"
+        stat="seasonality.by_cause_month (Human, month 4)" />
+      <StatCard tone="amber" value="105,950" label="Natural fires · July"
+        sub="Lightning owns July. The natural peak is high summer, deep in the West"
+        stat="seasonality.by_cause_month (Natural, month 7)" />
+    </div>
+
+    <figure class="story-fig story-fig--narrow">
+      <div id="art-heatmini" class="fig-mount" data-heatmini></div>
+      <figcaption>
+        Month × cause, each row scaled to its own peak. Human fire crests in
+        <strong>April</strong>; lightning crests in <strong>July</strong>.
+      </figcaption>
+      <noscript>
+        <p class="fig-nojs">
+          Heatmap requires JavaScript. See the full seasonality matrices at
+          <a href="/seasonality.html">Seasonality</a>.
+        </p>
+      </noscript>
+    </figure>
+  </section>
+
+  <!-- ═══ 4 · Class G fires (from Act3, retitled factually per the author) ═══ -->
+  <section class="story-sec" id="the-monsters" aria-labelledby="h-the-monsters">
+    <p class="sec-kicker mono">The largest fires</p>
+    <h2 id="h-the-monsters">Class G fires: 0.2% of ignitions, 75% of the acres</h2>
+    <p class="beat-lead">
+      <strong class="beat-stat">{firePct}%</strong> of fires.
+      <strong class="beat-stat">{acrePct}%</strong> of the acres.
+    </p>
+    <p>
+      Size class G — <span class="mono">5,000&nbsp;acres</span> and up — is
+      <strong>{G_FIRES.toLocaleString()}</strong> fires out of
+      <strong>{TOTAL_FIRES.toLocaleString()}</strong> in the record: about
+      <strong>{firePct}%</strong> of them.
+      <!-- STAT: causes_classes.json size_class[G].fires (4,783) / sum cause_classification.fires (2,303,566) = 0.2% -->
+      Those few burned <strong>{(G_ACRES / 1e6).toFixed(1)}&nbsp;million&nbsp;acres</strong> —
+      roughly <strong>{acrePct}%</strong> of every acre this record counts.
+      <!-- STAT: causes_classes.json size_class[G].acres (135,131,873) / sum cause_classification.acres (180,048,736) = 75% -->
+    </p>
+    <p>
+      In the <em>Class G</em> chapter above, the map shows only these fires,
+      each ring sized by acres burned. Hover or focus a ring for its name —
+      every one carries a real name from the fire record.
+    </p>
+
+    <p class="beat-callout-lead">The five largest by acreage:</p>
+    <ol class="monster-callouts">
+      {callouts.map((f) => (
+        <li>
+          <span class="monster-name">{f.name}</span>
+          <span class="monster-meta mono">{f.acres.toLocaleString()} ac · {f.state} {f.year}</span>
+          <!-- STAT: top100.json rows[rank {f.rank}] -->
+        </li>
+      ))}
+    </ol>
+    <p class="callout-note">
+      Rank 1 is <strong>{callouts[0].name}</strong> —
+      <span class="mono">{callouts[0].acres.toLocaleString()}&nbsp;acres</span>,
+      {callouts[0].state}&nbsp;{callouts[0].year}.
+      <!-- STAT: top100.json rows[0] (Oks - Starbuck, 662,700 ac, OK 2017) -->
+    </p>
+    <p>
+      The hundred largest are listed, with names and sources, on their own page.
+      <a class="act-link" href="/monsters">See the 100 largest fires →</a>
+    </p>
+  </section>
+
+  <!-- ═══ 5 · Drought and burned area (from Act4, retitled factually) ═══ -->
+  <section class="story-sec" id="the-thirst" aria-labelledby="h-the-thirst">
+    <p class="sec-kicker mono">The driver</p>
+    <h2 id="h-the-thirst">Drought and burned area</h2>
+    <p>
+      Rank each state's years by growing-season drought and by how much it burned, and in most
+      states the two rankings track. Across all <strong>38</strong> qualifying states the median
+      correlation is <strong class="mono">−0.45</strong>, and <strong>15</strong> clear the
+      strong-negative bar.
+      <!-- STAT: trend_stats.fire_climate_correlation.n_states (38); .median_r (-0.446); .n_strong_negative (15) -->
+      Colorado is the headline: <strong class="mono">ρ = −0.72</strong> — its driest growing
+      seasons are almost exactly its worst fire years.
+      <!-- STAT: trend_stats.fire_climate_correlation.strongest_negative_10[0] (CO -0.724) -->
+    </p>
+    <p>
+      In the <em>Drought overlay</em> chapter above, set the year to
+      <strong>2020</strong>: California's Palmer Drought Severity Index falls to
+      <strong class="mono">−3.89</strong> by December — severe drought —
+      <!-- STAT: climate manifest / r1 (nClimDiv, CA Dec-2020 PDSI = -3.89; shipped pdsi-grid.bin reproduces it at -3.91 after uint8 quantization) -->
+      and 2020 is one of only three years in the official record to exceed ten
+      million acres burned.
+      <!-- STAT: trend_stats.ten_million_club.years (2015, 2017, 2020) -->
+    </p>
+
+    <figure class="story-fig story-fig--narrow">
+      <h3 class="rail-head">Drought moves fire — in most states</h3>
+      <div class="tilemap-canvas" data-corr-tilemap role="img"
+        aria-label="US state tile-grid shaded by the Spearman correlation between growing-season drought and log annual acres burned, on a diverging cool-to-ember scale. Ember tiles (drier means more fire) include Colorado at minus 0.72; cool tiles include Nevada at plus 0.13.">
+      </div>
+      <p class="map-note mono">
+        Diverging scale: ember = strong negative (drier&nbsp;→&nbsp;more fire) ·
+        cool = weak or positive. 50 states shown; DC excluded (not a state).
+      </p>
+    </figure>
+
+    <div class="wrinkle">
+      <h4>The wrinkle: fuel-limited deserts break the rule</h4>
+      <p>
+        If drought drove fire everywhere, the drought–fire correlation would be strongly
+        negative in every state. It is not. Two of the driest states in the country sit at the
+        bottom of the list:
+      </p>
+      <ul class="wrinkle-list">
+        <li><strong>Arizona</strong>: <span class="mono">ρ = −0.18</span> (not significant, p&nbsp;=&nbsp;0.36)
+          <!-- STAT: trend_stats.fire_climate_correlation.west_11 (AZ -0.177, p 0.3574) --></li>
+        <li><strong>Nevada</strong>: <span class="mono">ρ = +0.13</span> — the wrong sign
+          entirely (p&nbsp;=&nbsp;0.50)
+          <!-- STAT: trend_stats.fire_climate_correlation.west_11 (NV +0.13, p 0.5013) --></li>
+      </ul>
+      <p>
+        The rest of the interior West behaves as expected — Colorado
+        <span class="mono">−0.72</span>, New Mexico <span class="mono">−0.52</span>,
+        California <span class="mono">−0.51</span>, Wyoming <span class="mono">−0.46</span>
+        — with the correlation weakening as you move into the drier, sparser Great Basin
+        (Idaho <span class="mono">−0.33</span>, Utah <span class="mono">−0.28</span>)
+        until it inverts in Arizona and Nevada.
+        <!-- STAT: trend_stats.fire_climate_correlation.west_11 (CO,NM,CA,WY,ID,UT values) -->
+      </p>
+      <div class="callout">
+        <p>
+          The likely reason is that these deserts are <strong>fuel-limited, not
+          flammability-limited</strong>. In a Colorado forest, the fuel is always there; what
+          varies year to year is whether it is dry enough to burn, so drought and fire move together.
+          In the Nevada desert, the fuel — fine grasses between the shrubs — is <em>not</em>
+          always there. A wet year grows the grass; the <em>following</em> dry year burns it. Fire
+          chases the wet year, not the dry one, which pushes the same-year drought–fire
+          correlation toward zero or positive.
+        </p>
+        <p class="observed-note">
+          This flammability-limited vs. fuel-limited split is <strong>observed in this data</strong>
+          (the AZ/NV sign reversal above) and is <strong>consistent with the fuel-limitation
+          mechanism described in the fire-ecology literature</strong>. We did not model the
+          one-year lag here; the pattern is presented as an observed exception with a
+          literature-consistent explanation, not a fitted result.
+          <!-- UNVERIFIED-CITE: fuel-limited mechanism -->
+        </p>
+      </div>
+    </div>
+    <p class="rail-link">
+      <a class="act-link" href="/drivers">The full drivers analysis →</a>
+    </p>
+  </section>
+
+  <!-- ═══ Coda (verbatim from Coda.astro, minus act classes) ═══ -->
+  <section class="story-sec story-coda" id="receipts" aria-labelledby="coda-h">
+    <p class="sec-kicker mono">Coda</p>
+    <h2 id="coda-h">Every number on this page is audited.</h2>
+    <p class="coda-lead">
+      Every figure in this story is either loaded straight from the analysis outputs at page load
+      or carries a <code>&lt;!-- STAT: file.path --&gt;</code> comment in the source pointing at the
+      exact field it came from. Nothing is typed by hand and left unsourced. The six receipts pages
+      below carry the full provenance — the specifications, the tables, the references — source by
+      source.
+    </p>
+
+    <nav class="coda-receipts" aria-label="Receipts — the numbers behind each scene">
+      <ul class="receipts-grid">
+        {receipts.map((r) => (
+          <li>
+            <a class="receipt-card" href={r.href}>
+              <span class="receipt-label">{r.label}</span>
+              <span class="receipt-note">{r.note}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="coda-more">
+      <h3 class="coda-sub">Go deeper</h3>
+      <ul class="coda-links">
+        <li><a class="act-link" href="/monsters">The 100 largest fires — named and sourced</a></li>
+        <li>
+          <a class="act-link" href="https://agent-built-demos.netlify.app/replay/wildfire.html">
+            Watch this build — the agent replay trace
+          </a>
+        </li>
+        <li>
+          <a class="act-link" href="https://thinking-in-agents.netlify.app">
+            Thinking in Agents — how demos like this get built
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <p class="coda-byline">
+      <span class="brand-byline">the fire record, 1983–2025 · Robyn Collie <span class="flower">❀</span></span>
+    </p>
+  </section>
+</article>
+
+<script>
+  // Article islands: the three inline exhibits + the past-conditional lookup.
+  // No scroll-driven behavior — everything renders once on load (v3 rule).
+  import { drawEnvelope } from './envelope.js';
+  import { drawHeatmini } from './heatmini.js';
+  import { createTilemap } from './tilemini.js';
+
+  const REDUCED = window.matchMedia
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  async function boot() {
+    let annualJson, trendJson, seasonJson;
+    try {
+      [annualJson, trendJson, seasonJson] = await Promise.all([
+        fetch('/data/national_annual.json').then((r) => r.json()),
+        fetch('/data/trend_stats.json').then((r) => r.json()),
+        fetch('/data/seasonality.json').then((r) => r.json()),
+      ]);
+    } catch (e) {
+      return; // static prose, captions and tables carry every number
+    }
+
+    // envelope: NIFC bars + rolling band + FOD overlay (from Act1)
+    const env = document.getElementById('art-envelope');
+    if (env) {
+      drawEnvelope(env, trendJson.rolling_band_nifc_macres.rows, annualJson.nifc, {
+        fod: annualJson.fod,
+        club: trendJson.ten_million_club.years || [2015, 2017, 2020],
+        eraSplit: 2000,
+        reduced: REDUCED,
+      });
+    }
+
+    // month × cause heatmap (from Act2; lens fixed to "all" — the console owns lenses)
+    const heat = document.getElementById('art-heatmini');
+    if (heat) drawHeatmini(heat, seasonJson.by_cause_month, { metric: 'fires' });
+
+    // drought-fire correlation tilemap (from Act4, incl. the approved invert)
+    const railEl = document.querySelector('[data-corr-tilemap]');
+    if (railEl) {
+      let values = { CO: -0.724, SD: -0.655, GA: -0.654, TN: -0.645, ND: -0.608,
+        FL: -0.599, NJ: -0.559, AR: -0.553, NC: -0.548, LA: -0.53,
+        NM: -0.52, CA: -0.506, WY: -0.455, OR: -0.41, MT: -0.394, WA: -0.362,
+        ID: -0.326, UT: -0.276, AZ: -0.177, NV: 0.13 };
+      const fc = trendJson.fire_climate_correlation;
+      if (fc) {
+        const v = {};
+        (fc.strongest_negative_10 || []).forEach((d) => { v[d.state] = d.spearman_r; });
+        (fc.west_11 || []).forEach((d) => { v[d.state] = d.spearman_r; });
+        if (Object.keys(v).length) values = v;
+      }
+      createTilemap(railEl, values, {
+        mode: 'diverging',
+        invert: true, // negative rho (drier -> more fire) renders ember
+        hint: 'Focus or hover a state for its drought–fire correlation.',
+        label: 'US state tile-grid shaded by the Spearman drought–fire correlation; ember = drier means more fire, cool = weak or positive.',
+        valueFmt: (v) => (v == null ? 'not in qualifying set'
+          : 'ρ = ' + v.toFixed(2) + (v < 0 ? ' (drier → more fire)' : ' (wet-year fuel signal)')),
+      });
+    }
+
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+</script>
+
+<style>
+  .story {
+    /* layout (width/padding) comes from the page's main wrapper */
+    display: block;
+  }
+  .story-sec { margin: 0 0 4.5rem; }
+  .sec-kicker {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber, #fbbf24);
+    margin: 0 0 0.4rem;
+  }
+  .story-sec h2 {
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.12;
+    margin: 0 0 1rem;
+    color: var(--text, #ece8e2);
+  }
+  .story-sec p { line-height: 1.65; color: var(--text-dim, #a89f93); }
+  .story-sec p strong { color: var(--text, #ece8e2); }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 1.4rem 0;
+  }
+  .story-fig { margin: 1.8rem 0; }
+  .story-fig--narrow { max-width: 640px; }
+  .fig-mount { width: 100%; }
+  .story-fig figcaption {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-dim, #a89f93);
+    line-height: 1.55;
+  }
+  .fig-nojs, .fig-nojs a { color: var(--ember, #fb923c); font-size: 13px; }
+  .correction {
+    margin-top: 24px;
+    padding: 16px 18px;
+    border-left: 3px solid var(--flame-red, #ef4444);
+    background: var(--surface, #1a1815);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .story-coda { border-top: 1px solid var(--border, #332d24); padding-top: 3rem; }
+</style>

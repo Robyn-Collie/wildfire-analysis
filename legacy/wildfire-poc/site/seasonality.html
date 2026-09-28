@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seasonality &middot; US Wildfires</title>
+<meta name="description" content="When the country burns: human ignitions own the calendar edges, lightning owns July-August, and the West and Southeast keep two different fire seasons.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+/* page-local hooks not in the shared sheet */
+.page-seasonality .kicker{font-family:'JetBrains Mono',monospace; font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ember); margin:0 0 .5rem}
+.page-seasonality .page-head{margin:2rem 0}
+.page-seasonality .num{font-family:'JetBrains Mono',monospace; color:var(--amber); font-weight:500}
+.page-seasonality .chart-box{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:1rem; margin:1.5rem 0}
+.page-seasonality .controls{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:.75rem; align-items:center}
+.page-seasonality .controls label{font-size:.74rem; color:var(--text-faint); font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:.06em}
+.page-seasonality .controls select{background:var(--surface2); color:var(--text); border:1px solid var(--border);
+  border-radius:6px; padding:.35rem .6rem; font-family:'JetBrains Mono',monospace; font-size:.8rem; cursor:pointer}
+.page-seasonality .controls select:hover{border-color:var(--ember)}
+/* static month x cause / summary heatmap tables */
+.page-seasonality .heat-table{width:100%; border-collapse:collapse; margin:1rem 0; font-size:.78rem; font-family:'JetBrains Mono',monospace}
+.page-seasonality .heat-table caption{text-align:left; font-size:.78rem; color:var(--text-faint); padding-bottom:.5rem}
+.page-seasonality .heat-table th,.page-seasonality .heat-table td{padding:.4rem .35rem; text-align:center; border:1px solid var(--border-soft)}
+.page-seasonality .heat-table th{color:var(--amber); font-weight:600; font-size:.72rem}
+.page-seasonality .heat-table th:first-child,.page-seasonality .heat-table td:first-child{text-align:left; color:var(--text); font-weight:600}
+.page-seasonality .heat-scale{display:flex; gap:.4rem; align-items:center; font-size:.72rem; color:var(--text-faint); font-family:'JetBrains Mono',monospace; margin-top:.5rem}
+.page-seasonality .heat-swatch{display:inline-block; width:14px; height:14px; border-radius:3px; border:1px solid var(--border)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="brand"><span class="brand-title">US Wildfires</span>
+    <span class="brand-byline">the fire record, 1983&ndash;2025 &middot; Robyn Collie <span class="flower">&#10048;</span></span></div>
+  <nav class="module-nav">
+    <a href="index.html">Story</a><a href="trend.html">The Trend</a><a href="seasonality.html" class="active">Seasonality</a>
+    <a href="map.html">Map</a><a href="drivers.html">Drivers</a><a href="model.html">Model</a><a href="methods.html">Methods</a>
+  </nav>
+</header>
+
+<main class="page page-seasonality">
+
+  <section class="page-head">
+    <p class="kicker">Seasonality &middot; when the country burns</p>
+    <h1>Two calendars, two fire seasons</h1>
+    <p class="lede">US wildfire has a rhythm, and it is really two rhythms stacked on top of each other. People start fires at the edges of the year &mdash; spring and fall &mdash; while lightning concentrates its work into July and August. And geographically, the Southeast's spring season and the West's summer season are almost mirror images. All figures below are FPA-FOD discovery-month counts, 1992&ndash;2020. <a href="#ref-short2022fpafod">[short2022fpafod]</a></p>
+  </section>
+
+  <!-- ============ §1 CAUSE x MONTH ============ -->
+  <section id="cause-month">
+    <h2><span class="section-num">&sect;1</span> Who burns which month</h2>
+    <p>Split every fire by its NWCG cause &mdash; Human, Natural (lightning), or Missing/undetermined &mdash; and lay the twelve months across. The two phase against each other: human ignition counts peak in <strong>March&ndash;April</strong> and stay high through the fall, while natural ignitions are near-zero from November through April and then dominate <strong>July&ndash;August</strong>.</p>
+
+    <div class="chart-box">
+      <div class="controls">
+        <label for="cause-metric">value</label>
+        <select id="cause-metric"><option value="fires">fire count</option><option value="acres">acres burned</option></select>
+      </div>
+      <div id="cause-heatmap" class="chart" role="img" aria-label="Month-by-cause heatmap of US wildfire counts, 1992 to 2020. Human ignitions peak in March and April and remain high into fall; natural lightning ignitions concentrate in July and August and are near zero November through April.">
+        <p class="data-fallback" hidden>Interactive heatmap could not load &mdash; the static month&times;cause table below carries the same values.</p>
+      </div>
+      <p class="figcaption">FPA-FOD fires by cause &times; discovery month, 1992&ndash;2020. Ember ramp = more fires. <span class="src">Each row scaled to its own peak month.</span></p>
+    </div>
+
+    <div class="callout">
+      <span class="callout-tag">The reading, confirmed in the data</span>
+      <p><strong>Human ignitions dominate the calendar edges (spring and fall); lightning owns July&ndash;August.</strong> Human fire counts peak at <span class="num">256,679</span> in April and <span class="num">251,029</span> in March, staying elevated through October. Natural (lightning) fires bottom out near <span class="num">931</span> in January and peak at <span class="num">105,950</span> in July and <span class="num">99,527</span> in August &mdash; more than a hundredfold seasonal swing. <!-- STAT: seasonality.by_cause_month --></p>
+    </div>
+
+    <!-- static / no-JS month x cause table -->
+    <table class="heat-table" id="cause-static">
+      <caption>Static month&times;cause fire counts (stands without scripting) <!-- STAT: seasonality.by_cause_month --></caption>
+      <thead><tr><th>Cause</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th></tr></thead>
+      <tbody id="cause-static-body">
+        <tr><td>Human</td><td data-v="102329">102,329</td><td data-v="153697">153,697</td><td data-v="251029">251,029</td><td data-v="256679">256,679</td><td data-v="169107">169,107</td><td data-v="139109">139,109</td><td data-v="169035">169,035</td><td data-v="135797">135,797</td><td data-v="120044">120,044</td><td data-v="114674">114,674</td><td data-v="107661">107,661</td><td data-v="63745">63,745</td></tr>
+        <tr><td>Natural</td><td data-v="931">931</td><td data-v="1080">1,080</td><td data-v="3579">3,579</td><td data-v="7760">7,760</td><td data-v="19653">19,653</td><td data-v="49942">49,942</td><td data-v="105950">105,950</td><td data-v="99527">99,527</td><td data-v="31351">31,351</td><td data-v="5273">5,273</td><td data-v="1604">1,604</td><td data-v="669">669</td></tr>
+        <tr><td>Missing/undet.</td><td data-v="11289">11,289</td><td data-v="21066">21,066</td><td data-v="29550">29,550</td><td data-v="20626">20,626</td><td data-v="15219">15,219</td><td data-v="17953">17,953</td><td data-v="22785">22,785</td><td data-v="15666">15,666</td><td data-v="11897">11,897</td><td data-v="10952">10,952</td><td data-v="9241">9,241</td><td data-v="7097">7,097</td></tr>
+      </tbody>
+    </table>
+    <div class="heat-scale"><span class="heat-swatch" style="background:#241c12"></span> low
+      <span class="heat-swatch" style="background:#7c2d12"></span>
+      <span class="heat-swatch" style="background:#ea580c"></span>
+      <span class="heat-swatch" style="background:#fdba74"></span> high</div>
+    <p style="font-size:.8rem;color:var(--text-faint);margin-top:.5rem">Note: &ldquo;Missing/not specified/undetermined&rdquo; is a native FPA-FOD cause category (~8% of records), not a data-cleaning artifact. <a href="#ref-short2022fpafod">[short2022fpafod]</a></p>
+  </section>
+
+  <!-- ============ §2 STATE x MONTH ============ -->
+  <section id="state-month">
+    <h2><span class="section-num">&sect;2</span> The country keeps two fire seasons</h2>
+    <p>Break the same counts out by state and the single national calendar splits in two. The <strong>Southeast burns in spring</strong> &mdash; Georgia, South Carolina, and the Gulf states peak in February&ndash;April, driven by human ignition in cured winter fuels &mdash; while the <strong>West burns in summer</strong>, with California, Oregon, Idaho, and the Great Basin peaking in July&ndash;August under lightning and drought. Sort the heatmap by peak month to see the wave sweep from the Southeast forward into the West.</p>
+
+    <div class="chart-box">
+      <div class="controls">
+        <label for="state-sort">sort by</label>
+        <select id="state-sort"><option value="peak">peak month</option><option value="total">total fires</option><option value="alpha">state</option></select>
+        <label for="state-metric" style="margin-left:.5rem">value</label>
+        <select id="state-metric"><option value="fires">fire count</option><option value="acres">acres burned</option></select>
+      </div>
+      <div id="state-heatmap" class="chart" role="img" aria-label="State-by-month heatmap of US wildfire counts, 1992 to 2020. Southeastern states peak in spring (February through April); western states peak in summer (July and August), showing two distinct fire seasons.">
+        <p class="data-fallback" hidden>Interactive heatmap could not load &mdash; the peak-month summary table below carries the two-season pattern.</p>
+      </div>
+      <p class="figcaption">FPA-FOD fires by state &times; discovery month, 1992&ndash;2020, sortable. Ember ramp = more fires. <span class="src">Each row scaled to its own peak month.</span></p>
+    </div>
+
+    <div class="callout">
+      <span class="callout-tag">The reading, confirmed in the data</span>
+      <p><strong>Southeast spring vs West summer &mdash; two fire seasons, out of phase.</strong> Georgia's fire count peaks in March (<span class="num">33,964</span>) and South Carolina in March (<span class="num">18,485</span>); both fall away by summer. California peaks in July (<span class="num">53,011</span>) and August (<span class="num">41,887</span>), Oregon in July&ndash;August (<span class="num">20,697</span> / <span class="num">22,849</span>), and Idaho in August (<span class="num">17,455</span>) &mdash; exactly the months the Southeast has gone quiet. <!-- STAT: seasonality.by_state_month --></p>
+    </div>
+
+    <!-- static peak-month summary (no-JS anchor for the two-season story) -->
+    <table class="heat-table" id="state-static">
+      <caption>Peak fire-count month by selected state &mdash; the two-season contrast <!-- STAT: seasonality.by_state_month --></caption>
+      <thead><tr><th>Region</th><th>State</th><th>Peak month</th><th>Peak fires</th></tr></thead>
+      <tbody>
+        <tr><td>Southeast</td><td>GA</td><td>March</td><td>33,964</td></tr>
+        <tr><td>Southeast</td><td>SC</td><td>March</td><td>18,485</td></tr>
+        <tr><td>Southeast</td><td>MS</td><td>March</td><td>18,529</td></tr>
+        <tr><td>Southeast</td><td>FL</td><td>May</td><td>15,283</td></tr>
+        <tr><td>West</td><td>CA</td><td>July</td><td>53,011</td></tr>
+        <tr><td>West</td><td>OR</td><td>August</td><td>22,849</td></tr>
+        <tr><td>West</td><td>ID</td><td>August</td><td>17,455</td></tr>
+        <tr><td>West</td><td>AZ</td><td>July</td><td>22,831</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ REFERENCES ============ -->
+  <section class="references">
+    <h2>References</h2>
+    <ol class="ref-list">
+      <li id="ref-short2022fpafod">
+        <span class="ref-key mono">[short2022fpafod]</span>
+        Short, Karen C. 2022. Spatial wildfire occurrence data for the United States, 1992&ndash;2020 [FPA_FOD_20221014]. 6th Edition. Fort Collins, CO: Forest Service Research Data Archive.
+        <a href="https://doi.org/10.2737/RDS-2013-0009.6">doi:10.2737/RDS-2013-0009.6</a>. Month = discovery month; cause = NWCG standard (approved August 2020).
+      </li>
+      <li id="ref-westerling2016">
+        <span class="ref-key mono">[westerling2016]</span>
+        Westerling, A.L. 2016. Increasing western US forest wildfire activity: sensitivity to changes in the timing of spring. <em>Phil. Trans. R. Soc. B</em> 371(1696): 20150178.
+        <a href="https://doi.org/10.1098/rstb.2015.0178">doi:10.1098/rstb.2015.0178</a>. Context for the West's warming-and-earlier-snowmelt summer season.
+      </li>
+      <li id="ref-balch2017">
+        <span class="ref-key mono">[balch2017]</span>
+        Balch, J.K. et al. 2017. Human-started wildfires expand the fire niche across the United States. <em>PNAS</em> 114(11): 2946&ndash;2951.
+        <a href="https://doi.org/10.1073/pnas.1617394114">doi:10.1073/pnas.1617394114</a>. Context for human ignition lengthening the fire calendar at its edges.
+      </li>
+    </ol>
+  </section>
+
+  <footer class="site-footer">
+    <p class="footer-credit">Built with Claude Fable 5 (1M-token context) &middot; July 2026</p>
+    <p class="footer-byline">Robyn Collie <span class="flower">&#10048;</span></p>
+  </footer>
+
+</main>
+
+<script>
+// Color the static no-JS cause table cells by value (row-normalized ember ramp).
+// Standalone; independent of WF/common.js so the fallback is always styled.
+(function(){
+  function ramp(t){
+    var stops=[[36,28,18],[124,45,18],[234,88,12],[253,186,116]];
+    t=Math.max(0,Math.min(1,t)); var seg=t*(stops.length-1); var i=Math.floor(seg); var f=seg-i;
+    if(i>=stops.length-1) return 'rgb('+stops[stops.length-1].join(',')+')';
+    var a=stops[i],b=stops[i+1];
+    return 'rgb('+Math.round(a[0]+(b[0]-a[0])*f)+','+Math.round(a[1]+(b[1]-a[1])*f)+','+Math.round(a[2]+(b[2]-a[2])*f)+')';
+  }
+  var body=document.getElementById('cause-static-body');
+  if(body){
+    Array.prototype.forEach.call(body.rows,function(r){
+      var vals=[], cells=[];
+      Array.prototype.forEach.call(r.cells,function(c,ci){ if(ci===0) return; vals.push(+c.getAttribute('data-v')); cells.push(c); });
+      var mx=Math.max.apply(null,vals);
+      cells.forEach(function(c,i){
+        var t=mx>0?vals[i]/mx:0; c.style.background=ramp(Math.pow(t,0.6));
+        c.style.color = t>0.45 ? '#1a1005' : '#ece8e2';
+      });
+    });
+  }
+})();
+</script>
+<script src="js/common.js" defer></script>
+<script defer>
+// WF.heatmap(el, rows, {metric:"fires"|"acres", sort:"peak"|"total"|"key", title})
+// rows shape [key, month, fires, acres] matches by_cause_month / by_state_month exactly.
+document.addEventListener('DOMContentLoaded', function(){
+  if(!window.WF||!WF.load||!WF.heatmap) return;   // static tables already visible; reveal fallbacks
+  WF.load(['seasonality'], function(data, failed){
+    if(failed || !data.seasonality) return;        // WF.load reveals .data-fallback nodes
+    var s=data.seasonality;
+    // §1 cause x month
+    try{
+      var causeEl=document.getElementById('cause-heatmap');
+      var metricSel=document.getElementById('cause-metric');
+      var drawCause=function(){
+        WF.heatmap(causeEl, s.by_cause_month, { metric:metricSel.value, sort:'total', title:'US wildfire cause × month, 1992–2020' });
+      };
+      drawCause();
+      metricSel.addEventListener('change', drawCause);
+    }catch(e){ var cf=document.querySelector('#cause-heatmap .data-fallback'); if(cf) cf.hidden=false; }
+    // §2 state x month
+    try{
+      var stateEl=document.getElementById('state-heatmap');
+      var sortSel=document.getElementById('state-sort'), sMetric=document.getElementById('state-metric');
+      var drawState=function(){
+        var sort = sortSel.value==='alpha' ? 'key' : sortSel.value;   // UI 'state' -> WF 'key'
+        WF.heatmap(stateEl, s.by_state_month, { metric:sMetric.value, sort:sort, title:'US wildfire state × month, 1992–2020' });
+      };
+      drawState();
+      sortSel.addEventListener('change', drawState);
+      sMetric.addEventListener('change', drawState);
+    }catch(e){ var sf=document.querySelector('#state-heatmap .data-fallback'); if(sf) sf.hidden=false; }
+  });
+});
+</script>
+</body>
+</html>

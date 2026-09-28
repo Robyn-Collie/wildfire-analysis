@@ -1,0 +1,7 @@
+.playwright-mcp/
+data/fires.parquet
+data/raw/noaa/climdiv-*
+_t.html
+node_modules/
+dist/
+.astro/

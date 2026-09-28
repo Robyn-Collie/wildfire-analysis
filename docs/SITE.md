@@ -85,17 +85,29 @@ table view with a notice, so no number depends on it.
 
 ## Deploy to Netlify
 
-1. In Netlify, "Add new site" > "Import an existing project" > pick the GitHub repo.
-2. Build command: leave empty. Publish directory: `site`. (`netlify.toml` at the repo root sets
-   both, plus cache and security headers, so the UI values only need to agree with it.)
-3. Deploy. Every push to the default branch redeploys the committed `site/`; there is no build
-   image to configure and no secrets, tokens or API keys anywhere on the site.
+The public site is us-wildfires.netlify.app (Netlify project `us-wildfires`, id
+`612daec7-fe9f-48a5-8108-a0ab7ed40a10`). It serves the current site at the root and the first site, read-only, at
+`/archive/`. Everything it serves is in this repository except the binary data files, which are derived from every
+record and are built or kept locally:
 
-   Since version 2 a git-linked deploy does not work: `.gitignore`'s `data/` rule also matches `site/data/`, so
-   none of the site's data files are committed (not only the map's point files), and every chart page would fail.
-   Version 2 is deployed from a local build instead, with the Netlify CLI or
-   the Netlify MCP deploy tool pointed at `site/`. The review deploy is the password-protected project
-   `wildfire-record-review`. The public project `us-wildfires` is replaced only on the owner's explicit decision.
+| Deployed path | Comes from | Not in git |
+|---|---|---|
+| `/` | `site/`, written by `python scripts/build_site.py` | `site/data/points_*.bin` (built by the same command) |
+| `/archive/` | `deploy/archive/`, written once by `scripts/archive_v1.py` from the first site's build (source in `legacy/wildfire-poc/`) | `deploy/archive/data/*.bin`, kept in `data/archive_v1/` |
+| headers, redirects | `deploy/_headers`, `deploy/_redirects`, `deploy/netlify.toml` | |
+
+To deploy:
+
+1. `python scripts/build_site.py` (needs the local data, see Generate), and commit `site/` if it changed.
+2. `python scripts/deploy.py` assembles `build/deploy/` and stops if a git-ignored file is missing.
+3. Deploy that folder: with the Netlify connector's deploy-site on project `us-wildfires`, run from the folder, or
+   with `netlify deploy --dir build/deploy --site 612daec7-fe9f-48a5-8108-a0ab7ed40a10 --prod`.
+4. Check the live site: the pages, the map, `/archive/`, and a redirect such as `/trend.html`.
+
+`deploy/netlify.toml` tells Netlify to publish the folder as it is, with no build. The repo-root `netlify.toml`
+(publish `site`) is for a git-linked project: since the site's small data files are committed, a checkout serves
+every page, but the map shows its "did not load" notice without the point files. The review deploy is the
+password-protected project `wildfire-record-review`.
 
 Because the site is generated locally and committed, a deploy is exactly what was reviewed in the
 pull request. The regeneration step belongs in the same commit as the `outputs/` change that

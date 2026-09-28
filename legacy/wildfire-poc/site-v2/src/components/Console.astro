@@ -1,0 +1,1162 @@
+---
+/*
+ * Console.astro — the v3 instrument-first map console. Owner: w-console.
+ *
+ * Self-contained: fetches its own data, creates its own FireMap on its own
+ * canvas, and initializes everything in its own island. Mounted by the
+ * orchestrator directly under the site header; below-panel page content is the
+ * orchestrator's. Exposes the engine as window.__wfEngine (debug/verify).
+ *
+ * Layout (brief §1): a full-bleed map panel whose height is set in PX by JS
+ * (never vh/svh/dvh — the verify gate greps for those and there are none here).
+ * Stack inside the panel: WebGL canvas · monsters overlay canvas · HUD · caption
+ * card · pick card · filter sheet · timeline bar pinned at the bottom.
+ *
+ * The state machine lives in ../story/console.js; gestures in ../story/gestures.js.
+ * Build-time we read the points header for the state tile grid and class labels.
+ */
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+const hdrUrl = new URL("../../public/data/points-v2.json", import.meta.url);
+const header = JSON.parse(readFileSync(fileURLToPath(hdrUrl), "utf-8"));
+const states = header.states; // postal, sorted (state6 order)
+
+const CHIPS = [
+  { id: "year-of-fire", label: "Season cycle" },
+  { id: "three-decades", label: "Year by year" },
+  { id: "two-kinds", label: "By cause" },
+  { id: "the-monsters", label: "Class G (5,000+ ac)" },
+  { id: "the-thirst", label: "Drought overlay" },
+  { id: "explore-freely", label: "Explore" },
+];
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const CLASS_MEANINGS = [
+  "A <0.25", "B 0.26–9", "C 10–99", "D 100–299",
+  "E 300–999", "F 1,000–4,999", "G 5,000+",
+];
+
+// 11-wide roughly-geographic tile grid (same layout as explore.astro).
+const TILE_GRID = [
+  ["AK", "",   "",   "",   "",   "",   "",   "",   "",   "",   "ME"],
+  ["",   "",   "",   "",   "",   "",   "",   "",   "",   "VT", "NH"],
+  ["WA", "ID", "MT", "ND", "MN", "IL", "WI", "MI", "NY", "MA", ""  ],
+  ["OR", "NV", "WY", "SD", "IA", "IN", "OH", "PA", "NJ", "CT", "RI"],
+  ["CA", "UT", "CO", "NE", "MO", "KY", "WV", "VA", "MD", "DE", ""  ],
+  ["",   "AZ", "NM", "KS", "AR", "TN", "NC", "SC", "DC", "",   ""  ],
+  ["",   "",   "",   "OK", "LA", "MS", "AL", "GA", "",   "",   ""  ],
+  ["HI", "",   "",   "TX", "",   "",   "",   "",   "FL", "",   ""  ],
+];
+---
+
+<section class="wf-console" id="map" aria-label="Interactive wildfire map console">
+  <!-- chapter chips + filter/monsters toggles -->
+  <div class="wf-chips-row">
+    <div class="wf-chips" role="group" aria-label="Chapters">
+      {CHIPS.map((c, i) => (
+        <button
+          class="wf-chip"
+          data-chapter={c.id}
+          type="button"
+          aria-pressed={i === 0 ? "true" : "false"}
+        >{c.label}</button>
+      ))}
+    </div>
+    <button class="wf-chip wf-filter-toggle" id="wf-filter-toggle" type="button" aria-expanded="false">
+      Filters<span class="wf-filter-badge" id="wf-filter-badge" hidden>0</span>
+    </button>
+  </div>
+
+  <!-- the map panel: height set in PX by JS -->
+  <div class="wf-panel" id="wf-panel">
+    <canvas class="wf-canvas" id="wf-canvas" role="img" aria-label="Wildfire ignition map"></canvas>
+    <canvas class="wf-monsters" id="wf-monsters" aria-hidden="true"></canvas>
+
+    <!-- HUD: zoom controls + zoom readout + wheel hint -->
+    <div class="wf-hud">
+      <div class="wf-zoombtns" role="group" aria-label="Zoom controls">
+        <button class="wf-hud-btn" id="wf-zoom-in" type="button" aria-label="Zoom in">+</button>
+        <button class="wf-hud-btn" id="wf-zoom-out" type="button" aria-label="Zoom out">−</button>
+        <button class="wf-hud-btn" id="wf-zoom-reset" type="button" aria-label="Reset view">⤢</button>
+      </div>
+      <span class="wf-zoom-readout" id="wf-zoom-readout" hidden>1.0×</span>
+    </div>
+    <div class="wf-wheel-hint" id="wf-wheel-hint" aria-hidden="true"></div>
+
+    <!-- cause lens sub-chips (two-kinds chapter only) -->
+    <div class="wf-lens" id="wf-lens" role="group" aria-label="Cause lens" hidden>
+      <button class="wf-lens-btn" data-lens="0" type="button" aria-pressed="true">All</button>
+      <button class="wf-lens-btn" data-lens="1" type="button" aria-pressed="false">Human</button>
+      <button class="wf-lens-btn" data-lens="2" type="button" aria-pressed="false">Lightning</button>
+    </div>
+
+    <!-- caption card (top-left, dismissible) -->
+    <div class="wf-caption" id="wf-caption" role="note">
+      <button class="wf-caption-x" id="wf-caption-x" type="button" aria-label="Dismiss caption">×</button>
+      <p class="wf-caption-body" id="wf-caption-body"></p>
+    </div>
+
+    <!-- pick card (positioned near the picked point) -->
+    <div class="wf-pick" id="wf-pick" role="dialog" aria-label="Fire detail" hidden>
+      <button class="wf-pick-x" id="wf-pick-x" type="button" aria-label="Dismiss">×</button>
+      <div class="wf-pick-body" id="wf-pick-body"></div>
+    </div>
+
+    <!-- filter sheet -->
+    <div class="wf-sheet" id="wf-sheet" hidden aria-label="Filters">
+      <div class="wf-sheet-scroll">
+        <div class="wf-field">
+          <h3>Year</h3>
+          <div class="wf-range">
+            <input type="range" id="wf-year-min" min="1992" max="2020" value="1992" step="1" aria-label="Minimum year" />
+            <span class="wf-range-val" id="wf-year-min-val">1992</span>
+          </div>
+          <div class="wf-range">
+            <input type="range" id="wf-year-max" min="1992" max="2020" value="2020" step="1" aria-label="Maximum year" />
+            <span class="wf-range-val" id="wf-year-max-val">2020</span>
+          </div>
+        </div>
+
+        <div class="wf-field">
+          <h3>Cause</h3>
+          <div class="wf-causes" id="wf-causes" role="group" aria-label="Cause">
+            <button class="wf-toggle-chip" data-cause="0" aria-pressed="true" type="button">Human</button>
+            <button class="wf-toggle-chip" data-cause="1" aria-pressed="true" type="button">Lightning</button>
+            <button class="wf-toggle-chip" data-cause="2" aria-pressed="true" type="button">Undetermined</button>
+          </div>
+        </div>
+
+        <div class="wf-field">
+          <h3>Size class</h3>
+          <div class="wf-range">
+            <input type="range" id="wf-class-min" min="0" max="6" value="0" step="1" aria-label="Minimum size class" />
+            <span class="wf-range-val" id="wf-class-min-val">A</span>
+          </div>
+          <div class="wf-range">
+            <input type="range" id="wf-class-max" min="0" max="6" value="6" step="1" aria-label="Maximum size class" />
+            <span class="wf-range-val" id="wf-class-max-val">G</span>
+          </div>
+          <p class="wf-legend" id="wf-class-legend"></p>
+        </div>
+
+        <div class="wf-field">
+          <h3>Month</h3>
+          <div class="wf-months" id="wf-months" role="group" aria-label="Month range">
+            {MONTHS.map((m, i) => (
+              <button class="wf-toggle-chip wf-mchip" data-month={i + 1} aria-pressed="true" type="button">{m}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="wf-field">
+          <h3>State</h3>
+          <div class="wf-tiles" id="wf-tiles" role="group" aria-label="States">
+            {TILE_GRID.flatMap((row) =>
+              row.map((st) =>
+                st === "" ? (
+                  <span class="wf-tile spacer" aria-hidden="true"></span>
+                ) : (
+                  <button class="wf-tile" data-state={states.indexOf(st)} aria-pressed="false" aria-label={st} type="button">{st}</button>
+                )
+              )
+            )}
+          </div>
+          <p class="wf-legend">No state selected = all states.</p>
+        </div>
+
+        <div class="wf-field wf-toggles">
+          <label class="wf-check"><input type="checkbox" id="wf-monsters-only" /> Class G only (5,000+ acres)</label>
+          <label class="wf-check"><input type="checkbox" id="wf-density" /> Density / heat field</label>
+        </div>
+
+        <div class="wf-sheet-actions">
+          <button class="wf-btn" id="wf-reset" type="button">Reset</button>
+          <button class="wf-btn" id="wf-sheet-close" type="button">Done</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE BAR — pinned at the panel bottom, always visible -->
+    <div class="wf-timeline" id="wf-timeline">
+      <button class="wf-play" id="wf-play" type="button" aria-label="Play" aria-pressed="false">
+        <span class="wf-play-icon" id="wf-play-icon">▶</span>
+      </button>
+      <div class="wf-speed" id="wf-speed">
+        <button class="wf-speed-btn" id="wf-speed-btn" type="button" aria-haspopup="true" aria-expanded="false">1×</button>
+        <div class="wf-speed-menu" id="wf-speed-menu" role="menu" hidden>
+          <button role="menuitemradio" data-speed="0.5" type="button">0.5×</button>
+          <button role="menuitemradio" data-speed="1" aria-checked="true" type="button">1×</button>
+          <button role="menuitemradio" data-speed="2" type="button">2×</button>
+          <button role="menuitemradio" data-speed="4" type="button">4×</button>
+        </div>
+      </div>
+      <div
+        class="wf-track"
+        id="wf-track"
+        role="slider"
+        tabindex="0"
+        aria-label="Timeline"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+        aria-valuetext="January, day 1 of 366"
+      >
+        <div class="wf-track-ticks" id="wf-track-ticks" aria-hidden="true"></div>
+        <div class="wf-track-fill" id="wf-track-fill"></div>
+        <div class="wf-track-thumb" id="wf-track-thumb"></div>
+      </div>
+      <div class="wf-readout" id="wf-readout"><!-- STAT: national_annual.json fod[year].acres -->JANUARY · day 1</div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wf-console {
+    width: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+  }
+
+  /* ---- chips row ---- */
+  .wf-chips-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem clamp(0.75rem, 3vw, 1.5rem);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .wf-chips {
+    display: flex;
+    gap: 0.35rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex: 1;
+  }
+  .wf-chips::-webkit-scrollbar { display: none; }
+  .wf-chip {
+    flex: 0 0 auto;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.86rem;
+    font-family: var(--sans);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .wf-chip:hover { color: var(--text); border-color: var(--ember-deep); }
+  .wf-chip[aria-pressed="true"] {
+    background: var(--ember);
+    border-color: var(--ember);
+    color: #1a1209;
+    font-weight: 600;
+  }
+  .wf-filter-toggle {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .wf-filter-toggle[aria-expanded="true"] { border-color: var(--amber); color: var(--amber); }
+  .wf-filter-badge {
+    background: var(--ember);
+    color: #1a1209;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0 0.4rem;
+    min-width: 1.3em;
+    text-align: center;
+  }
+
+  /* ---- map panel ---- */
+  .wf-panel {
+    position: relative;
+    width: 100%;
+    height: 640px;            /* JS overrides in px; fallback for no-JS/SSR */
+    overflow: hidden;
+    background: #0a0908;
+    touch-action: pan-y;      /* one finger scrolls the page */
+  }
+  .wf-canvas,
+  .wf-monsters {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: pan-y;
+  }
+  .wf-monsters { pointer-events: none; }
+  .wf-monsters.wf-active { pointer-events: auto; }
+
+  /* ---- HUD ---- */
+  .wf-hud {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    z-index: 6;
+  }
+  .wf-zoombtns { display: flex; flex-direction: column; gap: 0.3rem; }
+  .wf-hud-btn {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: var(--radius-sm);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wf-hud-btn:hover { border-color: var(--ember); color: var(--ember); }
+  .wf-zoom-readout {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.2rem 0.5rem;
+    color: var(--amber);
+  }
+  .wf-wheel-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(14, 13, 11, 0.92);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.6rem 1rem;
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--text);
+    z-index: 7;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s;
+  }
+  .wf-wheel-hint.wf-show { opacity: 1; }
+
+  /* ---- lens sub-chips ---- */
+  .wf-lens {
+    position: absolute;
+    top: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.3rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.25rem;
+    z-index: 6;
+  }
+  .wf-lens-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.82rem;
+    cursor: pointer;
+  }
+  .wf-lens-btn[aria-pressed="true"] { background: var(--ember-deep); color: #fff; }
+
+  /* ---- caption card ---- */
+  .wf-caption {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    max-width: 44ch;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.85rem 2rem 0.85rem 1rem;
+    z-index: 5;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .wf-caption[hidden] { display: none; }
+  .wf-caption-body { margin: 0; color: var(--text); }
+  .wf-caption-x,
+  .wf-pick-x {
+    position: absolute;
+    top: 0.35rem;
+    right: 0.4rem;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+  }
+  .wf-caption-x:hover,
+  .wf-pick-x:hover { color: var(--text); background: var(--surface2); }
+
+  /* ---- pick card ---- */
+  .wf-pick {
+    position: absolute;
+    max-width: 15rem;
+    background: var(--surface);
+    border: 1px solid var(--ember-deep);
+    border-radius: var(--radius);
+    padding: 0.7rem 1.6rem 0.7rem 0.85rem;
+    z-index: 8;
+    font-size: 0.9rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+  .wf-pick[hidden] { display: none; }
+  .wf-pick-title { font-weight: 700; color: #fff; margin-bottom: 0.15rem; }
+  .wf-pick-meta { font-family: var(--mono); font-size: 0.8rem; color: var(--text-dim); }
+
+  /* ---- filter sheet ---- */
+  .wf-sheet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(340px, 88%);
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+  }
+  .wf-sheet[hidden] { display: none; }
+  .wf-sheet-scroll { overflow-y: auto; padding: 1rem 1.1rem 1.5rem; }
+  .wf-field { margin-bottom: 1rem; }
+  .wf-field h3 {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin: 0 0 0.5rem;
+  }
+  .wf-range { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
+  .wf-range input[type="range"] { flex: 1; accent-color: var(--ember); }
+  .wf-range-val {
+    font-family: var(--mono);
+    min-width: 4ch;
+    text-align: center;
+    color: var(--text);
+    font-size: 0.85rem;
+  }
+  .wf-causes, .wf-months { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .wf-toggle-chip {
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 0.22rem 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .wf-mchip { padding: 0.2rem 0.5rem; font-size: 0.74rem; }
+  .wf-toggle-chip[aria-pressed="true"] { background: var(--ember); border-color: var(--ember); color: #1a1209; font-weight: 600; }
+  .wf-legend { font-size: 0.74rem; color: var(--text-faint); margin: 0.4rem 0 0; }
+  .wf-tiles { display: grid; grid-template-columns: repeat(11, 1fr); gap: 2px; }
+  .wf-tile {
+    aspect-ratio: 1;
+    border: 1px solid var(--border-soft);
+    background: var(--surface2);
+    color: var(--text-dim);
+    font-size: 0.56rem;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 3px;
+  }
+  .wf-tile.spacer { background: transparent; border-color: transparent; cursor: default; }
+  .wf-tile[aria-pressed="true"] { background: var(--ember); border-color: var(--ember); color: #1a1209; font-weight: 700; }
+  .wf-toggles { display: flex; flex-direction: column; gap: 0.5rem; }
+  .wf-check { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; }
+  .wf-check input { accent-color: var(--ember); }
+  .wf-sheet-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+  .wf-btn {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.7rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .wf-btn:hover { border-color: var(--ember); color: var(--ember); }
+
+  /* ---- timeline bar ---- */
+  .wf-timeline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem clamp(0.6rem, 2.5vw, 1.1rem);
+    background: linear-gradient(180deg, rgba(10, 9, 8, 0), rgba(10, 9, 8, 0.92) 40%, var(--surface));
+    border-top: 1px solid var(--border);
+    z-index: 7;
+  }
+  .wf-play {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wf-play:hover { border-color: var(--ember); color: var(--ember); }
+  .wf-speed { position: relative; flex: 0 0 auto; }
+  .wf-speed-btn {
+    min-width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    cursor: pointer;
+  }
+  .wf-speed-btn:hover { border-color: var(--ember); color: var(--ember); }
+  .wf-speed-menu {
+    position: absolute;
+    bottom: calc(100% + 0.3rem);
+    left: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 10;
+  }
+  .wf-speed-menu[hidden] { display: none; }
+  .wf-speed-menu button {
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    padding: 0.5rem 1.1rem;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    cursor: pointer;
+    text-align: left;
+  }
+  .wf-speed-menu button:hover { background: var(--surface2); color: var(--text); }
+  .wf-speed-menu button[aria-checked="true"] { color: var(--ember); }
+
+  .wf-track {
+    position: relative;
+    flex: 1;
+    height: 44px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    min-width: 60px;
+  }
+  .wf-track-ticks {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 6px;
+    transform: translateY(-50%);
+    background: var(--surface2);
+    border-radius: 3px;
+  }
+  /* tick marks/labels are created at RUNTIME (buildTicks) so they lack the
+     Astro scope attribute — scoped selectors never match them. :global()
+     keeps them styled. */
+  .wf-track-ticks :global(.wf-tick-mark) {
+    position: absolute;
+    top: -3px;
+    width: 1px;
+    height: 12px;
+    background: var(--border);
+  }
+  .wf-track-ticks :global(.wf-tick-label) {
+    position: absolute;
+    top: 10px;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text-faint);
+    white-space: nowrap;
+  }
+  .wf-track-fill {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 6px;
+    transform: translateY(-50%);
+    width: 0;
+    background: var(--ember);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+  .wf-track-thumb {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    transform: translate(-50%, -50%);
+    background: var(--amber);
+    border: 2px solid #1a1209;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 0 1px var(--amber);
+  }
+  .wf-track:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; border-radius: 4px; }
+
+  .wf-readout {
+    flex: 0 0 auto;
+    font-family: var(--mono);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    min-width: 9ch;
+    text-align: right;
+    letter-spacing: 0.01em;
+  }
+
+  /* ---- mobile (<=720px) ---- */
+  @media (max-width: 720px) {
+    /* leave the right column clear of the zoom HUD buttons (44px + gap) */
+    .wf-caption { max-width: none; right: 64px; font-size: 0.88rem; }
+    /* timeline wraps: play + speed + track on row 1, readout full-width on row 2
+       so the year-mode "2001 · 3.8M acres burned" string never collides with
+       the track's month/year tick labels. */
+    .wf-timeline { flex-wrap: wrap; }
+    .wf-track { order: 2; flex: 1 1 100%; margin-top: 0.15rem; }
+    .wf-readout {
+      order: 3;
+      flex: 1 1 100%;
+      font-size: 0.82rem;
+      min-width: 0;
+      text-align: center;
+      margin-top: 1.1rem;   /* clear the tick labels that sit below the track */
+    }
+    .wf-track-ticks .wf-tick-label { font-size: 0.54rem; }
+    .wf-sheet { width: 100%; }
+    .wf-hud-btn { width: 44px; height: 44px; }
+    .wf-lens-btn { padding: 0.3rem 0.6rem; font-size: 0.78rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wf-wheel-hint, .wf-track-fill, .wf-track-thumb, .wf-caption { transition: none; }
+  }
+</style>
+
+<script>
+  import { FireMap } from "../engine/firemap.js";
+  import { Console, CLASS_MEANINGS, CLASS_LETTERS, doyToDate } from "../story/console.js";
+  import { attachGestures } from "../story/gestures.js";
+
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $ = (id) => document.getElementById(id);
+
+  const panel = $("wf-panel");
+  const canvas = $("wf-canvas");
+  const monstersCanvas = $("wf-monsters");
+
+  // ---- panel height in PX; recompute ONLY on width/orientation change ----
+  // h = clamp(innerHeight - headerOffset - timelineH, 420, 860). Never on
+  // height-only resizes (mobile URL bars fire those) — we latch last width.
+  // timeline is a single row on desktop, but wraps to track + readout rows on
+  // mobile (<=720px) so the year-mode readout clears the tick labels.
+  const timelineH = () => (innerWidth <= 720 ? 108 : 64);
+  let lastW = -1;
+  function headerOffset() {
+    const header = document.querySelector(".site-header");
+    const chips = document.querySelector(".wf-chips-row");
+    const h = (header ? header.getBoundingClientRect().height : 0)
+      + (chips ? chips.getBoundingClientRect().height : 0);
+    return h;
+  }
+  function sizePanel() {
+    const h = Math.max(420, Math.min(860, innerHeight - headerOffset() - timelineH()));
+    panel.style.height = h + "px";
+  }
+  function onResize() {
+    if (innerWidth === lastW) return;   // ignore height-only (URL bar) resizes
+    lastW = innerWidth;
+    sizePanel();
+  }
+  lastW = innerWidth;
+  sizePanel();
+  addEventListener("resize", onResize);
+  addEventListener("orientationchange", () => { lastW = -1; onResize(); });
+
+  // ---- boot: fetch data, create engine + console ----
+  let engine = null, ctrl = null, gestures = null, overlay = null;
+  let pdsiLoaded = false, pdsiPromise = null;
+  const pick = { rec: null };
+
+  async function boot() {
+    const [hdr, buf, annual] = await Promise.all([
+      fetch("/data/points-v2.json").then((r) => r.json()),
+      fetch("/data/points-v2.bin").then((r) => r.arrayBuffer()),
+      fetch("/data/national_annual.json").then((r) => r.json()).catch(() => ({ fod: [] })),
+    ]);
+
+    engine = FireMap.create(canvas, buf, hdr, { mode: "season", reducedMotion: RM });
+    window.__wfEngine = engine;   // debug/verify convention
+
+    ctrl = new Console(engine, hdr, annual, {
+      reducedMotion: RM,
+      onChapter: onChapter,
+      onReadout: onReadout,
+      onFilters: onFilters,
+    });
+
+    gestures = attachGestures(canvas, engine, {
+      onTap: onTap,
+      onHint: (msg) => {
+        const el = $("wf-wheel-hint");
+        el.textContent = msg;
+        el.classList.toggle("wf-show", !!msg);
+      },
+    });
+
+    engine.on("camera", ({ z }) => {
+      const ro = $("wf-zoom-readout");
+      if (z > 1.02) { ro.hidden = false; ro.textContent = z.toFixed(1) + "×"; }
+      else ro.hidden = true;
+      if (pick.rec) hidePick();   // marker would drift on zoom; simplest correct: dismiss
+    });
+
+    wireControls(hdr);
+    ctrl.applyChapter("year-of-fire");
+  }
+
+  // ---- monsters overlay (lazy per chapter) ----
+  async function ensureMonsters() {
+    if (overlay) return overlay;
+    const [mbuf, names] = await Promise.all([
+      fetch("/data/monsters.bin").then((r) => r.arrayBuffer()),
+      fetch("/data/monsters-names.json").then((r) => r.json()),
+    ]);
+    overlay = FireMap.monsters(monstersCanvas, mbuf, names, {
+      header: engine.header,
+      topN: 100,
+      reducedMotion: RM,
+      onSelect: (fire) => showMonsterPick(fire),
+    });
+    return overlay;
+  }
+
+  // ---- drought grid (lazy) ----
+  function ensurePdsi() {
+    if (pdsiLoaded) return Promise.resolve();
+    if (pdsiPromise) return pdsiPromise;
+    pdsiPromise = fetch("/data/pdsi-grid.bin")
+      .then((r) => r.arrayBuffer())
+      .then((buf) => {
+        const bytes = new Uint8Array(buf);
+        const width = 29 * 12;                 // 348 year-months
+        const height = bytes.length / width;   // state rows
+        engine.setMode("drought", { pdsi: { buffer: bytes, width, height }, year: 2020 });
+        pdsiLoaded = true;
+      });
+    return pdsiPromise;
+  }
+
+  // ---- chapter chips ----
+  function selectChip(id) {
+    document.querySelectorAll(".wf-chip[data-chapter]").forEach((c) =>
+      c.setAttribute("aria-pressed", c.dataset.chapter === id ? "true" : "false"));
+  }
+
+  async function activateChapter(id) {
+    hidePick();
+    selectChip(id);
+    if (id === "the-thirst") await ensurePdsi();
+    if (id === "the-monsters") await ensureMonsters();
+    ctrl.applyChapter(id);
+  }
+
+  function onChapter(st) {
+    // caption
+    const body = $("wf-caption-body");
+    body.innerHTML = st.chapter.caption;
+    $("wf-caption").hidden = false;
+
+    // lens sub-chips only for two-kinds
+    $("wf-lens").hidden = st.chapter.id !== "two-kinds";
+    if (st.chapter.id === "two-kinds") {
+      document.querySelectorAll(".wf-lens-btn").forEach((b) =>
+        b.setAttribute("aria-pressed", b.dataset.lens === "0" ? "true" : "false"));
+    }
+
+    // monsters overlay visibility
+    const active = !!st.showMonsters;
+    monstersCanvas.classList.toggle("wf-active", active);
+    monstersCanvas.setAttribute("aria-hidden", active ? "false" : "true");
+    if (overlay) {
+      if (active) { overlay.resize(); overlay.focusRank(1); }
+      else { overlay.ctx.clearRect(0, 0, overlay._W, overlay._H); overlay.setTooltip(null); }
+    }
+
+    // filter sheet open state
+    setSheet(!!st.openFilters);
+    syncFilterUI();
+
+    // timeline reconfig
+    buildTicks(st.timeline.kind);
+    reflectPlaying(st.playing);
+    $("wf-density").checked = engine.densityOn;
+  }
+
+  // ---- timeline readout + track ----
+  function onReadout(r) {
+    $("wf-readout").innerHTML =
+      '<!-- STAT: national_annual.json fod[year].acres -->' + escapeHtml(r.big);
+    const track = $("wf-track");
+    const pct = Math.round(r.t * 100);
+    track.setAttribute("aria-valuenow", String(pct));
+    track.setAttribute("aria-valuetext", r.aria);
+    $("wf-track-fill").style.width = pct + "%";
+    $("wf-track-thumb").style.left = pct + "%";
+  }
+
+  function buildTicks(kind) {
+    const el = $("wf-track-ticks");
+    el.innerHTML = "";
+    if (kind === "year") {
+      // 1992..2020, labels every 4 years
+      for (let y = 1992; y <= 2020; y += 4) {
+        const t = (y - 1992) / (2020 - 1992);
+        addTick(el, t, String(y));
+      }
+    } else {
+      const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const START = [1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335];
+      for (let m = 0; m < 12; m++) {
+        const t = (START[m] - 1) / 365;
+        addTick(el, t, MON[m]);
+      }
+    }
+  }
+  function addTick(container, t, label) {
+    const pct = t * 100;
+    const mark = document.createElement("span");
+    mark.className = "wf-tick-mark";
+    mark.style.left = pct + "%";
+    const lab = document.createElement("span");
+    lab.className = "wf-tick-label";
+    lab.style.left = pct + "%";
+    lab.textContent = label;
+    container.appendChild(mark);
+    container.appendChild(lab);
+  }
+
+  function reflectPlaying(playing) {
+    const btn = $("wf-play");
+    $("wf-play-icon").textContent = playing ? "❚❚" : "▶";
+    btn.setAttribute("aria-label", playing ? "Pause" : "Play");
+    btn.setAttribute("aria-pressed", playing ? "true" : "false");
+  }
+
+  // ---- pick ----
+  function onTap(clientX, clientY) {
+    if (!engine) return;
+    const rec = engine.pick(clientX, clientY, 14, ctrl.pickPredicate());
+    if (!rec) { hidePick(); return; }
+    pick.rec = rec;
+    showPointPick(rec);
+  }
+
+  function showPointPick(rec) {
+    const cls = CLASS_LETTERS[rec.cls];
+    const meaning = CLASS_MEANINGS[rec.cls].replace(/^[A-G]\s*/, "");
+    const cause = rec.cause2 === 0 ? "Human-caused" : rec.cause2 === 1 ? "Lightning" : "Undetermined cause";
+    const st = engine.header.states[rec.state6] || "??";
+    let title, meta;
+    if (rec.cls === 6) {
+      const named = nearestMonster(rec);
+      if (named) {
+        title = named.name;
+        meta = `${Math.round(named.acres).toLocaleString()} ac · ${st} ${rec.year} · ${cause}`;
+      } else {
+        title = "Class G fire (5,000+ ac)";
+        meta = `${doyToDate(rec.doy)} ${rec.year} · ${cause} · ${st}`;
+      }
+    } else {
+      title = `Class ${cls} fire (${meaning} ac)`;
+      meta = `${doyToDate(rec.doy)} ${rec.year} · ${cause} · ${st}`;
+    }
+    renderPick(title, meta, rec.px, rec.py);
+  }
+
+  function showMonsterPick(fire) {
+    const cause = fire.cause === 1 ? "Lightning" : fire.cause === 0 ? "Human-caused" : "Undetermined cause";
+    renderPick(
+      fire.name,
+      `${Math.round(fire.acres).toLocaleString()} ac · ${fire.year} · ${cause}`,
+      null, null
+    );
+  }
+
+  function renderPick(title, meta, px, py) {
+    const card = $("wf-pick");
+    $("wf-pick-body").innerHTML =
+      `<div class="wf-pick-title">${escapeHtml(title)}</div>` +
+      `<div class="wf-pick-meta">${escapeHtml(meta)}</div>`;
+    card.hidden = false;
+    // position near the point, clamped to the panel
+    const pr = panel.getBoundingClientRect();
+    const cw = card.offsetWidth || 200, chh = card.offsetHeight || 70;
+    let x = (px != null) ? px + 14 : pr.width / 2 - cw / 2;
+    let y = (py != null) ? py - chh - 10 : 16;
+    x = Math.max(8, Math.min(pr.width - cw - 8, x));
+    y = Math.max(8, Math.min(pr.height - chh - 8, y));
+    card.style.left = x + "px";
+    card.style.top = y + "px";
+  }
+
+  function hidePick() { pick.rec = null; $("wf-pick").hidden = true; }
+
+  // nearest class-G monster to a picked record, by quantized position. The
+  // monsters overlay decodes lon/lat; we compare in the point engine's unit
+  // space via the CONUS bounds so the two coordinate systems line up.
+  let monsterUnitCache = null;
+  function nearestMonster(rec) {
+    if (!overlay) return null;
+    const b = (engine.header.regions && engine.header.regions[0].bounds) || [-125, -66, 24, 50];
+    const [lonMin, lonMax, latMin, latMax] = b;
+    if (!monsterUnitCache) {
+      monsterUnitCache = overlay.fires
+        .filter((f) => f.region === 0)
+        .map((f) => ({
+          f,
+          qx: ((f.lon - lonMin) / (lonMax - lonMin)) * 65535,
+          qy: ((f.lat - latMin) / (latMax - latMin)) * 65535,
+        }));
+    }
+    let best = null, bd = Infinity;
+    for (const m of monsterUnitCache) {
+      const dx = m.qx - rec.qx, dy = m.qy - rec.qy;
+      const d = dx * dx + dy * dy;
+      if (d < bd) { bd = d; best = m.f; }
+    }
+    // ~800 unit tolerance (of 65535) so a near miss doesn't grab a distant name
+    return bd < 800 * 800 ? best : null;
+  }
+
+  // ---- filters ----
+  function setSheet(open) {
+    $("wf-sheet").hidden = !open;
+    const t = $("wf-filter-toggle");
+    t.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  function onFilters(f) {
+    const badge = $("wf-filter-badge");
+    const n = ctrl.activeFilterCount();
+    if (n > 0) { badge.hidden = false; badge.textContent = String(n); }
+    else badge.hidden = true;
+  }
+
+  function syncFilterUI() {
+    const f = ctrl.filters;
+    $("wf-year-min").value = f.yearMin; $("wf-year-min-val").textContent = f.yearMin;
+    $("wf-year-max").value = f.yearMax; $("wf-year-max-val").textContent = f.yearMax;
+    $("wf-class-min").value = f.classMin; $("wf-class-min-val").textContent = CLASS_LETTERS[f.classMin];
+    $("wf-class-max").value = f.classMax; $("wf-class-max-val").textContent = CLASS_LETTERS[f.classMax];
+    document.querySelectorAll("#wf-causes .wf-toggle-chip").forEach((c) => {
+      const bit = 1 << +c.dataset.cause;
+      c.setAttribute("aria-pressed", f.causeMask & bit ? "true" : "false");
+    });
+    document.querySelectorAll("#wf-months .wf-mchip").forEach((c) => {
+      const m = +c.dataset.month;
+      c.setAttribute("aria-pressed", m >= f.monthMin && m <= f.monthMax ? "true" : "false");
+    });
+    document.querySelectorAll("#wf-tiles .wf-tile:not(.spacer)").forEach((t) => {
+      const idx = +t.dataset.state;
+      t.setAttribute("aria-pressed", f.stateMask && f.stateMask.has(idx) ? "true" : "false");
+    });
+    $("wf-monsters-only").checked = f.monstersOnly;
+    $("wf-class-legend").textContent = CLASS_MEANINGS.join(" · ");
+  }
+
+  function wireControls(hdr) {
+    // chips
+    document.querySelectorAll(".wf-chip[data-chapter]").forEach((c) =>
+      c.addEventListener("click", () => activateChapter(c.dataset.chapter)));
+
+    // filter toggle
+    $("wf-filter-toggle").addEventListener("click", () => {
+      const open = $("wf-sheet").hidden;
+      if (open && engine.mode !== "explore") ctrl.updateFilters({});   // enter explore
+      setSheet(open);
+      if (open) syncFilterUI();
+    });
+    $("wf-sheet-close").addEventListener("click", () => setSheet(false));
+
+    // caption dismiss
+    $("wf-caption-x").addEventListener("click", () => { $("wf-caption").hidden = true; });
+
+    // pick dismiss
+    $("wf-pick-x").addEventListener("click", hidePick);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") hidePick(); });
+    panel.addEventListener("pointerdown", (e) => {
+      const card = $("wf-pick");
+      if (!card.hidden && !card.contains(e.target) && e.target !== canvas) hidePick();
+    });
+
+    // lens sub-chips
+    document.querySelectorAll(".wf-lens-btn").forEach((b) =>
+      b.addEventListener("click", () => {
+        const lens = +b.dataset.lens;
+        engine.setLens(lens);
+        document.querySelectorAll(".wf-lens-btn").forEach((x) =>
+          x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      }));
+
+    // HUD zoom
+    $("wf-zoom-in").addEventListener("click", () => centerZoom(1.6));
+    $("wf-zoom-out").addEventListener("click", () => centerZoom(1 / 1.6));
+    $("wf-zoom-reset").addEventListener("click", () => engine.resetCamera());
+
+    // timeline: play/pause
+    $("wf-play").addEventListener("click", () => reflectPlaying(ctrl.togglePlay()));
+
+    // speed menu
+    const speedBtn = $("wf-speed-btn"), speedMenu = $("wf-speed-menu");
+    speedBtn.addEventListener("click", () => {
+      const open = speedMenu.hidden;
+      speedMenu.hidden = !open;
+      speedBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    speedMenu.querySelectorAll("button").forEach((b) =>
+      b.addEventListener("click", () => {
+        const x = parseFloat(b.dataset.speed);
+        ctrl.setSpeed(x);
+        speedBtn.textContent = b.textContent;
+        speedMenu.querySelectorAll("button").forEach((o) =>
+          o.setAttribute("aria-checked", o === b ? "true" : "false"));
+        speedMenu.hidden = true;
+        speedBtn.setAttribute("aria-expanded", "false");
+      }));
+    document.addEventListener("click", (e) => {
+      if (!$("wf-speed").contains(e.target)) {
+        speedMenu.hidden = true; speedBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // timeline track: click + drag + keyboard
+    const track = $("wf-track");
+    const trackT = (clientX) => {
+      const r = track.getBoundingClientRect();
+      return Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+    };
+    let dragging = false;
+    track.addEventListener("pointerdown", (e) => {
+      dragging = true;
+      track.setPointerCapture(e.pointerId);
+      ctrl.scrubTo(trackT(e.clientX));
+    });
+    track.addEventListener("pointermove", (e) => { if (dragging) ctrl.scrubTo(trackT(e.clientX)); });
+    track.addEventListener("pointerup", (e) => { dragging = false; try { track.releasePointerCapture(e.pointerId); } catch {} });
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === "ArrowUp") { ctrl.step(+1); e.preventDefault(); }
+      else if (e.key === "ArrowLeft" || e.key === "ArrowDown") { ctrl.step(-1); e.preventDefault(); }
+      else if (e.key === "Home") { ctrl.seekEnd("home"); e.preventDefault(); }
+      else if (e.key === "End") { ctrl.seekEnd("end"); e.preventDefault(); }
+    });
+
+    // filter inputs
+    $("wf-year-min").addEventListener("input", (e) => {
+      const v = Math.min(+e.target.value, ctrl.filters.yearMax);
+      e.target.value = v; $("wf-year-min-val").textContent = v;
+      ctrl.updateFilters({ yearMin: v });
+    });
+    $("wf-year-max").addEventListener("input", (e) => {
+      const v = Math.max(+e.target.value, ctrl.filters.yearMin);
+      e.target.value = v; $("wf-year-max-val").textContent = v;
+      ctrl.updateFilters({ yearMax: v });
+    });
+    $("wf-class-min").addEventListener("input", (e) => {
+      const v = Math.min(+e.target.value, ctrl.filters.classMax);
+      e.target.value = v; $("wf-class-min-val").textContent = CLASS_LETTERS[v];
+      ctrl.updateFilters({ classMin: v });
+    });
+    $("wf-class-max").addEventListener("input", (e) => {
+      const v = Math.max(+e.target.value, ctrl.filters.classMin);
+      e.target.value = v; $("wf-class-max-val").textContent = CLASS_LETTERS[v];
+      ctrl.updateFilters({ classMax: v });
+    });
+    $("wf-causes").addEventListener("click", (e) => {
+      const chip = e.target.closest(".wf-toggle-chip"); if (!chip) return;
+      const bit = 1 << +chip.dataset.cause;
+      const mask = ctrl.filters.causeMask ^ bit;
+      chip.setAttribute("aria-pressed", mask & bit ? "true" : "false");
+      ctrl.updateFilters({ causeMask: mask });
+    });
+    $("wf-months").addEventListener("click", (e) => {
+      const chip = e.target.closest(".wf-mchip"); if (!chip) return;
+      // month range: clicking sets a contiguous window between min and clicked.
+      const m = +chip.dataset.month;
+      const f = ctrl.filters;
+      let { monthMin, monthMax } = f;
+      // toggle logic: if fully open, start a new single-month selection; else extend.
+      if (monthMin === 1 && monthMax === 12) { monthMin = monthMax = m; }
+      else if (m < monthMin) monthMin = m;
+      else if (m > monthMax) monthMax = m;
+      else { monthMin = 1; monthMax = 12; }   // click inside -> reset to all
+      ctrl.updateFilters({ monthMin, monthMax });
+      syncFilterUI();
+    });
+    $("wf-tiles").addEventListener("click", (e) => {
+      const tile = e.target.closest(".wf-tile:not(.spacer)"); if (!tile) return;
+      const idx = +tile.dataset.state;
+      const set = ctrl.filters.stateMask ? new Set(ctrl.filters.stateMask) : new Set();
+      if (set.has(idx)) set.delete(idx); else set.add(idx);
+      const mask = set.size ? set : null;
+      tile.setAttribute("aria-pressed", mask && mask.has(idx) ? "true" : "false");
+      ctrl.updateFilters({ stateMask: mask });
+    });
+    $("wf-monsters-only").addEventListener("change", (e) =>
+      ctrl.updateFilters({ monstersOnly: e.target.checked }));
+    $("wf-density").addEventListener("change", (e) => engine.setDensity(e.target.checked));
+    $("wf-reset").addEventListener("click", () => { ctrl.resetFilters(); syncFilterUI(); });
+  }
+
+  function centerZoom(factor) {
+    const r = canvas.getBoundingClientRect();
+    engine.zoomAt(factor, r.left + r.width / 2, r.top + r.height / 2);
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  boot().catch((err) => console.error("console boot failed:", err));
+</script>

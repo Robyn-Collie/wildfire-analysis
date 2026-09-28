@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Year of Fire — US Wildfires (prototype)</title>
+<meta name="description" content="Prototype: one million real wildfire ignitions, 1992–2020, breathing through a composite year. No basemap — the fires draw the country.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root {
+    --bg: #070604; --text: #ece8e2; --text-dim: #a89f93; --text-faint: #6b6357;
+    --ember: #fb923c; --amber: #fbbf24; --surface: rgba(20,17,13,0.82); --border: #332d24;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--text);
+    font-family: Inter, system-ui, sans-serif; overflow: hidden; }
+  .mono { font-family: 'JetBrains Mono', Consolas, monospace; }
+  #stage { position: fixed; inset: 0; display: block; width: 100%; height: 100%; }
+
+  .overlay { position: fixed; z-index: 2; pointer-events: none; }
+  #title { top: 28px; left: 32px; max-width: 460px; }
+  #title h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.4px; line-height: 1.15; }
+  #title p { margin-top: 8px; font-size: 14px; color: var(--text-dim); line-height: 1.5; }
+  #title .proto { display: inline-block; margin-bottom: 10px; font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--amber); border: 1px solid var(--border);
+    border-radius: 4px; padding: 3px 8px; font-family: 'JetBrains Mono', monospace; }
+
+  #month { right: 40px; top: 24px; text-align: right; }
+  #month .m { font-size: 64px; font-weight: 700; letter-spacing: -1px;
+    font-variant-numeric: tabular-nums; color: var(--text); }
+  #month .sub { font-size: 12px; color: var(--text-faint); letter-spacing: 1.5px;
+    text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+
+  #caption { left: 50%; transform: translateX(-50%); bottom: 96px; text-align: center;
+    font-size: 17px; color: var(--text-dim); opacity: 0; transition: opacity 1.2s ease; max-width: 640px; }
+  #caption.on { opacity: 1; }
+
+  #hud { position: fixed; z-index: 3; left: 50%; transform: translateX(-50%); bottom: 24px;
+    display: flex; gap: 14px; align-items: center; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 12px; padding: 10px 16px;
+    backdrop-filter: blur(8px); }
+  #hud button, #hud select { font: 600 13px Inter, sans-serif; color: var(--ember);
+    background: transparent; border: 1px solid var(--border); border-radius: 8px;
+    padding: 7px 14px; cursor: pointer; }
+  #hud button:hover, #hud select:hover { border-color: var(--ember); }
+  #hud button:focus-visible, #hud select:focus-visible, #day:focus-visible {
+    outline: 2px solid var(--ember); outline-offset: 2px; }
+  #day { width: 260px; accent-color: var(--ember); }
+  #legend { position: fixed; z-index: 2; right: 40px; bottom: 24px; font-size: 11px;
+    color: var(--text-faint); font-family: 'JetBrains Mono', monospace; text-align: right;
+    line-height: 1.7; }
+  #legend .dotA { color: #b45309; } #legend .dotG { color: #fff7ed; }
+  #load { position: fixed; z-index: 4; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 14px; background: var(--bg);
+    transition: opacity 0.8s; }
+  #load.done { opacity: 0; pointer-events: none; }
+  #bar { width: 280px; height: 3px; background: #1c1813; border-radius: 2px; overflow: hidden; }
+  #bar i { display: block; height: 100%; width: 0; background: var(--ember); transition: width 0.2s; }
+  #load p { font-size: 12px; color: var(--text-faint); font-family: 'JetBrains Mono', monospace; }
+  noscript { position: fixed; inset: 0; z-index: 5; background: var(--bg); display: grid;
+    place-items: center; padding: 40px; text-align: center; }
+  @media (max-width: 720px) {
+    #title h1 { font-size: 20px; } #month .m { font-size: 40px; }
+    #day { width: 140px; } #legend { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stage" role="img"
+  aria-label="Animated map of the contiguous United States drawn entirely from one million wildfire ignition points, pulsing through the months of a composite year: the Southeast glows in early spring, the Southwest in early summer, the West and Northwest in late summer."></canvas>
+
+<div class="overlay" id="title">
+  <span class="proto">Prototype · hero concept</span>
+  <h1>A year of fire, drawn by the fires themselves</h1>
+  <p>One million real ignition points, 1992&ndash;2020 (all fires &ge;10 acres, a sample of smaller ones).
+     No basemap &mdash; the country is only fire. CONUS shown; AK/HI/PR excluded in this prototype.</p>
+</div>
+
+<div class="overlay" id="month"><div class="m" id="mName">January</div>
+  <div class="sub" id="mSub">composite year · 1992–2020</div></div>
+
+<div class="overlay" id="caption"></div>
+
+<div id="hud">
+  <button id="play" aria-pressed="true">Pause</button>
+  <label class="mono" style="font-size:11px;color:var(--text-faint)">SPEED
+    <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
+  </label>
+  <input id="day" type="range" min="1" max="366" value="1" step="1" aria-label="Day of year">
+</div>
+
+<div id="legend">point size &amp; heat = fire size class<br>
+  <span class="dotA">●</span> A (&le;&frac14; acre) &nbsp;&rarr;&nbsp; <span class="dotG">●</span> G (5,000+ acres)<br>
+  Source: FPA-FOD 6th ed. (Short 2022)</div>
+
+<div id="load"><div id="bar"><i></i></div><p id="loadmsg">loading 1,015,865 fires…</p></div>
+
+<noscript><div><h1>A Year of Fire</h1>
+  <p>This prototype renders one million wildfire ignitions with WebGL and requires JavaScript.<br>
+  The full analysis — with static tables — lives at <a href="index.html" style="color:#fb923c">us-wildfires</a>.</p></div></noscript>
+
+<script>
+(function () {
+  "use strict";
+  var REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var MONTHS = ["January","February","March","April","May","June","July","August",
+                "September","October","November","December"];
+  var MONTH_DAY0 = [0,31,59,90,120,151,181,212,243,273,304,334];
+  var CAPTIONS = [ // [dayStart, dayEnd, text]
+    [60, 115, "The Southeast burns first — spring fire season, mostly human-set."],
+    [150, 200, "Early summer: the Southwest ignites as the land dries."],
+    [200, 260, "High summer: lightning season — the West and Northwest flare."],
+    [295, 340, "The edges smolder into fall; the South picks back up."]
+  ];
+
+  var canvas = document.getElementById("stage");
+  var gl = canvas.getContext("webgl2", { antialias: false, alpha: false });
+  if (!gl) { document.getElementById("loadmsg").textContent =
+    "WebGL2 unavailable on this device — the animated hero needs it."; return; }
+
+  var VS = "#version 300 es\n" +
+    "layout(location=0) in vec3 a; // x,y,(doy<<3|cls) as floats\n" +
+    "uniform float uDay, uSigma, uPointScale; uniform vec2 uScale, uOffset;\n" +
+    "out float vW; out float vCls;\n" +
+    "void main(){\n" +
+    "  float dc = a.z; float cls = mod(dc, 8.0); float doy = floor(dc / 8.0);\n" +
+    "  float d = abs(doy - uDay); d = min(d, 366.0 - d);\n" +
+    "  float w = exp(-(d*d) / (2.0 * uSigma * uSigma));\n" +
+    "  vW = w; vCls = cls;\n" +
+    "  vec2 p = vec2(a.x, a.y) / 65535.0;\n" +
+    "  gl_Position = vec4(p * uScale + uOffset, 0.0, 1.0);\n" +
+    "  float base = 1.0 + cls * cls * 0.45;\n" +
+    "  gl_PointSize = max(uPointScale * base * (0.35 + 0.65 * w), 1.0);\n" +
+    "}";
+  var FS = "#version 300 es\nprecision mediump float;\n" +
+    "in float vW; in float vCls; out vec4 o;\n" +
+    "void main(){\n" +
+    "  vec2 c = gl_PointCoord - 0.5; float r2 = dot(c, c);\n" +
+    "  if (r2 > 0.25) discard;\n" +
+    "  float soft = exp(-r2 * 18.0);\n" +
+    "  // ember ramp by class: dim rust (A) -> white-hot (G)\n" +
+    "  float t = vCls / 6.0;\n" +
+    "  vec3 col = mix(vec3(0.55, 0.22, 0.05), vec3(1.0, 0.86, 0.62), t);\n" +
+    "  col = mix(col, vec3(1.0, 0.97, 0.92), t * t);\n" +
+    "  float wf = 0.10 + 0.90 * vW; float a = wf * soft * (0.030 + 0.10 * t + 0.09 * t * t);\n" +
+    "  o = vec4(col * a, a); // premultiplied, additive\n" +
+    "}";
+
+  function shader(type, src) {
+    var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  var prog = gl.createProgram();
+  gl.attachShader(prog, shader(gl.VERTEX_SHADER, VS));
+  gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, FS));
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+  gl.useProgram(prog);
+  var U = {}; ["uDay","uSigma","uPointScale","uScale","uOffset"].forEach(function (n) {
+    U[n] = gl.getUniformLocation(prog, n); });
+
+  var N = 0, header = null;
+  var bar = document.querySelector("#bar i"), loadEl = document.getElementById("load");
+
+  fetch("hero-data/points.json").then(function (r) { return r.json(); })
+    .then(function (h) { header = h;
+      return fetch("hero-data/points.bin"); })
+    .then(function (r) {
+      var len = +r.headers.get("Content-Length") || 6100000, got = 0;
+      var reader = r.body.getReader(), chunks = [];
+      function pump() { return reader.read().then(function (res) {
+        if (res.done) return chunks;
+        got += res.value.length; bar.style.width = Math.min(100, got / len * 100) + "%";
+        chunks.push(res.value); return pump(); }); }
+      return pump();
+    })
+    .then(function (chunks) {
+      var total = chunks.reduce(function (s, c) { return s + c.length; }, 0);
+      var buf = new Uint8Array(total), off = 0;
+      chunks.forEach(function (c) { buf.set(c, off); off += c.length; });
+      var u16 = new Uint16Array(buf.buffer);
+      N = u16.length / 3;
+      var f32 = new Float32Array(u16); // widen for the attribute
+      var vbo = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+      gl.bufferData(gl.ARRAY_BUFFER, f32, gl.STATIC_DRAW);
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 12, 0);
+      loadEl.classList.add("done");
+      start();
+    })
+    .catch(function (e) {
+      document.getElementById("loadmsg").textContent = "load failed: " + e.message;
+    });
+
+  // layout: aspect-correct equirectangular-ish fit (lon span 59deg, lat span 26deg,
+  // horizontal compressed by cos(midlat ~37deg) ~ 0.8)
+  function resize() {
+    var dpr = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = innerWidth * dpr; canvas.height = innerHeight * dpr;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    var lonSpan = 59 * Math.cos(37 * Math.PI / 180), latSpan = 26;
+    var dataAspect = lonSpan / latSpan, viewAspect = canvas.width / canvas.height;
+    var sx = 1.72, sy = 1.72; // fill factor
+    if (viewAspect > dataAspect) { sx = sy * dataAspect / viewAspect; }
+    else { sy = sx * viewAspect / dataAspect; }
+    gl.uniform2f(U.uScale, sx, sy);
+    gl.uniform2f(U.uOffset, -sx / 2 + 0, -sy / 2 - 0.04);
+    gl.uniform1f(U.uPointScale, 1.1 * dpr);
+  }
+  addEventListener("resize", resize);
+
+  var playing = !REDUCED, day = REDUCED ? 200 : 1, speed = 1;
+  var SECS_PER_YEAR = 32;
+  var playBtn = document.getElementById("play"), dayEl = document.getElementById("day");
+  var mName = document.getElementById("mName"), cap = document.getElementById("caption");
+  document.getElementById("speed").addEventListener("change", function (e) {
+    speed = +e.target.value; });
+  playBtn.addEventListener("click", function () {
+    playing = !playing;
+    playBtn.textContent = playing ? "Pause" : "Play";
+    playBtn.setAttribute("aria-pressed", String(playing));
+    if (playing) { last = null; requestAnimationFrame(tick); }
+  });
+  dayEl.addEventListener("input", function () { day = +dayEl.value; if (!playing) draw(); });
+  addEventListener("keydown", function (e) {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+    if (e.key === " ") { e.preventDefault(); playBtn.click(); }
+  });
+
+  function monthOf(d) {
+    for (var i = 11; i >= 0; i--) if (d > MONTH_DAY0[i]) return i;
+    return 0;
+  }
+  function draw() {
+    gl.clearColor(0.027, 0.024, 0.016, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.ONE, gl.ONE); // additive glow
+    gl.uniform1f(U.uDay, day);
+    gl.uniform1f(U.uSigma, 12.0);
+    gl.drawArrays(gl.POINTS, 0, N);
+    mName.textContent = MONTHS[monthOf(day)];
+    dayEl.value = Math.round(day);
+    var text = "";
+    for (var i = 0; i < CAPTIONS.length; i++)
+      if (day >= CAPTIONS[i][0] && day <= CAPTIONS[i][1]) text = CAPTIONS[i][2];
+    if (text) { cap.textContent = text; cap.classList.add("on"); }
+    else cap.classList.remove("on");
+  }
+  var last = null;
+  function tick(ts) {
+    if (!playing) return;
+    if (last == null) last = ts;
+    day += (ts - last) / 1000 * (366 / SECS_PER_YEAR) * speed;
+    if (day > 366) day -= 366;
+    last = ts;
+    draw();
+    requestAnimationFrame(tick);
+  }
+  function start() {
+    resize(); draw();
+    if (playing) requestAnimationFrame(tick);
+    else { playBtn.textContent = "Play"; playBtn.setAttribute("aria-pressed", "false"); }
+  }
+})();
+</script>
+</body>
+</html>

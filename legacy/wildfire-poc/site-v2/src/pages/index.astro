@@ -1,0 +1,42 @@
+---
+// index.astro — us-wildfires v3: the instrument-first page.
+//
+// Structure is deliberately boring: header, the map console (the instrument —
+// timeline bar, chapter presets, filters, zoom/pan/pick), then the verified
+// story as a plain readable article, then the footer. NO scroll-driven
+// behavior anywhere on this page (v3 design rule; the v2 scrollytelling
+// architecture and its eight cross-file defects are retired).
+//
+// <Console /> is fully self-contained (own canvas, own data fetches, own
+// island; exposes window.__wfEngine). <Article /> carries every act's prose
+// and STAT comments content-identical from v2, with the inline exhibits.
+import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import Console from "../components/Console.astro";
+import Article from "../components/Article.astro";
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>US Wildfires — the fire record, explored</title>
+    <meta
+      name="description"
+      content="One million real wildfire ignitions, 1992–2020, on an interactive map console — timeline, filters, zoom, and the named class-G fires — with an audited data story. Every number is receipted."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <SiteHeader active="story" />
+
+    <Console />
+
+    <main>
+      <Article />
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>

@@ -1,0 +1,23 @@
+---
+// explore.astro — v3: the console on the front page absorbed Explore
+// (filters, zoom/pan, picking, density). This route survives as a redirect
+// so the pinned nav link and any external links keep working.
+// (It also retires this page's year-filter bug: it passed year OFFSETS
+// (0..28) to setFilters while the shader compares full years.)
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=/#map" />
+    <link rel="canonical" href="/" />
+    <title>Explore — moved to the front-page console</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body style="background:#0e0d0b;color:#a89f93;font-family:system-ui;padding:2rem">
+    <p>
+      Explore now lives on the front page's map console —
+      <a href="/#map" style="color:#fb923c">continue to the map</a>.
+    </p>
+  </body>
+</html>

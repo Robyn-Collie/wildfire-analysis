@@ -457,7 +457,7 @@ The README, the site, the figures, and a write-up, all generated from the same c
 - Key files: `scripts/site_v2.py` (`NAV`), `scripts/build_site.py`
 
 ### [S-7.10] Commit the site's small data files
-- Status: Open
+- Status: In Review · `.gitignore` anchored to `/data/` and `site/data/` committed except the point files, with the deploy set (`deploy/`, `scripts/deploy.py`) and the first site's source (`legacy/wildfire-poc/`) in the same PR
 - Issue: #74
 - Priority: P2 · Size: S · Depends: none
 - Description: `.gitignore`'s `data/` rule also matches `site/data/`, so none of the site's data files are in git, not only the map's point files (v2 phone review, finding 19). A git-linked Netlify deploy would fail on every chart page. The site is deployed from a local build, and `docs/SITE.md` now says why. Anchor the rule (`/data/`), keep `site/data/points_*.bin` ignored, and commit the small `site/data/*.js` and `.json` files so a checkout renders.

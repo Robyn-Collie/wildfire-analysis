@@ -1,0 +1,2 @@
+window.WF_DATA = window.WF_DATA || {};
+window.WF_DATA.meta = {"generated":"2026-09-28","hash_prefix":"04f5ab8b","hash":"04f5ab8bff6880a8ee76b4a825a66b5f4db0b800dc5971a919cb743251a965a8","repo":"https://github.com/Robyn-Collie/wildfire-analysis","claims_files":["claims.json","claims_conservation.json","claims_drivers.json","claims_incidents.json","claims_model.json","claims_nifc.json","claims_places.json","claims_wfigs.json"],"claims_missing":["claims_coverage.json"],"n_claims":325,"author":"Robyn Collie","n_place_claims_on_state_pages":52};

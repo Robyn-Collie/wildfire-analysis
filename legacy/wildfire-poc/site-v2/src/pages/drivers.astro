@@ -1,0 +1,316 @@
+---
+/*
+ * Drivers — v1 receipts page ported (design-spec-v2 §6). Owner: w5-receipts-chrome.
+ * Body markup CONTENT-IDENTICAL to site/drivers.html between the shared chrome.
+ * Chrome swapped to v2 (global.css + SiteHeader/SiteFooter). Data path /data/ via common.js.
+ * No Google Fonts. Inline enhancement script kept as-is (is:inline).
+ */
+import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drivers &middot; US Wildfires</title>
+<meta name="description" content="Drought moves fire in most states but not all: state-by-state drought-fire correlation, the fuel-limited exception, and the mechanism literature.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<SiteHeader active="drivers" />
+
+<main class="page page-drivers">
+
+  <section class="page-head">
+    <p class="kicker">The explainer</p>
+    <h1>What moves the fire: drought, fuel, and people</h1>
+    <p class="lede">
+      The trend and map pages show <em>that</em> fire years have grown. This page is about
+      <em>why</em>. Drought is the first suspect, and in most states it is a strong one &mdash;
+      but not everywhere, and the exceptions are as informative as the rule. These are the
+      ingredients; the <a href="/model.html">model page</a> prices them.
+    </p>
+  </section>
+
+  <!-- ===================== 1. DROUGHT -> FIRE ===================== -->
+  <section class="drivers-block">
+    <h2>1. Drought moves fire &mdash; in most states</h2>
+    <p>
+      For each state we ranked its years by growing-season drought and by how much it burned,
+      then measured how tightly the two rankings track. A strong negative value means the dry
+      years are the big-fire years.
+    </p>
+    <p class="spec-quote mono">
+      Spearman rank correlation: state May&ndash;Oct mean PDSI vs log<sub>10</sub> annual FOD acres,
+      1992&ndash;2020; states with &ge;25 years and &gt;50k total acres. Negative = drier &rarr; more burned.
+      <!-- STAT: trend_stats.fire_climate_correlation.spec -->
+    </p>
+    <p>
+      Colorado is the headline: <span class="mono">&rho; = &minus;0.72</span> &mdash; its driest
+      growing seasons are almost perfectly its worst fire years.
+      <!-- STAT: trend_stats.fire_climate_correlation.strongest_negative_10[0] (CO -0.724) -->
+      Across all <span class="mono">38</span> qualifying states the median correlation is
+      <span class="mono">&minus;0.45</span>, and <span class="mono">15</span> states clear the
+      strong-negative bar.
+      <!-- STAT: trend_stats.fire_climate_correlation.n_states (38); .median_r (-0.446); .n_strong_negative (15) -->
+      The signal is real and it is broad &mdash; drier growing season, more acres burned.
+    </p>
+
+    <div id="drought-tilemap" class="tilemap-canvas" role="img"
+         aria-label="US state tile-grid map. Each state tile is shaded by its Spearman correlation between growing-season drought and log annual acres burned, on a diverging cool-to-ember scale. Ember tiles (strong negative, drier means more fire) include Colorado at minus 0.72; cool tiles (weak or positive) include Nevada at plus 0.13.">
+      <p class="data-fallback">
+        Interactive tile-map unavailable &mdash; the top-10 correlation table below carries the
+        strongest state values.
+      </p>
+    </div>
+    <p class="map-note mono">
+      Diverging scale: ember = strong negative (drier&nbsp;&rarr;&nbsp;more fire) &middot;
+      cool = weak or positive. 50 states shown; DC excluded (not a state).
+    </p>
+  </section>
+
+  <!-- ===================== 2. THE WRINKLE ===================== -->
+  <section id="wrinkle" class="drivers-block wrinkle">
+    <h2>2. The wrinkle: fuel-limited deserts break the rule</h2>
+    <p>
+      If drought drove fire everywhere, the drought&ndash;fire correlation would be strongly
+      negative in every state. It is not. Two of the driest states in the country sit at the
+      bottom of the list:
+    </p>
+    <ul class="wrinkle-list">
+      <li><strong>Arizona</strong>: <span class="mono">&rho; = &minus;0.18</span> (not significant, p&nbsp;=&nbsp;0.36)
+        <!-- STAT: trend_stats.fire_climate_correlation.west_11 (AZ -0.177, p 0.3574) --></li>
+      <li><strong>Nevada</strong>: <span class="mono">&rho; = +0.13</span> &mdash; the wrong sign
+        entirely (p&nbsp;=&nbsp;0.50)
+        <!-- STAT: trend_stats.fire_climate_correlation.west_11 (NV +0.13, p 0.5013) --></li>
+    </ul>
+    <p>
+      The rest of the interior West behaves as expected &mdash; Colorado
+      <span class="mono">&minus;0.72</span>, New Mexico <span class="mono">&minus;0.52</span>,
+      California <span class="mono">&minus;0.51</span>, Wyoming <span class="mono">&minus;0.46</span>
+      &mdash; with the correlation weakening as you move into the drier, sparser Great Basin
+      (Idaho <span class="mono">&minus;0.33</span>, Utah <span class="mono">&minus;0.28</span>)
+      until it inverts in Arizona and Nevada.
+      <!-- STAT: trend_stats.fire_climate_correlation.west_11 (CO,NM,CA,WY,ID,UT values) -->
+    </p>
+    <div class="callout">
+      <p>
+        The likely reason is that these deserts are <strong>fuel-limited, not
+        flammability-limited</strong>. In a Colorado forest, the fuel is always there; what
+        varies year to year is whether it is dry enough to burn, so drought and fire move together.
+        In the Nevada desert, the fuel &mdash; fine grasses between the shrubs &mdash; is <em>not</em>
+        always there. A wet year grows the grass; the <em>following</em> dry year burns it. Fire
+        chases the wet year, not the dry one, which pushes the same-year drought&ndash;fire
+        correlation toward zero or positive.
+      </p>
+      <p class="observed-note">
+        This flammability-limited vs. fuel-limited split is <strong>observed in this data</strong>
+        (the AZ/NV sign reversal above) and is <strong>consistent with the fuel-limitation
+        mechanism described in the fire-ecology literature</strong>. We did not model the
+        one-year lag here; the pattern is presented as an observed exception with a
+        literature-consistent explanation, not a fitted result.
+        <!-- UNVERIFIED-CITE: fuel-limited mechanism -->
+      </p>
+    </div>
+    <p>
+      This is exactly where the <a href="/model.html">model page</a> will show Nevada&rsquo;s
+      out-of-sample skill going <em>negative</em>: a same-year drought model cannot predict a
+      state where fire follows last year&rsquo;s wet growth. The wrinkle here is the failure mode there.
+    </p>
+  </section>
+
+  <!-- ===================== 3. MECHANISM ANCHORS ===================== -->
+  <section class="drivers-block anchors">
+    <h2>3. Why drought turns into fire &mdash; the mechanism</h2>
+    <p>
+      The correlations above are ours. Why the relationship exists &mdash; and how much of it is
+      human-driven &mdash; rests on the published attribution literature. Three anchors carry the
+      weight, quoted verbatim.
+    </p>
+
+    <figure class="anchor-quote">
+      <blockquote>
+        &ldquo;Anthropogenic climate change accounted for &sim;55% of observed increases in fuel
+        aridity from 1979 to 2015 across western US forests&hellip; human-caused climate change
+        contributed to an additional 4.2 million ha of forest fire area during 1984&ndash;2015,
+        nearly doubling the forest fire area expected in its absence.&rdquo;
+      </blockquote>
+      <figcaption>
+        &mdash; Abatzoglou &amp; Williams 2016 <a href="#ref-abatzoglou2016" class="cite">[abatzoglou2016]</a>.
+        <span class="anchor-gloss">Drought is the pathway: warming dries the fuel, and roughly
+        half of that drying is attributable to human-caused climate change.</span>
+        <!-- STAT: research/r3-provenance-lit.md B3 (abatzoglou2016 verbatim ~55% fuel aridity) -->
+      </figcaption>
+    </figure>
+
+    <figure class="anchor-quote">
+      <blockquote>
+        &ldquo;Prior work shows western US forest wildfire activity increased abruptly in the
+        mid-1980s&hellip; Wildfire activity appears strongly associated with warming and earlier
+        spring snowmelt.&rdquo;
+      </blockquote>
+      <figcaption>
+        &mdash; Westerling 2016 <a href="#ref-westerling2016" class="cite">[westerling2016]</a>.
+        <span class="anchor-gloss">Not just how dry, but how long: earlier snowmelt lengthens the
+        fire season, giving drought more of the calendar to work in.</span>
+        <!-- STAT: research/r3-provenance-lit.md B4 (westerling2016 verbatim season/snowmelt) -->
+      </figcaption>
+    </figure>
+
+    <figure class="anchor-quote">
+      <blockquote>
+        &ldquo;Humans have vastly expanded the spatial and seasonal &lsquo;fire niche&rsquo; in the
+        coterminous United States, accounting for 84% of all wildfires and 44% of total area
+        burned&hellip; the human-caused fire season was three times longer than the lightning-caused
+        fire season and added an average of 40,000 wildfires per year across the United States.&rdquo;
+      </blockquote>
+      <figcaption>
+        &mdash; Balch et al. 2017 <a href="#ref-balch2017" class="cite">[balch2017]</a>.
+        <span class="anchor-gloss">Drought sets the stage; people supply most of the ignitions.</span>
+        <!-- STAT: research/r3-provenance-lit.md B6 (balch2017 verbatim 84% / 44%) -->
+      </figcaption>
+    </figure>
+
+    <div class="reconcile-note">
+      <p>
+        <strong>84% vs. 77% &mdash; a denominator note.</strong> Balch et al. report
+        <span class="mono">84%</span> of wildfires as human-caused; elsewhere on this site we cite
+        <span class="mono">77%</span> from our own extract. Both are correct under their own
+        denominators. Balch computes the human share <em>among cause-attributed fires</em> (an
+        earlier 1992&ndash;2012 edition); our <span class="mono">77%</span> is the human share of
+        <em>all records</em>, including the 8% whose cause is &ldquo;Missing data / not specified /
+        undetermined.&rdquo; Fold that 8% out of the denominator and the two figures converge.
+        These are not contradictory numbers &mdash; they are the same fires counted against
+        different bases.
+        <!-- STAT: research/r3-provenance-lit.md B6 (denominator reconciliation: 84% cause-known vs 77% all-records) -->
+      </p>
+    </div>
+
+    <p class="caution">
+      A note on certainty: attribution is probabilistic and partial. &ldquo;~55% of the fuel-aridity
+      increase&rdquo; and &ldquo;nearly doubling forest fire area&rdquo; are statements about the
+      aggregate, not about any single fire. Nothing on this page says climate change caused a
+      particular fire; the correlations are correlational, and the attribution figures are quoted
+      as their authors stated them.
+    </p>
+  </section>
+
+  <!-- ===================== 4. BRIDGE ===================== -->
+  <section class="drivers-block bridge">
+    <h2>4. The ingredients of prediction</h2>
+    <p>
+      Put the three together and you have the recipe the record keeps writing: drought dries the
+      fuel (Abatzoglou &amp; Williams), a longer, warmer season gives it more room (Westerling),
+      and people supply most of the ignitions (Balch) &mdash; except where the fuel itself is the
+      limiting ingredient, as in the desert states above. These are the ingredients. The
+      <a href="/model.html">model page</a> takes drought, temperature, precipitation, and
+      seasonality and asks the harder question: <strong>how much of a fire year can you actually
+      predict from them, and where does that prediction break?</strong> The answer &mdash; a modest
+      but real skill over climatology, strong in Colorado and California, negative in Nevada &mdash;
+      is the drivers story, priced.
+    </p>
+  </section>
+
+  <!-- ===================== NO-JS TABLE ===================== -->
+  <noscript>
+  <section class="static-table">
+    <h2>Strongest drought&ndash;fire correlations (top 10 states)</h2>
+    <p class="table-note">
+      State Spearman &rho; between May&ndash;Oct mean PDSI and log<sub>10</sub> annual FOD acres,
+      1992&ndash;2020. More negative = drier years are bigger-fire years.
+    </p>
+    <table class="data-table">
+      <caption>Top-10 negative drought&ndash;fire correlations by state</caption>
+      <thead>
+        <tr><th scope="col">State</th><th scope="col">Spearman &rho;</th><th scope="col">p</th><th scope="col">Years</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>CO</td><td class="mono">&minus;0.724</td><td class="mono">&lt;0.001</td><td class="mono">29</td></tr>
+        <tr><td>SD</td><td class="mono">&minus;0.655</td><td class="mono">0.0001</td><td class="mono">29</td></tr>
+        <tr><td>GA</td><td class="mono">&minus;0.654</td><td class="mono">0.0001</td><td class="mono">29</td></tr>
+        <tr><td>TN</td><td class="mono">&minus;0.645</td><td class="mono">0.0002</td><td class="mono">29</td></tr>
+        <tr><td>ND</td><td class="mono">&minus;0.608</td><td class="mono">0.0005</td><td class="mono">29</td></tr>
+        <tr><td>FL</td><td class="mono">&minus;0.599</td><td class="mono">0.0006</td><td class="mono">29</td></tr>
+        <tr><td>NJ</td><td class="mono">&minus;0.559</td><td class="mono">0.0016</td><td class="mono">29</td></tr>
+        <tr><td>AR</td><td class="mono">&minus;0.553</td><td class="mono">0.0019</td><td class="mono">29</td></tr>
+        <tr><td>NC</td><td class="mono">&minus;0.548</td><td class="mono">0.0021</td><td class="mono">29</td></tr>
+        <tr><td>LA</td><td class="mono">&minus;0.530</td><td class="mono">0.0031</td><td class="mono">29</td></tr>
+      </tbody>
+    </table>
+    <p class="table-note">
+      Median across all 38 qualifying states: <span class="mono">&minus;0.446</span>.
+      The fuel-limited exceptions sit at the other end: AZ <span class="mono">&minus;0.177</span>,
+      NV <span class="mono">+0.13</span>.
+    </p>
+    <!-- STAT: trend_stats.fire_climate_correlation.strongest_negative_10 (full table); .median_r; .west_11 (AZ, NV) -->
+  </section>
+  </noscript>
+
+  <!-- ===================== REFERENCES ===================== -->
+  <section class="references">
+    <h2>References</h2>
+    <ol class="ref-list">
+      <li id="ref-abatzoglou2016">
+        <span class="ref-key mono">[abatzoglou2016]</span>
+        Abatzoglou, J.T., &amp; Williams, A.P. (2016). Impact of anthropogenic climate change on
+        wildfire across western US forests. <em>Proceedings of the National Academy of Sciences
+        U.S.A.</em>, 113(42), 11770&ndash;11775.
+        <a href="https://doi.org/10.1073/pnas.1607171113">doi:10.1073/pnas.1607171113</a>
+      </li>
+      <li id="ref-westerling2016">
+        <span class="ref-key mono">[westerling2016]</span>
+        Westerling, A.L. (2016). Increasing western US forest wildfire activity: sensitivity to
+        changes in the timing of spring. <em>Philosophical Transactions of the Royal Society B</em>,
+        371(1696), 20150178.
+        <a href="https://doi.org/10.1098/rstb.2015.0178">doi:10.1098/rstb.2015.0178</a>
+      </li>
+      <li id="ref-balch2017">
+        <span class="ref-key mono">[balch2017]</span>
+        Balch, J.K., Bradley, B.A., Abatzoglou, J.T., Nagy, R.C., Fusco, E.J., &amp; Mahood, A.L.
+        (2017). Human-started wildfires expand the fire niche across the United States.
+        <em>Proceedings of the National Academy of Sciences U.S.A.</em>, 114(11), 2946&ndash;2951.
+        <a href="https://doi.org/10.1073/pnas.1617394114">doi:10.1073/pnas.1617394114</a>
+      </li>
+      <li id="ref-short2022fpafod">
+        <span class="ref-key mono">[short2022fpafod]</span>
+        Short, Karen C. (2022). Spatial wildfire occurrence data for the United States, 1992&ndash;2020
+        [FPA_FOD_20221014]. 6th Edition. Fort Collins, CO: Forest Service Research Data Archive.
+        <a href="https://doi.org/10.2737/RDS-2013-0009.6">doi:10.2737/RDS-2013-0009.6</a>
+      </li>
+    </ol>
+  </section>
+
+  <SiteFooter />
+
+</main>
+
+<script is:inline src="/js/common.js" defer></script>
+<script is:inline defer>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.WF || !WF.load) return;
+    WF.load(['trend_stats'], function (data) {
+      var el = document.getElementById('drought-tilemap');
+      var fc = data.trend_stats && data.trend_stats.fire_climate_correlation;
+      if (el && WF.tilemap && fc) {
+        // Build a state -> Spearman rho map from the correlation blocks the JSON exposes.
+        var values = {};
+        (fc.strongest_negative_10 || []).forEach(function (d) { values[d.state] = d.spearman_r; });
+        (fc.west_11 || []).forEach(function (d) { values[d.state] = d.spearman_r; });
+        WF.tilemap(el, values, {
+          mode: 'diverging',
+          invert: true, // negative rho (drier -> more fire) renders ember
+          label: 'US state tile-grid map shaded by the Spearman correlation between growing-season drought and log annual acres burned. Ember = strong negative (drier means more fire); cool = weak or positive.',
+          hint: 'Focus or hover a state for its drought–fire correlation.',
+          valueFmt: function (v) {
+            if (v == null) return 'not in qualifying set';
+            return 'ρ = ' + v.toFixed(2) + (v < 0 ? ' (drier → more fire)' : ' (wet-year fuel signal)');
+          }
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
