@@ -19,6 +19,7 @@ from __future__ import annotations
 import csv
 import datetime as dt
 import glob
+import hashlib
 import html
 import json
 import os
@@ -725,20 +726,40 @@ SITE_JS = r"""
     updateThemeButtons();
     var b = document.querySelectorAll('.theme-btn'); for (var i = 0; i < b.length; i++) b[i].addEventListener('click', WF.toggleTheme);
   });
+  // A chart whose data did not load would otherwise be an empty box: say so instead.
+  window.addEventListener('load', function () {
+    var cs = document.querySelectorAll('div.chart');
+    for (var i = 0; i < cs.length; i++) {
+      if (cs[i].childNodes.length) continue;
+      var p = el('p', 'fallback', 'This chart\'s data did not load. Reload the page; if it stays empty, the numbers are in the tables on this page and in the ledger on the Data and methods page.');
+      cs[i].appendChild(p);
+    }
+  });
 })();
 """
 
 
 # --------------------------------------------------------------------------- page shell
 
+
+def versioned(rel: str) -> str:
+    """rel plus ?v=<content hash>, so a browser holding a cached data or asset file from an earlier deploy
+    fetches the new one when the page changes (data/ is cached for a day, see deploy/_headers)."""
+    path = os.path.join(SITE_DIR, rel)
+    if not os.path.exists(path):
+        return rel
+    with open(path, 'rb') as fh:
+        return rel + '?v=' + hashlib.sha256(fh.read()).hexdigest()[:10]
+
+
 def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', description: str = '',
            extra_scripts: list[str] | tuple = (), body_attrs: str = '', nav_page: str | None = None) -> str:
     current = nav_page or page
     nav = ''.join(
         f'<a href="{href}"{" aria-current=\"page\"" if href == current else ""}>{esc(label)}</a>' for href, label in NAV)
-    data_scripts = ''.join(f'<script src="data/{f}"></script>' for f in ctx['data_files'])
-    data_scripts += ''.join(f'<script src="{esc(f)}"></script>' for f in extra_scripts if not f.startswith('assets/'))
-    asset_scripts = ''.join(f'<script src="{esc(f)}"></script>' for f in extra_scripts if f.startswith('assets/'))
+    data_scripts = ''.join(f'<script src="{esc(versioned("data/" + f))}"></script>' for f in ctx['data_files'])
+    data_scripts += ''.join(f'<script src="{esc(versioned(f))}"></script>' for f in extra_scripts if not f.startswith('assets/'))
+    asset_scripts = ''.join(f'<script src="{esc(versioned(f))}"></script>' for f in extra_scripts if f.startswith('assets/'))
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -746,7 +767,7 @@ def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', descr
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description or SITE_TITLE)}">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="{versioned('assets/site.css')}">
 <script>(function(){{try{{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 </head>
 <body{(' ' + body_attrs) if body_attrs else ''}>
@@ -768,7 +789,7 @@ def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', descr
 {data_scripts}
 {'<script src="vendor/geo_assets.js"></script>' if PLOTLY_SRC != PLOTLY_CDN else ''}
 <script src="{PLOTLY_SRC}" charset="utf-8"></script>
-<script src="assets/site.js"></script>
+<script src="{versioned('assets/site.js')}"></script>
 {asset_scripts}
 {('<script>' + page_js + '</script>') if page_js else ''}
 </body>
