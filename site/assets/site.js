@@ -302,4 +302,13 @@
     updateThemeButtons();
     var b = document.querySelectorAll('.theme-btn'); for (var i = 0; i < b.length; i++) b[i].addEventListener('click', WF.toggleTheme);
   });
+  // A chart whose data did not load would otherwise be an empty box: say so instead.
+  window.addEventListener('load', function () {
+    var cs = document.querySelectorAll('div.chart');
+    for (var i = 0; i < cs.length; i++) {
+      if (cs[i].childNodes.length) continue;
+      var p = el('p', 'fallback', 'This chart\'s data did not load. Reload the page; if it stays empty, the numbers are in the tables on this page and in the ledger on the Data and methods page.');
+      cs[i].appendChild(p);
+    }
+  });
 })();

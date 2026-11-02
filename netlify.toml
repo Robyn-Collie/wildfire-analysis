@@ -6,8 +6,8 @@
   publish = "site"
   command = ""
 
-# Data files and figures are content-addressed by the commit that produced them; cache them for a day
-# and let the HTML revalidate so a new build shows up on the next visit.
+# Data and asset scripts are requested with ?v=<content hash> (scripts/build_site.py versioned()), so a new
+# build changes their URLs; they can be cached for a day while the HTML always revalidates.
 [[headers]]
   for = "/data/*"
   [headers.values]

@@ -19,6 +19,7 @@ from __future__ import annotations
 import csv
 import datetime as dt
 import glob
+import hashlib
 import html
 import json
 import os
@@ -32,6 +33,8 @@ SITE_DIR = os.path.join(REPO_ROOT, 'site')
 REPO_URL = 'https://github.com/Robyn-Collie/wildfire-analysis'
 DOCS_URL = REPO_URL + '/tree/main/docs'
 AUTHOR = 'Robyn Collie'
+AUTHOR_LINKEDIN = 'https://www.linkedin.com/in/robyn-collie/'
+AUTHOR_GITHUB = 'https://github.com/Robyn-Collie'
 PLOTLY_CDN = 'https://cdn.plot.ly/plotly-2.35.2.min.js'
 # Plotly is served from the site itself when the vendored copy exists (MIT, scripts/vendor/PLOTLY_LICENSE),
 # so pages make no third-party requests; the CDN is the fallback only if the file is missing.
@@ -723,20 +726,40 @@ SITE_JS = r"""
     updateThemeButtons();
     var b = document.querySelectorAll('.theme-btn'); for (var i = 0; i < b.length; i++) b[i].addEventListener('click', WF.toggleTheme);
   });
+  // A chart whose data did not load would otherwise be an empty box: say so instead.
+  window.addEventListener('load', function () {
+    var cs = document.querySelectorAll('div.chart');
+    for (var i = 0; i < cs.length; i++) {
+      if (cs[i].childNodes.length) continue;
+      var p = el('p', 'fallback', 'This chart\'s data did not load. Reload the page; if it stays empty, the numbers are in the tables on this page and in the ledger on the Data and methods page.');
+      cs[i].appendChild(p);
+    }
+  });
 })();
 """
 
 
 # --------------------------------------------------------------------------- page shell
 
+
+def versioned(rel: str) -> str:
+    """rel plus ?v=<content hash>, so a browser holding a cached data or asset file from an earlier deploy
+    fetches the new one when the page changes (data/ is cached for a day, see deploy/_headers)."""
+    path = os.path.join(SITE_DIR, rel)
+    if not os.path.exists(path):
+        return rel
+    with open(path, 'rb') as fh:
+        return rel + '?v=' + hashlib.sha256(fh.read()).hexdigest()[:10]
+
+
 def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', description: str = '',
            extra_scripts: list[str] | tuple = (), body_attrs: str = '', nav_page: str | None = None) -> str:
     current = nav_page or page
     nav = ''.join(
         f'<a href="{href}"{" aria-current=\"page\"" if href == current else ""}>{esc(label)}</a>' for href, label in NAV)
-    data_scripts = ''.join(f'<script src="data/{f}"></script>' for f in ctx['data_files'])
-    data_scripts += ''.join(f'<script src="{esc(f)}"></script>' for f in extra_scripts if not f.startswith('assets/'))
-    asset_scripts = ''.join(f'<script src="{esc(f)}"></script>' for f in extra_scripts if f.startswith('assets/'))
+    data_scripts = ''.join(f'<script src="{esc(versioned("data/" + f))}"></script>' for f in ctx['data_files'])
+    data_scripts += ''.join(f'<script src="{esc(versioned(f))}"></script>' for f in extra_scripts if not f.startswith('assets/'))
+    asset_scripts = ''.join(f'<script src="{esc(versioned(f))}"></script>' for f in extra_scripts if f.startswith('assets/'))
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -744,7 +767,7 @@ def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', descr
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description or SITE_TITLE)}">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="{versioned('assets/site.css')}">
 <script>(function(){{try{{var t=localStorage.getItem('wf-theme');if(t)document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 </head>
 <body{(' ' + body_attrs) if body_attrs else ''}>
@@ -757,15 +780,16 @@ def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', descr
 {body}
 </div></main>
 <footer class="site"><div class="wrap">
+  <p class="about"><strong>About.</strong> Built by {esc(AUTHOR)}, who lived in Los Angeles for ten years and felt the fires kept getting worse. This site checks that impression against the record. <a href="{AUTHOR_LINKEDIN}">LinkedIn</a> · <a href="{AUTHOR_GITHUB}">GitHub</a> · <a href="built.html">How this was built</a></p>
   <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>{esc(ctx['hash_prefix'])}</code> (full hash in <a href="{DOCS_URL}/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
   Site generated {esc(ctx['generated'])} by <code>scripts/build_site.py</code> from {esc(', '.join(ctx['claims_files']))}.</p>
   <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
-  <a href="{DOCS_URL}">Repository docs</a> · <a href="{DOCS_URL}/SITE.md">How this site is built</a> · <a href="{REPO_URL}">{esc(REPO_URL.replace('https://', ''))}</a> · {esc(AUTHOR)}.</p>
+  <a href="{DOCS_URL}">Repository docs</a> · <a href="built.html">How this site was built</a> · <a href="{REPO_URL}">{esc(REPO_URL.replace('https://', ''))}</a> · {esc(AUTHOR)}.</p>
 </div></footer>
 {data_scripts}
 {'<script src="vendor/geo_assets.js"></script>' if PLOTLY_SRC != PLOTLY_CDN else ''}
 <script src="{PLOTLY_SRC}" charset="utf-8"></script>
-<script src="assets/site.js"></script>
+<script src="{versioned('assets/site.js')}"></script>
 {asset_scripts}
 {('<script>' + page_js + '</script>') if page_js else ''}
 </body>
@@ -1948,7 +1972,7 @@ def main() -> int:
     pages = {
         'index.html': v2.page_home, 'explore.html': v2.page_explore, 'trends.html': page_trends, 'causes.html': page_causes,
         'places.html': v2.page_places, 'conservation.html': page_conservation, 'largest.html': v2.page_largest,
-        'drivers.html': v2.page_drivers, 'power-lines.html': v2.page_power, 'model.html': page_model, 'methods.html': page_methods, 'audit.html': v2.page_audit,
+        'drivers.html': v2.page_drivers, 'power-lines.html': v2.page_power, 'model.html': page_model, 'methods.html': page_methods, 'audit.html': v2.page_audit, 'built.html': v2.page_built,
         'geography.html': page_geography, 'ownership.html': page_ownership,
     }
     for name, fn in pages.items():
@@ -1958,6 +1982,11 @@ def main() -> int:
     for cid in place_ids:
         st = cid.rsplit('.', 1)[1]
         write(os.path.join(SITE_DIR, f'place-{st}.html'), v2.page_place(ctx, st))
+    for cid in [k for k in claims if k.startswith('power.state.')]:
+        st = cid.rsplit('.', 1)[1]
+        html_text = v2.page_utility_brief(ctx, st)
+        if html_text:
+            write(os.path.join(SITE_DIR, f'brief-{st}.html'), html_text)
 
     write(os.path.join(SITE_DIR, 'robots.txt'), 'User-agent: *\nAllow: /\n')
 

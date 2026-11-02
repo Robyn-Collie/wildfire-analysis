@@ -813,6 +813,20 @@ POWER_JS = r"""
       { type: 'scatter', mode: 'lines+markers', x: ys, y: ys.map(function (y) { return yr[y].fires; }), name: 'fires', yaxis: 'y2', line: { color: t.series[0] }, hovertemplate: '%{x}: %{y:,} fires<extra></extra>' }],
       layout: { yaxis: { title: { text: 'acres' }, rangemode: 'tozero' }, yaxis2: { title: { text: 'fires' }, overlaying: 'y', side: 'right', rangemode: 'tozero', showgrid: false }, legend: { orientation: 'h', y: -0.2 } } }; }
   });
+  var wb = C['power.weather_large_rate_by_wind'];
+  if (wb && wb.value['Power lines']) {
+    var bins = ['<10%', '10-30%', '30-50%', '50-70%', '70-90%', '>90%'], W = wb.value, G = ['Power lines', 'Other human causes'];
+    WF.chart({ el: 'pw-wind', title: 'Share reaching 300 acres, by how windy the day was', claims: ['power.weather_large_rate_by_wind', 'power.weather_summary'],
+      sub: 'Wind-speed percentile of the discovery day at that location, 2010-2020. Bars: power lines and every other human cause.',
+      rows: [].concat.apply([], G.map(function (g) { return bins.map(function (k) { var r = W[g][k] || {}; return { cause: g, wind_bin: k, fires: r.fires, large_fires: r.large_fires, large_rate: r.large_rate }; }); })),
+      columns: [{ key: 'cause' }, { key: 'wind_bin', label: 'wind percentile' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'large_fires', label: '300+ acres', num: true, fmt: WF.fmt.int },
+        { key: 'large_rate', label: 'share reaching 300 acres', num: true, fmt: function (v) { return WF.fmt.pct(v, 2); } }],
+      height: 300,
+      build: function (t) { return { data: G.map(function (g, i) { return { type: 'bar', name: g, x: bins, y: bins.map(function (k) { var r = W[g][k]; return r && r.large_rate !== null ? r.large_rate * 100 : null; }),
+        marker: { color: i === 0 ? t.series[1] : t.series[0] }, hovertemplate: g + ', %{x}: %{y:.2f}%<extra></extra>' }; }),
+        layout: { barmode: 'group', yaxis: { ticksuffix: '%', rangemode: 'tozero' }, xaxis: { title: { text: 'wind-speed percentile of the day' } }, legend: { orientation: 'h', y: -0.3 } } }; }
+    });
+  }
   var mo = C['power.by_month'].value, ms = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].filter(function (m) { return mo[m]; });
   WF.chart({ el: 'pw-month', title: 'Power-line fires by month of discovery', claims: ['power.by_month', 'power.region_by_month'],
     sub: '1992-2020, all regions. Bars: fires; the table adds acres and 300+ acre fires.',
@@ -887,6 +901,30 @@ def page_power(ctx: dict) -> str:
 <div class="table-wrap"><table><thead><tr><th>Cause</th><th class="num">Incidents</th><th class="num">Structures destroyed</th><th class="num">Incidents destroying any</th><th class="num">Per 1,000 acres</th><th class="num">Fatalities</th></tr></thead>
 <tbody>{''.join(grow(k) for k in keys)}</tbody></table></div>
 <p class="small muted">Structure counts are summed from incident reports and are dominated by a few incidents; read them as a record of what was reported, not a rate. Fatalities on ICS-209 reports include responders and are incomplete. Incidents with no recorded cause (the largest group) and lightning fires are left out of this table.</p>"""
+    weather = ''
+    ws = claim_or(c, 'power.weather_summary')
+    wb = claim_or(c, 'power.weather_large_rate_by_wind')
+    if ws and 'Power lines' in ws and 'Other human causes' in ws:
+        a, b = ws['Power lines'], ws['Other human causes']
+        def wrow(label, key, f):
+            return (f'<tr><td>{label}</td><td class="num">{q(c, "power.weather_summary", f(a[key]))}</td>'
+                    f'<td class="num">{q(c, "power.weather_summary", f(b[key]))}</td></tr>')
+        wtab = ''.join([
+            wrow('Fires with a weather row', 'fires', fmt_int),
+            wrow('Median wind speed, m/s (daily mean at 10 m)', 'wind_median', lambda v: fmt_num(v, 1)),
+            (f'<tr><td>Middle half of wind speeds, m/s</td>'
+             + ''.join(f'<td class="num">{q(c, "power.weather_summary", fmt_num(x["wind_p25"], 1))} to {q(c, "power.weather_summary", fmt_num(x["wind_p75"], 1))}</td>' for x in (a, b))
+             + '</tr>'),
+            wrow('Started on a day in the windiest 10% for that place', 'share_wind_top10pct_day', lambda v: fmt_pct(v, 0)),
+            wrow('Started on a day in the top 10% of energy release component', 'share_erc_top10pct_day', lambda v: fmt_pct(v, 0)),
+            wrow('Median minimum relative humidity, %', 'rh_min_median', lambda v: fmt_num(v, 0)),
+        ])
+        weather = f"""
+<h2>Weather on the day of ignition (2010-2020)</h2>
+<p>The fire record has no weather, but the <a href="model.html">ranking model</a> joins daily gridMET weather at each ignition point for 2010-2020 (conterminous US). The same join, for human-caused fires with a known cause:</p>
+<div class="table-wrap"><table><thead><tr><th></th><th class="num">Power lines</th><th class="num">Other human causes</th></tr></thead><tbody>{wtab}</tbody></table></div>
+{B.chart_div('pw-wind')}
+<p class="small muted">Daily values on a grid of about 4 km: no gusts, no hour of ignition, and nothing about the days after, which is when a fire grows. Percentile bins are as provided by FPA FOD-Attributes for that location. Sample: {q(c, 'power.weather_summary', fmt_pct(ws['join_rate'], 1))} of these fires have a weather row.</p>"""
     inc = cv(c, 'power.largest_incidents')
     isum = cv(c, 'power.incident_summary')
     inc_rows = ''.join(
@@ -901,7 +939,7 @@ def page_power(ctx: dict) -> str:
     body = f"""
 <header class="page-head"><h1>Power-line ignitions</h1>
 <p class="lede">The record has one utility cause, "power generation, transmission or distribution". Across 1992-2020 it accounts for {q(c, 'power.overview', fmt_int(o['fires']) + ' fires')} and {q(c, 'power.overview', fmt_int(o['acres']) + ' acres')}: {q(c, 'power.overview', fmt_pct(o['share_of_all_fires'], 1))} of all fires and {q(c, 'power.overview', fmt_pct(o['share_of_all_acres'], 1))} of all acres burned.</p></header>
-<div class="note"><p><strong>What this record cannot say.</strong> The cause is coded at ignition by the reporting agency, and {q(c, 'power.overview', fmt_pct(o['general_cause_missing_share'], 0))} of all fires have no general cause, so power-line fires are undercounted by an unknown amount. The code does not distinguish vegetation contact from equipment failure, or transmission from distribution. There is no weather in the record, so wind is not examined. Nothing on this page attributes a fire to a named utility.</p></div>
+<div class="note"><p><strong>What this record cannot say.</strong> The cause is coded at ignition by the reporting agency, and {q(c, 'power.overview', fmt_pct(o['general_cause_missing_share'], 0))} of all fires have no general cause, so power-line fires are undercounted by an unknown amount. The code does not distinguish vegetation contact from equipment failure, or transmission from distribution. The fire record has no weather; the weather section below joins daily weather for 2010-2020, which cannot show gusts or what happened after ignition. Nothing on this page attributes a fire to a named utility.</p></div>
 
 <h2>Do power-line fires get large?</h2>
 <p>{q(c, 'power.large_rate_vs_other_human', fmt_pct(v['power_large_rate'], 2))} of power-line fires reached 300 acres, against {q(c, 'power.large_rate_vs_other_human', fmt_pct(v['other_human_large_rate'], 2))} for every other human cause: {compare}. Power lines rank {q(c, 'power.large_rate_vs_other_human', str(v['power_rank_among_human_causes']))} of {v['human_causes']} human causes by this rate. They are {q(c, 'power.large_rate_by_human_cause', fmt_pct(pw['share_of_fires'], 1))} of human-caused fires with a known cause, {q(c, 'power.large_rate_by_human_cause', fmt_pct(pw['share_of_large_fires'], 1))} of those that reach 300 acres, and {q(c, 'power.large_rate_by_human_cause', fmt_pct(pw['share_of_acres'], 1))} of their acres.{check}</p>
@@ -913,14 +951,111 @@ def page_power(ctx: dict) -> str:
 {B.chart_div('pw-month')}
 {B.chart_div('pw-year')}
 <p class="small">{wf_text}</p>
+{weather}
 {losses}
 <h2>The largest power-line incidents</h2>
 <p>{q(c, 'power.incident_summary', fmt_int(isum['incidents_10k_plus']))} incidents led by a power-line record burned 10,000 acres or more, and {q(c, 'power.incident_summary', fmt_int(isum['incidents_100k_plus']))} burned 100,000 or more. The {len(inc)} largest hold {q(c, 'power.incident_summary', fmt_pct(isum['top_incident_share_of_power_acres'], 0))} of all power-line acres. Incidents are grouped with the same rule as the <a href="largest.html">Largest fires</a> page; the cause is that of the largest record.</p>
 <div class="table-wrap"><table><thead><tr><th class="num">Rank</th><th>Incident</th><th class="num">Acres</th><th>State</th><th>Year</th></tr></thead><tbody>{inc_rows}</tbody></table></div>
+{''.join(f'<p>State view: <a href="brief-{k.rsplit(".", 1)[1]}.html">{esc(cv(c, "places.state." + k.rsplit(".", 1)[1])["name"])}: when and where power-line ignitions become large fires</a>.</p>' for k in c if k.startswith('power.state.') and ('places.state.' + k.rsplit('.', 1)[1]) in c)}
 <p class="small">Definition: {esc(cv(c, 'power.definition'))} Code: <a href="{B.REPO_URL}/blob/main/analysis/power_lines.py">analysis/power_lines.py</a>.</p>
 """
     return B.layout(ctx, 'power-lines.html', 'Power-line ignitions · ' + B.SITE_TITLE, body, POWER_JS,
                     description='US wildfires coded to power generation, transmission or distribution, 1992-2020: how many, where, when, how large, and what the record cannot say.')
+
+
+# =========================================================================== utility brief
+
+BRIEF_JS = r"""
+(function(){
+  var C = WF.data.claims, st = document.body.getAttribute('data-state'); var P = C['power.state.' + st]; if (!P) return;
+  var M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], mo = P.value.by_month;
+  WF.chart({ el: 'ub-month', title: 'Power-line fires by month, and how many reached 300 acres', claims: ['power.state.' + st],
+    sub: 'Bars: power-line fires per month, 1992-2020. Line: those that reached 300 acres.',
+    rows: M.map(function (m) { return { month: m, fires: mo[m].fires, large_fires: mo[m].large_fires, large_rate: mo[m].large_rate }; }),
+    columns: [{ key: 'month' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'large_fires', label: '300+ acres', num: true, fmt: WF.fmt.int },
+      { key: 'large_rate', label: 'share reaching 300 acres', num: true, fmt: function (v) { return WF.fmt.pct(v, 1); } }],
+    height: 300,
+    build: function (t) { return { data: [
+      { type: 'bar', x: M, y: M.map(function (m) { return mo[m].fires; }), name: 'fires', marker: { color: t.series[1] }, hovertemplate: '%{x}: %{y:,} fires<extra></extra>' },
+      { type: 'scatter', mode: 'lines+markers', x: M, y: M.map(function (m) { return mo[m].large_fires; }), name: '300+ acres', yaxis: 'y2', line: { color: t.series[0] }, hovertemplate: '%{x}: %{y} reached 300 acres<extra></extra>' }],
+      layout: { yaxis: { title: { text: 'fires' }, rangemode: 'tozero' }, yaxis2: { title: { text: '300+ acres' }, overlaying: 'y', side: 'right', rangemode: 'tozero', showgrid: false }, legend: { orientation: 'h', y: -0.2 } } }; }
+  });
+})();
+"""
+
+
+def page_utility_brief(ctx: dict, st: str) -> str:
+    c = ctx['claims']
+    pid, sid = f'power.state.{st}', f'places.state.{st}'
+    if pid not in c or sid not in c:
+        return ''
+    P, S = cv(c, pid), cv(c, sid)
+    name = S['name']
+    big_months = [kv for kv in sorted(P['by_month'].items(), key=lambda kv: -kv[1]['large_fires']) if kv[1]['large_fires'] > 0][:3]
+    months_txt = ', '.join(f'{month_name(m)} ({q(c, pid, fmt_int(v["large_fires"]))})' for m, v in big_months)
+    rates = P['large_rate_by_human_cause']
+    rank = list(rates).index(POWER) + 1 if POWER in rates else None
+    cty_rows = ''.join(
+        f'<tr><td>{esc(name_case(k))}</td><td class="num">{q(c, pid, fmt_int(v["fires"]))}</td><td class="num">{q(c, pid, fmt_int(v["large_fires"]))}</td>'
+        f'<td class="num">{q(c, pid, fmt_int(v["acres"]))}</td></tr>' for k, v in P['top_counties'].items())
+    inc_rows = ''.join(
+        f'<tr><td>{esc(name_case(r["name"]))}</td><td>{r["year"]}</td><td class="num">{q(c, pid, fmt_int(r["acres"]))}</td></tr>'
+        for r in P['largest_incidents'])
+    rate_rows = ''.join(
+        f'<tr><td>{"<strong>Power lines</strong>" if k == POWER else esc(k)}</td><td class="num">{q(c, pid, fmt_int(v["fires"]))}</td>'
+        f'<td class="num">{q(c, pid, fmt_int(v["large_fires"]))}</td><td class="num">{q(c, pid, fmt_pct(v["large_rate"], 2))}</td></tr>'
+        for k, v in rates.items())
+    losses = S.get('losses') or {}
+    hg = losses.get('human_by_general_cause') or {}
+    loss_txt = ''
+    if POWER in hg:
+        loss_txt = (f'<p>Of the {q(c, sid, fmt_int(losses["structures_destroyed"]))} structures that ICS-209 incident reports record as destroyed in {esc(name)} '
+                    f'(1999-2020, incidents whose largest fire started here), {q(c, sid, fmt_int(hg[POWER]))} were in incidents led by a power-line fire. '
+                    f'Totals like this are dominated by a few incidents.</p>')
+    hs = claim_or(c, 'model.holdout_per_state', st)
+    model_txt = ''
+    if hs:
+        hf, cl = hs['hgb_full'], hs['climatology_cell_month']
+        model_txt = f"""
+<h2>Can a model rank new ignitions by how likely they are to get large?</h2>
+<p>The site's <a href="model.html">ranking model</a> was trained on 2010-2018 fires and tested on 2019-2020 fires it had not seen. In {esc(name)}, {q(c, 'model.holdout_per_state', fmt_int(hf['n']))} test fires, {q(c, 'model.holdout_per_state', fmt_int(hf['n_positive']))} of which reached 300 acres:
+the tenth of fires the model ranked highest held {q(c, 'model.holdout_per_state', fmt_pct(hf['top_decile_recall'], 0))} of the fires that reached 300 acres, against {q(c, 'model.holdout_per_state', fmt_pct(cl['top_decile_recall'], 0))} for a lookup of the usual rate by place and month.</p>
+<p class="note">The scores are ranks, not probabilities, and the model sees only the cause class (human, natural, unknown), not "power line". It says which ignitions deserve attention first; it does not say why a fire started or whether any equipment was involved.</p>"""
+    body = f"""
+<header class="page-head"><p class="small muted">A demonstration of scoping a utility's question into an analysis, built only from public data.</p>
+<h1>{esc(name)}: when and where do power-line ignitions become large fires?</h1>
+<p class="lede">The question a utility wildfire team might ask: when and where do our highest-risk ignitions start, and what does the public record not tell us? This page answers it for {esc(name)} from the FPA FOD record of 1992-2020. It describes fires, not any utility.</p></header>
+
+<h2>How big a share</h2>
+<p>{esc(name)} recorded {q(c, pid, fmt_int(P['fires']) + ' power-line fires')} in 1992-2020, burning {q(c, pid, fmt_int(P['acres']) + ' acres')}. They are {q(c, pid, fmt_pct(P['share_of_known_human_fires'], 1))} of human-caused fires with a known cause, {q(c, pid, fmt_pct(P['share_of_known_human_large_fires'], 1))} of those that reached 300 acres and {q(c, pid, fmt_pct(P['share_of_known_human_acres'], 1))} of their acres.
+{q(c, pid, fmt_pct(P['large_rate'], 2))} of power-line fires reached 300 acres, against {q(c, pid, fmt_pct(P['other_human_large_rate'], 2))} for every other human cause in the state{f", ranking {rank} of {len(rates)} human causes" if rank else ''}.</p>
+<div class="table-wrap"><table><thead><tr><th>Human cause</th><th class="num">Fires</th><th class="num">300+ acres</th><th class="num">Share reaching 300 acres</th></tr></thead><tbody>{rate_rows}</tbody></table></div>
+
+<h2>When</h2>
+<p>{('The months with the most power-line fires that reached 300 acres were ' + months_txt + '.') if months_txt else 'No power-line fire here reached 300 acres.'}</p>
+{B.chart_div('ub-month')}
+
+<h2>Where</h2>
+<p>Counties as recorded in the fire report. The county is blank for {q(c, pid, fmt_pct(P['county_missing_share'], 0))} of {esc(name)}'s power-line records, so this list is incomplete.</p>
+<div class="table-wrap"><table><thead><tr><th>County</th><th class="num">Power-line fires</th><th class="num">300+ acres</th><th class="num">Acres</th></tr></thead><tbody>{cty_rows}</tbody></table></div>
+<h3>The largest power-line incidents</h3>
+<div class="table-wrap"><table><thead><tr><th>Incident</th><th>Year</th><th class="num">Acres</th></tr></thead><tbody>{inc_rows}</tbody></table></div>
+{loss_txt}
+{model_txt}
+
+<h2>What the record does not tell you</h2>
+<ul class="tight">
+<li><strong>Undercount.</strong> The general cause is missing for {q(c, pid, fmt_pct(P['general_cause_missing_share'], 0))} of {esc(name)}'s fires; some of those are power-line fires.</li>
+<li><strong>Mechanism.</strong> One code covers vegetation contact, equipment failure, conductor clash and animal contact, and transmission, distribution and generation alike. Which of these started a fire is the question a utility most needs answered, and this record cannot answer it.</li>
+<li><strong>Exposure.</strong> There is no denominator: the record has no line miles, no vegetation near lines and no outage or de-energization data, so it cannot say whether one area's lines are riskier than another's.</li>
+<li><strong>Weather.</strong> The fire record has no wind or humidity. The national <a href="power-lines.html">power-line page</a> adds daily weather for 2010-2020, which still cannot show gusts or what happened after ignition.</li>
+<li><strong>Time.</strong> The record ends in 2020.</li>
+</ul>
+<p class="small">Sources: {q(c, pid, 'power-line claims for ' + st)}, the <a href="place-{st}.html">{esc(name)} state brief</a>, the national <a href="power-lines.html">power-line page</a>, and <a href="model.html">the ranking model</a>. Code: <a href="{B.REPO_URL}/blob/main/analysis/power_lines.py">analysis/power_lines.py</a>.</p>
+"""
+    return B.layout(ctx, f'brief-{st}.html', f'{name} power-line brief · ' + B.SITE_TITLE, body, BRIEF_JS, nav_page='power-lines.html',
+                    extra_scripts=[f'data/place_{st}.js'], body_attrs=f'data-state="{st}"',
+                    description=f'When and where power-line ignitions in {name} became large fires, 1992-2020, and what the public record cannot say. A demonstration built from public data.')
 
 
 # =========================================================================== drivers
@@ -1044,6 +1179,40 @@ def page_audit(ctx: dict) -> str:
 """
     return B.layout(ctx, 'audit.html', 'Audit · ' + B.SITE_TITLE, body, nav_page='methods.html',
                     description='What held and what changed when the first public wildfire site was rebuilt and re-tested.')
+
+
+# =========================================================================== how this was built
+
+def page_built(ctx: dict) -> str:
+    c = ctx['claims']
+    n_files = len(ctx['claims_files'])
+    panel_src = 'docs/review/PANEL_REPORT.md, section 2 (sentence ledger in docs/review/panel-rai.md, section b)'
+    body = f"""
+<header class="page-head"><h1>How this was built</h1>
+<p class="lede">This site makes a narrow promise: every number on it can be traced to the code that computed it, and every claim was tested by someone trying to break it. This page explains how that works, who did what, and what happens when a check fails.</p></header>
+
+<h2>Every number is a claim in a ledger</h2>
+<p>The analysis code does not print numbers for a person to copy. Each number is registered as a claim with an id, a plain-language definition, the number of records behind it and the time it was computed, and written to a JSON ledger. There are {qd(f"{ctx['n_claims']:,}", 'Claims in the ledger files this site was built from.', ', '.join(ctx['claims_files']))} claims in {n_files} ledger files. The pages are generated from the ledger by <code>scripts/build_site.py</code>; only the prose is written by hand.</p>
+<p>Click any underlined number on the site to see its definition and n. The <a href="methods.html">Data and methods</a> page has the whole ledger, searchable, and every ledger file is downloadable.</p>
+
+<h2>A test checks every number on every page</h2>
+<p><a href="{B.REPO_URL}/blob/main/tests/test_site_claims.py">tests/test_site_claims.py</a> reads every generated page, finds every number that links to a claim, and checks that the claim exists and that the number matches it at the precision it is written with. If the analysis is re-run and the site is not rebuilt, or if anyone edits a page by hand, the test fails. The test suite runs on every change to the repository.</p>
+
+<h2>Claims were reviewed by reviewers trying to refute them</h2>
+<p>Before this version was written, the project's earlier README was put through an adversarial review from five angles: machine-learning method, fire science, reproducibility, responsible AI, and conservation. Each reviewer re-ran its own code on the data and was asked to argue against the project as hard as the evidence allowed. Of its {qd('60', 'Sentences in the README ledger.', panel_src)} sentences, {qd('21', 'Sentences supported.', panel_src)} were supported, {qd('24', 'Sentences weakened.', panel_src)} weakened, {qd('7', 'Sentences refuted.', panel_src)} refuted and {qd('8', 'Sentences unverifiable.', panel_src)} unverifiable.
+The fire-duration model and the "control efficiency score" did not survive and were retired; the large-fire ranking model on the <a href="model.html">Prediction</a> page replaced them. Report: <a href="{B.DOCS_URL}/review/PANEL_REPORT.md">docs/review/PANEL_REPORT.md</a>.</p>
+<p>The first public site was audited the same way: each analysis rebuilt from the original sources, its numbers replicated, then tested more strictly. See the <a href="audit.html">audit</a>.</p>
+
+<h2>When a check fails, the correction stays visible</h2>
+<p>Claims that were wrong are not quietly removed. The <a href="methods.html#errata">errata</a> list each one: what was claimed, what the check found, and the evidence. When an input dataset is missing or a number cannot be computed, the page says so instead of estimating it.</p>
+
+<h2>Who did what</h2>
+<p>Robyn Collie chose the questions, directed the work, and decided what was published and how it is worded. Most of the code, the analysis runs and the adversarial reviews were done by Claude Code, an AI coding agent from Anthropic, working in sessions Robyn directed; the repository's <a href="{B.REPO_URL}/commits/main">commit history</a> records which commits it wrote. The safeguards above are there partly for that reason: a number is trusted because it is in the ledger and passes the tests, not because a person or an agent typed it.</p>
+
+<p class="small">Technical detail: <a href="{B.DOCS_URL}/SITE.md">docs/SITE.md</a> (how the site is generated and deployed) and <a href="{B.REPO_URL}">the repository</a>.</p>
+"""
+    return B.layout(ctx, 'built.html', 'How this was built · ' + B.SITE_TITLE, body, nav_page='methods.html',
+                    description='How every number on this site is tied to code, tested, reviewed adversarially and corrected in the open, and how AI was used.')
 
 
 def downloads_section(ctx: dict) -> str:
