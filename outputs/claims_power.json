@@ -1,0 +1,1042 @@
+{
+ "power.by_month": {
+  "computed_at": "2026-11-02T21:36:24+00:00",
+  "definition": "Power-line fires, acres and 300+ acre fires by discovery month, 1992-2020.",
+  "n": 32652,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "Apr": {
+    "acres": 446196.7642,
+    "fires": 4557,
+    "large_fires": 101
+   },
+   "Aug": {
+    "acres": 454140.849275,
+    "fires": 3699,
+    "large_fires": 112
+   },
+   "Dec": {
+    "acres": 98564.11099999999,
+    "fires": 837,
+    "large_fires": 20
+   },
+   "Feb": {
+    "acres": 148113.33499,
+    "fires": 1853,
+    "large_fires": 64
+   },
+   "Jan": {
+    "acres": 66027.984,
+    "fires": 1327,
+    "large_fires": 36
+   },
+   "Jul": {
+    "acres": 274546.02445,
+    "fires": 3828,
+    "large_fires": 93
+   },
+   "Jun": {
+    "acres": 404332.005775,
+    "fires": 3380,
+    "large_fires": 79
+   },
+   "Mar": {
+    "acres": 246930.073925,
+    "fires": 3133,
+    "large_fires": 79
+   },
+   "May": {
+    "acres": 252523.359725,
+    "fires": 3727,
+    "large_fires": 44
+   },
+   "Nov": {
+    "acres": 222840.612,
+    "fires": 1665,
+    "large_fires": 32
+   },
+   "Oct": {
+    "acres": 534104.76,
+    "fires": 2005,
+    "large_fires": 42
+   },
+   "Sep": {
+    "acres": 361794.215075,
+    "fires": 2641,
+    "large_fires": 61
+   }
+  }
+ },
+ "power.by_region": {
+  "computed_at": "2026-11-02T21:36:24+00:00",
+  "definition": "Power-line fires, acres and 300+ acre fires by project region, with the power-line share of each region's fires and acres, 1992-2020.",
+  "n": 32652,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "Alaska": {
+    "acres": 14901.5,
+    "fires": 465,
+    "large_fires": 4.0,
+    "share_of_region_acres": 0.00040654239231371247,
+    "share_of_region_fires": 0.03060217176702863
+   },
+   "Hawaii/PR": {
+    "acres": 0.1,
+    "fires": 1,
+    "large_fires": 0.0,
+    "share_of_region_acres": 2.1159293125569952e-07,
+    "share_of_region_fires": 3.108292925525301e-05
+   },
+   "Northeast": {
+    "acres": 2956.4712250000002,
+    "fires": 2794,
+    "large_fires": 0.0,
+    "share_of_region_acres": 0.006947098992572782,
+    "share_of_region_fires": 0.015485487205351749
+   },
+   "Other": {
+    "acres": 225001.9582,
+    "fires": 4475,
+    "large_fires": 50.0,
+    "share_of_region_acres": 0.03171416691715262,
+    "share_of_region_fires": 0.01859052651694542
+   },
+   "South": {
+    "acres": 1000807.76199,
+    "fires": 15574,
+    "large_fires": 357.0,
+    "share_of_region_acres": 0.030389965967204453,
+    "share_of_region_fires": 0.014386163271037016
+   },
+   "West": {
+    "acres": 2266446.303,
+    "fires": 9343,
+    "large_fires": 352.0,
+    "share_of_region_acres": 0.022118260008186313,
+    "share_of_region_fires": 0.012416111842017834
+   }
+  }
+ },
+ "power.by_year": {
+  "computed_at": "2026-11-02T21:36:23+00:00",
+  "definition": "Power-line fires, acres and fires of 300+ acres by FIRE_YEAR, every record. Year-to-year counts include reporting changes (see the coverage notes on the Trend page); large-fire counts are less exposed to them.",
+  "n": 32652,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "1992": {
+    "acres": 3365.39,
+    "fires": 192,
+    "large_fires": 4,
+    "share_of_year_fires": 0.002825149718220744
+   },
+   "1993": {
+    "acres": 34625.659999999996,
+    "fires": 166,
+    "large_fires": 6,
+    "share_of_year_fires": 0.0026784993949173054
+   },
+   "1994": {
+    "acres": 17389.02,
+    "fires": 210,
+    "large_fires": 14,
+    "share_of_year_fires": 0.00276563240794395
+   },
+   "1995": {
+    "acres": 28553.09,
+    "fires": 202,
+    "large_fires": 15,
+    "share_of_year_fires": 0.0028275475923852183
+   },
+   "1996": {
+    "acres": 88918.31,
+    "fires": 361,
+    "large_fires": 25,
+    "share_of_year_fires": 0.004777596908458067
+   },
+   "1997": {
+    "acres": 65121.92,
+    "fires": 331,
+    "large_fires": 7,
+    "share_of_year_fires": 0.005387194427264737
+   },
+   "1998": {
+    "acres": 8960.35,
+    "fires": 553,
+    "large_fires": 5,
+    "share_of_year_fires": 0.008089999414828252
+   },
+   "1999": {
+    "acres": 142738.97,
+    "fires": 612,
+    "large_fires": 26,
+    "share_of_year_fires": 0.00684946838276441
+   },
+   "2000": {
+    "acres": 37496.161,
+    "fires": 520,
+    "large_fires": 8,
+    "share_of_year_fires": 0.005394414706004398
+   },
+   "2001": {
+    "acres": 61712.13,
+    "fires": 551,
+    "large_fires": 10,
+    "share_of_year_fires": 0.0063332605372352045
+   },
+   "2002": {
+    "acres": 38175.85,
+    "fires": 574,
+    "large_fires": 13,
+    "share_of_year_fires": 0.0075399327448507775
+   },
+   "2003": {
+    "acres": 22641.54,
+    "fires": 478,
+    "large_fires": 14,
+    "share_of_year_fires": 0.007001098498718418
+   },
+   "2004": {
+    "acres": 26965.11,
+    "fires": 475,
+    "large_fires": 8,
+    "share_of_year_fires": 0.006847340348853971
+   },
+   "2005": {
+    "acres": 77115.33,
+    "fires": 652,
+    "large_fires": 9,
+    "share_of_year_fires": 0.007016713121899248
+   },
+   "2006": {
+    "acres": 99502.94999000001,
+    "fires": 820,
+    "large_fires": 31,
+    "share_of_year_fires": 0.0069525109586834315
+   },
+   "2007": {
+    "acres": 325253.22000000003,
+    "fires": 1051,
+    "large_fires": 22,
+    "share_of_year_fires": 0.010633669577182633
+   },
+   "2008": {
+    "acres": 73484.6351,
+    "fires": 856,
+    "large_fires": 22,
+    "share_of_year_fires": 0.009693565556134352
+   },
+   "2009": {
+    "acres": 147431.775,
+    "fires": 1625,
+    "large_fires": 46,
+    "share_of_year_fires": 0.01994060766701026
+   },
+   "2010": {
+    "acres": 50339.0,
+    "fires": 1875,
+    "large_fires": 25,
+    "share_of_year_fires": 0.021909580621414133
+   },
+   "2011": {
+    "acres": 630859.218,
+    "fires": 3182,
+    "large_fires": 138,
+    "share_of_year_fires": 0.03217293712020869
+   },
+   "2012": {
+    "acres": 190121.45,
+    "fires": 1156,
+    "large_fires": 43,
+    "share_of_year_fires": 0.015567346279188774
+   },
+   "2013": {
+    "acres": 117474.757,
+    "fires": 1172,
+    "large_fires": 12,
+    "share_of_year_fires": 0.017641569076075503
+   },
+   "2014": {
+    "acres": 41197.761,
+    "fires": 1767,
+    "large_fires": 19,
+    "share_of_year_fires": 0.02507094211123723
+   },
+   "2015": {
+    "acres": 89663.407,
+    "fires": 2098,
+    "large_fires": 26,
+    "share_of_year_fires": 0.02714978971206729
+   },
+   "2016": {
+    "acres": 107412.9781,
+    "fires": 2360,
+    "large_fires": 45,
+    "share_of_year_fires": 0.028782944885539008
+   },
+   "2017": {
+    "acres": 218528.53,
+    "fires": 2351,
+    "large_fires": 39,
+    "share_of_year_fires": 0.02857351207476999
+   },
+   "2018": {
+    "acres": 346060.301225,
+    "fires": 2301,
+    "large_fires": 47,
+    "share_of_year_fires": 0.02845659163987138
+   },
+   "2019": {
+    "acres": 148400.99,
+    "fires": 1953,
+    "large_fires": 35,
+    "share_of_year_fires": 0.030728322608052614
+   },
+   "2020": {
+    "acres": 270604.291,
+    "fires": 2208,
+    "large_fires": 49,
+    "share_of_year_fires": 0.030138407359886436
+   }
+  }
+ },
+ "power.definition": {
+  "computed_at": "2026-11-02T21:36:23+00:00",
+  "definition": "How this page selects power-line fires.",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": "Power-line fires = FPA FOD 6th edition records with NWCG_GENERAL_CAUSE = \"Power generation/transmission/distribution\", 1992-2020. The code is assigned at ignition by the reporting agency. It does not separate generation, transmission and distribution, or vegetation contact from equipment failure."
+ },
+ "power.incident_summary": {
+  "computed_at": "2026-11-02T21:36:28+00:00",
+  "definition": "Incidents led by a power-line record, and how concentrated their acres are in the top 25.",
+  "n": 32626,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "by_region_10k_plus": {
+    "Other": 6,
+    "South": 18,
+    "West": 42
+   },
+   "incidents": 32626,
+   "incidents_100k_plus": 4,
+   "incidents_10k_plus": 66,
+   "top_incident_share_of_power_acres": 0.4332032705638299
+  }
+ },
+ "power.large_rate_by_human_cause": {
+  "computed_at": "2026-11-02T21:36:24+00:00",
+  "definition": "Human-caused records with a general cause, 1992-2020: fires, fires of 300+ acres, the rate, and each cause's share of fires, of large fires and of acres. A ratio of share of large fires to share of fires above 1 means the cause produces more than its share of large fires.",
+  "n": 1378314,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "Arson/incendiarism": {
+    "acres": 10782417.442375,
+    "fires": 320814,
+    "large_fires": 3719,
+    "large_rate": 0.011592386865909842,
+    "large_share_over_fire_share": 1.375038649802036,
+    "share_of_acres": 0.2649366721071504,
+    "share_of_fires": 0.23275828294568582,
+    "share_of_large_fires": 0.32005163511187606
+   },
+   "Debris and open burning": {
+    "acres": 7793318.3386805,
+    "fires": 535851,
+    "large_fires": 2697,
+    "large_rate": 0.005033115548911918,
+    "large_share_over_fire_share": 0.5970063360312376,
+    "share_of_acres": 0.19149099321708757,
+    "share_of_fires": 0.38877280503571754,
+    "share_of_large_fires": 0.2320998278829604
+   },
+   "Equipment and vehicle use": {
+    "acres": 9935759.6844575,
+    "fires": 190319,
+    "large_fires": 2607,
+    "large_rate": 0.013698054319327024,
+    "large_share_over_fire_share": 1.6248037901109216,
+    "share_of_acres": 0.24413329568482595,
+    "share_of_fires": 0.1380810178232246,
+    "share_of_large_fires": 0.22435456110154905
+   },
+   "Firearms and explosives use": {
+    "acres": 647987.73,
+    "fires": 2734,
+    "large_fires": 166,
+    "large_rate": 0.06071689831748354,
+    "large_share_over_fire_share": 7.2019751280175575,
+    "share_of_acres": 0.01592182028473314,
+    "share_of_fires": 0.0019835828410652433,
+    "share_of_large_fires": 0.014285714285714285
+   },
+   "Fireworks": {
+    "acres": 547382.5735,
+    "fires": 18599,
+    "large_fires": 217,
+    "large_rate": 0.011667293940534437,
+    "large_share_over_fire_share": 1.3839238020958504,
+    "share_of_acres": 0.013449833320550266,
+    "share_of_fires": 0.013494022407085759,
+    "share_of_large_fires": 0.018674698795180723
+   },
+   "Misuse of fire by a minor": {
+    "acres": 491157.31787,
+    "fires": 66280,
+    "large_fires": 162,
+    "large_rate": 0.002444176222088111,
+    "large_share_over_fire_share": 0.2899175822178272,
+    "share_of_acres": 0.012068312692676587,
+    "share_of_fires": 0.0480877361762269,
+    "share_of_large_fires": 0.013941480206540447
+   },
+   "Other causes": {
+    "acres": 447651.7269,
+    "fires": 10517,
+    "large_fires": 55,
+    "large_rate": 0.005229628220975563,
+    "large_share_over_fire_share": 0.6203158168473074,
+    "share_of_acres": 0.010999329178427868,
+    "share_of_fires": 0.007630336773768532,
+    "share_of_large_fires": 0.004733218588640275
+   },
+   "Power generation/transmission/distribution": {
+    "acres": 3510114.094415,
+    "fires": 32652,
+    "large_fires": 763,
+    "large_rate": 0.023367634448119564,
+    "large_share_over_fire_share": 2.771767444640746,
+    "share_of_acres": 0.08624762970463105,
+    "share_of_fires": 0.023689812335940866,
+    "share_of_large_fires": 0.06566265060240964
+   },
+   "Railroad operations and maintenance": {
+    "acres": 944559.591917,
+    "fires": 37292,
+    "large_fires": 373,
+    "large_rate": 0.010002145232221388,
+    "large_share_over_fire_share": 1.1864110846475033,
+    "share_of_acres": 0.023208939574709767,
+    "share_of_fires": 0.02705624407790968,
+    "share_of_large_fires": 0.03209982788296041
+   },
+   "Recreation and ceremony": {
+    "acres": 4654571.4160474995,
+    "fires": 99473,
+    "large_fires": 592,
+    "large_rate": 0.005951363686628532,
+    "large_share_over_fire_share": 0.7059249473641754,
+    "share_of_acres": 0.11436829149336536,
+    "share_of_fires": 0.07217005704070335,
+    "share_of_large_fires": 0.05094664371772806
+   },
+   "Smoking": {
+    "acres": 943173.54375,
+    "fires": 63783,
+    "large_fires": 269,
+    "large_rate": 0.0042174247056425695,
+    "large_share_over_fire_share": 0.5002526261388152,
+    "share_of_acres": 0.023174882741842023,
+    "share_of_fires": 0.0462761025426717,
+    "share_of_large_fires": 0.023149741824440618
+   }
+  }
+ },
+ "power.large_rate_vs_other_human": {
+  "computed_at": "2026-11-02T21:36:24+00:00",
+  "definition": "Share of power-line fires reaching 300 acres against the same share for every other human general cause pooled, 1992-2020, and power's rank by that rate.",
+  "n": 1378314,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "human_causes": 11,
+   "other_human_large_rate": 0.008068147870713449,
+   "power_large_rate": 0.023367634448119564,
+   "power_rank_among_human_causes": 2,
+   "ratio": 2.896282371440128
+  }
+ },
+ "power.large_rate_vs_other_human_2010_2020_usable": {
+  "computed_at": "2026-11-02T21:36:24+00:00",
+  "definition": "Same comparison restricted to 2010-2020 and usable state-years, as a check that the result is not an artifact of early reporting.",
+  "n": 423733,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "other_human_large_rate": 0.008727390100681557,
+   "power_fires": 20978,
+   "power_large_rate": 0.022499761655067212,
+   "ratio": 2.5780630171796854
+  }
+ },
+ "power.largest_incidents": {
+  "computed_at": "2026-11-02T21:36:28+00:00",
+  "definition": "The 25 largest incidents whose largest record is coded Power generation/transmission/distribution. Records share an incident when they share ICS_209_PLUS_COMPLEX_JOIN_ID, ICS_209_PLUS_INCIDENT_JOIN_ID, or FIRE_YEAR+STATE+COMPLEX_NAME (transitively). Incident acres = sum of component FIRE_SIZE; no record is dropped.",
+  "n": 32626,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": [
+   {
+    "acres": 197990.0,
+    "components": 1,
+    "name": "WITCH",
+    "rank": 1,
+    "state": "CA",
+    "year": 2007
+   },
+   {
+    "acres": 156593.0,
+    "components": 1,
+    "name": "LAS CONCHAS",
+    "rank": 2,
+    "state": "NM",
+    "year": 2011
+   },
+   {
+    "acres": 153336.0,
+    "components": 1,
+    "name": "CAMP",
+    "rank": 3,
+    "state": "CA",
+    "year": 2018
+   },
+   {
+    "acres": 127430.0,
+    "components": 1,
+    "name": "WHITNEY",
+    "rank": 4,
+    "state": "WA",
+    "year": 2020
+   },
+   {
+    "acres": 76825.0,
+    "components": 1,
+    "name": "KINCADE",
+    "rank": 5,
+    "state": "CA",
+    "year": 2019
+   },
+   {
+    "acres": 61416.0,
+    "components": 1,
+    "name": "OIL CREEK",
+    "rank": 6,
+    "state": "WY",
+    "year": 2012
+   },
+   {
+    "acres": 56338.0,
+    "components": 1,
+    "name": "ZOGG",
+    "rank": 7,
+    "state": "CA",
+    "year": 2020
+   },
+   {
+    "acres": 54023.0,
+    "components": 1,
+    "name": "LEGION LAKE",
+    "rank": 8,
+    "state": "SD",
+    "year": 2017
+   },
+   {
+    "acres": 52000.0,
+    "components": 1,
+    "name": "SCHOOL",
+    "rank": 9,
+    "state": "WA",
+    "year": 2005
+   },
+   {
+    "acres": 47387.0,
+    "components": 1,
+    "name": "WOOD HOLLOW",
+    "rank": 10,
+    "state": "UT",
+    "year": 2012
+   },
+   {
+    "acres": 47000.0,
+    "components": 1,
+    "name": "LOKERN",
+    "rank": 11,
+    "state": "CA",
+    "year": 1997
+   },
+   {
+    "acres": 45862.0,
+    "components": 1,
+    "name": "RED BRIDGE",
+    "rank": 12,
+    "state": "ID",
+    "year": 2007
+   },
+   {
+    "acres": 45300.0,
+    "components": 1,
+    "name": "RANCH",
+    "rank": 13,
+    "state": "CA",
+    "year": 2007
+   },
+   {
+    "acres": 41830.0,
+    "components": 1,
+    "name": "UPPER WILLOW",
+    "rank": 14,
+    "state": "NV",
+    "year": 2001
+   },
+   {
+    "acres": 38104.0,
+    "components": 1,
+    "name": "RANKIN RANCH ROAD",
+    "rank": 15,
+    "state": "TX",
+    "year": 2017
+   },
+   {
+    "acres": 35041.0,
+    "components": 1,
+    "name": "EAST SLICK",
+    "rank": 16,
+    "state": "ID",
+    "year": 1999
+   },
+   {
+    "acres": 34068.0,
+    "components": 1,
+    "name": "BASTROP COUNTY COMPLEX",
+    "rank": 17,
+    "state": "TX",
+    "year": 2011
+   },
+   {
+    "acres": 32606.0,
+    "components": 1,
+    "name": "REY",
+    "rank": 18,
+    "state": "CA",
+    "year": 2016
+   },
+   {
+    "acres": 32000.0,
+    "components": 1,
+    "name": "KILLOUGH",
+    "rank": 19,
+    "state": "TX",
+    "year": 2011
+   },
+   {
+    "acres": 31861.0,
+    "components": 1,
+    "name": "MAYHILL",
+    "rank": 20,
+    "state": "NM",
+    "year": 2011
+   },
+   {
+    "acres": 30814.0,
+    "components": 1,
+    "name": "SUTTON",
+    "rank": 21,
+    "state": "TX",
+    "year": 2011
+   },
+   {
+    "acres": 30274.0,
+    "components": 1,
+    "name": "POWERHOUSE",
+    "rank": 22,
+    "state": "CA",
+    "year": 2013
+   },
+   {
+    "acres": 27531.0,
+    "components": 1,
+    "name": "MOUNTAIN",
+    "rank": 23,
+    "state": "CA",
+    "year": 2013
+   },
+   {
+    "acres": 26979.0,
+    "components": 1,
+    "name": "MILLIRON",
+    "rank": 24,
+    "state": "TX",
+    "year": 2018
+   },
+   {
+    "acres": 25747.0,
+    "components": 1,
+    "name": "238",
+    "rank": 25,
+    "state": "NM",
+    "year": 2009
+   }
+  ]
+ },
+ "power.limits": {
+  "computed_at": "2026-11-02T21:36:23+00:00",
+  "definition": "What the record cannot say about power-line fires.",
+  "n": null,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": "Undercount of unknown size: about a quarter of records have no general cause, and some of those are power-line fires. The cause code says nothing about the mechanism (vegetation contact, equipment failure, conductor clash, animal contact). The record has no weather, so wind is not examined. Nothing here attributes a fire to any named utility."
+ },
+ "power.losses_by_region": {
+  "computed_at": "2026-11-02T21:36:29+00:00",
+  "definition": "Losses for power-line incidents by region. ICS-209-PLUS incidents joined to FPA FOD via ICS_209_PLUS_INCIDENT_JOIN_ID, one row per incident, attributes from the largest joined fire, FIRE_YEAR 2010-2020, FIRE_SIZE >= 300 acres, Human cause with a recorded general cause (the losses-page sample, restricted to the human general causes)",
+  "n": 309,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "Alaska": {
+    "evacuation_reported_incidents": 1,
+    "fatalities": 0.0,
+    "fod_acres": 8150.8,
+    "ics_final_acres": 8150.8,
+    "incidents": 2,
+    "n_with_cost": 2,
+    "n_with_evacuation_flag": 1,
+    "n_with_peak_evacuations": 2,
+    "n_with_personnel": 2,
+    "n_with_threatened": 2,
+    "peak_evacuations_sum": 2056.0,
+    "peak_personnel_median": 142.77380952380955,
+    "peak_personnel_sum": 285.5476190476191,
+    "projected_cost_usd_sum": 16321295.0,
+    "residences_destroyed": 54.0,
+    "share_incidents_with_structures_destroyed": 1.0,
+    "structures_destroyed": 143.0,
+    "structures_destroyed_per_1000_acres": 17.544290131030085,
+    "structures_threatened_max_sum": 1084.0
+   },
+   "Other": {
+    "evacuation_reported_incidents": 3,
+    "fatalities": 0.0,
+    "fod_acres": 99639.0,
+    "ics_final_acres": 99639.0,
+    "incidents": 9,
+    "n_with_cost": 7,
+    "n_with_evacuation_flag": 4,
+    "n_with_peak_evacuations": 4,
+    "n_with_personnel": 6,
+    "n_with_threatened": 6,
+    "peak_evacuations_sum": 430.0,
+    "peak_personnel_median": 58.25,
+    "peak_personnel_sum": 416.01190476190476,
+    "projected_cost_usd_sum": 3401500.0,
+    "residences_destroyed": 6.0,
+    "share_incidents_with_structures_destroyed": 0.6666666666666666,
+    "structures_destroyed": 29.0,
+    "structures_destroyed_per_1000_acres": 0.2910506930017363,
+    "structures_threatened_max_sum": 448.0
+   },
+   "South": {
+    "evacuation_reported_incidents": 11,
+    "fatalities": 2.0,
+    "fod_acres": 522228.4,
+    "ics_final_acres": 564066.3,
+    "incidents": 161,
+    "n_with_cost": 100,
+    "n_with_evacuation_flag": 67,
+    "n_with_peak_evacuations": 6,
+    "n_with_personnel": 149,
+    "n_with_threatened": 99,
+    "peak_evacuations_sum": 1.0,
+    "peak_personnel_median": 22.0,
+    "peak_personnel_sum": 5957.109523809524,
+    "projected_cost_usd_sum": 15396264.0,
+    "residences_destroyed": 1902.0,
+    "share_incidents_with_structures_destroyed": 0.13043478260869565,
+    "structures_destroyed": 2134.0,
+    "structures_destroyed_per_1000_acres": 4.086334638254066,
+    "structures_threatened_max_sum": 6143.0
+   },
+   "West": {
+    "evacuation_reported_incidents": 37,
+    "fatalities": 93.0,
+    "fod_acres": 1193616.54,
+    "ics_final_acres": 1192051.8,
+    "incidents": 137,
+    "n_with_cost": 133,
+    "n_with_evacuation_flag": 83,
+    "n_with_peak_evacuations": 29,
+    "n_with_personnel": 113,
+    "n_with_threatened": 81,
+    "peak_evacuations_sum": 274991.0,
+    "peak_personnel_median": 103.0,
+    "peak_personnel_sum": 38317.78346375847,
+    "projected_cost_usd_sum": 731641907.49,
+    "residences_destroyed": 14764.0,
+    "share_incidents_with_structures_destroyed": 0.36496350364963503,
+    "structures_destroyed": 20475.0,
+    "structures_destroyed_per_1000_acres": 17.153750232046885,
+    "structures_threatened_max_sum": 158071.0
+   }
+  }
+ },
+ "power.losses_vs_other_human": {
+  "computed_at": "2026-11-02T21:36:29+00:00",
+  "definition": "Losses for power-line incidents against every other human cause. ICS-209-PLUS incidents joined to FPA FOD via ICS_209_PLUS_INCIDENT_JOIN_ID, one row per incident, attributes from the largest joined fire, FIRE_YEAR 2010-2020, FIRE_SIZE >= 300 acres, Human cause with a recorded general cause (the losses-page sample, restricted to the human general causes)",
+  "n": 3033,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "Other human causes": {
+    "evacuation_reported_incidents": 258,
+    "fatalities": 49.0,
+    "fod_acres": 10381046.663,
+    "ics_final_acres": 10365652.65,
+    "incidents": 2724,
+    "n_with_cost": 2424,
+    "n_with_evacuation_flag": 1193,
+    "n_with_peak_evacuations": 307,
+    "n_with_personnel": 2433,
+    "n_with_threatened": 1335,
+    "peak_evacuations_sum": 228110.0,
+    "peak_personnel_median": 24.0,
+    "peak_personnel_sum": 243789.4806441164,
+    "projected_cost_usd_sum": 3837973779.65,
+    "residences_destroyed": 7367.333333333333,
+    "share_incidents_with_structures_destroyed": 0.14537444933920704,
+    "structures_destroyed": 11538.333333333334,
+    "structures_destroyed_per_1000_acres": 1.1114807309804435,
+    "structures_threatened_max_sum": 308921.5
+   },
+   "Power lines": {
+    "evacuation_reported_incidents": 52,
+    "fatalities": 95.0,
+    "fod_acres": 1823634.74,
+    "ics_final_acres": 1863907.9,
+    "incidents": 309,
+    "n_with_cost": 242,
+    "n_with_evacuation_flag": 155,
+    "n_with_peak_evacuations": 41,
+    "n_with_personnel": 270,
+    "n_with_threatened": 188,
+    "peak_evacuations_sum": 277478.0,
+    "peak_personnel_median": 35.0,
+    "peak_personnel_sum": 44976.45251137751,
+    "projected_cost_usd_sum": 766760966.49,
+    "residences_destroyed": 16726.0,
+    "share_incidents_with_structures_destroyed": 0.255663430420712,
+    "structures_destroyed": 22781.0,
+    "structures_destroyed_per_1000_acres": 12.492084900729626,
+    "structures_threatened_max_sum": 165746.0
+   }
+  }
+ },
+ "power.overview": {
+  "computed_at": "2026-11-02T21:36:23+00:00",
+  "definition": "Power-line fires = FPA FOD 6th edition records with NWCG_GENERAL_CAUSE = \"Power generation/transmission/distribution\", 1992-2020. The code is assigned at ignition by the reporting agency. It does not separate generation, transmission and distribution, or vegetation contact from equipment failure. Shares are of all FPA FOD records 1992-2020, of Human-classified records, and of records with a general cause.",
+  "n": 2303566,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "acres": 3510114.094415,
+   "fires": 32652,
+   "general_cause_missing_share": 0.25956842564962324,
+   "mean_acres": 107.50073791544163,
+   "median_acres": 0.68,
+   "share_of_all_acres": 0.019495355380856817,
+   "share_of_all_fires": 0.014174545031485965,
+   "share_of_human_acres": 0.05527886458539116,
+   "share_of_human_fires": 0.0183139212050439,
+   "share_of_known_general_cause_fires": 0.01914362585620705
+  }
+ },
+ "power.region_by_month": {
+  "computed_at": "2026-11-02T21:36:24+00:00",
+  "definition": "Power-line fires by region and discovery month, 1992-2020. Months and regions only: the record has no weather, so wind is not examined.",
+  "n": 32652,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "Alaska": {
+    "Apr": 34,
+    "Aug": 40,
+    "Dec": 0,
+    "Feb": 0,
+    "Jan": 1,
+    "Jul": 57,
+    "Jun": 96,
+    "Mar": 11,
+    "May": 166,
+    "Nov": 1,
+    "Oct": 17,
+    "Sep": 42
+   },
+   "Hawaii/PR": {
+    "Apr": 0,
+    "Aug": 0,
+    "Dec": 0,
+    "Feb": 1,
+    "Jan": 0,
+    "Jul": 0,
+    "Jun": 0,
+    "Mar": 0,
+    "May": 0,
+    "Nov": 0,
+    "Oct": 0,
+    "Sep": 0
+   },
+   "Northeast": {
+    "Apr": 622,
+    "Aug": 187,
+    "Dec": 46,
+    "Feb": 85,
+    "Jan": 55,
+    "Jul": 243,
+    "Jun": 280,
+    "Mar": 274,
+    "May": 514,
+    "Nov": 215,
+    "Oct": 125,
+    "Sep": 148
+   },
+   "Other": {
+    "Apr": 974,
+    "Aug": 278,
+    "Dec": 74,
+    "Feb": 97,
+    "Jan": 94,
+    "Jul": 454,
+    "Jun": 458,
+    "Mar": 418,
+    "May": 946,
+    "Nov": 179,
+    "Oct": 288,
+    "Sep": 215
+   },
+   "South": {
+    "Apr": 2395,
+    "Aug": 1395,
+    "Dec": 564,
+    "Feb": 1478,
+    "Jan": 1039,
+    "Jul": 1203,
+    "Jun": 1148,
+    "Mar": 2170,
+    "May": 1275,
+    "Nov": 953,
+    "Oct": 888,
+    "Sep": 1066
+   },
+   "West": {
+    "Apr": 532,
+    "Aug": 1799,
+    "Dec": 153,
+    "Feb": 192,
+    "Jan": 138,
+    "Jul": 1871,
+    "Jun": 1398,
+    "Mar": 260,
+    "May": 826,
+    "Nov": 317,
+    "Oct": 687,
+    "Sep": 1170
+   }
+  }
+ },
+ "power.share_usable_by_year": {
+  "computed_at": "2026-11-02T21:36:24+00:00",
+  "definition": "Power-line share of fires in usable state-years only (analysis/coverage.py), by FIRE_YEAR.",
+  "n": 30873,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "1992": 0.003256218999659233,
+   "1993": 0.0030138996292110327,
+   "1994": 0.0030068990780877953,
+   "1995": 0.00324124355145262,
+   "1996": 0.004935546665440444,
+   "1997": 0.00598465377183273,
+   "1998": 0.00901169416343777,
+   "1999": 0.007919610528742491,
+   "2000": 0.006077478529971042,
+   "2001": 0.007247061363851064,
+   "2002": 0.008459869848156183,
+   "2003": 0.007399948855645058,
+   "2004": 0.00712523979172376,
+   "2005": 0.008227045766175976,
+   "2006": 0.008311579826668058,
+   "2007": 0.011778602767465406,
+   "2008": 0.00985250393517169,
+   "2009": 0.02109891830530148,
+   "2010": 0.02293891658688814,
+   "2011": 0.03333474164518991,
+   "2012": 0.015818306642567916,
+   "2013": 0.019069889994071536,
+   "2014": 0.027145864192718486,
+   "2015": 0.0303470719261939,
+   "2016": 0.03156819922284936,
+   "2017": 0.032261412326350276,
+   "2018": 0.0335954135954136,
+   "2019": 0.033814099478153704,
+   "2020": 0.032590389508008744
+  }
+ },
+ "power.wfigs_2021_2025": {
+  "computed_at": "2026-11-02T21:36:31+00:00",
+  "definition": "WFIGS 2021-2025 rows whose FireCauseGeneral contains \"power\". WFIGS is a different system and FireCauseGeneral is empty for most rows (general_cause_missing_share), so these counts are not a continuation of the FPA FOD series.",
+  "n": 195081,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "acres": 1385736.4110000003,
+   "by_year": {
+    "2021": {
+     "acres": 69.0,
+     "fires": 7
+    },
+    "2022": {
+     "acres": 77034.81,
+     "fires": 272
+    },
+    "2023": {
+     "acres": 11134.84,
+     "fires": 444
+    },
+    "2024": {
+     "acres": 1261115.08,
+     "fires": 510
+    },
+    "2025": {
+     "acres": 36382.681000000004,
+     "fires": 503
+    }
+   },
+   "fires": 1736,
+   "general_cause_missing_share": 0.7623910068125548,
+   "matching_labels": [
+    "Power generation/transmission/distribution"
+   ],
+   "share_of_rows": 0.008898867649848012
+  }
+ }
+}

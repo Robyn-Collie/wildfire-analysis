@@ -197,14 +197,14 @@ def losses(df: pd.DataFrame) -> None:
     j = j[j['ICS_209_PLUS_INCIDENT_JOIN_ID'].astype(str).isin(set(inc['INCIDENT_ID']))]
     rep = j.sort_values('FIRE_SIZE', ascending=False).drop_duplicates('ICS_209_PLUS_INCIDENT_JOIN_ID')
     s = rep.set_index('ICS_209_PLUS_INCIDENT_JOIN_ID')[['FIRE_SIZE', 'FIRE_YEAR', 'CAUSE', 'GENERAL', 'REGION']].join(
-        inc.set_index('INCIDENT_ID'), how='inner')
+        inc.drop(columns='CAUSE').set_index('INCIDENT_ID'), how='inner')  # CAUSE here is FPA FOD's, not ICS-209's
     # Same sample as the Protected lands and losses page (ics.sample_definition): 2010-2020, 300+ acres.
     s = s[(s['FIRE_YEAR'] >= 2010) & (s['FIRE_SIZE'] >= LARGE)]
-    s = s[s['CAUSE'] == 'Human'].copy()
+    s = s[(s['CAUSE'] == 'Human') & (s['GENERAL'] != CAUSE_MISSING)].copy()  # same pool as large_rates
     s['GROUP'] = np.where(s['GENERAL'] == POWER, 'Power lines', 'Other human causes')
     sample = ('ICS-209-PLUS incidents joined to FPA FOD via ICS_209_PLUS_INCIDENT_JOIN_ID, one row per incident, '
               'attributes from the largest joined fire, FIRE_YEAR 2010-2020, FIRE_SIZE >= 300 acres, Human cause '
-              '(the losses-page sample, restricted to human causes)')
+              'with a recorded general cause (the losses-page sample, restricted to the human general causes)')
     claim('power.losses_vs_other_human', _outcome_table(s, 'GROUP', ['Power lines', 'Other human causes']),
           'Losses for power-line incidents against every other human cause. ' + sample, len(s))
     claim('power.losses_by_region', _outcome_table(s[s['GROUP'] == 'Power lines'], 'REGION', REGION_ORDER),
@@ -225,8 +225,9 @@ def wfigs_extension() -> None:
         'matching_labels': labels, 'fires': int(hit.sum()), 'acres': float(w.loc[hit, 'size_acres'].sum()),
         'by_year': by, 'share_of_rows': float(hit.mean()),
         'general_cause_missing_share': float(w['fire_cause_general'].isna().mean()),
-    }, 'WFIGS 2021-2025 rows whose FireCauseGeneral contains "power". WFIGS is a different system with about half '
-       'of causes missing (wfigs.share_missing_cause), so these counts are not a continuation of the FPA FOD series.',
+    }, 'WFIGS 2021-2025 rows whose FireCauseGeneral contains "power". WFIGS is a different system and '
+       'FireCauseGeneral is empty for most rows (general_cause_missing_share), so these counts are not a '
+       'continuation of the FPA FOD series.',
           len(w))
 
 
