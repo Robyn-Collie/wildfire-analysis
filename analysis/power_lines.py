@@ -48,7 +48,8 @@ DEFINITION = (f'Power-line fires = FPA FOD 6th edition records with NWCG_GENERAL
               'transmission and distribution, or vegetation contact from equipment failure.')
 LIMITS = ('Undercount of unknown size: about a quarter of records have no general cause, and some of those are '
           'power-line fires. The cause code says nothing about the mechanism (vegetation contact, equipment '
-          'failure, conductor clash, animal contact). The record has no weather, so wind is not examined. '
+          'failure, conductor clash, animal contact). The fire record has no weather; same-day gridMET weather for '
+          '2010-2020 comes from a separate join (power.weather_*) and has no gusts or conditions after ignition. '
           'Nothing here attributes a fire to any named utility.')
 TOP_N = 25
 
@@ -122,7 +123,7 @@ def by_year_region_month(df: pd.DataFrame) -> None:
         index=REGION_ORDER, columns=range(1, 13), fill_value=0)
     rm.columns = MONTH_ABBR
     claim('power.region_by_month', rm, 'Power-line fires by region and discovery month, 1992-2020. Months and '
-          'regions only: the record has no weather, so wind is not examined.', len(p))
+          'regions only; weather is in power.weather_* (2010-2020).', len(p))
 
 
 def large_rates(df: pd.DataFrame) -> None:
@@ -232,6 +233,47 @@ def state_brief(df: pd.DataFrame, st: str) -> None:
        'Human fires with no general cause are left out of the comparisons.', len(d))
 
 
+WIND_BINS = ['<10%', '10-30%', '30-50%', '50-70%', '70-90%', '>90%']
+WEATHER_SOURCE = ('Same-day gridMET weather at the ignition point from FPA FOD-Attributes v1.0 (Pourmohamad et al. 2024, '
+                  'CC BY 4.0; data/attributes_2010_2020.parquet, joined on FOD_ID; conterminous US, 2010-2020): vs = '
+                  'daily mean wind speed at 10 m (m/s), rmin = daily minimum relative humidity (%), erc = energy release '
+                  'component, vs_Percentile / erc_Percentile = the dataset\'s percentile bin for that day\'s value at '
+                  'that location. Daily values on a ~4 km grid: no gusts, no hour of ignition, no later days.')
+
+
+def weather(df: pd.DataFrame) -> None:
+    """Same-day weather on power-line fires against other human causes, 2010-2020 CONUS (the model's join)."""
+    from .large_fire import ATTRIBUTES_PATH, NON_CONUS
+    if not os.path.exists(ATTRIBUTES_PATH):
+        log.warning(f'{ATTRIBUTES_PATH} not found; weather section skipped')
+        return
+    a = pd.read_parquet(ATTRIBUTES_PATH, columns=['FOD_ID', 'vs', 'rmin', 'erc', 'vs_Percentile', 'erc_Percentile'])
+    h = df[(df['FIRE_YEAR'] >= 2010) & ~df['STATE'].astype(str).isin(NON_CONUS) & (df['CAUSE'] == 'Human')
+           & (df['GENERAL'] != CAUSE_MISSING)][['FOD_ID', 'POWER', 'LARGE', 'FIRE_SIZE']]
+    n_all = len(h)
+    h = h.merge(a, on='FOD_ID', how='left', validate='one_to_one')
+    h = h[h['vs'].notna()]
+    h['GROUP'] = np.where(h['POWER'], 'Power lines', 'Other human causes')
+    def summ(x):
+        return {'fires': len(x), 'large_fires': int(x['LARGE'].sum()), 'large_rate': float(x['LARGE'].mean()),
+                'wind_median': float(x['vs'].median()), 'wind_p25': float(x['vs'].quantile(.25)),
+                'wind_p75': float(x['vs'].quantile(.75)), 'rh_min_median': float(x['rmin'].median()),
+                'erc_median': float(x['erc'].median()),
+                'share_wind_top10pct_day': float((x['vs_Percentile'] == '>90%').mean()),
+                'share_erc_top10pct_day': float((x['erc_Percentile'] == '>90%').mean())}
+    claim('power.weather_summary', {g: summ(x) for g, x in h.groupby('GROUP')} | {'join_rate': len(h) / n_all if n_all else None},
+          'Human-caused fires with a recorded general cause, conterminous US, 2010-2020, with a weather row: power lines '
+          'against every other human cause. ' + WEATHER_SOURCE, len(h))
+    rows = {}
+    for g, x in h.groupby('GROUP'):
+        b = x.groupby('vs_Percentile')['LARGE'].agg(['size', 'sum']).reindex(WIND_BINS).fillna(0)
+        rows[g] = {k: {'fires': int(r['size']), 'large_fires': int(r['sum']),
+                       'large_rate': float(r['sum'] / r['size']) if r['size'] else None} for k, r in b.iterrows()}
+    claim('power.weather_large_rate_by_wind', rows,
+          f'Share of fires reaching {LARGE:.0f} acres by the wind-speed percentile bin of the discovery day, power lines '
+          'against every other human cause (same sample as power.weather_summary). ' + WEATHER_SOURCE, len(h))
+
+
 def losses(df: pd.DataFrame) -> None:
     if not os.path.exists(ICS_INCIDENTS):
         log.warning('ICS-209-PLUS not found; losses section skipped')
@@ -287,6 +329,7 @@ def run(out_dir: str) -> None:
     for st in BRIEF_STATES:
         state_brief(df, st)
     losses(df)
+    weather(df)
     wfigs_extension()
     log.info(f'power lines done in {time.time() - t0:.0f}s')
 
