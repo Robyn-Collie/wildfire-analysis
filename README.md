@@ -146,6 +146,7 @@ python -m analysis.descriptive       # outputs/claims.json and outputs/figures/
 python -m analysis.coverage          # outputs/coverage.json
 python scripts/reproduce.py          # regenerates the first version's numbers and the baselines
 python -m analysis.incidents         # outputs/claims_incidents.json, outputs/tables/largest_incidents.csv
+python -m analysis.power_lines       # outputs/claims_power.json, outputs/tables/power_lines_largest_incidents.csv (after analysis.conservation)
 python -m analysis.places            # outputs/claims_places.json, outputs/tables/ (needs the coverage mask)
 python -m analysis.nifc              # national totals 1983-2025 (fetches NIFC)
 python -m analysis.drivers           # drought replication and tests (fetches NOAA nClimDiv)

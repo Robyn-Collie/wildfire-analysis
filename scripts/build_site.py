@@ -1843,6 +1843,8 @@ def main() -> int:
     v2 = V()
     NAV = v2.NAV
     claims, files, missing = load_claims()
+    if 'power.overview' not in claims:  # page is skipped until analysis.power_lines has run
+        NAV = [n for n in NAV if n[0] != 'power-lines.html']
     if not files:
         print('error: no outputs/claims*.json found; run `python -m analysis.descriptive --out outputs/` first', file=sys.stderr)
         return 1
@@ -1946,7 +1948,7 @@ def main() -> int:
     pages = {
         'index.html': v2.page_home, 'explore.html': v2.page_explore, 'trends.html': page_trends, 'causes.html': page_causes,
         'places.html': v2.page_places, 'conservation.html': page_conservation, 'largest.html': v2.page_largest,
-        'drivers.html': v2.page_drivers, 'model.html': page_model, 'methods.html': page_methods, 'audit.html': v2.page_audit,
+        'drivers.html': v2.page_drivers, 'power-lines.html': v2.page_power, 'model.html': page_model, 'methods.html': page_methods, 'audit.html': v2.page_audit,
         'geography.html': page_geography, 'ownership.html': page_ownership,
     }
     for name, fn in pages.items():
