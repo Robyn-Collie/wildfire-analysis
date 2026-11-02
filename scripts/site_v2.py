@@ -863,7 +863,7 @@ def page_power(ctx: dict) -> str:
                     f'<td class="num">{q(c, "power.losses_vs_other_human", fmt_int(d["fatalities"]))}</td></tr>')
         losses = f"""
 <h2>Losses</h2>
-<p>For fires of 300 acres or more that were reported on an ICS-209 incident report (2010-2020), the same sample as the <a href="conservation.html">Protected lands and losses</a> page, restricted to human causes:</p>
+<p>For fires of 300 acres or more that were reported on an ICS-209 incident report (2010-2020), the same sample as the <a href="conservation.html">Protected lands and losses</a> page, restricted to human causes with a recorded general cause (human-caused incidents with no general cause are left out, as in the 300-acre comparison above):</p>
 <div class="table-wrap"><table><thead><tr><th>Cause</th><th class="num">Incidents</th><th class="num">Structures destroyed</th><th class="num">Incidents destroying any</th><th class="num">Per 1,000 acres</th><th class="num">Evacuation reported</th><th class="num">Fatalities</th></tr></thead>
 <tbody>{''.join(lrow(k) for k in ('Power lines', 'Other human causes') if k in lv)}</tbody></table></div>
 <p class="small muted">Structure counts are summed from incident reports and are dominated by a few incidents; read them as a record of what was reported, not a rate. Fatalities on ICS-209 reports include responders and are incomplete. Evacuation is a yes/no field filled on part of the reports.</p>"""
@@ -895,7 +895,8 @@ def page_power(ctx: dict) -> str:
     wf = claim_or(c, 'power.wfigs_2021_2025')
     wf_text = ('Records end in 2020. ' + (
         f'The 2021-2025 WFIGS feed has {q(c, "power.wfigs_2021_2025", fmt_int(wf["fires"]))} fires with a power-related cause label, '
-        f'but about half of WFIGS causes are missing, so those counts are not a continuation of this series and are not charted.'
+        f'but the general cause is blank for {q(c, "power.wfigs_2021_2025", fmt_pct(wf["general_cause_missing_share"], 0))} of WFIGS fires, '
+        f'so those counts are not a continuation of this series and are not charted.'
         if wf and wf['fires'] else 'The 2021-2025 WFIGS feed does not carry a comparable cause, so the series stops there.'))
     body = f"""
 <header class="page-head"><h1>Power-line ignitions</h1>

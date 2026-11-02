@@ -1,6 +1,6 @@
 {
  "power.by_month": {
-  "computed_at": "2026-11-02T21:27:04+00:00",
+  "computed_at": "2026-11-02T21:36:24+00:00",
   "definition": "Power-line fires, acres and 300+ acre fires by discovery month, 1992-2020.",
   "n": 32652,
   "note": null,
@@ -70,7 +70,7 @@
   }
  },
  "power.by_region": {
-  "computed_at": "2026-11-02T21:27:04+00:00",
+  "computed_at": "2026-11-02T21:36:24+00:00",
   "definition": "Power-line fires, acres and 300+ acre fires by project region, with the power-line share of each region's fires and acres, 1992-2020.",
   "n": 32652,
   "note": null,
@@ -122,7 +122,7 @@
   }
  },
  "power.by_year": {
-  "computed_at": "2026-11-02T21:27:04+00:00",
+  "computed_at": "2026-11-02T21:36:23+00:00",
   "definition": "Power-line fires, acres and fires of 300+ acres by FIRE_YEAR, every record. Year-to-year counts include reporting changes (see the coverage notes on the Trend page); large-fire counts are less exposed to them.",
   "n": 32652,
   "note": null,
@@ -306,7 +306,7 @@
   }
  },
  "power.definition": {
-  "computed_at": "2026-11-02T21:27:04+00:00",
+  "computed_at": "2026-11-02T21:36:23+00:00",
   "definition": "How this page selects power-line fires.",
   "n": 2303566,
   "note": null,
@@ -315,7 +315,7 @@
   "value": "Power-line fires = FPA FOD 6th edition records with NWCG_GENERAL_CAUSE = \"Power generation/transmission/distribution\", 1992-2020. The code is assigned at ignition by the reporting agency. It does not separate generation, transmission and distribution, or vegetation contact from equipment failure."
  },
  "power.incident_summary": {
-  "computed_at": "2026-11-02T21:27:10+00:00",
+  "computed_at": "2026-11-02T21:36:28+00:00",
   "definition": "Incidents led by a power-line record, and how concentrated their acres are in the top 25.",
   "n": 32626,
   "note": null,
@@ -334,7 +334,7 @@
   }
  },
  "power.large_rate_by_human_cause": {
-  "computed_at": "2026-11-02T21:27:05+00:00",
+  "computed_at": "2026-11-02T21:36:24+00:00",
   "definition": "Human-caused records with a general cause, 1992-2020: fires, fires of 300+ acres, the rate, and each cause's share of fires, of large fires and of acres. A ratio of share of large fires to share of fires above 1 means the cause produces more than its share of large fires.",
   "n": 1378314,
   "note": null,
@@ -454,7 +454,7 @@
   }
  },
  "power.large_rate_vs_other_human": {
-  "computed_at": "2026-11-02T21:27:05+00:00",
+  "computed_at": "2026-11-02T21:36:24+00:00",
   "definition": "Share of power-line fires reaching 300 acres against the same share for every other human general cause pooled, 1992-2020, and power's rank by that rate.",
   "n": 1378314,
   "note": null,
@@ -469,7 +469,7 @@
   }
  },
  "power.large_rate_vs_other_human_2010_2020_usable": {
-  "computed_at": "2026-11-02T21:27:05+00:00",
+  "computed_at": "2026-11-02T21:36:24+00:00",
   "definition": "Same comparison restricted to 2010-2020 and usable state-years, as a check that the result is not an artifact of early reporting.",
   "n": 423733,
   "note": null,
@@ -483,7 +483,7 @@
   }
  },
  "power.largest_incidents": {
-  "computed_at": "2026-11-02T21:27:10+00:00",
+  "computed_at": "2026-11-02T21:36:28+00:00",
   "definition": "The 25 largest incidents whose largest record is coded Power generation/transmission/distribution. Records share an incident when they share ICS_209_PLUS_COMPLEX_JOIN_ID, ICS_209_PLUS_INCIDENT_JOIN_ID, or FIRE_YEAR+STATE+COMPLEX_NAME (transitively). Incident acres = sum of component FIRE_SIZE; no record is dropped.",
   "n": 32626,
   "note": null,
@@ -693,7 +693,7 @@
   ]
  },
  "power.limits": {
-  "computed_at": "2026-11-02T21:27:04+00:00",
+  "computed_at": "2026-11-02T21:36:23+00:00",
   "definition": "What the record cannot say about power-line fires.",
   "n": null,
   "note": null,
@@ -701,8 +701,154 @@
   "unit": null,
   "value": "Undercount of unknown size: about a quarter of records have no general cause, and some of those are power-line fires. The cause code says nothing about the mechanism (vegetation contact, equipment failure, conductor clash, animal contact). The record has no weather, so wind is not examined. Nothing here attributes a fire to any named utility."
  },
+ "power.losses_by_region": {
+  "computed_at": "2026-11-02T21:36:29+00:00",
+  "definition": "Losses for power-line incidents by region. ICS-209-PLUS incidents joined to FPA FOD via ICS_209_PLUS_INCIDENT_JOIN_ID, one row per incident, attributes from the largest joined fire, FIRE_YEAR 2010-2020, FIRE_SIZE >= 300 acres, Human cause with a recorded general cause (the losses-page sample, restricted to the human general causes)",
+  "n": 309,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "Alaska": {
+    "evacuation_reported_incidents": 1,
+    "fatalities": 0.0,
+    "fod_acres": 8150.8,
+    "ics_final_acres": 8150.8,
+    "incidents": 2,
+    "n_with_cost": 2,
+    "n_with_evacuation_flag": 1,
+    "n_with_peak_evacuations": 2,
+    "n_with_personnel": 2,
+    "n_with_threatened": 2,
+    "peak_evacuations_sum": 2056.0,
+    "peak_personnel_median": 142.77380952380955,
+    "peak_personnel_sum": 285.5476190476191,
+    "projected_cost_usd_sum": 16321295.0,
+    "residences_destroyed": 54.0,
+    "share_incidents_with_structures_destroyed": 1.0,
+    "structures_destroyed": 143.0,
+    "structures_destroyed_per_1000_acres": 17.544290131030085,
+    "structures_threatened_max_sum": 1084.0
+   },
+   "Other": {
+    "evacuation_reported_incidents": 3,
+    "fatalities": 0.0,
+    "fod_acres": 99639.0,
+    "ics_final_acres": 99639.0,
+    "incidents": 9,
+    "n_with_cost": 7,
+    "n_with_evacuation_flag": 4,
+    "n_with_peak_evacuations": 4,
+    "n_with_personnel": 6,
+    "n_with_threatened": 6,
+    "peak_evacuations_sum": 430.0,
+    "peak_personnel_median": 58.25,
+    "peak_personnel_sum": 416.01190476190476,
+    "projected_cost_usd_sum": 3401500.0,
+    "residences_destroyed": 6.0,
+    "share_incidents_with_structures_destroyed": 0.6666666666666666,
+    "structures_destroyed": 29.0,
+    "structures_destroyed_per_1000_acres": 0.2910506930017363,
+    "structures_threatened_max_sum": 448.0
+   },
+   "South": {
+    "evacuation_reported_incidents": 11,
+    "fatalities": 2.0,
+    "fod_acres": 522228.4,
+    "ics_final_acres": 564066.3,
+    "incidents": 161,
+    "n_with_cost": 100,
+    "n_with_evacuation_flag": 67,
+    "n_with_peak_evacuations": 6,
+    "n_with_personnel": 149,
+    "n_with_threatened": 99,
+    "peak_evacuations_sum": 1.0,
+    "peak_personnel_median": 22.0,
+    "peak_personnel_sum": 5957.109523809524,
+    "projected_cost_usd_sum": 15396264.0,
+    "residences_destroyed": 1902.0,
+    "share_incidents_with_structures_destroyed": 0.13043478260869565,
+    "structures_destroyed": 2134.0,
+    "structures_destroyed_per_1000_acres": 4.086334638254066,
+    "structures_threatened_max_sum": 6143.0
+   },
+   "West": {
+    "evacuation_reported_incidents": 37,
+    "fatalities": 93.0,
+    "fod_acres": 1193616.54,
+    "ics_final_acres": 1192051.8,
+    "incidents": 137,
+    "n_with_cost": 133,
+    "n_with_evacuation_flag": 83,
+    "n_with_peak_evacuations": 29,
+    "n_with_personnel": 113,
+    "n_with_threatened": 81,
+    "peak_evacuations_sum": 274991.0,
+    "peak_personnel_median": 103.0,
+    "peak_personnel_sum": 38317.78346375847,
+    "projected_cost_usd_sum": 731641907.49,
+    "residences_destroyed": 14764.0,
+    "share_incidents_with_structures_destroyed": 0.36496350364963503,
+    "structures_destroyed": 20475.0,
+    "structures_destroyed_per_1000_acres": 17.153750232046885,
+    "structures_threatened_max_sum": 158071.0
+   }
+  }
+ },
+ "power.losses_vs_other_human": {
+  "computed_at": "2026-11-02T21:36:29+00:00",
+  "definition": "Losses for power-line incidents against every other human cause. ICS-209-PLUS incidents joined to FPA FOD via ICS_209_PLUS_INCIDENT_JOIN_ID, one row per incident, attributes from the largest joined fire, FIRE_YEAR 2010-2020, FIRE_SIZE >= 300 acres, Human cause with a recorded general cause (the losses-page sample, restricted to the human general causes)",
+  "n": 3033,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "Other human causes": {
+    "evacuation_reported_incidents": 258,
+    "fatalities": 49.0,
+    "fod_acres": 10381046.663,
+    "ics_final_acres": 10365652.65,
+    "incidents": 2724,
+    "n_with_cost": 2424,
+    "n_with_evacuation_flag": 1193,
+    "n_with_peak_evacuations": 307,
+    "n_with_personnel": 2433,
+    "n_with_threatened": 1335,
+    "peak_evacuations_sum": 228110.0,
+    "peak_personnel_median": 24.0,
+    "peak_personnel_sum": 243789.4806441164,
+    "projected_cost_usd_sum": 3837973779.65,
+    "residences_destroyed": 7367.333333333333,
+    "share_incidents_with_structures_destroyed": 0.14537444933920704,
+    "structures_destroyed": 11538.333333333334,
+    "structures_destroyed_per_1000_acres": 1.1114807309804435,
+    "structures_threatened_max_sum": 308921.5
+   },
+   "Power lines": {
+    "evacuation_reported_incidents": 52,
+    "fatalities": 95.0,
+    "fod_acres": 1823634.74,
+    "ics_final_acres": 1863907.9,
+    "incidents": 309,
+    "n_with_cost": 242,
+    "n_with_evacuation_flag": 155,
+    "n_with_peak_evacuations": 41,
+    "n_with_personnel": 270,
+    "n_with_threatened": 188,
+    "peak_evacuations_sum": 277478.0,
+    "peak_personnel_median": 35.0,
+    "peak_personnel_sum": 44976.45251137751,
+    "projected_cost_usd_sum": 766760966.49,
+    "residences_destroyed": 16726.0,
+    "share_incidents_with_structures_destroyed": 0.255663430420712,
+    "structures_destroyed": 22781.0,
+    "structures_destroyed_per_1000_acres": 12.492084900729626,
+    "structures_threatened_max_sum": 165746.0
+   }
+  }
+ },
  "power.overview": {
-  "computed_at": "2026-11-02T21:27:04+00:00",
+  "computed_at": "2026-11-02T21:36:23+00:00",
   "definition": "Power-line fires = FPA FOD 6th edition records with NWCG_GENERAL_CAUSE = \"Power generation/transmission/distribution\", 1992-2020. The code is assigned at ignition by the reporting agency. It does not separate generation, transmission and distribution, or vegetation contact from equipment failure. Shares are of all FPA FOD records 1992-2020, of Human-classified records, and of records with a general cause.",
   "n": 2303566,
   "note": null,
@@ -722,7 +868,7 @@
   }
  },
  "power.region_by_month": {
-  "computed_at": "2026-11-02T21:27:04+00:00",
+  "computed_at": "2026-11-02T21:36:24+00:00",
   "definition": "Power-line fires by region and discovery month, 1992-2020. Months and regions only: the record has no weather, so wind is not examined.",
   "n": 32652,
   "note": null,
@@ -816,7 +962,7 @@
   }
  },
  "power.share_usable_by_year": {
-  "computed_at": "2026-11-02T21:27:04+00:00",
+  "computed_at": "2026-11-02T21:36:24+00:00",
   "definition": "Power-line share of fires in usable state-years only (analysis/coverage.py), by FIRE_YEAR.",
   "n": 30873,
   "note": null,
@@ -852,6 +998,45 @@
    "2018": 0.0335954135954136,
    "2019": 0.033814099478153704,
    "2020": 0.032590389508008744
+  }
+ },
+ "power.wfigs_2021_2025": {
+  "computed_at": "2026-11-02T21:36:31+00:00",
+  "definition": "WFIGS 2021-2025 rows whose FireCauseGeneral contains \"power\". WFIGS is a different system and FireCauseGeneral is empty for most rows (general_cause_missing_share), so these counts are not a continuation of the FPA FOD series.",
+  "n": 195081,
+  "note": null,
+  "source": "analysis.power_lines",
+  "unit": null,
+  "value": {
+   "acres": 1385736.4110000003,
+   "by_year": {
+    "2021": {
+     "acres": 69.0,
+     "fires": 7
+    },
+    "2022": {
+     "acres": 77034.81,
+     "fires": 272
+    },
+    "2023": {
+     "acres": 11134.84,
+     "fires": 444
+    },
+    "2024": {
+     "acres": 1261115.08,
+     "fires": 510
+    },
+    "2025": {
+     "acres": 36382.681000000004,
+     "fires": 503
+    }
+   },
+   "fires": 1736,
+   "general_cause_missing_share": 0.7623910068125548,
+   "matching_labels": [
+    "Power generation/transmission/distribution"
+   ],
+   "share_of_rows": 0.008898867649848012
   }
  }
 }
