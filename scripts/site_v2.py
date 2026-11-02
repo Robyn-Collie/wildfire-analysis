@@ -25,6 +25,7 @@ NAV = [
     ('explore.html', 'Map'),
     ('trends.html', 'Trend'),
     ('causes.html', 'Seasons and causes'),
+    ('power-lines.html', 'Power lines'),
     ('places.html', 'Places'),
     ('conservation.html', 'Protected lands and losses'),
     ('largest.html', 'Largest fires'),
@@ -774,6 +775,131 @@ Lightning started {q(c, 'incidents.largest100_summary', str(s['by_cause'].get('N
 """
     return B.layout(ctx, 'largest.html', 'Largest fires · ' + B.SITE_TITLE, body, LARGEST_JS, extra_scripts=[ctx['largest_data']],
                     description='The largest US wildfires 1992-2020, grouped so each incident appears once, with the component fires listed.')
+
+
+# =========================================================================== power lines
+
+POWER = 'Power generation/transmission/distribution'
+
+POWER_JS = r"""
+(function(){
+  var C = WF.data.claims; if (!C['power.overview']) return;
+  var lr = C['power.large_rate_by_human_cause'].value, P = 'Power generation/transmission/distribution';
+  var SHORT = { 'Debris and open burning': 'Debris burning', 'Arson/incendiarism': 'Arson', 'Equipment and vehicle use': 'Equipment, vehicles',
+    'Recreation and ceremony': 'Recreation', 'Misuse of fire by a minor': 'Children', 'Railroad operations and maintenance': 'Railroads',
+    'Power generation/transmission/distribution': 'Power lines', 'Firearms and explosives use': 'Firearms', 'Other causes': 'Other' };
+  var causes = Object.keys(lr).sort(function (a, b) { return lr[a].large_rate - lr[b].large_rate; });
+  WF.chart({ el: 'pw-large', title: 'Share of fires that reach 300 acres, by human cause', claims: ['power.large_rate_by_human_cause', 'power.large_rate_vs_other_human'],
+    sub: 'Human-caused fires with a recorded general cause, 1992-2020. Power lines highlighted.',
+    rows: causes.map(function (k) { var r = lr[k]; return { cause: k, fires: r.fires, large_fires: r.large_fires, large_rate: r.large_rate, share_of_fires: r.share_of_fires, share_of_large_fires: r.share_of_large_fires, share_of_acres: r.share_of_acres }; }),
+    columns: [{ key: 'cause' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'large_fires', label: '300+ acres', num: true, fmt: WF.fmt.int },
+      { key: 'large_rate', label: 'share reaching 300 acres', num: true, fmt: function (v) { return WF.fmt.pct(v, 2); } },
+      { key: 'share_of_fires', label: 'share of fires', num: true, fmt: function (v) { return WF.fmt.pct(v, 1); }, hideSm: true },
+      { key: 'share_of_large_fires', label: 'share of 300+ acre fires', num: true, fmt: function (v) { return WF.fmt.pct(v, 1); }, hideSm: true },
+      { key: 'share_of_acres', label: 'share of acres', num: true, fmt: function (v) { return WF.fmt.pct(v, 1); }, hideSm: true }],
+    height: 360,
+    build: function (t) { return { data: [{ type: 'bar', orientation: 'h', y: causes.map(function (k) { return SHORT[k] || k; }), x: causes.map(function (k) { return lr[k].large_rate * 100; }),
+      marker: { color: causes.map(function (k) { return k === P ? t.series[1] : t.series[0]; }) }, hovertemplate: '%{y}: %{x:.2f}% reach 300 acres<extra></extra>' }],
+      layout: { showlegend: false, yaxis: { automargin: true }, xaxis: { ticksuffix: '%', rangemode: 'tozero' } } }; }
+  });
+  var yr = C['power.by_year'].value, ys = WF.years(yr);
+  WF.chart({ el: 'pw-year', title: 'Power-line fires and acres by year', claims: ['power.by_year', 'power.share_usable_by_year'],
+    sub: 'Every record. Counts of small fires move with reporting changes; acres and 300+ acre fires are less exposed.',
+    rows: ys.map(function (y) { return { year: y, fires: yr[y].fires, acres: yr[y].acres, large_fires: yr[y].large_fires }; }),
+    columns: [{ key: 'year' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'large_fires', label: '300+ acres', num: true, fmt: WF.fmt.int }],
+    height: 300,
+    build: function (t) { return { data: [
+      { type: 'bar', x: ys, y: ys.map(function (y) { return yr[y].acres; }), name: 'acres', marker: { color: t.series[1] }, hovertemplate: '%{x}: %{y:,.0f} acres<extra></extra>' },
+      { type: 'scatter', mode: 'lines+markers', x: ys, y: ys.map(function (y) { return yr[y].fires; }), name: 'fires', yaxis: 'y2', line: { color: t.series[0] }, hovertemplate: '%{x}: %{y:,} fires<extra></extra>' }],
+      layout: { yaxis: { title: { text: 'acres' }, rangemode: 'tozero' }, yaxis2: { title: { text: 'fires' }, overlaying: 'y', side: 'right', rangemode: 'tozero', showgrid: false }, legend: { orientation: 'h', y: -0.2 } } }; }
+  });
+  var mo = C['power.by_month'].value, ms = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].filter(function (m) { return mo[m]; });
+  WF.chart({ el: 'pw-month', title: 'Power-line fires by month of discovery', claims: ['power.by_month', 'power.region_by_month'],
+    sub: '1992-2020, all regions. Bars: fires; the table adds acres and 300+ acre fires.',
+    rows: ms.map(function (m) { return { month: m, fires: mo[m].fires, acres: mo[m].acres, large_fires: mo[m].large_fires }; }),
+    columns: [{ key: 'month' }, { key: 'fires', num: true, fmt: WF.fmt.int }, { key: 'acres', num: true, fmt: WF.fmt.int }, { key: 'large_fires', label: '300+ acres', num: true, fmt: WF.fmt.int }],
+    height: 260,
+    build: function (t) { return { data: [{ type: 'bar', x: ms, y: ms.map(function (m) { return mo[m].fires; }), marker: { color: t.series[1] }, hovertemplate: '%{x}: %{y:,} fires<extra></extra>' }],
+      layout: { showlegend: false, yaxis: { rangemode: 'tozero', title: { text: 'fires' } } } }; }
+  });
+})();
+"""
+
+
+def page_power(ctx: dict) -> str:
+    c = ctx['claims']
+    if 'power.overview' not in c:
+        return ''
+    o = cv(c, 'power.overview')
+    v = cv(c, 'power.large_rate_vs_other_human')
+    vu = claim_or(c, 'power.large_rate_vs_other_human_2010_2020_usable')
+    lr = cv(c, 'power.large_rate_by_human_cause')
+    pw = lr[POWER]
+    more = v['ratio'] > 1
+    compare = (f'{fmt_num(v["ratio"], 1)} times the rate for other human causes' if more
+               else f'{fmt_pct(1 - v["ratio"], 0)} below the rate for other human causes')
+    check = ''
+    if vu:
+        held = (vu['ratio'] > 1) == more
+        check = (f' Restricted to 2010-2020 and to state-years with complete reporting, the ratio is '
+                 f'{q(c, "power.large_rate_vs_other_human_2010_2020_usable", fmt_num(vu["ratio"], 2))}, so the comparison '
+                 f'{"holds" if held else "does not hold"} on the cleaner record.')
+    rg = cv(c, 'power.by_region')
+    reg_rows = ''.join(
+        f'<tr><td>{esc(REGION_LABEL.get(r, r))}</td><td class="num">{q(c, "power.by_region", fmt_int(d["fires"]))}</td>'
+        f'<td class="num">{q(c, "power.by_region", fmt_int(d["acres"]))}</td><td class="num">{q(c, "power.by_region", fmt_int(d["large_fires"]))}</td>'
+        f'<td class="num">{q(c, "power.by_region", fmt_pct(d["share_of_region_fires"], 1))}</td><td class="num">{q(c, "power.by_region", fmt_pct(d["share_of_region_acres"], 1))}</td></tr>'
+        for r, d in ((r, rg[r]) for r in B.REGIONS if r in rg) if d['fires'])
+    losses = ''
+    lv = claim_or(c, 'power.losses_vs_other_human')
+    if lv:
+        def lrow(k):
+            d = lv[k]
+            return (f'<tr><td>{esc(k)}</td><td class="num">{q(c, "power.losses_vs_other_human", fmt_int(d["incidents"]))}</td>'
+                    f'<td class="num">{q(c, "power.losses_vs_other_human", fmt_int(d["structures_destroyed"]))}</td>'
+                    f'<td class="num">{q(c, "power.losses_vs_other_human", fmt_pct(d["share_incidents_with_structures_destroyed"], 0))}</td>'
+                    f'<td class="num">{q(c, "power.losses_vs_other_human", fmt_num(d["structures_destroyed_per_1000_acres"], 1))}</td>'
+                    f'<td class="num">{q(c, "power.losses_vs_other_human", fmt_int(d["evacuation_reported_incidents"]))} of {fmt_int(d["n_with_evacuation_flag"])}</td>'
+                    f'<td class="num">{q(c, "power.losses_vs_other_human", fmt_int(d["fatalities"]))}</td></tr>')
+        losses = f"""
+<h2>Losses</h2>
+<p>For fires of 300 acres or more that were reported on an ICS-209 incident report (2010-2020), the same sample as the <a href="conservation.html">Protected lands and losses</a> page, restricted to human causes:</p>
+<div class="table-wrap"><table><thead><tr><th>Cause</th><th class="num">Incidents</th><th class="num">Structures destroyed</th><th class="num">Incidents destroying any</th><th class="num">Per 1,000 acres</th><th class="num">Evacuation reported</th><th class="num">Fatalities</th></tr></thead>
+<tbody>{''.join(lrow(k) for k in ('Power lines', 'Other human causes') if k in lv)}</tbody></table></div>
+<p class="small muted">Structure counts are summed from incident reports and are dominated by a few incidents; read them as a record of what was reported, not a rate. Fatalities on ICS-209 reports include responders and are incomplete. Evacuation is a yes/no field filled on part of the reports.</p>"""
+    inc = cv(c, 'power.largest_incidents')
+    isum = cv(c, 'power.incident_summary')
+    inc_rows = ''.join(
+        f'<tr><td class="num">{r["rank"]}</td><td>{esc(name_case(r["name"]))}</td><td class="num">{q(c, "power.largest_incidents", fmt_int(r["acres"]))}</td>'
+        f'<td>{esc(r["state"])}</td><td>{r["year"]}</td></tr>' for r in inc[:15])
+    wf = claim_or(c, 'power.wfigs_2021_2025')
+    wf_text = ('Records end in 2020. ' + (
+        f'The 2021-2025 WFIGS feed has {q(c, "power.wfigs_2021_2025", fmt_int(wf["fires"]))} fires with a power-related cause label, '
+        f'but about half of WFIGS causes are missing, so those counts are not a continuation of this series and are not charted.'
+        if wf and wf['fires'] else 'The 2021-2025 WFIGS feed does not carry a comparable cause, so the series stops there.'))
+    body = f"""
+<header class="page-head"><h1>Power-line ignitions</h1>
+<p class="lede">The record has one utility cause, "power generation, transmission or distribution". Across 1992-2020 it accounts for {q(c, 'power.overview', fmt_int(o['fires']) + ' fires')} and {q(c, 'power.overview', fmt_int(o['acres']) + ' acres')}: {q(c, 'power.overview', fmt_pct(o['share_of_all_fires'], 1))} of all fires and {q(c, 'power.overview', fmt_pct(o['share_of_all_acres'], 1))} of all acres burned.</p></header>
+<div class="note"><p><strong>What this record cannot say.</strong> The cause is coded at ignition by the reporting agency, and {q(c, 'power.overview', fmt_pct(o['general_cause_missing_share'], 0))} of all fires have no general cause, so power-line fires are undercounted by an unknown amount. The code does not distinguish vegetation contact from equipment failure, or transmission from distribution. There is no weather in the record, so wind is not examined. Nothing on this page attributes a fire to a named utility.</p></div>
+
+<h2>Do power-line fires get large?</h2>
+<p>{q(c, 'power.large_rate_vs_other_human', fmt_pct(v['power_large_rate'], 2))} of power-line fires reached 300 acres, against {q(c, 'power.large_rate_vs_other_human', fmt_pct(v['other_human_large_rate'], 2))} for every other human cause: {compare}. Power lines rank {q(c, 'power.large_rate_vs_other_human', str(v['power_rank_among_human_causes']))} of {v['human_causes']} human causes by this rate. They are {q(c, 'power.large_rate_by_human_cause', fmt_pct(pw['share_of_fires'], 1))} of human-caused fires with a known cause, {q(c, 'power.large_rate_by_human_cause', fmt_pct(pw['share_of_large_fires'], 1))} of those that reach 300 acres, and {q(c, 'power.large_rate_by_human_cause', fmt_pct(pw['share_of_acres'], 1))} of their acres.{check}</p>
+{B.chart_div('pw-large')}
+
+<h2>Where and when</h2>
+<div class="table-wrap"><table><thead><tr><th>Region</th><th class="num">Fires</th><th class="num">Acres</th><th class="num">300+ acres</th><th class="num">Share of region's fires</th><th class="num">Share of region's acres</th></tr></thead><tbody>{reg_rows}</tbody></table></div>
+<p class="small muted">Regions as defined on the <a href="methods.html">Data and methods</a> page. The month-by-region table is under the month chart's Definition and in the ledger.</p>
+{B.chart_div('pw-month')}
+{B.chart_div('pw-year')}
+<p class="small">{wf_text}</p>
+{losses}
+<h2>The largest power-line incidents</h2>
+<p>{q(c, 'power.incident_summary', fmt_int(isum['incidents_10k_plus']))} incidents led by a power-line record burned 10,000 acres or more, and {q(c, 'power.incident_summary', fmt_int(isum['incidents_100k_plus']))} burned 100,000 or more. The {len(inc)} largest hold {q(c, 'power.incident_summary', fmt_pct(isum['top_incident_share_of_power_acres'], 0))} of all power-line acres. Incidents are grouped with the same rule as the <a href="largest.html">Largest fires</a> page; the cause is that of the largest record.</p>
+<div class="table-wrap"><table><thead><tr><th class="num">Rank</th><th>Incident</th><th class="num">Acres</th><th>State</th><th>Year</th></tr></thead><tbody>{inc_rows}</tbody></table></div>
+<p class="small">Definition: {esc(cv(c, 'power.definition'))} Code: <a href="{B.REPO_URL}/blob/main/analysis/power_lines.py">analysis/power_lines.py</a>.</p>
+"""
+    return B.layout(ctx, 'power-lines.html', 'Power-line ignitions · ' + B.SITE_TITLE, body, POWER_JS,
+                    description='US wildfires coded to power generation, transmission or distribution, 1992-2020: how many, where, when, how large, and what the record cannot say.')
 
 
 # =========================================================================== drivers
