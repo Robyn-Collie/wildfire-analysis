@@ -867,6 +867,26 @@ def page_power(ctx: dict) -> str:
 <div class="table-wrap"><table><thead><tr><th>Cause</th><th class="num">Incidents</th><th class="num">Structures destroyed</th><th class="num">Incidents destroying any</th><th class="num">Per 1,000 acres</th><th class="num">Evacuation reported</th><th class="num">Fatalities</th></tr></thead>
 <tbody>{''.join(lrow(k) for k in ('Power lines', 'Other human causes') if k in lv)}</tbody></table></div>
 <p class="small muted">Structure counts are summed from incident reports and are dominated by a few incidents; read them as a record of what was reported, not a rate. Fatalities on ICS-209 reports include responders and are incomplete. Evacuation is a yes/no field filled on part of the reports.</p>"""
+    elif claim_or(c, 'ics.outcomes_by_general_cause'):
+        # Fallback when the ICS-209-PLUS file was not available to analysis.power_lines: the losses-page ledger
+        # already holds the same sample by general cause (ics.sample_definition), so show its human causes.
+        og = cv(c, 'ics.outcomes_by_general_cause')
+        keys = sorted((k for k in og if k not in ('Natural', MISS)), key=lambda k: -og[k]['structures_destroyed'])
+        def grow(k):
+            d = og[k]
+            name = 'Power lines' if k == POWER else k
+            cell = (lambda t: f'<strong>{t}</strong>') if k == POWER else (lambda t: t)
+            return (f'<tr><td>{cell(esc(name))}</td><td class="num">{q(c, "ics.outcomes_by_general_cause", fmt_int(d["incidents"]))}</td>'
+                    f'<td class="num">{q(c, "ics.outcomes_by_general_cause", fmt_int(d["structures_destroyed"]))}</td>'
+                    f'<td class="num">{q(c, "ics.outcomes_by_general_cause", fmt_pct(d["share_incidents_with_structures_destroyed"], 0))}</td>'
+                    f'<td class="num">{q(c, "ics.outcomes_by_general_cause", fmt_num(d["structures_destroyed_per_1000_acres"], 1))}</td>'
+                    f'<td class="num">{q(c, "ics.outcomes_by_general_cause", fmt_int(d["fatalities"]))}</td></tr>')
+        losses = f"""
+<h2>Losses</h2>
+<p>For fires of 300 acres or more that were reported on an ICS-209 incident report (2010-2020), the same sample as the <a href="conservation.html">Protected lands and losses</a> page, by human general cause:</p>
+<div class="table-wrap"><table><thead><tr><th>Cause</th><th class="num">Incidents</th><th class="num">Structures destroyed</th><th class="num">Incidents destroying any</th><th class="num">Per 1,000 acres</th><th class="num">Fatalities</th></tr></thead>
+<tbody>{''.join(grow(k) for k in keys)}</tbody></table></div>
+<p class="small muted">Structure counts are summed from incident reports and are dominated by a few incidents; read them as a record of what was reported, not a rate. Fatalities on ICS-209 reports include responders and are incomplete. Incidents with no recorded cause (the largest group) and lightning fires are left out of this table.</p>"""
     inc = cv(c, 'power.largest_incidents')
     isum = cv(c, 'power.incident_summary')
     inc_rows = ''.join(
