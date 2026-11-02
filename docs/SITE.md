@@ -26,6 +26,7 @@ and officials. `scripts/build_site.py` still writes every page; the version 2 pa
 | `largest.html` | the 250 largest incidents, grouped, searchable | `incidents.*` |
 | `drivers.html` Drought | replication of the first site's drought model and three stricter tests | `drivers.*` |
 | `model.html` Prediction | the ranking model, plus the WFIGS 2021-2025 forward test and its diagnostic | `model.*`, `wfigs.*` |
+| `built.html` How this was built | the ledger, the site-claims test, the adversarial review, corrections, and who did what (Robyn directing, Claude Code writing most code and running the reviews). Linked from the footer, not the top nav | `n_claims`; review counts cited inline from docs/review/PANEL_REPORT.md |
 | `methods.html`, `audit.html` | ledger, downloads, errata; audit of the first site | all |
 
 `geography.html` and `ownership.html` are still built and linked from the methods and places pages, but they
@@ -231,7 +232,7 @@ panel-fire.md F1, F5) and are enforced by the shared helpers, so a new page gets
     the computed tokens at render time and re-render on theme change.
 13. **Mobile first:** 16 px gutters, no horizontal scroll (tables scroll inside `.table-wrap`),
     charts are responsive.
-14. **Personal details:** the author's name and the repo URL may appear; nothing else.
+14. **Personal details:** the author's name, the repo URL, the About line in the footer (Los Angeles motivation, approved by Robyn 2026-11-02) and links to the author's LinkedIn and GitHub profiles; nothing else. No job search or employer.
 
 ## Adding a page
 

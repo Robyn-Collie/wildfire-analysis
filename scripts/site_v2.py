@@ -1046,6 +1046,40 @@ def page_audit(ctx: dict) -> str:
                     description='What held and what changed when the first public wildfire site was rebuilt and re-tested.')
 
 
+# =========================================================================== how this was built
+
+def page_built(ctx: dict) -> str:
+    c = ctx['claims']
+    n_files = len(ctx['claims_files'])
+    panel_src = 'docs/review/PANEL_REPORT.md, section 2 (sentence ledger in docs/review/panel-rai.md, section b)'
+    body = f"""
+<header class="page-head"><h1>How this was built</h1>
+<p class="lede">This site makes a narrow promise: every number on it can be traced to the code that computed it, and every claim was tested by someone trying to break it. This page explains how that works, who did what, and what happens when a check fails.</p></header>
+
+<h2>Every number is a claim in a ledger</h2>
+<p>The analysis code does not print numbers for a person to copy. Each number is registered as a claim with an id, a plain-language definition, the number of records behind it and the time it was computed, and written to a JSON ledger. There are {qd(f"{ctx['n_claims']:,}", 'Claims in the ledger files this site was built from.', ', '.join(ctx['claims_files']))} claims in {n_files} ledger files. The pages are generated from the ledger by <code>scripts/build_site.py</code>; only the prose is written by hand.</p>
+<p>Click any underlined number on the site to see its definition and n. The <a href="methods.html">Data and methods</a> page has the whole ledger, searchable, and every ledger file is downloadable.</p>
+
+<h2>A test checks every number on every page</h2>
+<p><a href="{B.REPO_URL}/blob/main/tests/test_site_claims.py">tests/test_site_claims.py</a> reads every generated page, finds every number that links to a claim, and checks that the claim exists and that the number matches it at the precision it is written with. If the analysis is re-run and the site is not rebuilt, or if anyone edits a page by hand, the test fails. The test suite runs on every change to the repository.</p>
+
+<h2>Claims were reviewed by reviewers trying to refute them</h2>
+<p>Before this version was written, the project's earlier README was put through an adversarial review from five angles: machine-learning method, fire science, reproducibility, responsible AI, and conservation. Each reviewer re-ran its own code on the data and was asked to argue against the project as hard as the evidence allowed. Of its {qd('60', 'Sentences in the README ledger.', panel_src)} sentences, {qd('21', 'Sentences supported.', panel_src)} were supported, {qd('24', 'Sentences weakened.', panel_src)} weakened, {qd('7', 'Sentences refuted.', panel_src)} refuted and {qd('8', 'Sentences unverifiable.', panel_src)} unverifiable.
+The fire-duration model and the "control efficiency score" did not survive and were retired; the large-fire ranking model on the <a href="model.html">Prediction</a> page replaced them. Report: <a href="{B.DOCS_URL}/review/PANEL_REPORT.md">docs/review/PANEL_REPORT.md</a>.</p>
+<p>The first public site was audited the same way: each analysis rebuilt from the original sources, its numbers replicated, then tested more strictly. See the <a href="audit.html">audit</a>.</p>
+
+<h2>When a check fails, the correction stays visible</h2>
+<p>Claims that were wrong are not quietly removed. The <a href="methods.html#errata">errata</a> list each one: what was claimed, what the check found, and the evidence. When an input dataset is missing or a number cannot be computed, the page says so instead of estimating it.</p>
+
+<h2>Who did what</h2>
+<p>Robyn Collie chose the questions, directed the work, and decided what was published and how it is worded. Most of the code, the analysis runs and the adversarial reviews were done by Claude Code, an AI coding agent from Anthropic, working in sessions Robyn directed; the repository's <a href="{B.REPO_URL}/commits/main">commit history</a> records which commits it wrote. The safeguards above are there partly for that reason: a number is trusted because it is in the ledger and passes the tests, not because a person or an agent typed it.</p>
+
+<p class="small">Technical detail: <a href="{B.DOCS_URL}/SITE.md">docs/SITE.md</a> (how the site is generated and deployed) and <a href="{B.REPO_URL}">the repository</a>.</p>
+"""
+    return B.layout(ctx, 'built.html', 'How this was built · ' + B.SITE_TITLE, body, nav_page='methods.html',
+                    description='How every number on this site is tied to code, tested, reviewed adversarially and corrected in the open, and how AI was used.')
+
+
 def downloads_section(ctx: dict) -> str:
     files = ctx.get('downloads', [])
     if not files:

@@ -32,6 +32,8 @@ SITE_DIR = os.path.join(REPO_ROOT, 'site')
 REPO_URL = 'https://github.com/Robyn-Collie/wildfire-analysis'
 DOCS_URL = REPO_URL + '/tree/main/docs'
 AUTHOR = 'Robyn Collie'
+AUTHOR_LINKEDIN = 'https://www.linkedin.com/in/robyn-collie/'
+AUTHOR_GITHUB = 'https://github.com/Robyn-Collie'
 PLOTLY_CDN = 'https://cdn.plot.ly/plotly-2.35.2.min.js'
 # Plotly is served from the site itself when the vendored copy exists (MIT, scripts/vendor/PLOTLY_LICENSE),
 # so pages make no third-party requests; the CDN is the fallback only if the file is missing.
@@ -757,10 +759,11 @@ def layout(ctx: dict, page: str, title: str, body: str, page_js: str = '', descr
 {body}
 </div></main>
 <footer class="site"><div class="wrap">
+  <p class="about"><strong>About.</strong> Built by {esc(AUTHOR)}, who lived in Los Angeles for ten years and felt the fires kept getting worse. This site checks that impression against the record. <a href="{AUTHOR_LINKEDIN}">LinkedIn</a> · <a href="{AUTHOR_GITHUB}">GitHub</a> · <a href="built.html">How this was built</a></p>
   <p>Data: FPA FOD 6th edition (Short 2022), SHA-256 <code>{esc(ctx['hash_prefix'])}</code> (full hash in <a href="{DOCS_URL}/DATA_VERSION.md">docs/DATA_VERSION.md</a>).
   Site generated {esc(ctx['generated'])} by <code>scripts/build_site.py</code> from {esc(', '.join(ctx['claims_files']))}.</p>
   <p>Every number on this page links to its definition and n (click it). Charts: Table view and CSV download under each one. <a href="audit.html">What changed from the first public site</a>.
-  <a href="{DOCS_URL}">Repository docs</a> · <a href="{DOCS_URL}/SITE.md">How this site is built</a> · <a href="{REPO_URL}">{esc(REPO_URL.replace('https://', ''))}</a> · {esc(AUTHOR)}.</p>
+  <a href="{DOCS_URL}">Repository docs</a> · <a href="built.html">How this site was built</a> · <a href="{REPO_URL}">{esc(REPO_URL.replace('https://', ''))}</a> · {esc(AUTHOR)}.</p>
 </div></footer>
 {data_scripts}
 {'<script src="vendor/geo_assets.js"></script>' if PLOTLY_SRC != PLOTLY_CDN else ''}
@@ -1948,7 +1951,7 @@ def main() -> int:
     pages = {
         'index.html': v2.page_home, 'explore.html': v2.page_explore, 'trends.html': page_trends, 'causes.html': page_causes,
         'places.html': v2.page_places, 'conservation.html': page_conservation, 'largest.html': v2.page_largest,
-        'drivers.html': v2.page_drivers, 'power-lines.html': v2.page_power, 'model.html': page_model, 'methods.html': page_methods, 'audit.html': v2.page_audit,
+        'drivers.html': v2.page_drivers, 'power-lines.html': v2.page_power, 'model.html': page_model, 'methods.html': page_methods, 'audit.html': v2.page_audit, 'built.html': v2.page_built,
         'geography.html': page_geography, 'ownership.html': page_ownership,
     }
     for name, fn in pages.items():
