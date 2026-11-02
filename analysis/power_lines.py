@@ -41,7 +41,8 @@ LARGE = 300.0
 YEARS = list(range(1992, 2021))
 COLUMNS = ['FOD_ID', 'FIRE_YEAR', 'DISCOVERY_DATE', 'DISCOVERY_MONTH', 'STATE', 'FIRE_SIZE', 'FIRE_NAME',
            'COMPLEX_NAME', 'MTBS_FIRE_NAME', 'MTBS_ID', 'NWCG_CAUSE_CLASSIFICATION', 'NWCG_GENERAL_CAUSE',
-           'ICS_209_PLUS_INCIDENT_JOIN_ID', 'ICS_209_PLUS_COMPLEX_JOIN_ID']
+           'ICS_209_PLUS_INCIDENT_JOIN_ID', 'ICS_209_PLUS_COMPLEX_JOIN_ID', 'FIPS_NAME']
+BRIEF_STATES = ['CA']  # states with a utility-audience brief (site: brief-XX.html)
 DEFINITION = (f'Power-line fires = FPA FOD 6th edition records with NWCG_GENERAL_CAUSE = "{POWER}", 1992-2020. '
               'The code is assigned at ignition by the reporting agency. It does not separate generation, '
               'transmission and distribution, or vegetation contact from equipment failure.')
@@ -160,8 +161,6 @@ def large_rates(df: pd.DataFrame) -> None:
 
 
 def largest_incidents(df: pd.DataFrame, tab_dir: str) -> None:
-    df = df.copy()
-    df['INCIDENT'] = group(df)
     g = df.groupby('INCIDENT', sort=False)
     lead = df.sort_values('FIRE_SIZE', ascending=False).drop_duplicates('INCIDENT').set_index('INCIDENT')
     inc = pd.DataFrame({'acres': g['FIRE_SIZE'].sum(), 'components': g.size(),
@@ -186,6 +185,51 @@ def largest_incidents(df: pd.DataFrame, tab_dir: str) -> None:
     }, f'Incidents led by a power-line record, and how concentrated their acres are in the top {TOP_N}.', len(pinc))
     os.makedirs(tab_dir, exist_ok=True)
     out.to_csv(os.path.join(tab_dir, 'power_lines_largest_incidents.csv'), float_format='%.1f')
+
+
+def state_brief(df: pd.DataFrame, st: str) -> None:
+    """Power-line numbers for one state's utility-audience brief: when, where (county), how often large, largest."""
+    d = df[df['STATE'] == st]
+    h = d[(d['CAUSE'] == 'Human') & (d['GENERAL'] != CAUSE_MISSING)]
+    p = d[d['POWER']]
+    g = h.groupby('GENERAL')
+    rates = pd.DataFrame({'fires': g.size(), 'large_fires': g['LARGE'].sum(), 'acres': g['FIRE_SIZE'].sum()})
+    rates['large_rate'] = rates['large_fires'] / rates['fires']
+    rates = rates.sort_values('large_rate', ascending=False)
+    mo = pd.DataFrame({'fires': p.groupby('MONTH').size(), 'large_fires': p[p['LARGE']].groupby('MONTH').size(),
+                       'acres': p.groupby('MONTH')['FIRE_SIZE'].sum()}).reindex(range(1, 13)).fillna(0)
+    mo['large_rate'] = (mo['large_fires'] / mo['fires'].where(mo['fires'] > 0)).fillna(0)
+    mo.index = MONTH_ABBR
+    county = p['FIPS_NAME'].astype('string').str.strip()
+    known = county.notna() & (county != '')
+    cty = pd.DataFrame({'fires': p[known].groupby(county[known]).size(),
+                        'large_fires': p[known & p['LARGE']].groupby(county[known & p['LARGE']]).size(),
+                        'acres': p[known].groupby(county[known])['FIRE_SIZE'].sum()}).fillna(0)
+    cty = cty.sort_values(['large_fires', 'acres'], ascending=False).head(10)
+    g2 = d.groupby('INCIDENT', sort=False)
+    lead = d.sort_values('FIRE_SIZE', ascending=False).drop_duplicates('INCIDENT').set_index('INCIDENT')
+    inc = pd.DataFrame({'acres': g2['FIRE_SIZE'].sum(), 'components': g2.size()})
+    inc = inc[lead.loc[inc.index, 'GENERAL'] == POWER].sort_values('acres', ascending=False).head(10)
+    l = lead.loc[inc.index]
+    names = clean_name(l['COMPLEX_NAME'].fillna(l['MTBS_FIRE_NAME']).fillna(l['FIRE_NAME'])).astype(object)
+    other = h[h['GENERAL'] != POWER]
+    claim(f'power.state.{st}', {
+        'fires': len(p), 'acres': float(p['FIRE_SIZE'].sum()), 'large_fires': int(p['LARGE'].sum()),
+        'large_rate': float(p['LARGE'].mean()) if len(p) else None,
+        'other_human_large_rate': float(other['LARGE'].mean()) if len(other) else None,
+        'share_of_known_human_fires': len(p) / len(h) if len(h) else None,
+        'share_of_known_human_large_fires': float(p['LARGE'].sum() / h['LARGE'].sum()) if h['LARGE'].sum() else None,
+        'share_of_known_human_acres': float(p['FIRE_SIZE'].sum() / h['FIRE_SIZE'].sum()) if len(h) else None,
+        'general_cause_missing_share': float((d['GENERAL'] == CAUSE_MISSING).mean()),
+        'county_missing_share': float(1 - known.mean()) if len(p) else None,
+        'by_month': mo, 'large_rate_by_human_cause': rates, 'top_counties': cty,
+        'largest_incidents': [{'name': n if isinstance(n, str) else '(unnamed)', 'year': int(y), 'acres': round(float(a), 1),
+                               'components': int(c)}
+                              for n, y, a, c in zip(names, l['FIRE_YEAR'], inc['acres'], inc['components'])],
+    }, f'Power-line fires in {st}, FPA FOD 1992-2020: counts, the share reaching {LARGE:.0f} acres against every other '
+       'human general cause in the state, by discovery month, the ten counties (FIPS_NAME as recorded) with the most '
+       'power-line fires of 300+ acres, and the ten largest incidents led by a power-line record (incidents rule). '
+       'Human fires with no general cause are left out of the comparisons.', len(d))
 
 
 def losses(df: pd.DataFrame) -> None:
@@ -238,7 +282,10 @@ def run(out_dir: str) -> None:
     overview(df)
     by_year_region_month(df)
     large_rates(df)
+    df['INCIDENT'] = group(df)
     largest_incidents(df, os.path.join(out_dir, 'tables'))
+    for st in BRIEF_STATES:
+        state_brief(df, st)
     losses(df)
     wfigs_extension()
     log.info(f'power lines done in {time.time() - t0:.0f}s')

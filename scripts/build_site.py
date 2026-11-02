@@ -1961,6 +1961,11 @@ def main() -> int:
     for cid in place_ids:
         st = cid.rsplit('.', 1)[1]
         write(os.path.join(SITE_DIR, f'place-{st}.html'), v2.page_place(ctx, st))
+    for cid in [k for k in claims if k.startswith('power.state.')]:
+        st = cid.rsplit('.', 1)[1]
+        html_text = v2.page_utility_brief(ctx, st)
+        if html_text:
+            write(os.path.join(SITE_DIR, f'brief-{st}.html'), html_text)
 
     write(os.path.join(SITE_DIR, 'robots.txt'), 'User-agent: *\nAllow: /\n')
 

@@ -23,6 +23,7 @@ and officials. `scripts/build_site.py` still writes every page; the version 2 pa
 | `places.html`, `place-XX.html` | state comparison map and table; one printable brief per state (52) | `places.state.XX`, `drivers.*`, `wfigs.per_state_2021_2025` |
 | `conservation.html` Protected lands and losses | unchanged from v1 of this repo | `padus.*`, `ics.*` |
 | `power-lines.html` Power lines | fires coded to power generation/transmission/distribution: counts, large-fire rate against other human causes, region and month, ICS-209 losses, largest incidents, and what the code cannot say. Built only when `outputs/claims_power.json` exists (`python -m analysis.power_lines --out outputs/`) | `power.*` |
+| `brief-CA.html` | a utility-audience brief for California (power-line fires by month, county, cause comparison, largest incidents, ICS losses, the ranking model's holdout in the state, and what the record cannot say). Built for each state in `analysis.power_lines.BRIEF_STATES` when its `power.state.XX` claim exists; linked from the power-line page | `power.state.XX`, `places.state.XX`, `model.holdout_per_state` |
 | `largest.html` | the 250 largest incidents, grouped, searchable | `incidents.*` |
 | `drivers.html` Drought | replication of the first site's drought model and three stricter tests | `drivers.*` |
 | `model.html` Prediction | the ranking model, plus the WFIGS 2021-2025 forward test and its diagnostic | `model.*`, `wfigs.*` |
